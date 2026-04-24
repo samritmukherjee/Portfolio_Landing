@@ -336,14 +336,23 @@ export const CircularProjects = ({
       <style jsx>{`
         .testimonial-grid {
           display: grid;
-          gap: 4rem;
-          padding: 2rem 0;
+          gap: 2rem;
+          padding: 1rem 0;
         }
         .image-container {
           position: relative;
           width: 100%;
-          height: 20rem;
+          height: 16rem;
           perspective: 1000px;
+        }
+        @media (max-width: 640px) {
+          .testimonial-grid {
+            gap: 1.5rem;
+            padding: 1rem 0;
+          }
+          .image-container {
+            height: 14rem;
+          }
         }
         .testimonial-image {
           position: absolute;
@@ -362,23 +371,26 @@ export const CircularProjects = ({
           font-weight: 800;
           margin-bottom: 0.25rem;
           letter-spacing: -0.025em;
+          font-size: clamp(1.5rem, 5vw, 2rem);
         }
         .designation {
-          margin-bottom: 2rem;
+          margin-bottom: 1.5rem;
           font-weight: 500;
+          font-size: clamp(0.875rem, 4vw, 1rem);
         }
         .quote {
           line-height: 1.75;
           margin-bottom: 1.5rem;
+          font-size: clamp(0.875rem, 3.5vw, 1rem);
         }
         .arrow-buttons {
           display: flex;
-          gap: 1rem;
-          padding-top: 3rem;
+          gap: 0.75rem;
+          padding-top: 1.5rem;
         }
         .arrow-button {
-          width: 3rem;
-          height: 3rem;
+          width: 2.5rem;
+          height: 2.5rem;
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -392,16 +404,29 @@ export const CircularProjects = ({
           transform: translateY(-2px);
           box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
+        @media (min-width: 640px) {
+          .arrow-buttons {
+            gap: 1rem;
+            padding-top: 2rem;
+          }
+          .arrow-button {
+            width: 3rem;
+            height: 3rem;
+          }
+        }
         @media (min-width: 768px) {
           .testimonial-grid {
             grid-template-columns: 1fr 1fr;
             min-height: 28rem;
+            gap: 4rem;
+            padding: 2rem 0;
           }
           .image-container {
             height: 100%;
+            height: 20rem;
           }
           .arrow-buttons {
-            padding-top: 2rem;
+            padding-top: 3rem;
           }
         }
       `}</style>

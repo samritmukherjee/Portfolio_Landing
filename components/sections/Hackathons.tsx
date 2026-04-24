@@ -47,8 +47,8 @@ const hackathons = {
 
 export const Hackathons = () => {
   return (
-    <section id="hackathons" className="section-wrapper section-surface">
-      <div className="container-custom">
+    <section id="hackathons" className="section-wrapper section-surface overflow-hidden">
+      <div className="container-custom max-w-full px-4 sm:px-6 md:px-12 lg:px-16">
         <div className="text-center mb-20 space-y-4">
           <h2 className="text-stone-50">Hackathons & <span className="text-accent-300">Accolades</span></h2>
           <p className="text-stone-400 max-w-2xl mx-auto">
@@ -75,7 +75,7 @@ export const Hackathons = () => {
                       glowColor="orange"
                       customSize
                       transparentBackdrop
-                      className="h-full min-h-[320px] rounded-[2.5rem] border border-theme-border overflow-hidden transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-accent-500/10 bg-transparent"
+                      className="h-full min-h-[280px] sm:min-h-[320px] rounded-2xl lg:rounded-[2.5rem] border border-theme-border overflow-hidden transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-accent-500/10 bg-transparent"
                     >
                       {/* Winning Moment Image Reveal */}
                       <div className="absolute inset-0 z-0">
@@ -87,27 +87,27 @@ export const Hackathons = () => {
                       </div>
 
                       {/* Content Layer */}
-                      <div className="relative z-10 h-full p-8 md:p-10 flex flex-col justify-between gap-6 bg-transparent">
+                      <div className="relative z-10 h-full p-4 sm:p-6 lg:p-8 lg:p-10 flex flex-col justify-between gap-3 sm:gap-4 lg:gap-6 bg-transparent">
                         <div className="space-y-6">
                           <div className="flex justify-between items-start">
-                            <div className="w-12 h-12 rounded-2xl bg-accent-500/10 backdrop-blur-md flex items-center justify-center border border-theme-border group-hover:border-accent-500/30 transition-all duration-500">
-                              <FaTrophy className="text-2xl text-accent-400" />
+                            <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-2xl bg-accent-500/10 backdrop-blur-md flex items-center justify-center border border-theme-border group-hover:border-accent-500/30 transition-all duration-500">
+                              <FaTrophy className="text-lg sm:text-2xl text-accent-400" />
                             </div>
-                            <span className="text-[0.65rem] font-bold text-stone-500 uppercase tracking-widest bg-theme-surface px-3 py-1 rounded-full border border-theme-border group-hover:text-white transition-colors duration-500">{event.year}</span>
+                            <span className="text-[0.55rem] sm:text-[0.65rem] font-bold text-stone-500 uppercase tracking-widest bg-theme-surface px-2 sm:px-3 py-1 rounded-full border border-theme-border group-hover:text-white transition-colors duration-500">{event.year}</span>
                           </div>
 
                           <div className="space-y-1">
-                            <span className="text-[0.6rem] font-black text-accent-400 uppercase tracking-[0.25em] group-hover:text-white transition-colors duration-500">{event.result}</span>
-                            <h4 className="text-2xl font-bold text-stone-50 leading-tight group-hover:text-white transition-colors duration-500">{event.title}</h4>
+                            <span className="text-[0.5rem] sm:text-[0.6rem] font-black text-accent-400 uppercase tracking-[0.25em] group-hover:text-white transition-colors duration-500">{event.result}</span>
+                            <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-stone-50 leading-tight group-hover:text-white transition-colors duration-500">{event.title}</h4>
                           </div>
                         </div>
 
                         <div className="space-y-3">
-                          <div className="flex items-center gap-3 pb-2 border-b border-theme-border">
-                            <MdLocationOn className="text-accent-400 text-lg" />
-                            <p className="text-[0.7rem] text-stone-500 font-black uppercase tracking-[0.2em] group-hover:text-white transition-colors duration-500">{event.location}</p>
+                          <div className="flex items-center gap-2 sm:gap-3 pb-1 sm:pb-2 border-b border-theme-border">
+                            <MdLocationOn className="text-accent-400 text-base sm:text-lg" />
+                            <p className="text-[0.6rem] sm:text-[0.7rem] text-stone-500 font-black uppercase tracking-[0.2em] group-hover:text-white transition-colors duration-500">{event.location}</p>
                           </div>
-                          <p className="text-stone-400 text-sm md:text-base leading-relaxed transition-colors duration-500 group-hover:text-white">
+                          <p className="text-stone-400 text-xs sm:text-sm md:text-base leading-relaxed transition-colors duration-500 group-hover:text-white">
                             {event.description}
                           </p>
                         </div>

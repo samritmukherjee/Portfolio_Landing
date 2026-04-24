@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 export const About = () => {
   return (
-    <section id="about" className="section-wrapper section-surface">
-      <div className="container-custom">
+    <section id="about" className="section-wrapper overflow-hidden">
+      <div className="container-custom max-w-full overflow-x-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -34,14 +34,14 @@ export const About = () => {
               </p>
             </div>
             
-            <div className="flex gap-12 mt-12">
+            <div className="flex flex-col sm:flex-row gap-8 sm:gap-12 mt-8 sm:mt-12">
               <div>
-                <h4 className="text-4xl font-black text-stone-50">8+</h4>
-                <p className="text-[0.65rem] uppercase tracking-widest text-stone-500 font-bold">Projects Built</p>
+                <h4 className="text-2xl sm:text-3xl lg:text-4xl font-black text-stone-50">8+</h4>
+                <p className="text-[0.55rem] sm:text-[0.65rem] uppercase tracking-widest text-stone-500 font-bold mt-1">Projects Built</p>
               </div>
               <div>
-                <h4 className="text-4xl font-black text-stone-50">5+</h4>
-                <p className="text-[0.65rem] uppercase tracking-widest text-stone-500 font-bold">Students Taught</p>
+                <h4 className="text-2xl sm:text-3xl lg:text-4xl font-black text-stone-50">5+</h4>
+                <p className="text-[0.55rem] sm:text-[0.65rem] uppercase tracking-widest text-stone-500 font-bold mt-1">Students Taught</p>
               </div>
             </div>
           </motion.div>
@@ -53,7 +53,7 @@ export const About = () => {
             viewport={{ once: true }}
             className="relative flex justify-center lg:justify-end"
           >
-            <div className="relative w-full max-w-md aspect-[4/5] rounded-[2.5rem] overflow-hidden group shadow-2xl transition-all duration-700 hover:scale-[1.02] hover:shadow-accent-500/10">
+            <div className="relative w-full sm:max-w-sm lg:max-w-md aspect-[4/5] rounded-2xl lg:rounded-[2.5rem] overflow-hidden group shadow-lg lg:shadow-2xl transition-all duration-700 hover:scale-[1.02] hover:shadow-accent-500/10">
               {/* Profile Image */}
               <div className="absolute inset-0 bg-theme-surface">
                   <img 

@@ -40,7 +40,7 @@ export const HeroGlassmorphism = () => {
       </div>
 
       <div className="container-custom relative z-10">
-        <div className="grid items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="grid items-center gap-8 md:gap-16 lg:grid-cols-[1.15fr_0.85fr]">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -71,7 +71,7 @@ export const HeroGlassmorphism = () => {
               </p>
             </motion.div>
 
-            <motion.p variants={childVariants} className="text-lg md:text-xl text-stone-300 font-medium leading-relaxed max-w-xl">
+            <motion.p variants={childVariants} className="text-base sm:text-lg md:text-xl text-stone-300 font-medium leading-relaxed max-w-xl">
               Building intelligent, scalable software that transforms ambitious ideas into practical, user-focused products.
             </motion.p>
 
@@ -92,7 +92,7 @@ export const HeroGlassmorphism = () => {
               </motion.a>
             </motion.div>
 
-            <motion.div variants={childVariants} className="flex items-center gap-8 pt-10">
+            <motion.div variants={childVariants} className="flex items-center gap-4 md:gap-8 pt-10">
               <a href="https://github.com/samritmukherjee" className="text-stone-500 hover:text-accent-300 transition-colors duration-300 hover:-translate-y-1 transform">
                 <FaGithub size={24} />
               </a>
@@ -115,13 +115,13 @@ export const HeroGlassmorphism = () => {
               </p>
             </div>
             <div className="grid grid-cols-2 gap-5">
-              <motion.div whileHover={prefersReducedMotion ? undefined : { y: -2 }} className="rounded-2xl border border-theme-border p-4 bg-theme-surface/70">
-                <p className="text-stone-500 text-[0.65rem] uppercase tracking-widest font-bold mb-1">Projects</p>
-                <p className="text-stone-50 font-black text-xl">8+</p>
+              <motion.div whileHover={prefersReducedMotion ? undefined : { y: -2 }} className="rounded-lg md:rounded-2xl border border-theme-border p-3 md:p-4 bg-theme-surface/70 flex-1 md:flex-none">
+                <p className="text-stone-500 text-[0.55rem] md:text-[0.65rem] uppercase tracking-widest font-bold mb-1">Projects</p>
+                <p className="text-stone-50 font-black text-lg md:text-xl">8+</p>
               </motion.div>
-              <motion.div whileHover={prefersReducedMotion ? undefined : { y: -2 }} className="rounded-2xl border border-theme-border p-4 bg-theme-surface/70">
-                <p className="text-stone-500 text-[0.65rem] uppercase tracking-widest font-bold mb-1">Experience</p>
-                <p className="text-stone-50 font-black text-xl">2+ Yrs</p>
+              <motion.div whileHover={prefersReducedMotion ? undefined : { y: -2 }} className="rounded-lg md:rounded-2xl border border-theme-border p-3 md:p-4 bg-theme-surface/70 flex-1 md:flex-none">
+                <p className="text-stone-500 text-[0.55rem] md:text-[0.65rem] uppercase tracking-widest font-bold mb-1">Experience</p>
+                <p className="text-stone-50 font-black text-lg md:text-xl">2+ Yrs</p>
               </motion.div>
             </div>
           </motion.aside>

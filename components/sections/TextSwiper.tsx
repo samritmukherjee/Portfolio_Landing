@@ -49,13 +49,13 @@ export const TextSwiper = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 1.05, y: -10 }}
             transition={{ duration: 0.4, ease: "circOut" }}
-            className="glass-card p-10 md:p-14 min-h-[300px] flex flex-col justify-between border-accent-500/10"
+            className="glass-card p-6 sm:p-10 md:p-14 min-h-[280px] sm:min-h-[300px] flex flex-col justify-between border-accent-500/10"
           >
             <div className="space-y-4">
-              <span className="text-[10px] uppercase tracking-[0.3em] font-black text-accent-500 bg-accent-500/10 px-3 py-1 rounded-full">
+              <span className="text-[8px] sm:text-[10px] uppercase tracking-[0.3em] font-black text-accent-500 bg-accent-500/10 px-2 sm:px-3 py-1 rounded-full">
                 {item.label}
               </span>
-              <div className="text-3xl md:text-4xl font-black text-stone-50 break-words leading-tight">
+              <div className="text-2xl sm:text-3xl md:text-4xl font-black text-stone-50 break-words leading-tight">
                 {item.value}
               </div>
             </div>

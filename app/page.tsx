@@ -105,19 +105,30 @@ export default function Home() {
       <div className="aurora-bg"></div>
 
       {/* Floating Header */}
-      <header className={`fixed top-0 left-0 right-0 z-[90] transition-all duration-700 ${scrolled ? "py-1" : "py-2.5"}`}>
-        <div className="container-custom flex items-center justify-between">
+      <header className={`fixed top-0 left-0 right-0 z-[90] transition-all duration-700 ${scrolled ? "py-0.5 sm:py-1" : "py-2 sm:py-2.5"}`}>
+        <div className="container-custom flex items-center justify-between h-12 sm:h-auto">
           <div className="flex items-center h-10">
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-              className="text-base md:text-xl font-extrabold tracking-[0.08em] text-stone-100"
+              className="text-sm sm:text-base md:text-xl font-extrabold tracking-[0.08em] text-stone-100 truncate"
             >
               SAMRIT<span className="text-accent-500">.</span>
             </motion.div>
           </div>
           
+          {/* Mobile: Only Toggle */}
+          <div className="md:hidden">
+            <div className="flex items-center pl-2 pr-2 border-l border-white/5 h-8">
+              <Switch
+                checked={theme === "light"}
+                onChange={() => setTheme((prev) => (prev === "dark" ? "light" : "dark"))}
+              />
+            </div>
+          </div>
+
+          {/* Desktop: Full Nav Bar */}
           <nav className={`hidden md:flex items-center gap-2.5 px-3 py-1.5 rounded-full nav-shell overflow-hidden ${scrolled ? "nav-shell-scrolled" : ""}`}>
             {navItems.map((item) => {
               const itemId = item.toLowerCase();
@@ -128,7 +139,7 @@ export default function Home() {
                   key={item}
                   href={`#${itemId}`}
                   whileHover={prefersReducedMotion ? undefined : { y: -1 }}
-                  className={`nav-link ${isActive ? "is-active" : ""}`}
+                  className={`nav-link text-[0.7rem] px-3 ${isActive ? "is-active" : ""}`}
                 >
                   {isActive && (
                     <motion.span

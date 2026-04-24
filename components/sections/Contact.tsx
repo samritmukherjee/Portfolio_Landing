@@ -35,16 +35,16 @@ export const Contact = () => {
       <div className="container-custom relative z-10">
         <div className="space-y-8">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-white">
               Let's Connect
             </h2>
-            <p className="text-lg text-blue-200/80 mb-10 max-w-2xl leading-relaxed">
+            <p className="text-base sm:text-lg text-blue-200/80 mb-6 sm:mb-10 max-w-2xl leading-relaxed">
               I'm always interested in new opportunities, collaborations, or just a
               good conversation about tech. Reach out and let's build something amazing together.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4">
             {contactLinks.map((link, idx) => (
               <a
                 key={link.label}
@@ -52,7 +52,7 @@ export const Contact = () => {
                 target={link.href.startsWith("http") ? "_blank" : undefined}
                 rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                 className={`
-                  inline-flex items-center gap-3 px-7 py-3 font-semibold text-base md:text-lg
+                  inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 md:px-7 py-2 sm:py-3 font-semibold text-xs sm:text-base md:text-lg
                   transition-all duration-300 ease-out transform
                   hover:scale-105 active:scale-95
                   ${

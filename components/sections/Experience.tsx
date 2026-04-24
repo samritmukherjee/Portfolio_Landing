@@ -42,8 +42,8 @@ const experiences: Experience[] = [
 
 export const Experience = () => {
   return (
-    <section id="experience" className="section-wrapper section-surface">
-      <div className="container-custom">
+    <section id="experience" className="section-wrapper section-surface overflow-hidden">
+      <div className="container-custom max-w-full overflow-x-hidden">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
           <div className="space-y-4">
             <h2 className="text-stone-50">Professional <span className="gradient-accent">Journey</span></h2>
@@ -62,7 +62,7 @@ export const Experience = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="glass-card p-8 md:p-10 group transition-all border-l-4 border-l-stone-800 hover:border-l-accent-500"
+              className="glass-card p-4 sm:p-6 lg:p-8 lg:p-10 group transition-all border-l-4 border-l-stone-800 hover:border-l-accent-500"
             >
               <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                 <div className="space-y-4 flex-1">
@@ -70,15 +70,15 @@ export const Experience = () => {
                     <span className="text-xs font-bold uppercase tracking-widest text-accent-500 mb-2 block">
                       {exp.duration}
                     </span>
-                    <h3 className="text-2xl font-bold text-stone-50 group-hover:text-accent-400 transition-colors">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-stone-50 group-hover:text-accent-400 transition-colors">
                       {exp.role}
                     </h3>
                     <p className="text-stone-400 font-medium">{exp.organization}</p>
                   </div>
                   
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
+                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 mt-3 sm:mt-4">
                     {exp.highlights.map((highlight, i) => (
-                      <li key={i} className="flex gap-2 text-stone-500 dark:text-stone-500 text-sm items-start">
+                      <li key={i} className="flex gap-2 text-stone-500 dark:text-stone-500 text-xs sm:text-sm items-start">
                         <span className="w-1.5 h-1.5 rounded-full bg-stone-300 dark:bg-stone-800 mt-1.5 flex-shrink-0 group-hover:bg-accent-500 transition-colors" />
                         {highlight}
                       </li>
