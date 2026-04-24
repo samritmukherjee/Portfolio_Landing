@@ -2,7 +2,7 @@
 
 A high-performance, interactive portfolio showcasing AI systems, full-stack engineering, and product development projects. Built with cutting-edge web technologies for a seamless, accessible experience.
 
-**Live Demo**: [samritmukherjee.com](https://samritmukherjee.com)
+**Live Demo**: [samritmukherjee.vercel.app](https://samritmukherjee.vercel.app/)
 
 ---
 
