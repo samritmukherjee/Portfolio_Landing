@@ -1,29 +1,50 @@
-# Samrit's Portfolio
+# Samrit Mukherjee's Portfolio
 
-A modern, professional portfolio website built with Next.js, React, TypeScript, and Tailwind CSS.
+A high-performance, interactive portfolio showcasing AI systems, full-stack engineering, and product development projects. Built with cutting-edge web technologies for a seamless, accessible experience.
 
-## Features
+**Live Demo**: [samritmukherjee.com](https://samritmukherjee.com)
 
-- **Clean, Linear Design** - Professional and easy to scan
-- **Fully Responsive** - Works seamlessly on all devices
-- **Warm Neutral Colors** - Stone/slate palette for a natural feel
-- **Smooth Animations** - Subtle transitions and fade-ins
-- **Organized Sections** - Hero, About, Hackathons, Projects, Skills, Resume, Contact
-- **TypeScript** - Fully typed for better development experience
-- **Tailwind CSS** - Utility-first CSS framework
-- **Next.js 14** - Latest React framework with App Router
+---
 
-## Getting Started
+## ✨ Features
+
+- **Responsive Design** - Optimized for desktop, tablet, and mobile devices
+- **Dark/Light Mode** - Seamless theme switching with persistent preferences
+- **Smooth Animations** - Frame-motion powered transitions and micro-interactions
+- **Accessibility First** - WCAG 2.1 compliant, keyboard navigable, screen reader friendly
+- **Performance Optimized** - Lazy loading, code splitting, optimized images
+- **Interactive Components** - Carousel projects, animated text, glass-morphism UI
+- **SEO Optimized** - Metadata, structured data, semantic HTML
+- **Modern Stack** - Next.js 14, React 18, TypeScript, Tailwind CSS
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Technology |
+|----------|-----------|
+| **Framework** | Next.js 14 (App Router) |
+| **Language** | TypeScript |
+| **Styling** | Tailwind CSS + CSS Modules |
+| **Animations** | Framer Motion |
+| **Icons** | React Icons (FontAwesome) |
+| **UI Components** | Custom components with React |
+| **Deployment** | Vercel / Self-hosted |
+
+---
+
+## 🚀 Quick Start
 
 ### Prerequisites
-
-- Node.js 18+ and npm/yarn
+- Node.js 18.17+
+- npm or yarn
 
 ### Installation
 
 ```bash
-# Clone or navigate to the project
-cd portfolio-landing
+# Clone the repository
+git clone https://github.com/samritmukherjee/portfolio.git
+cd portfolio
 
 # Install dependencies
 npm install
@@ -32,72 +53,225 @@ npm install
 npm run dev
 ```
 
-The site will be available at `http://localhost:3000`
+Visit `http://localhost:3000` to see the site.
 
-### Building for Production
+### Build for Production
 
 ```bash
+# Build optimized bundle
 npm run build
+
+# Start production server
 npm start
 ```
 
-## Project Structure
+---
+
+## 📁 Project Structure
 
 ```
-portfolio-landing/
+portfolio/
 ├── app/
-│   ├── layout.tsx          # Root layout with metadata and fonts
-│   └── page.tsx            # Main portfolio page
+│   ├── layout.tsx           # Root layout, metadata, fonts
+│   └── page.tsx             # Main portfolio page
+│
 ├── components/
-│   ├── sections/
-│   │   ├── Hero.tsx        # Hero section
-│   │   ├── About.tsx       # About section
-│   │   ├── Hackathons.tsx  # Hackathons timeline
-│   │   ├── Projects.tsx    # Projects showcase
-│   │   ├── Skills.tsx      # Skills listing
-│   │   ├── Resume.tsx      # Resume download
-│   │   ├── Contact.tsx     # Contact section
-│   │   └── index.ts        # Section exports
-│   └── Footer.tsx          # Footer component
+│   ├── sections/            # Page sections
+│   │   ├── HeroGlassmorphism.tsx    # Hero with glassmorphism
+│   │   ├── About.tsx                # About & achievements
+│   │   ├── Experience.tsx           # Work & volunteer roles
+│   │   ├── CircularProjects.tsx     # Featured projects carousel
+│   │   ├── Skills.tsx               # Technical skills
+│   │   ├── Hackathons.tsx           # Hackathon wins
+│   │   ├── Resume.tsx               # Resume download
+│   │   ├── Contact.tsx              # Contact links
+│   │   └── index.ts                 # Exports
+│   │
+│   ├── animations/          # Reusable animations
+│   │   ├── BlurText.tsx
+│   │   ├── DecryptedText.tsx
+│   │   ├── GradientText.tsx
+│   │   └── RotatingText.tsx
+│   │
+│   ├── spotlight-card.tsx   # Glow effect card component
+│   ├── TreeNavigation.tsx   # Side navigation
+│   ├── Footer.tsx           # Footer
+│   └── star-wars-toggle-switch.tsx
+│
 ├── styles/
-│   └── globals.css         # Global styles and Tailwind directives
-├── tailwind.config.ts      # Tailwind configuration
-├── tsconfig.json           # TypeScript configuration
-└── package.json            # Project dependencies
+│   └── globals.css          # Global styles, themes, utilities
+│
+├── lib/
+│   └── utils.ts             # Utility functions
+│
+├── public/                  # Static assets
+│   ├── projects/            # Project images
+│   └── hackathons/          # Hackathon images
+│
+├── tailwind.config.ts       # Tailwind configuration
+├── tsconfig.json            # TypeScript config
+└── package.json             # Dependencies
 ```
 
-## Customization
+---
+
+## 🎨 Customization Guide
 
 ### Update Content
 
-Edit the specific section components in `components/sections/` to update content:
+1. **Hero Section** - Edit `components/sections/HeroGlassmorphism.tsx`
+   - Name, title, headline
+   - Social links (GitHub, LinkedIn)
+   - Call-to-action buttons
 
-- **Hero**: Modify name, role, and intro text in `Hero.tsx`
-- **About**: Update background and experience in `About.tsx`
-- **Projects**: Add/modify projects in `Projects.tsx`
-- **Skills**: Update skills and categories in `Skills.tsx`
-- **Contact**: Update contact links in `Contact.tsx`
+2. **About Section** - Edit `components/sections/About.tsx`
+   - Bio and background
+   - Stats (projects, students)
+   - Profile image
 
-### Update Colors
+3. **Experience** - Edit `components/sections/Experience.tsx`
+   - Add/remove work experience
+   - Update roles, durations, highlights
 
-Modify the color palette in `tailwind.config.ts`. The site uses warm neutral tones (stone/slate).
+4. **Projects** - Edit `components/sections/CircularProjects.tsx`
+   - Add featured projects
+   - Update descriptions and links
+   - Upload project images to `public/projects/`
 
-### Add Fonts
+5. **Skills** - Edit `components/sections/Skills.tsx`
+   - Update skill categories
+   - Modify proficiency levels
 
-Update the Inter font import in `app/layout.tsx` or modify `styles/globals.css`.
+6. **Contact** - Edit `components/sections/Contact.tsx`
+   - Update email link
+   - Modify social media links
 
-## Design Principles
+### Theme Customization
 
-- **Typography**: Inter font with clear hierarchy
-- **Spacing**: Generous margins for clean layout
-- **Colors**: Warm neutrals - no pure black or white
-- **Shadows**: Soft and subtle
-- **Animations**: Minimal and smooth only
-- **Layout**: Natural, not over-engineered
+**Colors**: Edit `tailwind.config.ts`
+```ts
+theme: {
+  extend: {
+    colors: {
+      accent: { /* Custom accent colors */ },
+      stone: { /* Neutral palette */ }
+    }
+  }
+}
+```
 
-## Browser Support
+**Fonts**: Update in `app/layout.tsx` or `styles/globals.css`
 
-- Chrome (latest)
+**Dark/Light Mode**: Theme variables in `styles/globals.css`
+
+---
+
+## 📋 Key Sections
+
+### Hero Section
+- Animated greeting with decrypted text
+- Call-to-action buttons (Resume, Get In Touch)
+- Social media links
+- Availability badge
+
+### About
+- Personal bio with AI/ML focus
+- Statistics (projects built, students taught)
+- Profile image with hover effects
+- Key principle highlight
+
+### Experience
+- Work and volunteer roles
+- Timeline with bullet-point highlights
+- Organized by type (work, volunteer, leadership)
+
+### Featured Projects
+- Interactive carousel with 3D perspective
+- Project descriptions and tech stacks
+- Links to live demos
+- Image reveals on hover
+
+### Hackathons
+- Trophy-bearing wins only
+- Card-based layout with image reveals
+- Location and year badges
+- Result labels
+
+### Skills
+- Categorized skills (Languages, Frameworks, Tools)
+- Visual proficiency indicators
+- Organized and scannable
+
+### Contact
+- Direct email compose link
+- GitHub profile link
+- LinkedIn connection
+- All open in new tabs
+
+---
+
+## 🌐 Deployment
+
+### Vercel (Recommended)
+
+```bash
+# Deploy directly from git
+vercel
+```
+
+### Self-Hosted
+
+```bash
+# Build
+npm run build
+
+# Start
+npm start
+```
+
+Environment variables needed: None (all static)
+
+---
+
+## 🎯 Performance Optimizations
+
+- Image optimization with Next.js Image
+- Code splitting at route level
+- Lazy loading for sections
+- Minified CSS with Tailwind
+- Optimized font loading
+- Efficient animations with Framer Motion
+
+---
+
+## ♿ Accessibility
+
+- Semantic HTML structure
+- ARIA labels and descriptions
+- Keyboard navigation support
+- Color contrast WCAG AA compliant
+- Focus indicators
+- Screen reader optimized
+- Reduced motion preferences respected
+
+---
+
+## 📝 License
+
+This project is open source and available under the MIT License.
+
+---
+
+## 💬 Questions or Issues?
+
+Feel free to reach out:
+- **Email**: [samritmukherjee05@gmail.com](mailto:samritmukherjee05@gmail.com)
+- **GitHub**: [@samritmukherjee](https://github.com/samritmukherjee)
+- **LinkedIn**: [Samrit Mukherjee](https://linkedin.com/in/samrit-mukherjee-412788318/)
+
+---
+
+**Built with ❤️ by Samrit Mukherjee**
 - Firefox (latest)
 - Safari (latest)
 - Edge (latest)
