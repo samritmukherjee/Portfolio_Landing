@@ -82,7 +82,7 @@ export const Hackathons = () => {
                         <img
                           src={event.image}
                           alt={event.title}
-                          className="w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-90"
+                          className="w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100"
                         />
                       </div>
 
