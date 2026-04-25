@@ -21,7 +21,7 @@ const hackathons = {
       result: "WINNER",
       description:
         "A 36-hour offline hackathon with 300+ teams. Selected among the Top 30 finalists and secured the winning position through strong technical execution and innovation.",
-      image: "/hackathons/double-slash.jpg"
+      image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133900/double-slash_fn9wm5.jpg"
     },
     {
       title: "ShowcaseX   x Techsprint",
@@ -30,7 +30,7 @@ const hackathons = {
       result: "WINNER",
       description:
         "High-intensity hackathon powered by Hack2Skill, focused on rapid prototyping and building scalable solutions.",
-      image: "/hackathons/showcasex.jpg"
+      image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133897/showcasex_znf9ug.jpg"
     },
     {
       title: "Hello World Hacks",
@@ -39,7 +39,7 @@ const hackathons = {
       result: "Track Winner",
       description:
         "Organized by GDG on Campus RCCIIT. Recognized as Best Beginner's Team for building an impactful technical solution.",
-      image: "/hackathons/hello-world.jpg"
+      image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133893/hello-world_gfi0ip.jpg"
     }
   ],
   participated: []

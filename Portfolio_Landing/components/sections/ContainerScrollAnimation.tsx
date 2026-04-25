@@ -70,7 +70,7 @@ export const ContainerScrollAnimation = ({
               {/* OS Preview Image */}
               <div className="absolute inset-0">
                 <img
-                  src="/os-preview.png"
+                  src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133968/portfolio-os_rqsksy.png"
                   alt="Portfolio OS Preview"
                   className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 />

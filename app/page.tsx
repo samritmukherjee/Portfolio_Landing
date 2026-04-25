@@ -16,6 +16,7 @@ import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 import Switch from "@/components/star-wars-toggle-switch";
 import { MdEmail, MdLocationOn } from "react-icons/md";
+import { scrollToElement } from "@/lib/scrollToElement";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 36 },
@@ -135,9 +136,9 @@ export default function Home() {
               const isActive = activeSection === itemId;
 
               return (
-                <motion.a
+                <motion.button
                   key={item}
-                  href={`#${itemId}`}
+                  onClick={() => scrollToElement(itemId)}
                   whileHover={prefersReducedMotion ? undefined : { y: -1 }}
                   className={`nav-link text-[0.7rem] px-3 ${isActive ? "is-active" : ""}`}
                 >
@@ -149,17 +150,17 @@ export default function Home() {
                     />
                   )}
                   <span className="relative z-10">{item}</span>
-                </motion.a>
+                </motion.button>
               );
             })}
-            <motion.a 
-              href="#contact" 
+            <motion.button 
+              onClick={() => scrollToElement('contact')}
               whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.02 }}
               whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
               className="px-4 py-1.5 bg-accent-400 text-stone-950 text-[0.7rem] font-bold rounded-full transition-all shadow-[0_8px_20px_-12px_rgba(239,178,74,0.75)]"
             >
               Let's Talk
-            </motion.a>
+            </motion.button>
             <div className="flex items-center pl-2 pr-4 ml-1 border-l border-white/5 h-10">
               <Switch
                 checked={theme === "light"}

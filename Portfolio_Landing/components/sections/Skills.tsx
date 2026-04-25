@@ -10,28 +10,33 @@ interface SkillCategory {
 
 const skillCategories: SkillCategory[] = [
   {
-    category: "Languages",
-    skills: ["Java", "C", "C++", "Python", "JavaScript", "TypeScript"],
-    icon: <span className="text-blue-400">{"<>"}</span>
-  },
-  {
     category: "Frontend",
-    skills: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
-    icon: <span className="text-cyan-400">{"⚛"}</span>
+    skills: ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS", "Framer Motion"],
+    icon: <span className="text-blue-400">{"⚛"}</span>
   },
   {
     category: "Backend",
-    skills: ["Node.js", "REST APIs", "SQL", "MongoDB"],
+    skills: ["Node.js", "Flask", "FastAPI", "REST APIs", "SQL"],
     icon: <span className="text-green-400">{"⚙"}</span>
   },
   {
-    category: "Tools & Platforms",
-    skills: ["Git", "Docker", "Vercel", "Render", "AWS", "Razorpay"],
+    category: "Programming",
+    skills: ["Java", "Python", "C", "C++", "JavaScript", "TypeScript", "Prolog"],
+    icon: <span className="text-blue-400">{"</>"}</span>
+  },
+  {
+    category: "Data & Scientific Computing",
+    skills: ["NumPy", "Pandas"],
+    icon: <span className="text-yellow-400">{"📊"}</span>
+  },
+  {
+    category: "Tools",
+    skills: ["Git", "GitHub", "Vercel", "AWS"],
     icon: <span className="text-orange-400">{"🛠"}</span>
   },
   {
-    category: "Design & Media",
-    skills: ["Figma", "Photoshop", "After Effects", "Filmora", "UI/UX"],
+    category: "Design",
+    skills: ["Figma", "Canva", "Adobe Photoshop", "Filmora", "UI/UX"],
     icon: <span className="text-pink-400">{"🎨"}</span>
   },
   {

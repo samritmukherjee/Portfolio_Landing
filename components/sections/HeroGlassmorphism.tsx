@@ -3,6 +3,7 @@ import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { DecryptedText } from "@/components/animations/DecryptedText";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { scrollToElement } from "@/lib/scrollToElement";
 
 export const HeroGlassmorphism = () => {
   const prefersReducedMotion = useReducedMotion() ?? false;
@@ -76,20 +77,20 @@ export const HeroGlassmorphism = () => {
             </motion.p>
 
             <motion.div variants={childVariants} className="flex flex-wrap items-center gap-5 pt-2">
-              <motion.a
-                href="#resume"
+              <motion.button
+                onClick={() => scrollToElement('resume')}
                 whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.02 }}
                 whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
                 className="btn-primary"
               >
                 Download Resume
-              </motion.a>
-              <motion.a
-                href="#contact"
+              </motion.button>
+              <motion.button
+                onClick={() => scrollToElement('contact')}
                 className="btn-secondary hover:shadow-[0_0_20px_rgba(239,178,74,0.15)] hover:border-accent-300 transition-all"
               >
                 Get In Touch
-              </motion.a>
+              </motion.button>
             </motion.div>
 
             <motion.div variants={childVariants} className="flex items-center gap-4 md:gap-8 pt-10">

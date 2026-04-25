@@ -22,11 +22,11 @@ export const Resume = () => {
               </p>
               
               <div className="flex flex-wrap gap-4 pt-4">
-                <a href="https://drive.google.com/file/d/1example-resume-id/view" target="_blank" rel="noopener noreferrer" className="btn-primary flex items-center gap-3 inline-flex">
+                <a href="https://drive.google.com/file/d/1ru-wx6T-ulFMwgASOtWuh_uATd7MagLL/view" target="_blank" rel="noopener noreferrer" className="btn-primary flex items-center gap-3 inline-flex">
                   <RiFileDownloadLine className="text-xl" />
                   Download PDF
                 </a>
-                <a href="https://drive.google.com/file/d/1example-resume-id/view" target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex">
+                <a href="https://drive.google.com/file/d/1ru-wx6T-ulFMwgASOtWuh_uATd7MagLL/view" target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex">
                   View Online
                 </a>
               </div>
@@ -38,7 +38,7 @@ export const Resume = () => {
                 className="w-72 h-[420px] bg-stone-950 rounded-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.4)] relative overflow-hidden group"
               >
                 <img 
-                  src="/resume-preview.png" 
+                  src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133968/portfolio-os_rqsksy.png" 
                   alt="Resume Preview" 
                   className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700"
                 />

@@ -57,7 +57,7 @@ export const About = () => {
               {/* Profile Image */}
               <div className="absolute inset-0 bg-theme-surface">
                   <img 
-                    src="/samrit-profile.jpg" 
+                    src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg" 
                     alt="Samrit Mukherjee" 
                     className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
                   />

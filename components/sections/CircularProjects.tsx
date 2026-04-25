@@ -39,7 +39,7 @@ const projects: Project[] = [
     name: "Cosmic Canvas - AI Design Platform",
     designation: "AI-Powered Design Tool",
     quote: "An advanced AI design tool that generates fully editable, layered designs from natural language prompts—bridging AI creativity with human customization.",
-    src: "/projects/cosmic-canvas.jpg",
+    src: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133961/cosmic-canvas_dbmi8b.png",
     link: "https://cosmic-canvas-delta.vercel.app/",
   },
   {
@@ -47,7 +47,7 @@ const projects: Project[] = [
     name: "SUKALYA.ai - AI Health Assistant",
     designation: "AI Health Guidance System",
     quote: "An AI-powered assistant that improves healthcare accessibility by providing symptom understanding, disease insights, and preventive guidance through an interactive chat interface.",
-    src: "/projects/sukalya-ai.jpg",
+    src: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133963/sukalya-ai_uguskw.png",
     link: "https://sukalya-ai.vercel.app/",
   },
   {
@@ -55,8 +55,8 @@ const projects: Project[] = [
     name: "Portfolio OS",
     designation: "Interactive Experience",
     quote: "A browser-based operating system showcasing projects through a multi-window interface, terminal simulation, and interactive applications.",
-    src: "/projects/portfolio-os.png",
-    link: "#",
+    src: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133968/portfolio-os_rqsksy.png",
+    link: "/portfolio-os",
   },
 ];
 
