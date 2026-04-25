@@ -61,7 +61,7 @@ export const Hackathons = () => {
           {hackathons.won.length > 0 && (
             <div className="space-y-8">
               <h3 className="text-xl font-bold text-stone-300 uppercase tracking-[0.2em] pl-4 border-l-2 border-accent-500">Hackathons Won</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hackathon-cards">
                 {hackathons.won.map((event, idx) => (
                   <motion.div
                     key={event.title}
@@ -82,7 +82,7 @@ export const Hackathons = () => {
                         <img
                           src={event.image}
                           alt={event.title}
-                          className="w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-75"
+                          className="w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-90"
                         />
                       </div>
 

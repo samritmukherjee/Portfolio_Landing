@@ -67,9 +67,9 @@ const config: Config = {
       },
       backgroundImage: {
         "gradient-radial-accent":
-          "radial-gradient(circle at 30% 50%, rgba(232, 156, 27, 0.05) 0%, transparent 70%)",
+          "radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.06) 0%, transparent 70%)",
         "gradient-radial-accent-strong":
-          "radial-gradient(circle at 30% 50%, rgba(232, 156, 27, 0.1) 0%, transparent 60%)",
+          "radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 60%)",
       },
     },
   },

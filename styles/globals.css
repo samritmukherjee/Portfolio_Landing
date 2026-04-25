@@ -16,15 +16,15 @@
   }
 
   html[data-theme="dark"] {
-    --theme-bg: #080616;
-    --theme-surface: #1a1953;
-    --theme-surface-2: #162e93;
-    --theme-accent: #2f2fe4;
-    --theme-accent-soft: #4f63ff;
-    --theme-text: #f4f5ff;
-    --theme-text-muted: #b4b9e8;
-    --theme-border: rgba(130, 150, 255, 0.28);
-    --theme-hover: rgba(130, 150, 255, 0.12);
+    --theme-bg: #050505;
+    --theme-surface: #0f0f0f;
+    --theme-surface-2: #1a1a1a;
+    --theme-accent: #d4af37;
+    --theme-accent-soft: #e8c158;
+    --theme-text: #f5f5f5;
+    --theme-text-muted: #a8a8a8;
+    --theme-border: rgba(212, 175, 55, 0.28);
+    --theme-hover: rgba(212, 175, 55, 0.08);
   }
 
   html[data-theme="light"] {
@@ -217,8 +217,17 @@
   }
 
   html[data-theme="dark"] .glass-card {
-    background: color-mix(in oklch, #111111 90%, transparent);
-    border-color: rgba(255, 255, 255, 0.05);
+    background: color-mix(in oklch, #050505 95%, transparent);
+    border-color: rgba(212, 175, 55, 0.28);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Light mode hover text colors for Hackathon cards - white text over images */
+  html[data-theme="light"] .hackathon-cards .group:hover .group-hover\:text-white,
+  html[data-theme="light"] .hackathon-cards .group:hover span.group-hover\:text-white,
+  html[data-theme="light"] .hackathon-cards .group:hover h4.group-hover\:text-white,
+  html[data-theme="light"] .hackathon-cards .group:hover p.group-hover\:text-white {
+    color: #ffffff !important;
   }
 
   .glass-card:hover {
@@ -312,8 +321,8 @@
   width: 100%;
   height: 100%;
   background:
-    radial-gradient(circle at 10% 10%, color-mix(in oklch, var(--theme-accent) 5%, transparent) 0%, transparent 50%),
-    radial-gradient(circle at 90% 90%, color-mix(in oklch, var(--theme-accent-soft) 5%, transparent) 0%, transparent 50%);
+    radial-gradient(circle at 10% 10%, color-mix(in oklch, #d4af37 3%, transparent) 0%, transparent 50%),
+    radial-gradient(circle at 90% 90%, color-mix(in oklch, #e8c158 2%, transparent) 0%, transparent 50%);
   pointer-events: none;
   z-index: -1;
 }
