@@ -288,6 +288,19 @@
     background-image: url("https://grainy-gradients.vercel.app/noise.svg");
     filter: contrast(150%) brightness(100%);
   }
+
+  /* Mobile performance optimization for hackathon cards */
+  @media (max-width: 768px) {
+    .hackathon-cards .group {
+      will-change: auto;
+    }
+    
+    .hackathon-cards .group img {
+      backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+      transform: translateZ(0);
+    }
+  }
 }
 
 /* Custom scrollbar */
