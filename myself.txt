@@ -1,0 +1,113 @@
+🔹 HERO SECTION
+
+Samrit Mukherjee
+AI Systems • Full Stack Engineering • Product Development
+
+Available for New Projects
+
+Building intelligent, scalable software that transforms ambitious ideas into practical, user-focused products with measurable impact.
+
+I specialize in production-ready AI workflows, robust APIs, and high-performance full stack systems, with a strong foundation in data structures and algorithms.
+
+🔹 ABOUT ME
+
+Turning Complex Ideas into Simple, Usable Solutions
+
+I'm a BTech Computer Science student specializing in Artificial Intelligence & Machine Learning. I focus on bridging the gap between complex technology and real-world usability—building tools that people genuinely find useful.
+
+As a founder and educator, I teach Computer Science through a project-based approach, emphasizing practical implementation over theory. I strongly believe that the best way to learn technology is by building with it.
+
+My work is guided by one principle:
+"Build tools that matter, for people who need them."
+
+5+ Students Taught
+
+🔹 PROFESSIONAL JOURNEY
+Technical Advisor (Internship)
+
+Mount Litera Zee School
+2024 – Present
+
+Provided technical guidance on digital systems and infrastructure
+Assisted in improving technology-driven learning workflows
+Supported troubleshooting and implementation of technical solutions
+Collaborated with stakeholders to design and structure the school's website and ERP system, including requirement analysis, workflow planning, and coordination with development teams
+Member — Hackerspace (MSIT)
+
+Designer & Web Contributor
+2023 – Present
+
+Designed visual assets, banners, and creatives for community events and initiatives
+Contributed to documentation and structured technical content for internal and external use
+Assisted in maintaining design consistency across community platforms
+Supported web-related tasks and minor development contributions when required
+
+(This is safe, realistic, and won’t get you questioned.)
+
+🔹 HACKATHONS & ACCOLADES
+🏆 Double Slash 4.0 — WINNER (2026)
+
+📍 Jadavpur University
+A 36-hour offline hackathon with 300+ teams. Selected among the Top 30 finalists and ultimately secured the winning position through strong technical execution and innovation.
+
+🏆 ShowcaseX x Techsprint — WINNER (2026)
+
+📍 RCCIIT
+A high-intensity hackathon powered by Hack2Skill, focused on rapid prototyping and scalable solution building.
+
+🏆 Hello World Hacks — Track Winner (2025)
+
+📍 RCCIIT
+Organized by GDG on Campus RCCIIT & RCCTechz. Recognized as Best Beginner’s Team for building an impactful solution.
+
+🔹 FEATURED PROJECTS
+Cosmic Canvas
+
+AI-Powered Design Platform
+
+An advanced AI design tool that generates fully editable, layered designs from natural language prompts—bridging AI creativity with human customization.
+link: https://cosmic-canvas-delta.vercel.app/
+
+SUKALYA.ai
+
+AI Health Guidance System
+
+An AI-powered assistant that improves healthcare accessibility by providing symptom understanding, disease insights, and preventive guidance through an interactive chat interface.
+link: https://sukalya-ai.vercel.app/
+
+Portfolio OS
+
+Interactive Web Experience
+
+A browser-based operating system showcasing projects through a multi-window interface, terminal simulation, and interactive applications.
+
+🔹 TECHNICAL ARSENAL
+Languages
+
+Java • C • C++ • Python • JavaScript • TypeScript
+
+Core Concepts
+
+Data Structures & Algorithms (DSA)
+
+Frontend
+
+React • Next.js • Tailwind CSS • Framer Motion
+
+Backend
+
+Node.js • REST APIs • SQL • MongoDB
+
+Tools & Platforms
+
+Git • Docker • Vercel • Render • AWS • Razorpay
+
+Design & Media
+
+Figma • Photoshop • After Effects • Filmora • UI/UX
+
+🔹 CALL TO ACTION
+
+Interested in working with me?
+
+Download my resume to explore my technical expertise, academic background, and project experience in
