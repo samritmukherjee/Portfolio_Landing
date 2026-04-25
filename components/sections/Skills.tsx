@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { FaReact, FaCog, FaCode, FaChartBar, FaTools, FaPalette, FaBrain } from "react-icons/fa";
 
 interface SkillCategory {
   category: string;
@@ -12,37 +13,37 @@ const skillCategories: SkillCategory[] = [
   {
     category: "Frontend",
     skills: ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS", "Framer Motion"],
-    icon: <span className="text-blue-400">{"⚛"}</span>
+    icon: <FaReact className="text-blue-400 text-2xl" />
   },
   {
     category: "Backend",
     skills: ["Node.js", "Flask", "FastAPI", "REST APIs", "SQL"],
-    icon: <span className="text-green-400">{"⚙"}</span>
+    icon: <FaCog className="text-green-400 text-2xl" />
   },
   {
     category: "Programming",
     skills: ["Java", "Python", "C", "C++", "JavaScript", "TypeScript", "Prolog"],
-    icon: <span className="text-blue-400">{"</>"}</span>
+    icon: <FaCode className="text-blue-400 text-2xl" />
   },
   {
     category: "Data & Scientific Computing",
     skills: ["NumPy", "Pandas"],
-    icon: <span className="text-yellow-400">{"📊"}</span>
+    icon: <FaChartBar className="text-yellow-400 text-2xl" />
   },
   {
     category: "Tools",
     skills: ["Git", "GitHub", "Vercel", "AWS"],
-    icon: <span className="text-orange-400">{"🛠"}</span>
+    icon: <FaTools className="text-orange-400 text-2xl" />
   },
   {
     category: "Design",
     skills: ["Figma", "Canva", "Adobe Photoshop", "Filmora", "UI/UX"],
-    icon: <span className="text-pink-400">{"🎨"}</span>
+    icon: <FaPalette className="text-pink-400 text-2xl" />
   },
   {
     category: "Core Concepts",
     skills: ["DSA", "AI Systems", "Full Stack Engineering", "Product Development"],
-    icon: <span className="text-purple-400">{"🧠"}</span>
+    icon: <FaBrain className="text-purple-400 text-2xl" />
   },
 ];
 

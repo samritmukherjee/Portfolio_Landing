@@ -123,7 +123,7 @@ export const CircularProjects = ({
     if (autoplay) {
       autoplayIntervalRef.current = setInterval(() => {
         setActiveIndex((prev) => (prev + 1) % projectsLength);
-      }, 5000);
+      }, 3500);
     }
     return () => {
       if (autoplayIntervalRef.current) clearInterval(autoplayIntervalRef.current);

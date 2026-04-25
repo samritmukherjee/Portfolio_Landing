@@ -94,10 +94,10 @@ export const HeroGlassmorphism = () => {
             </motion.div>
 
             <motion.div variants={childVariants} className="flex items-center gap-4 md:gap-8 pt-10">
-              <a href="https://github.com/samritmukherjee" className="text-stone-500 hover:text-accent-300 transition-colors duration-300 hover:-translate-y-1 transform">
+              <a href="https://github.com/samritmukherjee" target="_blank" rel="noopener noreferrer" className="text-stone-500 hover:text-accent-300 transition-colors duration-300 hover:-translate-y-1 transform">
                 <FaGithub size={24} />
               </a>
-              <a href="https://www.linkedin.com/in/samrit-mukherjee-412788318/" className="text-stone-500 hover:text-accent-300 transition-colors duration-300 hover:-translate-y-1 transform">
+              <a href="https://www.linkedin.com/in/samrit-mukherjee-412788318/" target="_blank" rel="noopener noreferrer" className="text-stone-500 hover:text-accent-300 transition-colors duration-300 hover:-translate-y-1 transform">
                 <FaLinkedin size={24} />
               </a>
             </motion.div>

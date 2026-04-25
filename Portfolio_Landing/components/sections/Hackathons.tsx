@@ -82,7 +82,7 @@ export const Hackathons = () => {
                         <img
                           src={event.image}
                           alt={event.title}
-                          className="w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100"
+                          className="w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-35"
                         />
                       </div>
 
@@ -93,11 +93,11 @@ export const Hackathons = () => {
                             <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-2xl bg-accent-500/10 backdrop-blur-md flex items-center justify-center border border-theme-border group-hover:border-accent-500/30 transition-all duration-500">
                               <FaTrophy className="text-lg sm:text-2xl text-accent-400" />
                             </div>
-                            <span className="text-[0.55rem] sm:text-[0.65rem] font-bold text-stone-500 uppercase tracking-widest bg-theme-surface px-2 sm:px-3 py-1 rounded-full border border-theme-border group-hover:text-white transition-colors duration-500">{event.year}</span>
+                            <span className="text-[0.55rem] sm:text-[0.65rem] font-bold text-stone-50 uppercase tracking-widest bg-theme-surface px-2 sm:px-3 py-1 rounded-full border border-theme-border group-hover:text-white transition-colors duration-500">{event.year}</span>
                           </div>
 
                           <div className="space-y-1">
-                            <span className="text-[0.5rem] sm:text-[0.6rem] font-black text-accent-400 uppercase tracking-[0.25em] group-hover:text-white transition-colors duration-500">{event.result}</span>
+                            <span className="text-[0.5rem] sm:text-[0.6rem] font-black text-accent-300 uppercase tracking-[0.25em] group-hover:text-white transition-colors duration-500">{event.result}</span>
                             <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-stone-50 leading-tight group-hover:text-white transition-colors duration-500">{event.title}</h4>
                           </div>
                         </div>
@@ -105,9 +105,9 @@ export const Hackathons = () => {
                         <div className="space-y-3">
                           <div className="flex items-center gap-2 sm:gap-3 pb-1 sm:pb-2 border-b border-theme-border">
                             <MdLocationOn className="text-accent-400 text-base sm:text-lg" />
-                            <p className="text-[0.6rem] sm:text-[0.7rem] text-stone-500 font-black uppercase tracking-[0.2em] group-hover:text-white transition-colors duration-500">{event.location}</p>
+                            <p className="text-[0.6rem] sm:text-[0.7rem] text-stone-50 font-black uppercase tracking-[0.2em] group-hover:text-white transition-colors duration-500">{event.location}</p>
                           </div>
-                          <p className="text-stone-400 text-xs sm:text-sm md:text-base leading-relaxed transition-colors duration-500 group-hover:text-white">
+                          <p className="text-stone-50 text-xs sm:text-sm md:text-base leading-relaxed transition-colors duration-500 group-hover:text-white">
                             {event.description}
                           </p>
                         </div>
