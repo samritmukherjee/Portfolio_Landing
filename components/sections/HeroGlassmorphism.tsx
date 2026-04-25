@@ -107,7 +107,7 @@ export const HeroGlassmorphism = () => {
             initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.7, ease: easeOut }}
-            className="glass-card p-8 md:p-10 space-y-8"
+            className="glass-card p-8 md:p-10 space-y-8 h-fit"
           >
             <div className="space-y-3">
               <p className="text-xs tracking-[0.2em] uppercase font-bold text-stone-400">Current Focus</p>
