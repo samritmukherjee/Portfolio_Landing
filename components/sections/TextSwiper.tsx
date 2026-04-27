@@ -68,7 +68,7 @@ export const TextSwiper = () => {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 bg-stone-950 text-stone-100 text-sm font-bold rounded-xl border border-white/5 hover:border-accent-500/50 transition-colors flex items-center gap-2"
+                className="px-6 py-3 bg-theme-surface text-stone-900 text-sm font-bold rounded-xl border border-theme-border hover:border-accent-500/50 hover:bg-accent-500 hover:text-white transition-colors flex items-center gap-2"
               >
                 Connect <FaArrowRight size={12} />
               </a>

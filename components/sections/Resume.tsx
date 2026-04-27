@@ -22,7 +22,7 @@ export const Resume = () => {
               </p>
               
               <div className="flex flex-wrap gap-4 pt-4">
-                <a href="https://drive.google.com/file/d/1ru-wx6T-ulFMwgASOtWuh_uATd7MagLL/view" target="_blank" rel="noopener noreferrer" className="btn-primary flex items-center gap-3 inline-flex">
+                <a href="https://drive.usercontent.google.com/download?id=1ru-wx6T-ulFMwgASOtWuh_uATd7MagLL&export=download&authuser=0" target="_blank" rel="noopener noreferrer" className="btn-primary flex items-center gap-3 inline-flex">
                   <RiFileDownloadLine className="text-xl" />
                   Download PDF
                 </a>
@@ -52,11 +52,11 @@ export const Resume = () => {
           <div className="mt-12 pt-8 border-t border-white/5 flex flex-wrap gap-8">
              <div className="flex flex-col">
                 <span className="text-xs text-stone-500 uppercase tracking-widest font-bold">Latest Edition</span>
-                <span className="text-stone-300">April 2024</span>
+                <span className="text-stone-300">April 2026</span>
              </div>
              <div className="flex flex-col">
                 <span className="text-xs text-stone-500 uppercase tracking-widest font-bold">Format</span>
-                <span className="text-stone-300">PDF, 1.2 MB</span>
+                <span className="text-stone-300">PDF, 53 KB</span>
              </div>
           </div>
         </div>

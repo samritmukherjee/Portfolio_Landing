@@ -87,7 +87,7 @@ export const Experience = () => {
                 </div>
                 
                 <div className="flex-shrink-0">
-                   <span className="px-4 py-1.5 bg-stone-950 text-stone-400 text-xs font-bold rounded-full border border-white/5 uppercase tracking-tighter">
+                   <span className="px-4 py-1.5 bg-theme-surface text-stone-900 text-xs font-bold rounded-full border border-theme-border uppercase tracking-tighter">
                       {exp.type}
                    </span>
                 </div>

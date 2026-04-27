@@ -314,7 +314,7 @@ export const CircularProjects = ({
                     href={activeProject.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-stone-900 text-stone-50 rounded-full font-medium hover:bg-accent-500 transition-all group shadow-lg"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-theme-surface text-stone-900 rounded-full font-medium border border-theme-border hover:bg-accent-500 hover:text-white transition-all group shadow-lg"
                   >
                     View Project 
                     <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
