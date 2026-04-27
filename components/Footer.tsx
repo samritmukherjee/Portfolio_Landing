@@ -3,18 +3,60 @@ import React, { useState, useEffect } from "react";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { FlipCountdown } from "./flip-countdown";
+import { isNewVisitor, markVisit } from "@/lib/visitor";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const visitCount = 1247;
+  const [visitCount, setVisitCount] = useState<number | null>(null);
   const [animationTrigger, setAnimationTrigger] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
-  // Trigger animation every time footer enters viewport
+  useEffect(() => {
+    const fetchAndUpdateCount = async () => {
+      try {
+        const newVisitor = isNewVisitor();
+
+        const response = await fetch('/api/visitors', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ isNewVisitor: newVisitor }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => null);
+          const errorMessage = errorData?.error ?? `API returned ${response.status}`;
+          throw new Error(errorMessage);
+        }
+
+        const data = await response.json();
+
+        if (typeof data.count !== 'number') {
+          throw new Error('Invalid visitor count returned by API');
+        }
+
+        setVisitCount(data.count);
+        setFetchError(null);
+
+        if (newVisitor) {
+          markVisit();
+        }
+      } catch (error) {
+        const message = error instanceof Error ? error.message : 'Unknown error';
+        console.error('[Footer] Error updating visitor count:', message);
+        setFetchError(message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchAndUpdateCount();
+  }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Increment trigger to restart animation
           setAnimationTrigger((prev) => prev + 1);
         }
       },
@@ -35,7 +77,6 @@ export const Footer = () => {
     <footer className="section-surface border-t border-white/5 py-12 md:py-16">
       <div className="container-custom">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 md:gap-12">
-          {/* Left Column: Branding */}
           <div className="space-y-3 md:flex-1">
             <h3 className="text-2xl font-bold tracking-tighter text-stone-50">
               SAMRIT<span className="text-accent-500">.</span>
@@ -45,7 +86,6 @@ export const Footer = () => {
             </p>
           </div>
 
-          {/* Center Column: Animated Visitor Counter */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -54,17 +94,42 @@ export const Footer = () => {
             className="flex flex-col items-center gap-3"
           >
             <span className="text-xs text-stone-500 font-semibold uppercase tracking-widest">Visitors</span>
-            <FlipCountdown
-              key={animationTrigger}
-              countFrom={0}
-              countTo={visitCount}
-              className="flip-countdown-footer"
-              cardBgColor="var(--theme-surface-2)"
-              textColor="var(--theme-accent-soft)"
-            />
+
+            {isLoading && (
+              <div className="flex gap-1">
+                {[0, 1, 2, 3].map((i) => (
+                  <div
+                    key={i}
+                    className="w-8 h-10 rounded-sm"
+                    style={{
+                      background: 'var(--theme-surface-2)',
+                      border: '1px solid var(--theme-border)',
+                      animation: `pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite`,
+                      animationDelay: `${i * 100}ms`,
+                    }}
+                  />
+                ))}
+              </div>
+            )}
+
+            {!isLoading && visitCount !== null && (
+              <FlipCountdown
+                key={animationTrigger}
+                countFrom={0}
+                countTo={visitCount}
+                className="flip-countdown-footer"
+                cardBgColor="var(--theme-surface-2)"
+                textColor="var(--theme-accent-soft)"
+              />
+            )}
+
+            {!isLoading && visitCount === null && (
+              <div className="text-stone-500 text-sm font-semibold tracking-tight">
+                {fetchError ? 'Visitor count unavailable' : 'No visitor data'}
+              </div>
+            )}
           </motion.div>
 
-          {/* Right Column: Social Links */}
           <div className="flex flex-col items-center md:items-end gap-4 md:flex-1">
             <div className="flex items-center gap-6">
               <motion.a
@@ -105,6 +170,16 @@ export const Footer = () => {
           </div>
         </div>
       </div>
+      <style jsx>{`
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 0.5;
+          }
+          50% {
+            opacity: 1;
+          }
+        }
+      `}</style>
     </footer>
   );
 };

@@ -6,11 +6,11 @@ const cn = (...inputs: (string | undefined | null | boolean)[]) =>
 
 // Easing functions for premium feel
 const easeOutExpo = (t: number): number => {
-  return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+  return t === 1 ? 1 : 1 - Math.pow(2, -12 * t); // More aggressive exponential
 };
 
-const easeOutCubic = (t: number): number => {
-  return 1 - Math.pow(1 - t, 3);
+const easeOutQuad = (t: number): number => {
+  return 1 - (1 - t) * (1 - t);
 };
 
 // Internal component for a single digit
@@ -76,8 +76,8 @@ export const FlipCountdown = ({
   const startTimeRef = useRef<number>();
 
   // Animation parameters - optimized for fast feel
-  const SHUFFLE_DURATION = 250; // 0.25s rapid shuffle effect
-  const TOTAL_DURATION = 900; // 0.9s total animation (under 1s target)
+  const SHUFFLE_DURATION = 150; // 0.15s rapid shuffle effect (faster)
+  const TOTAL_DURATION = 1000; // 1.0s total animation (under 1.2s target)
   const COUNT_DURATION = TOTAL_DURATION - SHUFFLE_DURATION; // 0.65s count-up
 
   useEffect(() => {
@@ -94,9 +94,9 @@ export const FlipCountdown = ({
       const progress = Math.min(elapsed / TOTAL_DURATION, 1);
 
       if (elapsed < SHUFFLE_DURATION) {
-        // Rapid shuffle phase (~250ms) - slot machine effect
+        // Rapid shuffle phase (~150ms) - slot machine effect
         // Generate random numbers that match target digit count
-        if (Math.random() < 0.4) {
+        if (Math.random() < 0.6) { // More frequent shuffling for faster effect
           const randomNum = Math.floor(Math.random() * Math.pow(10, numDigits));
           setCount(BigInt(randomNum));
         }
