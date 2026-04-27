@@ -248,28 +248,71 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
   }
 
-  /* Light mode hover text colors for Hackathon cards - enhanced contrast over images */
+  /* Hackathon Cards: Light mode text colors */
   html[data-theme="light"] .hackathon-card-year,
   html[data-theme="light"] .hackathon-card-result,
   html[data-theme="light"] .hackathon-card-title,
   html[data-theme="light"] .hackathon-card-location,
   html[data-theme="light"] .hackathon-card-description {
     color: var(--theme-text);
+    transition: color 0.5s ease, text-shadow 0.5s ease;
   }
   
-  @media (hover: hover) {
+  /* Light mode: Desktop hover - all text turns white */
+  @media (hover: hover) and (pointer: fine) {
     html[data-theme="light"] .group:hover .hackathon-card-year,
     html[data-theme="light"] .group:hover .hackathon-card-result,
     html[data-theme="light"] .group:hover .hackathon-card-title,
     html[data-theme="light"] .group:hover .hackathon-card-location,
     html[data-theme="light"] .group:hover .hackathon-card-description {
       color: #ffffff;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
-    
-    html[data-theme="light"] .group:hover .hackathon-card-result {
+  }
+  
+  /* Touch devices: disable text color transitions */
+  @media (hover: none) or (pointer: coarse) {
+    html[data-theme="light"] .group:hover .hackathon-card-year,
+    html[data-theme="light"] .group:hover .hackathon-card-result,
+    html[data-theme="light"] .group:hover .hackathon-card-title,
+    html[data-theme="light"] .group:hover .hackathon-card-location,
+    html[data-theme="light"] .group:hover .hackathon-card-description {
+      color: var(--theme-text);
+      text-shadow: none;
+    }
+  }
+  
+  /* Hackathon Cards: Dark mode text colors */
+  html[data-theme="dark"] .hackathon-card-year,
+  html[data-theme="dark"] .hackathon-card-result,
+  html[data-theme="dark"] .hackathon-card-title,
+  html[data-theme="dark"] .hackathon-card-location,
+  html[data-theme="dark"] .hackathon-card-description {
+    color: #f5f5f5;
+    transition: color 0.5s ease, text-shadow 0.5s ease;
+  }
+  
+  /* Dark mode: Desktop hover - all text stays bright white */
+  @media (hover: hover) and (pointer: fine) {
+    html[data-theme="dark"] .group:hover .hackathon-card-year,
+    html[data-theme="dark"] .group:hover .hackathon-card-result,
+    html[data-theme="dark"] .group:hover .hackathon-card-title,
+    html[data-theme="dark"] .group:hover .hackathon-card-location,
+    html[data-theme="dark"] .group:hover .hackathon-card-description {
       color: #ffffff;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    }
+  }
+  
+  /* Dark mode: Touch devices - no color changes */
+  @media (hover: none) or (pointer: coarse) {
+    html[data-theme="dark"] .group:hover .hackathon-card-year,
+    html[data-theme="dark"] .group:hover .hackathon-card-result,
+    html[data-theme="dark"] .group:hover .hackathon-card-title,
+    html[data-theme="dark"] .group:hover .hackathon-card-location,
+    html[data-theme="dark"] .group:hover .hackathon-card-description {
+      color: #f5f5f5;
+      text-shadow: none;
     }
   }
 
@@ -332,8 +375,8 @@
     filter: contrast(150%) brightness(100%);
   }
 
-  /* Hackathon cards - hover effects for devices that support hover */
-  @media (hover: hover) {
+  /* Desktop/laptop: Full hover effects */
+  @media (hover: hover) and (pointer: fine) {
     .hackathon-card-wrapper {
       @apply md:group-hover:scale-[1.02] md:group-hover:shadow-2xl md:group-hover:shadow-accent-500/10;
     }
@@ -355,17 +398,44 @@
     }
   }
   
-  /* Touch devices - disable hover to prevent scroll interference */
-  @media (hover: none) {
-    .hackathon-card-wrapper,
-    .hackathon-card-image,
-    .hackathon-card-icon,
+  /* Mobile/touch devices: Completely disable hover effects for smooth scrolling */
+  @media (hover: none) or (pointer: coarse) {
+    .hackathon-card-wrapper {
+      @apply group-hover:scale-100 group-hover:shadow-none;
+      transition: none !important;
+    }
+    
+    .hackathon-card-image {
+      @apply group-hover:opacity-0;
+      transition: none !important;
+    }
+    
+    .hackathon-card-icon {
+      @apply group-hover:border-current;
+      transition: none !important;
+    }
+    
+    /* Remove all text color transitions on touch */
     .hackathon-card-year,
     .hackathon-card-result,
     .hackathon-card-title,
     .hackathon-card-location,
     .hackathon-card-description {
-      transition: none;
+      @apply group-hover:text-current group-hover:shadow-none;
+      transition: none !important;
+    }
+  }
+  
+  /* Mobile: Disable GlowCard spotlight effect on touch devices */
+  @media (hover: none) or (pointer: coarse) {
+    .hackathon-cards [data-glow]::before,
+    .hackathon-cards [data-glow]::after {
+      display: none !important;
+    }
+    
+    .hackathon-cards [data-glow] [data-glow] {
+      filter: none !important;
+      opacity: 0 !important;
     }
   }
   
@@ -381,18 +451,96 @@
       transform: translateZ(0);
     }
   }
-}
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
+  /* Flip Countdown - Footer Styling */
+  .flip-countdown-footer {
+    display: flex;
+    gap: 0.5rem;
+    perspective: 1000px;
+  }
 
-::-webkit-scrollbar-track {
-  background: var(--theme-bg);
-}
+  .flip-countdown-footer .flip-unit {
+    display: flex;
+    width: 2.5rem;
+    height: 3rem;
+    font-size: 1.25rem;
+    font-weight: 900;
+    position: relative;
+    perspective: 1000px;
+  }
 
-::-webkit-scrollbar-thumb {
+  @media (max-width: 768px) {
+    .flip-countdown-footer .flip-unit {
+      width: 2rem;
+      height: 2.5rem;
+      font-size: 1rem;
+    }
+  }
+
+  .flip-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border: 1px solid var(--flip-card-bg, rgba(212, 175, 55, 0.28));
+    border-radius: 0.5rem;
+    background-color: color-mix(in oklch, var(--flip-card-bg, #1a1a1a) 95%, transparent);
+    color: var(--flip-card-text, #e8c158);
+    font-weight: 900;
+  }
+
+  html[data-theme="light"] .flip-card {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: color-mix(in oklch, #ffffff 95%, transparent);
+    color: #1d4ed8;
+  }
+
+  .flip-card__top {
+    top: 0;
+  }
+
+  .flip-card__bottom {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  .flipper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform-style: preserve-3d;
+    animation-duration: 0.6s;
+    animation-timing-function: ease-in-out;
+  }
+
+  .flipper.is-flipping {
+    animation-name: flip;
+  }
+
+  .flipper__top {
+    transform: rotateX(0deg);
+  }
+
+  .flipper__bottom {
+    transform: rotateX(180deg);
+  }
+
+  @keyframes flip {
+    0% {
+      transform: rotateX(0deg);
+    }
+    50% {
+      transform: rotateX(90deg);
+    }
+    100% {
+      transform: rotateX(180deg);
+    }
+  }
   background: var(--theme-text-muted);
   @apply rounded-full opacity-20 hover:opacity-40 transition-opacity;
 }

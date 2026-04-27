@@ -20,7 +20,7 @@ export default function PortfolioOSPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 max-w-2xl text-center space-y-8 sm:space-y-10 px-4"
+        className="relative z-10 max-w-2xl text-center space-y-6 sm:space-y-8 px-4"
       >
         {/* Status Indicator */}
         <motion.div
@@ -86,12 +86,12 @@ export default function PortfolioOSPage() {
           </p>
         </motion.div>
 
-        {/* CTA Buttons */}
+        {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
+          className="flex justify-center pt-4"
         >
           <Link
             href="/"
@@ -99,16 +99,6 @@ export default function PortfolioOSPage() {
           >
             Back to Portfolio
           </Link>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => {
-              window.location.href = "mailto:samritmukherjee@example.com?subject=Portfolio%20OS%20Interest";
-            }}
-            className="px-8 py-3 border-2 border-accent-500/50 text-accent-400 font-bold rounded-lg hover:border-accent-500 hover:bg-accent-500/10 transition-all duration-300"
-          >
-            Get Updates
-          </motion.button>
         </motion.div>
       </motion.div>
     </div>

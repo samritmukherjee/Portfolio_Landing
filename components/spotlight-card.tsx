@@ -50,8 +50,14 @@ const GlowCard: React.FC<GlowCardProps> = ({
       }
     };
 
-    document.addEventListener('pointermove', syncPointer);
-    return () => document.removeEventListener('pointermove', syncPointer);
+    // Only track pointer moves on desktop (hover: hover) to prevent mobile scroll friction
+    const supportsHover = window.matchMedia('(hover: hover)').matches;
+    if (supportsHover) {
+      document.addEventListener('pointermove', syncPointer);
+      return () => document.removeEventListener('pointermove', syncPointer);
+    }
+    
+    return () => {};
   }, []);
 
   const { base, spread } = glowColorMap[glowColor];

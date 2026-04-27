@@ -15,7 +15,7 @@ export const useLenis = () => {
       },
       lerp: 0.08, // Slightly reduced for smoother response
       wheelMultiplier: 1,
-      touchMultiplier: 1.8,
+      touchMultiplier: 1.0, // Neutral touch response to avoid scroll friction
       infinite: false,
     });
 

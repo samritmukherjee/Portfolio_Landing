@@ -86,12 +86,12 @@ export default function PortfolioOSPage() {
           </p>
         </motion.div>
 
-        {/* CTA Buttons */}
+        {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
+          className="flex justify-center pt-4"
         >
           <Link
             href="/"
@@ -99,16 +99,6 @@ export default function PortfolioOSPage() {
           >
             Back to Portfolio
           </Link>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => {
-              window.location.href = "mailto:samritmukherjee@example.com?subject=Portfolio%20OS%20Interest";
-            }}
-            className="px-8 py-3 border-2 border-accent-500/50 text-accent-400 font-bold rounded-lg hover:border-accent-500 hover:bg-accent-500/10 transition-all duration-300"
-          >
-            Get Updates
-          </motion.button>
         </motion.div>
       </motion.div>
     </div>
