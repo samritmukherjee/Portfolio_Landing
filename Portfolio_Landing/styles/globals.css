@@ -110,7 +110,33 @@
   }
 
   .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-16;
+    @apply mx-auto px-4 sm:px-6 md:px-12 lg:px-16;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  @media (min-width: 1024px) {
+    .container-custom {
+      max-width: 90rem;
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .container-custom {
+      max-width: 96rem;
+    }
+  }
+  
+  @media (min-width: 1536px) {
+    .container-custom {
+      max-width: 110rem;
+    }
+  }
+  
+  @media (min-width: 1920px) {
+    .container-custom {
+      max-width: 128rem;
+    }
   }
 
   .section-frame {
@@ -222,12 +248,29 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
   }
 
-  /* Light mode hover text colors for Hackathon cards - white text over images */
-  html[data-theme="light"] .hackathon-cards .group:hover .group-hover\:text-white,
-  html[data-theme="light"] .hackathon-cards .group:hover span.group-hover\:text-white,
-  html[data-theme="light"] .hackathon-cards .group:hover h4.group-hover\:text-white,
-  html[data-theme="light"] .hackathon-cards .group:hover p.group-hover\:text-white {
-    color: #ffffff !important;
+  /* Light mode hover text colors for Hackathon cards - enhanced contrast over images */
+  html[data-theme="light"] .hackathon-card-year,
+  html[data-theme="light"] .hackathon-card-result,
+  html[data-theme="light"] .hackathon-card-title,
+  html[data-theme="light"] .hackathon-card-location,
+  html[data-theme="light"] .hackathon-card-description {
+    color: var(--theme-text);
+  }
+  
+  @media (hover: hover) {
+    html[data-theme="light"] .group:hover .hackathon-card-year,
+    html[data-theme="light"] .group:hover .hackathon-card-result,
+    html[data-theme="light"] .group:hover .hackathon-card-title,
+    html[data-theme="light"] .group:hover .hackathon-card-location,
+    html[data-theme="light"] .group:hover .hackathon-card-description {
+      color: #ffffff;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+    
+    html[data-theme="light"] .group:hover .hackathon-card-result {
+      color: #ffffff;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
   }
 
   .glass-card:hover {
@@ -289,13 +332,50 @@
     filter: contrast(150%) brightness(100%);
   }
 
+  /* Hackathon cards - hover effects for devices that support hover */
+  @media (hover: hover) {
+    .hackathon-card-wrapper {
+      @apply md:group-hover:scale-[1.02] md:group-hover:shadow-2xl md:group-hover:shadow-accent-500/10;
+    }
+    
+    .hackathon-card-image {
+      @apply md:group-hover:opacity-100;
+    }
+    
+    .hackathon-card-icon {
+      @apply md:group-hover:border-accent-500/30;
+    }
+    
+    .hackathon-card-year,
+    .hackathon-card-result,
+    .hackathon-card-title,
+    .hackathon-card-location,
+    .hackathon-card-description {
+      @apply md:group-hover:text-white;
+    }
+  }
+  
+  /* Touch devices - disable hover to prevent scroll interference */
+  @media (hover: none) {
+    .hackathon-card-wrapper,
+    .hackathon-card-image,
+    .hackathon-card-icon,
+    .hackathon-card-year,
+    .hackathon-card-result,
+    .hackathon-card-title,
+    .hackathon-card-location,
+    .hackathon-card-description {
+      transition: none;
+    }
+  }
+  
   /* Mobile performance optimization for hackathon cards */
   @media (max-width: 768px) {
-    .hackathon-cards .group {
+    .hackathon-cards {
       will-change: auto;
     }
     
-    .hackathon-cards .group img {
+    .hackathon-cards img {
       backface-visibility: hidden;
       -webkit-font-smoothing: antialiased;
       transform: translateZ(0);

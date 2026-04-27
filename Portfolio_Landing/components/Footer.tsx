@@ -1,9 +1,12 @@
 "use client";
 import React from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
+  // Placeholder visit count - connect to backend API later
+  const visitCount = 1247;
 
   return (
     <footer className="section-surface border-t border-white/5 py-12 md:py-16">
@@ -41,7 +44,26 @@ export const Footer = () => {
           </div>
         </div>
         
-
+        {/* Visit Counter */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="mt-12 pt-8 border-t border-stone-800/50 flex justify-center"
+        >
+          <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-accent-500/20 bg-accent-500/5">
+            <div className="flex items-center gap-2">
+              <motion.div
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-2 h-2 rounded-full bg-accent-400"
+              />
+              <span className="text-xs text-stone-400 font-medium">Visitors</span>
+            </div>
+            <span className="text-sm font-bold text-accent-300">{visitCount.toLocaleString()}</span>
+          </div>
+        </motion.div>
       </div>
     </footer>
   );

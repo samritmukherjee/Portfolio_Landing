@@ -226,9 +226,29 @@ export const CircularProjects = ({
                 alt={project.name}
                 loading="lazy"
                 decoding="async"
-                className="testimonial-image"
+                className="testimonial-image cursor-pointer hover:opacity-80 transition-opacity"
                 data-index={index}
                 style={getImageStyle(index)}
+                onClick={() => {
+                  const link = project.link;
+                  if (link.startsWith('/')) {
+                    window.location.href = link;
+                  } else {
+                    window.open(link, '_blank', 'noopener,noreferrer');
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    const link = project.link;
+                    if (link.startsWith('/')) {
+                      window.location.href = link;
+                    } else {
+                      window.open(link, '_blank', 'noopener,noreferrer');
+                    }
+                  }
+                }}
+                role="button"
+                tabIndex={0}
               />
             ))}
           </div>

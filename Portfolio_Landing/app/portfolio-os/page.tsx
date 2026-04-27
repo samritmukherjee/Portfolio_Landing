@@ -20,20 +20,20 @@ export default function PortfolioOSPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 max-w-2xl text-center space-y-10"
+        className="relative z-10 max-w-2xl text-center space-y-8 sm:space-y-10 px-4"
       >
         {/* Status Indicator */}
         <motion.div
           animate={{ scale: [1, 1.05, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-accent-500/30 bg-accent-500/10"
+          className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 rounded-full border border-accent-500/30 bg-accent-500/10 text-xs sm:text-sm"
         >
           <motion.div
             animate={{ opacity: [0.5, 1] }}
             transition={{ duration: 1.5, repeat: Infinity }}
             className="w-2 h-2 rounded-full bg-accent-400"
           />
-          <span className="text-sm text-accent-300 font-medium">Currently Under Development</span>
+          <span className="text-accent-300 font-medium">Currently Under Development</span>
         </motion.div>
 
         {/* Main Message */}
@@ -43,10 +43,10 @@ export default function PortfolioOSPage() {
           transition={{ delay: 0.2, duration: 0.8 }}
           className="space-y-4"
         >
-          <h1 className="text-4xl sm:text-6xl font-black text-stone-50 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-stone-50 leading-tight">
             Portfolio OS
           </h1>
-          <p className="text-lg sm:text-xl text-stone-400 max-w-xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-stone-400 max-w-xl mx-auto leading-relaxed">
             We're actively working on building an immersive operating system experience. Check back soon for this interactive showcase.
           </p>
         </motion.div>

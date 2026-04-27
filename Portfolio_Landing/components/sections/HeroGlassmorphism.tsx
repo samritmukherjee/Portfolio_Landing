@@ -32,7 +32,7 @@ export const HeroGlassmorphism = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden surface-noise">
+    <section className="relative min-h-screen flex items-center justify-center pt-20 md:pt-24 overflow-hidden surface-noise">
       <div className="absolute inset-0 z-0">
         <div className="premium-blur top-8 left-[2%] w-[32vw] h-[32vw] bg-accent-500/15 animate-pulse-slow" />
         <div className="premium-blur bottom-10 right-[2%] w-[38vw] h-[38vw] bg-slate-300/10 animate-pulse-slow [animation-delay:1.2s]" />
@@ -40,8 +40,8 @@ export const HeroGlassmorphism = () => {
         <div className="absolute bottom-[22%] left-[10%] h-16 w-16 rounded-sm rotate-12 border border-stone-500/30" />
       </div>
 
-      <div className="container-custom relative z-10">
-        <div className="grid items-center gap-8 md:gap-16 lg:grid-cols-[1.15fr_0.85fr]">
+      <div className="container-custom relative z-10 py-8">
+        <div className="grid items-center gap-8 md:gap-12 lg:gap-16 lg:grid-cols-[1.1fr_0.9fr] xl:grid-cols-[1.15fr_0.85fr]">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -72,7 +72,7 @@ export const HeroGlassmorphism = () => {
               </p>
             </motion.div>
 
-            <motion.p variants={childVariants} className="text-base sm:text-lg md:text-xl text-stone-300 font-medium leading-relaxed max-w-xl">
+            <motion.p variants={childVariants} className="text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl text-stone-300 font-medium leading-relaxed max-w-xl">
               Building intelligent, scalable software that transforms ambitious ideas into practical, user-focused products.
             </motion.p>
 

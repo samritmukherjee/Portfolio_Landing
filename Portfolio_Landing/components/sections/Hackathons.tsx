@@ -75,14 +75,14 @@ export const Hackathons = () => {
                       glowColor="orange"
                       customSize
                       transparentBackdrop
-                      className="h-full min-h-[280px] sm:min-h-[320px] rounded-2xl lg:rounded-[2.5rem] border border-theme-border overflow-hidden transition-all duration-500 md:group-hover:scale-[1.02] md:group-hover:shadow-2xl md:group-hover:shadow-accent-500/10 bg-transparent"
+                      className="h-full min-h-[280px] sm:min-h-[320px] rounded-2xl lg:rounded-[2.5rem] border border-theme-border overflow-hidden transition-all duration-500 hackathon-card-wrapper bg-transparent"
                     >
                       {/* Winning Moment Image Reveal */}
                       <div className="absolute inset-0 z-0">
                         <img
                           src={event.image}
                           alt={event.title}
-                          className="w-full h-full object-cover md:transition-opacity md:duration-700 opacity-0 md:group-hover:opacity-100"
+                          className="w-full h-full object-cover transition-opacity duration-700 opacity-0 hackathon-card-image"
                         />
                       </div>
 
@@ -90,24 +90,24 @@ export const Hackathons = () => {
                       <div className="relative z-10 h-full p-4 sm:p-6 lg:p-8 lg:p-10 flex flex-col justify-between gap-3 sm:gap-4 lg:gap-6 bg-transparent">
                         <div className="space-y-6">
                           <div className="flex justify-between items-start">
-                            <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-2xl bg-accent-500/10 backdrop-blur-md flex items-center justify-center border border-theme-border md:group-hover:border-accent-500/30 md:transition-all md:duration-500">
+                            <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-2xl bg-accent-500/10 backdrop-blur-md flex items-center justify-center border border-theme-border transition-all duration-500 hackathon-card-icon">
                               <FaTrophy className="text-lg sm:text-2xl text-accent-400" />
                             </div>
-                            <span className="text-[0.55rem] sm:text-[0.65rem] font-bold text-stone-50 uppercase tracking-widest bg-theme-surface px-2 sm:px-3 py-1 rounded-full border border-theme-border md:group-hover:text-white md:transition-colors md:duration-500">{event.year}</span>
+                            <span className="text-[0.55rem] sm:text-[0.65rem] font-bold text-stone-50 uppercase tracking-widest bg-theme-surface px-2 sm:px-3 py-1 rounded-full border border-theme-border transition-colors duration-500 hackathon-card-year">{event.year}</span>
                           </div>
 
                           <div className="space-y-1">
-                            <span className="text-[0.5rem] sm:text-[0.6rem] font-black text-accent-300 uppercase tracking-[0.25em] md:group-hover:text-white md:transition-colors md:duration-500">{event.result}</span>
-                            <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-stone-50 leading-tight md:group-hover:text-white md:transition-colors md:duration-500">{event.title}</h4>
+                            <span className="text-[0.5rem] sm:text-[0.6rem] font-black text-accent-300 uppercase tracking-[0.25em] transition-colors duration-500 hackathon-card-result">{event.result}</span>
+                            <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-stone-50 leading-tight transition-colors duration-500 hackathon-card-title">{event.title}</h4>
                           </div>
                         </div>
 
                         <div className="space-y-3">
                           <div className="flex items-center gap-2 sm:gap-3 pb-1 sm:pb-2 border-b border-theme-border">
                             <MdLocationOn className="text-accent-400 text-base sm:text-lg" />
-                            <p className="text-[0.6rem] sm:text-[0.7rem] text-stone-50 font-black uppercase tracking-[0.2em] md:group-hover:text-white md:transition-colors md:duration-500">{event.location}</p>
+                            <p className="text-[0.6rem] sm:text-[0.7rem] text-stone-50 font-black uppercase tracking-[0.2em] transition-colors duration-500 hackathon-card-location">{event.location}</p>
                           </div>
-                          <p className="text-stone-50 text-xs sm:text-sm md:text-base leading-relaxed md:transition-colors md:duration-500 md:group-hover:text-white">
+                          <p className="text-stone-50 text-xs sm:text-sm md:text-base leading-relaxed transition-colors duration-500 hackathon-card-description">
                             {event.description}
                           </p>
                         </div>
