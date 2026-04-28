@@ -604,7 +604,10 @@ html[data-theme="light"] [class*="border-stone-"] {
 
 html[data-theme="light"] .bg-stone-900\/70,
 html[data-theme="light"] .bg-stone-900\/60,
-html[data-theme="light"] .bg-stone-950\/80 {
+html[data-theme="light"] .bg-stone-950\/80,
+html[data-theme="light"] .bg-stone-900\/50,
+html[data-theme="light"] .bg-stone-900\/30,
+html[data-theme="light"] .bg-stone-900 {
   background-color: transparent !important;
 }
 

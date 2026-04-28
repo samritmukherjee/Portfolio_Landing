@@ -76,12 +76,12 @@ export const Footer = () => {
   return (
     <footer className="section-surface border-t border-white/5 py-12 md:py-16">
       <div className="container-custom">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 md:gap-12">
-          <div className="space-y-3 md:flex-1">
+        <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-8 md:gap-12 md:items-center">
+          <div className="space-y-3 md:flex-1 text-center md:text-left">
             <h3 className="text-2xl font-bold tracking-tighter text-stone-50">
               SAMRIT<span className="text-accent-500">.</span>
             </h3>
-            <p className="text-stone-500 text-sm max-w-xs">
+            <p className="text-stone-500 text-sm max-w-xs mx-auto md:mx-0">
               Building the future of interactive web experiences and AI-driven solutions.
             </p>
           </div>
@@ -130,7 +130,7 @@ export const Footer = () => {
             )}
           </motion.div>
 
-          <div className="flex flex-col items-center md:items-end gap-4 md:flex-1">
+          <div className="flex flex-col items-center md:items-end gap-4 md:flex-1 text-center md:text-right">
             <div className="flex items-center gap-6">
               <motion.a
                 href="https://github.com/samritmukherjee"

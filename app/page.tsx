@@ -12,6 +12,7 @@ import { CircularProjects } from "@/components/sections/CircularProjects";
 import { ContainerScrollAnimation } from "@/components/sections/ContainerScrollAnimation";
 import { TextSwiper } from "@/components/sections/TextSwiper";
 import { Footer } from "@/components/Footer";
+import { MobileHackathons } from "@/components/sections/mobile/MobileHackathons";
 import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 import Switch from "@/components/star-wars-toggle-switch";
@@ -184,9 +185,15 @@ export default function Home() {
         <Experience />
       </motion.section>
 
-      <motion.section id="hackathons" className="section-frame" {...revealProps}>
+      {/* Desktop Hackathons Section */}
+      <motion.section id="hackathons" className="section-frame hidden md:block" {...revealProps}>
         <Hackathons />
       </motion.section>
+
+      {/* Mobile Hackathons Section */}
+      <section className="md:hidden">
+        <MobileHackathons />
+      </section>
 
       {/* Projects Section - Using the provided Circular Component */}
       <motion.section id="projects" className="section-frame" {...revealProps}>

@@ -1,8 +1,18 @@
 ﻿import { useEffect } from 'react';
 import Lenis from 'lenis';
 
-export const useLenis = () => {
+/**
+ * Hook to enable Lenis smooth scrolling
+ * Conditionally disabled on mobile for better performance
+ * @param shouldEnable - If false, skips Lenis initialization (default: true)
+ */
+export const useLenis = (shouldEnable: boolean = true) => {
   useEffect(() => {
+    // Skip Lenis on mobile or if disabled
+    if (!shouldEnable) {
+      return;
+    }
+
     // Detect if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
@@ -38,5 +48,5 @@ export const useLenis = () => {
       cancelAnimationFrame(raf);
       lenis.destroy();
     };
-  }, []);
+  }, [shouldEnable]);
 };
