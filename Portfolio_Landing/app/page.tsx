@@ -10,12 +10,12 @@ import {
 import { HeroGlassmorphism } from "@/components/sections/HeroGlassmorphism";
 import { CircularProjects } from "@/components/sections/CircularProjects";
 import { ContainerScrollAnimation } from "@/components/sections/ContainerScrollAnimation";
-import { TextSwiper } from "@/components/sections/TextSwiper";
+import { ContactCards } from "@/components/sections/ContactCards";
 import { Footer } from "@/components/Footer";
 import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 import Switch from "@/components/star-wars-toggle-switch";
-import { MdEmail, MdLocationOn } from "react-icons/md";
+import { MdLocationOn } from "react-icons/md";
 import { scrollToElement } from "@/lib/scrollToElement";
 
 const sectionVariants = {
@@ -220,36 +220,19 @@ export default function Home() {
                 </p>
               </div>
               
-              <div className="space-y-6">
-                <motion.a 
-                  href="https://mail.google.com/mail/u/0/#inbox?compose=DmwnWtDmBfKhgHdjbrnFQpsQtcgCPsvzmwFLhmwTtMVFwVGhCfWPqRNgKjScLSTlKsNLDFgWwjDB"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={prefersReducedMotion ? undefined : { x: 4 }}
-                  className="flex items-center gap-4 text-stone-300 hover:text-accent-300 transition-colors group"
-                >
-                  <div className="w-12 h-12 bg-theme-surface-2 rounded-xl flex items-center justify-center border border-theme-border group-hover:border-accent-300/70 transition-colors">
-                    <MdEmail size={24} className="text-accent-400" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-stone-500 uppercase tracking-widest font-bold">Email</p>
-                    <p className="text-lg">samritmukherjee05@gmail.com</p>
-                  </div>
-                </motion.a>
-                <div className="flex items-center gap-4 text-stone-300">
-                  <div className="w-12 h-12 bg-theme-surface-2 rounded-xl flex items-center justify-center border border-theme-border">
-                    <MdLocationOn size={24} className="text-accent-400" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-stone-500 uppercase tracking-widest font-bold">Location</p>
-                    <p className="text-lg">Kolkata, India</p>
-                  </div>
+              <div className="flex items-center gap-4 text-stone-300">
+                <div className="w-12 h-12 bg-theme-surface-2 rounded-xl flex items-center justify-center border border-theme-border">
+                  <MdLocationOn size={24} className="text-accent-400" />
+                </div>
+                <div>
+                  <p className="text-xs text-stone-500 uppercase tracking-widest font-bold">Location</p>
+                  <p className="text-lg">Kolkata, India</p>
                 </div>
               </div>
             </div>
             
-            <div className="glass-card p-8">
-               <TextSwiper />
+            <div className="">
+               <ContactCards />
             </div>
           </div>
         </div>
