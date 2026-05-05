@@ -13,7 +13,7 @@ import { ContainerScrollAnimation } from "@/components/sections/ContainerScrollA
 import { ContactCards } from "@/components/sections/ContactCards";
 import { Footer } from "@/components/Footer";
 import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Switch from "@/components/star-wars-toggle-switch";
 import { MdLocationOn } from "react-icons/md";
 import { scrollToElement } from "@/lib/scrollToElement";
@@ -29,6 +29,8 @@ const sectionVariants = {
 
 export default function Home() {
   const prefersReducedMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
+  
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -37,17 +39,35 @@ export default function Home() {
   });
 
   const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">("light");
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
   const [activeSection, setActiveSection] = useState("about");
+  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
 
   const navItems = ["About", "Experience", "Projects", "Skills"] as const;
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia('(max-width: 768px)').matches);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+      scrollTimeoutRef.current = setTimeout(() => {
+        setScrolled(window.scrollY > 50);
+      }, 10);
+    };
+    
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+    };
   }, []);
 
   useEffect(() => {
@@ -77,7 +97,27 @@ export default function Home() {
       {
         root: null,
         rootMargin: "-32% 0px -52% 0px",
-        threshold: [0.2, 0.4, 0.6],
+        threshold: [0.2ementById(id))
+      .filter((node): node is HTMLElement => node !== null);
+
+    if (!nodes.length) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible?.target?.id) {
+          setActiveSection(visible.target.id);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "-32% 0px -52% 0px",
+        threshold: [0.2],
       }
     );
 
@@ -96,11 +136,13 @@ export default function Home() {
 
   return (
     <main className="min-h-screen app-shell">
-      {/* Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-accent-400 origin-left z-[100]"
-        style={{ scaleX }}
-      />
+      {/* Progress Bar - Desktop Only */}
+      {!isMobile && (
+        <motion.div
+          className="fixed top-0 left-0 right-0 h-1 bg-accent-400 origin-left z-[100]"
+          style={{ scaleX }}
+        />
+      )}
 
       {/* Aurora Background */}
       <div className="aurora-bg"></div>

@@ -638,3 +638,51 @@ html[data-theme="dark"] .text-accent-500 {
     transition: none !important;
   }
 }
+
+/* Mobile Performance Optimizations */
+@media (max-width: 768px) {
+  /* Disable expensive animations on mobile */
+  .animate-pulse-slow {
+    animation: none !important;
+  }
+
+  .animate-ping {
+    animation: none !important;
+  }
+
+  .premium-blur {
+    animation: none !important;
+    blur: 40px;
+    opacity: 0.08 !important;
+  }
+
+  /* Reduce blur effects on mobile */
+  .glass-card {
+    backdrop-filter: blur(4px) !important;
+  }
+
+  /* Disable scale animations on mobile */
+  .md\:group-hover\:scale-\[1\.02\] {
+    transform: scale(1) !important;
+  }
+
+  /* Reduce motion in transitions */
+  * {
+    animation-duration: 0s !important;
+    transition-duration: 150ms !important;
+  }
+
+  /* Disable complex hover effects on touch devices */
+  .hover\:shadow-accent-500\/10 {
+    box-shadow: none !important;
+  }
+
+  .hover\:-translate-y-1 {
+    transform: translateY(0) !important;
+  }
+
+  /* Optimize performance for smooth scrolling */
+  body {
+    -webkit-touch-callout: none;
+  }
+}
