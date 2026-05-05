@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope, Unbounded } from "next/font/google";
 import "@/styles/globals.css";
 import { LenisWrapper } from "@/components/LenisWrapper";
+import PageLoader from "@/components/PageLoader";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -46,6 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${manrope.variable} ${unbounded.variable}`}>
       <body>
+        <PageLoader />
         <LenisWrapper>
           <div className="aurora-bg"></div>
           {children}

@@ -97,26 +97,6 @@ export default function Home() {
       {
         root: null,
         rootMargin: "-32% 0px -52% 0px",
-        threshold: [0.2ementById(id))
-      .filter((node): node is HTMLElement => node !== null);
-
-    if (!nodes.length) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (visible?.target?.id) {
-          setActiveSection(visible.target.id);
-        }
-      },
-      {
-        root: null,
-        rootMargin: "-32% 0px -52% 0px",
         threshold: [0.2],
       }
     );

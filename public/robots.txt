@@ -1,4 +1,4 @@
-# robots.txt for {{website}}
+# https://samrit.dev
 
 User-agent: Googlebot
 Allow: /
