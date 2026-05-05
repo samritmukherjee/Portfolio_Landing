@@ -665,3 +665,19 @@ html[data-theme="dark"] .text-accent-500 {
     }
   }
 }
+
+/* Contact Cards - Mobile Performance Optimization */
+@media (hover: none) or (pointer: coarse) {
+  /* Disable scale animation on mobile for better scrolling performance */
+  [role="link"]:has(> div[class*="contact"]) {
+    transition: none !important;
+  }
+
+  /* Disable hover shadow on touch devices */
+  div[class*="from-stone-800"],
+  div[class*="from-blue-600"],
+  div[class*="from-accent-500"] {
+    --tw-shadow-color: transparent !important;
+    box-shadow: none !important;
+  }
+}

@@ -26,6 +26,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: "https://res.cloudinary.com/duxrcy3jn/image/upload/q_auto/f_auto/v1777463452/SAMRIT_FEBICON_hxnczn.png",
+  },
   openGraph: {
     title: "Samrit Mukherjee - AI & Full Stack Developer",
     description:
