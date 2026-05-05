@@ -1,7 +1,7 @@
 .carousel-container {
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--theme-border, rgba(212, 175, 55, 0.28));
+  border: 1px solid var(--theme-border, rgba(12, 98, 145, 0.28));
   border-radius: 1.5rem;
   padding: 1rem;
   --outer-r: 24px;
@@ -25,7 +25,7 @@ html[data-theme="light"] .carousel-container {
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  border: 1px solid var(--theme-border, rgba(212, 175, 55, 0.28));
+  border: 1px solid var(--theme-border, rgba(12, 98, 145, 0.28));
   border-radius: calc(var(--outer-r) - var(--p-distance));
   background-color: var(--theme-surface-2, #1a1a1a);
   overflow: hidden;
@@ -39,8 +39,8 @@ html[data-theme="light"] .carousel-item {
 }
 
 .carousel-item:hover {
-  border-color: var(--theme-accent, #d4af37);
-  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
+  border-color: var(--theme-accent, #0C6291);
+  box-shadow: 0 4px 20px rgba(12, 98, 145, 0.1);
 }
 
 html[data-theme="light"] .carousel-item:hover {
@@ -53,14 +53,14 @@ html[data-theme="light"] .carousel-item:hover {
 }
 
 .carousel-container.round {
-  border: 1px solid var(--theme-border, rgba(212, 175, 55, 0.28));
+  border: 1px solid var(--theme-border, rgba(12, 98, 145, 0.28));
 }
 
 .carousel-item.round {
   background-color: var(--theme-surface-2, #1a1a1a);
   position: relative;
   bottom: 0.1em;
-  border: 1px solid var(--theme-border, rgba(212, 175, 55, 0.28));
+  border: 1px solid var(--theme-border, rgba(12, 98, 145, 0.28));
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -84,11 +84,11 @@ html[data-theme="light"] .carousel-item.round {
 }
 
 .carousel-indicator.active {
-  background-color: var(--theme-accent, #d4af37);
+  background-color: var(--theme-accent, #0C6291);
 }
 
 .carousel-indicator.inactive {
-  background-color: rgba(212, 175, 55, 0.2);
+  background-color: rgba(12, 98, 145, 0.2);
 }
 
 html[data-theme="light"] .carousel-indicator.active {
@@ -112,7 +112,7 @@ html[data-theme="light"] .carousel-indicator.inactive {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: var(--theme-accent-soft, #e8c158);
+  background-color: var(--theme-accent-soft, #2683d8);
   transition: all 200ms ease;
 }
 

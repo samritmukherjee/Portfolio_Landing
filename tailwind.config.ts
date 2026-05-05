@@ -34,18 +34,44 @@ const config: Config = {
           800: "#1e293b",
           900: "#0f172a",
         },
-        // Accent color - warm amber for highlights
+        // Accent color - Baltic Blue (primary), with pink for secondary accents
         accent: {
-          50: "#fef9f0",
-          100: "#fdf1dd",
-          200: "#fae2ba",
-          300: "#f6cd83",
-          400: "#efb24a",
-          500: "#e89c1b",
-          600: "#d87f13",
-          700: "#b35d0d",
-          800: "#91470d",
-          900: "#773a0f",
+          50: "#e6f2f8",
+          100: "#bfe0f0",
+          200: "#8cc1e8",
+          300: "#59a2e0",
+          400: "#2683d8",
+          500: "#0C6291",
+          600: "#0a4c72",
+          700: "#073653",
+          800: "#052437",
+          900: "#031a1f",
+        },
+        // Secondary - Dark Raspberry for support elements
+        "secondary": {
+          50: "#f4e9f0",
+          100: "#e8d3e0",
+          200: "#d4a7c1",
+          300: "#c07ba2",
+          400: "#a63446",
+          500: "#7E1946",
+          600: "#6d123e",
+          700: "#5c0d36",
+          800: "#4b082e",
+          900: "#3a0326",
+        },
+        // Accent highlight - Cherry Rose for interactions
+        "cherry": {
+          50: "#f8eef2",
+          100: "#f0dce6",
+          200: "#e8b8d0",
+          300: "#d694b9",
+          400: "#c470a2",
+          500: "#A63446",
+          600: "#8f2a3a",
+          700: "#78202e",
+          800: "#611622",
+          900: "#4a0c16",
         },
       },
       fontFamily: {
@@ -68,9 +94,9 @@ const config: Config = {
       },
       backgroundImage: {
         "gradient-radial-accent":
-          "radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.06) 0%, transparent 70%)",
+          "radial-gradient(circle at 30% 50%, rgba(12, 98, 145, 0.06) 0%, transparent 70%)",
         "gradient-radial-accent-strong":
-          "radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 60%)",
+          "radial-gradient(circle at 30% 50%, rgba(12, 98, 145, 0.08) 0%, transparent 60%)",
       },
     },
   },

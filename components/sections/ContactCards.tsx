@@ -20,7 +20,7 @@ const contactCards: ContactCard[] = [
     value: "@samritmukherjee",
     icon: <FaGithub className="text-2xl" />,
     link: "https://github.com/samritmukherjee",
-    color: "from-stone-800 to-stone-900",
+    color: "from-slate-700 to-slate-800",
     description: "Check out my code and projects",
   },
   {
@@ -29,7 +29,7 @@ const contactCards: ContactCard[] = [
     value: "Samrit Mukherjee",
     icon: <FaLinkedin className="text-2xl" />,
     link: "https://www.linkedin.com/in/samrit-mukherjee-412788318/",
-    color: "from-blue-600 to-blue-700",
+    color: "from-accent-600 to-accent-700",
     description: "Connect professionally",
   },
   {
@@ -38,7 +38,7 @@ const contactCards: ContactCard[] = [
     value: "samritmukherjee05@gmail.com",
     icon: <FaEnvelope className="text-2xl" />,
     link: "https://mail.google.com/mail/u/0/#inbox?compose=DmwnWtDmBfKhgHdjbrnFQpsQtcgCPsvzmwFLhmwTtMVFwVGhCfWPqRNgKjScLSTlKsNLDFgWwjDB",
-    color: "from-accent-500 to-accent-600",
+    color: "from-secondary-500 to-secondary-600",
     description: "Send me a message directly",
   },
 ];

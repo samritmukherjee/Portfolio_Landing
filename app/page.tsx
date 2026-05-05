@@ -158,7 +158,7 @@ export default function Home() {
               onClick={() => scrollToElement('contact')}
               whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.02 }}
               whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
-              className="px-4 py-1.5 bg-accent-400 text-stone-950 text-[0.7rem] font-bold rounded-full transition-all shadow-[0_8px_20px_-12px_rgba(239,178,74,0.75)]"
+              className="px-4 py-1.5 bg-accent-400 text-stone-950 text-[0.7rem] font-bold rounded-full transition-all shadow-[0_8px_20px_-12px_rgba(166,52,70,0.5)]"
             >
               Let's Talk
             </motion.button>
