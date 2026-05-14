@@ -13,9 +13,8 @@ export const ContainerScrollAnimation = ({
     <ContainerScroll
       titleComponent={titleComponent || (
         <div className="space-y-6">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-stone-50 tracking-tighter leading-tight">
-            Explore my portfolio in an <br />
-            <span className="text-accent-500">OS Experience</span>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-stone-50 tracking-tighter leading-tight px-2">
+            Explore my portfolio in an <span className="text-accent-500">OS Experience</span>
           </h2>
           <p className="text-stone-400 text-base md:text-lg max-w-2xl mx-auto font-medium">
             Scroll down to see an immersive operating system environment where you can explore my projects, terminal, and interactive features.
@@ -24,7 +23,7 @@ export const ContainerScrollAnimation = ({
       )}
     >
       {children || (
-        <div className="relative w-full h-full group bg-gradient-to-br from-stone-950 to-stone-900">
+        <div className="relative w-full h-full group bg-gradient-to-br from-[var(--theme-surface)] to-[var(--theme-surface-2)]">
           {/* OS Preview Image with parallax effect */}
           <div className="absolute inset-0">
             <img
@@ -32,7 +31,7 @@ export const ContainerScrollAnimation = ({
               alt="Portfolio OS Preview"
               className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 group-hover:from-black/40 group-hover:via-transparent group-hover:to-black/10 transition-all duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-bg)]/60 via-transparent to-[var(--theme-bg)]/20 group-hover:from-[var(--theme-bg)]/40 group-hover:via-transparent group-hover:to-[var(--theme-bg)]/10 transition-all duration-700" />
           </div>
 
           {/* CTA Overlay */}

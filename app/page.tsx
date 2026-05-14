@@ -48,6 +48,11 @@ export default function Home() {
   const navItems = ["About", "Experience", "Projects", "Skills"] as const;
 
   useEffect(() => {
+    // Scroll to top on mount
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.matchMedia('(max-width: 768px)').matches);
     };
@@ -75,6 +80,12 @@ export default function Home() {
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
 
   useEffect(() => {
     const sections = ["about", "experience", "hackathons", "projects", "skills", "contact"];
@@ -148,7 +159,7 @@ export default function Home() {
             <div className="flex items-center pl-2 pr-2 border-l border-white/5 h-8">
               <Switch
                 checked={theme === "light"}
-                onChange={() => setTheme((prev) => (prev === "dark" ? "light" : "dark"))}
+                onChange={toggleTheme}
               />
             </div>
           </div>
@@ -188,7 +199,7 @@ export default function Home() {
             <div className="flex items-center pl-2 pr-4 ml-1 border-l border-white/5 h-10">
               <Switch
                 checked={theme === "light"}
-                onChange={() => setTheme((prev) => (prev === "dark" ? "light" : "dark"))}
+                onChange={toggleTheme}
               />
             </div>
           </nav>

@@ -56,6 +56,7 @@ const StyledWrapper = styled.div`
     margin: 0;
     display: flex;
     align-items: center;
+    overflow: hidden;
     --toggle-width: 10.625em;
     --toggle-height: 5.625em;
     --toggle-offset: calc((var(--toggle-height) - var(--bb8-diameter)) / 2);

@@ -46,7 +46,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${manrope.variable} ${unbounded.variable}`}>
-      <body>
+      <body className="bg-[var(--theme-bg)] transition-colors duration-500">
         <PageLoader />
         <LenisWrapper>
           <div className="aurora-bg"></div>

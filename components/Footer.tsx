@@ -155,7 +155,9 @@ export const Footer = () => {
                 <FaLinkedin />
               </motion.a>
               <motion.a
-                href="mailto:samritmukherjee@example.com"
+                href="https://mail.google.com/mail/u/0/#inbox?compose=DmwnWtMkNjVFfNxgcLqPZWXVkGFgkNPfBmCsWrKwqhWdSGdTLsTPGKkFxXmTdNCDFpkRsknNfpqG"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-stone-400 hover:text-accent-400 transition-colors text-2xl"
                 whileHover={{ scale: 1.15, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}

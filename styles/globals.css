@@ -16,7 +16,7 @@
   }
 
   html[data-theme="dark"] {
-    --theme-bg: #000004;
+    --theme-bg: #000000;
     --theme-surface: #0a0a0a;
     --theme-surface-2: #1a1a1a;
     --theme-accent: #0C6291;
@@ -30,17 +30,17 @@
   }
 
   html[data-theme="light"] {
-    --theme-bg: #FBFEF9;
+    --theme-bg: #FAF9F6;
     --theme-surface: #FFFFFF;
-    --theme-surface-2: #F3E8EE;
+    --theme-surface-2: #F3F3F3;
     --theme-accent: #0C6291;
     --theme-accent-soft: #2683d8;
     --theme-secondary: #7E1946;
     --theme-cherry: #A63446;
-    --theme-text: #1A1A1A;
-    --theme-text-muted: #555555;
-    --theme-border: rgba(12, 98, 145, 0.12);
-    --theme-hover: rgba(12, 98, 145, 0.06);
+    --theme-text: #000000;
+    --theme-text-muted: #525252;
+    --theme-border: rgba(0, 0, 0, 0.1);
+    --theme-hover: rgba(0, 0, 0, 0.05);
   }
 
   html {
@@ -69,7 +69,7 @@
   }
 
   h1 {
-    font-size: clamp(2.8rem, 5.4vw, 7.25rem);
+    font-size: clamp(2.2rem, 5.4vw, 7.25rem);
     line-height: 0.95;
     @apply font-extrabold;
   }
@@ -189,10 +189,13 @@
   .section-wrapper {
     @apply py-12 sm:py-20 md:py-32 relative overflow-hidden flex flex-col justify-center min-h-[inherit];
     width: 100%;
+    background: var(--theme-bg);
+    transition: background-color 500ms cubic-bezier(0.25, 1, 0.5, 1);
   }
 
   .section-surface {
-    background: color-mix(in oklch, var(--theme-surface) 80%, transparent);
+    background: var(--theme-bg);
+    transition: background-color 500ms cubic-bezier(0.25, 1, 0.5, 1);
   }
 
   .nav-shell {
@@ -327,15 +330,27 @@
   }
 
   .btn-primary {
-    @apply px-7 py-3.5 bg-accent-500 text-white font-bold rounded-full transition-all duration-300 active:scale-95;
+    @apply px-7 py-3.5 font-bold rounded-full transition-all duration-300 active:scale-95 flex items-center justify-center;
     background: var(--theme-accent);
+    color: white;
     box-shadow: 0 10px 20px -5px color-mix(in oklch, var(--theme-accent) 30%, transparent);
+  }
+
+  html[data-theme="light"] .btn-primary {
+    background: #000000;
+    color: #ffffff;
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
   }
 
   .btn-primary:hover {
     box-shadow: 0 15px 30px -8px color-mix(in oklch, var(--theme-accent) 40%, transparent);
     transform: translateY(-2px);
     opacity: 0.95;
+  }
+
+  html[data-theme="light"] .btn-primary:hover {
+    background: #1a1a1a;
+    box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.3);
   }
 
   .btn-secondary {
@@ -584,35 +599,46 @@
   z-index: -1;
 }
 
-/* Reset stone overrides and let variables handle it */
-html[data-theme="light"] .text-stone-50 {
-  color: var(--theme-text);
-}
-html[data-theme="light"] .text-stone-100,
-html[data-theme="light"] .text-stone-200,
-html[data-theme="light"] .text-stone-300,
-html[data-theme="light"] .text-stone-400,
-html[data-theme="light"] .text-stone-500 {
-  color: var(--theme-text) !important;
-}
+/* Theme-aware utility overrides */
+html[data-theme="light"] {
+  /* Text Mappings */
+  .text-stone-50, .text-stone-100, .text-stone-200, .text-stone-300, .text-white {
+    color: var(--theme-text) !important;
+  }
+  .text-stone-400, .text-stone-500, .text-stone-600 {
+    color: var(--theme-text-muted) !important;
+  }
+  .text-accent-300 {
+    color: var(--theme-accent) !important;
+  }
+  
+  /* Background Mappings */
+  .bg-stone-900, .bg-stone-950, .bg-black {
+    background-color: var(--theme-surface-2) !important;
+  }
+  .bg-stone-900\/50, .bg-stone-900\/40, .bg-stone-900\/30, .bg-stone-950\/80 {
+    background-color: color-mix(in oklch, var(--theme-surface-2) 40%, transparent) !important;
+  }
+  
+  /* Border Mappings */
+  .border-stone-800, .border-stone-700, .border-stone-600, .border-white\/5, .border-white\/10 {
+    border-color: var(--theme-border) !important;
+  }
 
-html[data-theme="light"] .text-stone-950,
-html[data-theme="light"] .text-stone-900,
-html[data-theme="light"] .text-stone-800 {
-  color: var(--theme-text) !important;
-}
+  /* Glassmorphism Adaptation */
+  .glass-card, .nav-shell {
+    background: color-mix(in oklch, var(--theme-surface) 80%, transparent) !important;
+    backdrop-filter: blur(12px) !important;
+    border-color: var(--theme-border) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05) !important;
+  }
 
-html[data-theme="light"] [class*="border-stone-"] {
-  border-color: var(--theme-border) !important;
-}
-
-html[data-theme="light"] .bg-stone-900\/70,
-html[data-theme="light"] .bg-stone-900\/60,
-html[data-theme="light"] .bg-stone-950\/80,
-html[data-theme="light"] .bg-stone-900\/50,
-html[data-theme="light"] .bg-stone-900\/30,
-html[data-theme="light"] .bg-stone-900 {
-  background-color: transparent !important;
+  /* Specific Component Fixes */
+  .brand-chip {
+    background: var(--theme-surface-2) !important;
+    color: var(--theme-text) !important;
+    border-color: var(--theme-border) !important;
+  }
 }
 
 html[data-theme="dark"] .bg-accent-400,

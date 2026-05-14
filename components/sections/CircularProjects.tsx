@@ -208,10 +208,10 @@ export const CircularProjects = ({
     <section id="projects" className="section-wrapper section-surface overflow-hidden">
       <div className="container-custom">
         <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-stone-50 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-[var(--theme-text)] mb-4">
             Featured Projects
           </h2>
-          <p className="text-stone-400 max-w-2xl">
+          <p className="text-[var(--theme-text-muted)] max-w-2xl">
             A selection of my recent work in AI, Full Stack Development, and Interactive Design.
           </p>
         </div>
@@ -314,7 +314,7 @@ export const CircularProjects = ({
                     href={activeProject.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-theme-surface text-stone-900 rounded-full font-medium border border-theme-border hover:bg-accent-500 hover:text-white transition-all group shadow-lg"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--theme-surface)] text-[var(--theme-text)] rounded-full font-medium border border-[var(--theme-border)] hover:bg-accent-500 hover:text-white transition-all group shadow-lg"
                   >
                     View Project 
                     <FaArrowRight className="group-hover:translate-x-1 transition-transform" />

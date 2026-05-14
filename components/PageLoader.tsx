@@ -1,213 +1,294 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useImperativeHandle, forwardRef } from 'react';
+import styled from 'styled-components';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const LOADER_WORDS = ['CRAFTING', 'BUILDING', 'DESIGNING', 'OPTIMIZING', 'LAUNCHING'];
-const LOAD_DURATION = 1800;
-const WORD_CHANGE_INTERVAL = 900;
-
-export default function PageLoader() {
-  const [loading, setLoading] = useState(true);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [rotation, setRotation] = useState(0);
+const PageLoader = forwardRef((props, ref) => {
+  const [isVisible, setIsVisible] = useState(true);
+  const [isOpening, setIsOpening] = useState(false);
 
   useEffect(() => {
-    const wordInterval = setInterval(() => {
-      setCurrentWordIndex((prev) => (prev + 1) % LOADER_WORDS.length);
-    }, WORD_CHANGE_INTERVAL);
+    // Initial load
+    const timer = setTimeout(() => {
+      handleClose();
+    }, 2500);
 
-    const loadTimer = setTimeout(() => {
-      setIsTransitioning(true);
-      setTimeout(() => setLoading(false), 800);
-    }, LOAD_DURATION);
+    const handleTrigger = () => triggerLoader();
+    window.addEventListener('trigger-loader', handleTrigger);
 
     return () => {
-      clearInterval(wordInterval);
-      clearTimeout(loadTimer);
+      clearTimeout(timer);
+      window.removeEventListener('trigger-loader', handleTrigger);
     };
   }, []);
 
-  useEffect(() => {
-    let animationFrameId: number;
-    const animate = () => {
-      setRotation((prev) => (prev + 2) % 360);
-      animationFrameId = requestAnimationFrame(animate);
-    };
-    animationFrameId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  const handleClose = () => {
+    setIsOpening(true);
+    setTimeout(() => {
+      setIsVisible(false);
+      setIsOpening(false);
+    }, 800); // Transition duration
+  };
 
-  if (!loading) return null;
+  const triggerLoader = () => {
+    setIsVisible(true);
+    setIsOpening(false);
+    setTimeout(() => {
+      handleClose();
+    }, 1500);
+  };
+
+  useImperativeHandle(ref, () => ({
+    trigger: triggerLoader
+  }));
+
+  if (!isVisible) return null;
 
   return (
-    <>
-      {/* Main Loader Overlay */}
-      <div
-        className={`fixed inset-0 z-[9999] flex items-center justify-center bg-[#000004] transition-opacity ${
-          isTransitioning ? 'opacity-0' : 'opacity-100'
-        }`}
-        style={{ transitionDuration: '600ms', willChange: 'opacity' }}
-      >
-        {/* Loader Container */}
-        <div className="flex flex-col items-center justify-center gap-6 px-4 w-full h-full">
-          {/* Animated Ring with Logo */}
-          <div className="relative w-28 h-28 flex-shrink-0" style={{ willChange: 'transform' }}>
-            {/* SVG Rotating Ring */}
-            <svg
-              viewBox="0 0 120 120"
-              className="absolute inset-0 w-full h-full"
-              style={{
-                transform: `rotate(${rotation}deg)`,
-                willChange: 'transform',
-              }}
-              preserveAspectRatio="xMidYMid meet"
-            >
-              <defs>
-                <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#0C6291" />
-                  <stop offset="50%" stopColor="#FF5964" />
-                  <stop offset="100%" stopColor="#7E1946" />
-                </linearGradient>
-              </defs>
-              <circle
-                cx="60"
-                cy="60"
-                r="54"
-                fill="none"
-                stroke="url(#grad)"
-                strokeWidth="2"
-              />
-            </svg>
+    <div
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#000004]"
+      style={{ 
+        clipPath: isOpening ? 'circle(0% at 50% 50%)' : 'circle(150% at 50% 50%)',
+        transition: 'clip-path 0.8s cubic-bezier(0.76, 0, 0.24, 1)'
+      }}
+    >
+      <div className="flex flex-col items-center justify-center gap-24">
+         {/* Favicon Icon */}
+         <div className="relative w-20 h-20 opacity-100 scale-100 transition-all duration-500">
+           <Image
+              src="https://res.cloudinary.com/duxrcy3jn/image/upload/q_auto/f_auto/v1777463452/SAMRIT_FEBICON_hxnczn.png"
+              alt="Samrit Logo"
+              width={80}
+              height={80}
+              priority
+              className="w-full h-full object-contain"
+            />
+         </div>
 
-            {/* Center Logo */}
-            <div className="absolute inset-0 flex items-center justify-center" style={{ willChange: 'opacity' }}>
-              <div className="w-12 h-12 relative flex-shrink-0">
-                <Image
-                  src="https://res.cloudinary.com/duxrcy3jn/image/upload/q_auto/f_auto/v1777463452/SAMRIT_FEBICON_hxnczn.png"
-                  alt="Samrit Logo"
-                  width={48}
-                  height={48}
-                  priority
-                  className="w-full h-full object-contain"
-                />
+         {/* Box Animation */}
+         <StyledWrapper>
+            <div className="boxes">
+              <div className="box">
+                <div />
+                <div />
+                <div />
+                <div />
+              </div>
+              <div className="box">
+                <div />
+                <div />
+                <div />
+                <div />
+              </div>
+              <div className="box">
+                <div />
+                <div />
+                <div />
+                <div />
+              </div>
+              <div className="box">
+                <div />
+                <div />
+                <div />
+                <div />
               </div>
             </div>
-          </div>
-
-          {/* Dynamic Text with Fade Transition */}
-          <div className="text-center h-6 flex-shrink-0" style={{ willChange: 'opacity' }}>
-            <div className="relative flex items-center justify-center h-full">
-              {currentWordIndex !== undefined && (
-                <div
-                  key={currentWordIndex}
-                  style={{
-                    animation: 'fadeInOutText 0.9s ease-in-out',
-                  }}
-                >
-                  <div className="flex items-center gap-1">
-                    <span className="text-xs font-medium tracking-widest text-gray-300 whitespace-nowrap">
-                      {LOADER_WORDS[currentWordIndex]}
-                    </span>
-                    <span className="flex gap-1">
-                      <span 
-                        className="w-1 h-1 rounded-full bg-[#0C6291] flex-shrink-0"
-                        style={{
-                          animation: 'dotPulse 0.9s ease-in-out infinite',
-                          animationDelay: '0s',
-                          willChange: 'opacity',
-                        }}
-                      />
-                      <span 
-                        className="w-1 h-1 rounded-full bg-[#0C6291] flex-shrink-0"
-                        style={{
-                          animation: 'dotPulse 0.9s ease-in-out infinite',
-                          animationDelay: '0.1s',
-                          willChange: 'opacity',
-                        }}
-                      />
-                      <span 
-                        className="w-1 h-1 rounded-full bg-[#0C6291] flex-shrink-0"
-                        style={{
-                          animation: 'dotPulse 0.9s ease-in-out infinite',
-                          animationDelay: '0.2s',
-                          willChange: 'opacity',
-                        }}
-                      />
-                    </span>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+          </StyledWrapper>
       </div>
-
-      {/* Split Screen Transition */}
-      {isTransitioning && (
-        <>
-          <div
-            className="fixed top-0 left-0 right-0 h-1/2 bg-[#000004] z-[9998]"
-            style={{
-              animation: 'slideUp 0.8s ease-in-out forwards',
-            }}
-          />
-          <div
-            className="fixed bottom-0 left-0 right-0 h-1/2 bg-[#000004] z-[9998]"
-            style={{
-              animation: 'slideDown 0.8s ease-in-out forwards',
-            }}
-          />
-        </>
-      )}
-
-      <style jsx>{`
-        @keyframes fadeInOutText {
-          0% {
-            opacity: 0;
-          }
-          10% {
-            opacity: 1;
-          }
-          90% {
-            opacity: 1;
-          }
-          100% {
-            opacity: 0;
-          }
-        }
-
-        @keyframes dotPulse {
-          0%, 20% {
-            opacity: 0.4;
-          }
-          50% {
-            opacity: 1;
-          }
-          80%, 100% {
-            opacity: 0.4;
-          }
-        }
-
-        @keyframes slideUp {
-          from {
-            transform: translateY(0);
-          }
-          to {
-            transform: translateY(-100%);
-          }
-        }
-
-        @keyframes slideDown {
-          from {
-            transform: translateY(0);
-          }
-          to {
-            transform: translateY(100%);
-          }
-        }
-      `}</style>
-    </>
+    </div>
   );
-}
+});
+
+
+PageLoader.displayName = 'PageLoader';
+
+const StyledWrapper = styled.div`
+  .boxes {
+    --size: 32px;
+    --duration: 800ms;
+    height: calc(var(--size) * 2);
+    width: calc(var(--size) * 3);
+    position: relative;
+    transform-style: preserve-3d;
+    transform-origin: 50% 50%;
+    margin-top: calc(var(--size) * 1.5 * -1);
+    transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg) translateZ(0px);
+  }
+
+  .boxes .box {
+    width: var(--size);
+    height: var(--size);
+    top: 0;
+    left: 0;
+    position: absolute;
+    transform-style: preserve-3d;
+  }
+
+  .boxes .box:nth-child(1) {
+    transform: translate(100%, 0);
+    -webkit-animation: box1 var(--duration) linear infinite;
+    animation: box1 var(--duration) linear infinite;
+  }
+
+  .boxes .box:nth-child(2) {
+    transform: translate(0, 100%);
+    -webkit-animation: box2 var(--duration) linear infinite;
+    animation: box2 var(--duration) linear infinite;
+  }
+
+  .boxes .box:nth-child(3) {
+    transform: translate(100%, 100%);
+    -webkit-animation: box3 var(--duration) linear infinite;
+    animation: box3 var(--duration) linear infinite;
+  }
+
+  .boxes .box:nth-child(4) {
+    transform: translate(200%, 0);
+    -webkit-animation: box4 var(--duration) linear infinite;
+    animation: box4 var(--duration) linear infinite;
+  }
+
+  .boxes .box > div {
+    --background: #5C8DF6;
+    --top: auto;
+    --right: auto;
+    --bottom: auto;
+    --left: auto;
+    --translateZ: calc(var(--size) / 2);
+    --rotateY: 0deg;
+    --rotateX: 0deg;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--background);
+    top: var(--top);
+    right: var(--right);
+    bottom: var(--bottom);
+    left: var(--left);
+    transform: rotateY(var(--rotateY)) rotateX(var(--rotateX)) translateZ(var(--translateZ));
+  }
+
+  .boxes .box > div:nth-child(1) {
+    --top: 0;
+    --left: 0;
+  }
+
+  .boxes .box > div:nth-child(2) {
+    --background: #145af2;
+    --right: 0;
+    --rotateY: 90deg;
+  }
+
+  .boxes .box > div:nth-child(3) {
+    --background: #447cf5;
+    --rotateX: -90deg;
+  }
+
+  .boxes .box > div:nth-child(4) {
+    --background: #DBE3F4;
+    --top: 0;
+    --left: 0;
+    --translateZ: calc(var(--size) * 3 * -1);
+  }
+
+  @-webkit-keyframes box1 {
+    0%, 50% {
+      transform: translate(100%, 0);
+    }
+
+    100% {
+      transform: translate(200%, 0);
+    }
+  }
+
+  @keyframes box1 {
+    0%, 50% {
+      transform: translate(100%, 0);
+    }
+
+    100% {
+      transform: translate(200%, 0);
+    }
+  }
+
+  @-webkit-keyframes box2 {
+    0% {
+      transform: translate(0, 100%);
+    }
+
+    50% {
+      transform: translate(0, 0);
+    }
+
+    100% {
+      transform: translate(100%, 0);
+    }
+  }
+
+  @keyframes box2 {
+    0% {
+      transform: translate(0, 100%);
+    }
+
+    50% {
+      transform: translate(0, 0);
+    }
+
+    100% {
+      transform: translate(100%, 0);
+    }
+  }
+
+  @-webkit-keyframes box3 {
+    0%, 50% {
+      transform: translate(100%, 100%);
+    }
+
+    100% {
+      transform: translate(0, 100%);
+    }
+  }
+
+  @keyframes box3 {
+    0%, 50% {
+      transform: translate(100%, 100%);
+    }
+
+    100% {
+      transform: translate(0, 100%);
+    }
+  }
+
+  @-webkit-keyframes box4 {
+    0% {
+      transform: translate(200%, 0);
+    }
+
+    50% {
+      transform: translate(200%, 100%);
+    }
+
+    100% {
+      transform: translate(100%, 100%);
+    }
+  }
+
+  @keyframes box4 {
+    0% {
+      transform: translate(200%, 0);
+    }
+
+    50% {
+      transform: translate(200%, 100%);
+    }
+
+    100% {
+      transform: translate(100%, 100%);
+    }
+  }
+`;
+
+export default PageLoader;
+

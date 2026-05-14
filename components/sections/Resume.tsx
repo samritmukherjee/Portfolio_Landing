@@ -13,11 +13,11 @@ export const Resume = () => {
           
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h2 className="text-stone-50 leading-tight">
+              <h2 className="text-[var(--theme-text)] leading-tight">
                 Interested in working <br />
                 <span className="gradient-accent">With Me?</span>
               </h2>
-              <p className="text-stone-400 text-lg">
+              <p className="text-[var(--theme-text-muted)] text-lg">
                 Download my comprehensive resume to learn more about my technical expertise, academic background, and project experience.
               </p>
               
@@ -35,14 +35,14 @@ export const Resume = () => {
             <div className="hidden lg:flex justify-end">
               <motion.div 
                 whileHover={{ rotate: 3, scale: 1.02 }}
-                className="w-72 h-[420px] bg-stone-950 rounded-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.4)] relative overflow-hidden group"
+                className="w-72 h-[420px] bg-[var(--theme-surface)] rounded-2xl border border-[var(--theme-border)] shadow-[0_20px_50px_rgba(0,0,0,0.4)] relative overflow-hidden group"
               >
                 <img 
                   src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133968/portfolio-os_rqsksy.png" 
                   alt="Resume Preview" 
                   className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 to-transparent flex items-end justify-center p-8 opacity-100 group-hover:opacity-0 transition-opacity">
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-surface)] to-transparent flex items-end justify-center p-8 opacity-100 group-hover:opacity-0 transition-opacity">
                    <span className="text-accent-400 font-bold uppercase tracking-[0.3em] text-xs">Preview</span>
                 </div>
               </motion.div>

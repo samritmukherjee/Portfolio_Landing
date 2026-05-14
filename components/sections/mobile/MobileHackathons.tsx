@@ -78,10 +78,10 @@ export const MobileHackathons = () => {
       <div className="w-full px-4 space-y-6">
         {/* Section Header */}
         <div className="space-y-2">
-          <h2 className="text-3xl font-black text-stone-50">
+          <h2 className="text-3xl font-black text-[var(--theme-text)]">
             Hackathons & <span className="gradient-accent">Accolades</span>
           </h2>
-          <p className="text-stone-400 text-sm">
+          <p className="text-[var(--theme-text-muted)] text-sm">
             Competitive wins and technical achievements.
           </p>
         </div>
@@ -163,12 +163,12 @@ export const MobileHackathons = () => {
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-lg font-bold text-stone-50 leading-snug tracking-tight">
+                        <h3 className="text-lg font-bold text-[var(--theme-text)] leading-snug tracking-tight">
                           {event.title}
                         </h3>
 
                         {/* Location */}
-                        <div className="flex items-center gap-2 text-xs text-stone-400">
+                        <div className="flex items-center gap-2 text-xs text-[var(--theme-text-muted)]">
                           <MdLocationOn size={14} className="text-accent-400 flex-shrink-0" />
                           <span className="truncate">{event.location}</span>
                         </div>
@@ -186,9 +186,9 @@ export const MobileHackathons = () => {
 
                       {/* Expanded Content */}
                       {isExpanded && (
-                        <div className="border-t border-stone-800/50 bg-stone-950/40 px-4 py-4 space-y-4">
+                        <div className="border-t border-[var(--theme-border)] bg-[var(--theme-surface-2)]/40 px-4 py-4 space-y-4">
                           {/* Description */}
-                          <p className="text-sm text-stone-300 leading-relaxed">
+                          <p className="text-sm text-[var(--theme-text-muted)] leading-relaxed">
                             {event.description}
                           </p>
 
@@ -202,7 +202,7 @@ export const MobileHackathons = () => {
                                 className="w-full h-full object-cover object-center"
                               />
                               {/* Image gradient overlay */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-stone-950/20 to-transparent pointer-events-none" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-surface)]/20 to-transparent pointer-events-none" />
                             </div>
                           )}
                         </div>

@@ -32,7 +32,7 @@ export const HeroGlassmorphism = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 md:pt-24 overflow-hidden surface-noise">
+    <section className="relative min-h-screen flex items-center justify-center pt-20 md:pt-24 overflow-hidden surface-noise bg-[var(--theme-bg)] transition-colors duration-500">
       <div className="absolute inset-0 z-0">
         <div className="premium-blur top-8 left-[2%] w-[32vw] h-[32vw] bg-accent-500/15 animate-pulse-slow" />
         <div className="premium-blur bottom-10 right-[2%] w-[38vw] h-[38vw] bg-slate-300/10 animate-pulse-slow [animation-delay:1.2s]" />
@@ -57,47 +57,47 @@ export const HeroGlassmorphism = () => {
             </motion.div>
 
             <motion.div variants={childVariants} className="space-y-5">
-              <h1 className="text-stone-50 uppercase">
+              <h1 className="text-[var(--theme-text)] uppercase">
                 <DecryptedText 
                   text="SAMRIT" 
                   animateOn="view"
                   revealDirection="center"
-                  className="inline-block"
+                  className="inline-block text-[var(--theme-text)]"
                 />
                 <br />
-                <span className="text-accent-300">MUKHERJEE</span>
+                <span className="text-accent-500 dark:text-accent-300">MUKHERJEE</span>
               </h1>
-              <p className="text-[0.65rem] tracking-[0.25em] uppercase text-stone-400 font-bold">
+              <p className="text-[0.65rem] tracking-[0.25em] uppercase text-[var(--theme-text-muted)] font-bold">
                 AI Systems • Full Stack Engineering • Product Development
               </p>
             </motion.div>
 
-            <motion.p variants={childVariants} className="text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl text-stone-300 font-medium leading-relaxed max-w-xl">
+            <motion.p variants={childVariants} className="text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl text-[var(--theme-text-muted)] font-medium leading-relaxed max-w-xl">
               Building intelligent, scalable software that transforms ambitious ideas into practical, user-focused products.
             </motion.p>
 
-            <motion.div variants={childVariants} className="flex flex-wrap items-center gap-5 pt-2">
+            <motion.div variants={childVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5 pt-2">
               <motion.button
                 onClick={() => scrollToElement('resume')}
                 whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.02 }}
                 whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
-                className="btn-primary"
+                className="btn-primary w-full sm:w-auto text-center"
               >
                 Download Resume
               </motion.button>
               <motion.button
                 onClick={() => scrollToElement('contact')}
-                className="btn-secondary hover:shadow-[0_0_20px_rgba(239,178,74,0.15)] hover:border-accent-300 transition-all"
+                className="btn-secondary w-full sm:w-auto text-center hover:shadow-[0_0_20px_rgba(239,178,74,0.15)] hover:border-accent-300 transition-all"
               >
                 Get In Touch
               </motion.button>
             </motion.div>
 
             <motion.div variants={childVariants} className="flex items-center gap-4 md:gap-8 pt-10">
-              <a href="https://github.com/samritmukherjee" target="_blank" rel="noopener noreferrer" className="text-stone-500 hover:text-accent-300 transition-colors duration-300 hover:-translate-y-1 transform">
+              <a href="https://github.com/samritmukherjee" target="_blank" rel="noopener noreferrer" className="text-[var(--theme-text-muted)] hover:text-accent-300 transition-colors duration-300 hover:-translate-y-1 transform">
                 <FaGithub size={24} />
               </a>
-              <a href="https://www.linkedin.com/in/samrit-mukherjee-412788318/" target="_blank" rel="noopener noreferrer" className="text-stone-500 hover:text-accent-300 transition-colors duration-300 hover:-translate-y-1 transform">
+              <a href="https://www.linkedin.com/in/samrit-mukherjee-412788318/" target="_blank" rel="noopener noreferrer" className="text-[var(--theme-text-muted)] hover:text-accent-300 transition-colors duration-300 hover:-translate-y-1 transform">
                 <FaLinkedin size={24} />
               </a>
             </motion.div>
@@ -110,19 +110,19 @@ export const HeroGlassmorphism = () => {
             className="glass-card p-8 md:p-10 space-y-8 h-fit self-center"
           >
             <div className="space-y-3">
-              <p className="text-xs tracking-[0.2em] uppercase font-bold text-stone-400">Current Focus</p>
-              <p className="text-stone-100 text-xl font-semibold leading-tight">
+              <p className="text-xs tracking-[0.2em] uppercase font-bold text-[var(--theme-text-muted)]">Current Focus</p>
+              <p className="text-[var(--theme-text)] text-xl font-semibold leading-tight">
                 Production AI workflows, robust APIs, and high-performance frontends.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-5">
               <motion.div whileHover={prefersReducedMotion ? undefined : { y: -2 }} className="rounded-lg md:rounded-2xl border border-theme-border p-3 md:p-4 bg-theme-surface/70 flex-1 md:flex-none">
-                <p className="text-stone-500 text-[0.55rem] md:text-[0.65rem] uppercase tracking-widest font-bold mb-1">Projects</p>
-                <p className="text-stone-50 font-black text-lg md:text-xl">8+</p>
+                <p className="text-[var(--theme-text-muted)] text-[0.55rem] md:text-[0.65rem] uppercase tracking-widest font-bold mb-1">Projects</p>
+                <p className="text-[var(--theme-text)] font-black text-lg md:text-xl">8+</p>
               </motion.div>
               <motion.div whileHover={prefersReducedMotion ? undefined : { y: -2 }} className="rounded-lg md:rounded-2xl border border-theme-border p-3 md:p-4 bg-theme-surface/70 flex-1 md:flex-none">
-                <p className="text-stone-500 text-[0.55rem] md:text-[0.65rem] uppercase tracking-widest font-bold mb-1">Experience</p>
-                <p className="text-stone-50 font-black text-lg md:text-xl">2+ Yrs</p>
+                <p className="text-[var(--theme-text-muted)] text-[0.55rem] md:text-[0.65rem] uppercase tracking-widest font-bold mb-1">Experience</p>
+                <p className="text-[var(--theme-text)] font-black text-lg md:text-xl">2+ Yrs</p>
               </motion.div>
             </div>
           </motion.aside>

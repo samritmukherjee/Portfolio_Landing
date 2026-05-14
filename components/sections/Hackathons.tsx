@@ -50,8 +50,8 @@ export const Hackathons = () => {
     <section id="hackathons" className="section-wrapper section-surface overflow-hidden">
       <div className="container-custom max-w-full px-4 sm:px-6 md:px-12 lg:px-16">
         <div className="text-center mb-20 space-y-4">
-          <h2 className="text-stone-50">Hackathons & <span className="text-accent-300">Accolades</span></h2>
-          <p className="text-stone-400 max-w-2xl mx-auto">
+          <h2 className="text-[var(--theme-text)]">Hackathons & <span className="text-accent-300">Accolades</span></h2>
+          <p className="text-[var(--theme-text-muted)] max-w-2xl mx-auto">
             Competitive programming and building intensive technical solutions under pressure.
           </p>
         </div>

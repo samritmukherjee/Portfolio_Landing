@@ -55,8 +55,8 @@ export const Skills = () => {
 
       <div className="container-custom max-w-full overflow-x-hidden">
         <div className="text-center mb-20 space-y-4">
-          <h2 className="text-stone-50">Technical <span className="gradient-accent">Arsenal</span></h2>
-          <p className="text-stone-400 max-w-2xl mx-auto">
+          <h2 className="text-[var(--theme-text)]">Technical <span className="gradient-accent">Arsenal</span></h2>
+          <p className="text-[var(--theme-text-muted)] max-w-2xl mx-auto">
             A comprehensive overview of the tools and technologies I use to bring ideas to life.
           </p>
         </div>
@@ -72,17 +72,17 @@ export const Skills = () => {
               className="glass-card p-4 sm:p-6 lg:p-8 group hover:border-accent-500/30 transition-colors"
             >
               <div className="flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6">
-                <div className="text-lg sm:text-2xl w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl bg-theme-surface-2 flex items-center justify-center border border-theme-border group-hover:scale-110 transition-transform">
+                <div className="text-lg sm:text-2xl w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl bg-[var(--theme-surface-2)] flex items-center justify-center border border-[var(--theme-border)] group-hover:scale-110 transition-transform">
                   {category.icon}
                 </div>
-                <h3 className="text-base sm:text-xl font-bold text-stone-50">{category.category}</h3>
+                <h3 className="text-base sm:text-xl font-bold text-[var(--theme-text)]">{category.category}</h3>
               </div>
               
               <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {category.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-2 sm:px-3 py-1 sm:py-1.5 bg-theme-surface-2 text-stone-400 text-xs sm:text-sm rounded-lg border border-theme-border group-hover:text-amber-600 dark:group-hover:text-stone-200 group-hover:border-accent-500/30 transition-all duration-300">
+                    className="px-2 sm:px-3 py-1 sm:py-1.5 bg-[var(--theme-surface-2)] text-[var(--theme-text-muted)] text-xs sm:text-sm rounded-lg border border-[var(--theme-border)] group-hover:text-accent-400 group-hover:border-accent-500/30 transition-all duration-300">
                     {skill}
                   </span>
                 ))}

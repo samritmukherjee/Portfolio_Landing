@@ -183,6 +183,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
           p-4 
           gap-4 
           backdrop-blur-[5px]
+          overflow-hidden
           ${className}
         `}
       >
