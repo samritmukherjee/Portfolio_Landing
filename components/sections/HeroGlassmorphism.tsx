@@ -2,7 +2,7 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { DecryptedText } from "@/components/animations/DecryptedText";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { scrollToElement } from "@/lib/scrollToElement";
 
 export const HeroGlassmorphism = () => {

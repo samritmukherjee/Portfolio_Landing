@@ -25,7 +25,7 @@ export const ContainerScrollAnimation = ({
       {children || (
         <div className="relative w-full h-full group bg-gradient-to-br from-[var(--theme-surface)] to-[var(--theme-surface-2)]">
           {/* OS Preview Image with parallax effect */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 translate-y-5">
             <img
               src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133968/portfolio-os_rqsksy.png"
               alt="Portfolio OS Preview"

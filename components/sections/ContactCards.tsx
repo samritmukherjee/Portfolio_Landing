@@ -95,14 +95,16 @@ export const ContactCards = () => {
                   <span className="text-[0.65rem] uppercase tracking-[0.2em] font-black text-[var(--theme-text-muted)] group-hover:text-accent-400 transition-colors duration-300">
                     {card.label}
                   </span>
-                  <h3 className="text-xl md:text-2xl font-bold text-[var(--theme-text)] mt-2 break-words leading-tight">
-                    {card.value}
-                  </h3>
+                  <div className="mt-2 bg-[var(--theme-surface-2)] rounded-lg p-2.5 border border-[var(--theme-border)] max-h-[60px] overflow-y-auto">
+                    <h3 className="text-sm md:text-base font-bold text-[var(--theme-text)] leading-relaxed break-words">
+                      {card.value}
+                    </h3>
+                  </div>
                 </div>
               </div>
 
               <div className="flex items-center justify-between mt-8 pt-6 border-t border-[var(--theme-border)]">
-                <p className="text-sm text-[var(--theme-text-muted)] group-hover:text-[var(--theme-text)] transition-colors line-clamp-1">
+                <p className="text-sm text-[var(--theme-text-muted)] group-hover:text-[var(--theme-text)] transition-colors">
                   {card.description}
                 </p>
                 <div className="w-8 h-8 rounded-full bg-[var(--theme-surface-2)] flex items-center justify-center group-hover:bg-accent-500 group-hover:text-[var(--theme-bg)] transition-all duration-300 text-accent-400">

@@ -1,4 +1,5 @@
 # https://samrit.dev
+# AI-Ready Portfolio - Agent Discovery Enabled
 
 User-agent: Googlebot
 Allow: /
@@ -42,4 +43,13 @@ Disallow: /admin
 Disallow: /dashboard
 Disallow: /private
 
-Sitemap: https://{{website}}/sitemap.xml
+# Sitemaps
+Sitemap: https://samrit.dev/sitemap.xml
+
+# Content Signals - AI Content Usage Preferences (RFC: Content Signals)
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
+# Agent Discovery Resources
+# API Catalog: https://samrit.dev/.well-known/api-catalog
+# Agent Skills: https://samrit.dev/.well-known/agent-skills/index.json
+# MCP Server: https://samrit.dev/.well-known/mcp/server-card.json

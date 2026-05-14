@@ -18,6 +18,7 @@ import { useEffect, useState, useRef } from "react";
 import Switch from "@/components/star-wars-toggle-switch";
 import { MdLocationOn } from "react-icons/md";
 import { scrollToElement } from "@/lib/scrollToElement";
+import { initializeWebMCP } from "@/hooks/useWebMCP";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 36 },
@@ -50,6 +51,9 @@ export default function Home() {
   useEffect(() => {
     // Scroll to top on mount
     window.scrollTo(0, 0);
+
+    // Initialize WebMCP for agent discovery
+    initializeWebMCP();
   }, []);
 
   useEffect(() => {

@@ -199,4 +199,67 @@ A premium, interactive portfolio showcasing AI systems, full-stack engineering, 
 
 ---
 
+## 🤖 Agent Discovery & AI Integration
+
+This portfolio is **fully AI-ready** with comprehensive agent discovery capabilities:
+
+### ✅ Implemented Standards
+
+- **RFC 8288** - Link Response Headers for agent discovery
+- **RFC 9727** - API Catalog with Linkset+JSON format
+- **RFC 9728** - OAuth Protected Resource Metadata
+- **Agent Skills Discovery RFC v0.2.0** - Automated capability registration
+- **MCP (Model Context Protocol)** - Browser & server tool integration
+- **OpenAPI 3.0** - Complete API documentation
+- **Content Signals** - AI training preferences
+- **Markdown for Agents** - Content negotiation support
+
+### 📍 Discovery Endpoints
+
+| Endpoint | Purpose | Format |
+|----------|---------|--------|
+| `/robots.txt` | Robot rules & Content Signals | Text |
+| `/sitemap.xml` | SEO sitemap | XML |
+| `/.well-known/api-catalog` | API discovery (RFC 9727) | Linkset+JSON |
+| `/.well-known/openapi.json` | OpenAPI specification | JSON |
+| `/.well-known/agent-skills/index.json` | Agent skills registry | JSON |
+| `/.well-known/mcp/server-card.json` | MCP server definition | JSON |
+| `/api/health` | Service status | JSON |
+
+### 🚀 Public APIs
+
+```bash
+# Projects (with markdown support)
+GET /api/projects
+GET /api/projects?category=ai
+GET /api/projects -H "Accept: text/markdown"
+
+# Skills
+GET /api/skills
+GET /api/skills -H "Accept: text/markdown"
+
+# Contact
+GET /api/contact
+GET /api/contact -H "Accept: text/markdown"
+
+# Visitor Tracking
+GET /api/visitors
+POST /api/visitors
+
+# Health Check
+GET /api/health
+```
+
+### 🧠 WebMCP Tools
+
+Browser-based tools automatically registered for AI agents:
+- `navigate_section` - Jump to portfolio sections
+- `get_project_details` - Fetch project information
+- `get_contact_info` - Retrieve contact information
+- `read_resume` - Access resume data
+
+**→ Full documentation: [AGENT_DISCOVERY.md](AGENT_DISCOVERY.md)**
+
+---
+
 **Built with ❤️ using Next.js, React, and Tailwind CSS**

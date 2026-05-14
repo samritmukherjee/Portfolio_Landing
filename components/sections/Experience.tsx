@@ -73,7 +73,7 @@ export const Experience = () => {
                     <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-[var(--theme-text)] group-hover:text-accent-400 transition-colors">
                       {exp.role}
                     </h3>
-                    <p className="text-[var(--theme-text-muted)] font-medium">{exp.organization}</p>
+                    <p className="text-sm text-[var(--theme-text-muted)] font-medium">{exp.organization}</p>
                   </div>
                   
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 mt-3 sm:mt-4">

@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getVisitorCount, incrementVisitorCount } from '@/lib/redis';
 
-const DEBUG_REDIS = process.env.DEBUG_REDIS === 'true';
-
 /**
  * GET /api/visitors
  * Returns current visitor count
@@ -13,22 +11,11 @@ const DEBUG_REDIS = process.env.DEBUG_REDIS === 'true';
 export async function GET() {
   try {
     const count = await getVisitorCount();
-
-    if (DEBUG_REDIS) {
-      console.log('[API] GET /api/visitors -> count:', count);
-    }
-
     return NextResponse.json({ count, success: true });
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    console.error('[API Error] GET /api/visitors failed:', errorMessage);
-
-    if (DEBUG_REDIS) {
-      console.error('[API Debug] Full error:', error);
-    }
-
     return NextResponse.json(
-      { success: false, error: errorMessage },
+      { count: 0, success: false, error: errorMessage },
       { status: 500 }
     );
   }
@@ -55,36 +42,26 @@ export async function POST(request: NextRequest) {
     }
 
     const { isNewVisitor } = body;
-
-    let count = await getVisitorCount();
-    let incremented = false;
+    const count = await getVisitorCount();
 
     if (isNewVisitor) {
-      count = await incrementVisitorCount();
-      incremented = true;
-
-      if (DEBUG_REDIS) {
-        console.log('[API] POST /api/visitors -> New visitor, incremented to:', count);
-      }
-    } else if (DEBUG_REDIS) {
-      console.log('[API] POST /api/visitors -> Returning count (not new visitor):', count);
+      const newCount = await incrementVisitorCount();
+      return NextResponse.json({
+        count: newCount,
+        incremented: true,
+        success: true,
+      });
     }
 
     return NextResponse.json({
       count,
-      incremented,
+      incremented: false,
       success: true,
     });
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    console.error('[API Error] POST /api/visitors failed:', errorMessage);
-
-    if (DEBUG_REDIS) {
-      console.error('[API Debug] Full error:', error);
-    }
-
     return NextResponse.json(
-      { success: false, error: errorMessage },
+      { count: 0, success: false, error: errorMessage },
       { status: 500 }
     );
   }

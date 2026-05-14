@@ -37,6 +37,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
   },
+  // RFC 8288 - Link Response Headers for Agent Discovery
+  other: {
+    "link": [
+      '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"',
+      '</.well-known/agent-skills/index.json>; rel="agent-skills"; type="application/json"',
+      '</.well-known/mcp/server-card.json>; rel="mcp-server"; type="application/json"',
+      '</api/health>; rel="status"; type="application/json"',
+      '</sitemap.xml>; rel="sitemap"; type="application/xml"',
+    ].join(', '),
+  },
 };
 
 export default function RootLayout({
