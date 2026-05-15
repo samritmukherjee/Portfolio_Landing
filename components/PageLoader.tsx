@@ -151,7 +151,7 @@ const StyledWrapper = styled.div`
   }
 
   .boxes .box > div {
-    --background: #5C8DF6;
+    --background: #FF6B9D;
     --top: auto;
     --right: auto;
     --bottom: auto;
@@ -168,6 +168,7 @@ const StyledWrapper = styled.div`
     bottom: var(--bottom);
     left: var(--left);
     transform: rotateY(var(--rotateY)) rotateX(var(--rotateX)) translateZ(var(--translateZ));
+    box-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
   }
 
   .boxes .box > div:nth-child(1) {
@@ -176,21 +177,24 @@ const StyledWrapper = styled.div`
   }
 
   .boxes .box > div:nth-child(2) {
-    --background: #145af2;
+    --background: #00D9FF;
     --right: 0;
     --rotateY: 90deg;
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.6);
   }
 
   .boxes .box > div:nth-child(3) {
-    --background: #447cf5;
+    --background: #C13FF8;
     --rotateX: -90deg;
+    box-shadow: 0 0 20px rgba(193, 63, 248, 0.6);
   }
 
   .boxes .box > div:nth-child(4) {
-    --background: #DBE3F4;
+    --background: #FFD700;
     --top: 0;
     --left: 0;
     --translateZ: calc(var(--size) * 3 * -1);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
   }
 
   @-webkit-keyframes box1 {

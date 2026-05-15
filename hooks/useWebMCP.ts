@@ -4,6 +4,8 @@
  * Reference: https://webmachinelearning.github.io/webmcp/
  */
 
+import type { WebMCPTool } from '@/types/webmcp';
+
 export function useWebMCP() {
   if (typeof window === 'undefined') {
     return null;
@@ -16,7 +18,7 @@ export function useWebMCP() {
   }
 
   const providePortfolioTools = () => {
-    const tools = [
+    const tools: WebMCPTool[] = [
       {
         name: 'navigate_section',
         description: 'Navigate to a specific portfolio section',
@@ -114,7 +116,7 @@ export function useWebMCP() {
     ];
 
     try {
-      window.navigator.modelContext.provideContext({
+      window.navigator.modelContext!.provideContext({
         name: 'Portfolio Tools',
         tools,
       });

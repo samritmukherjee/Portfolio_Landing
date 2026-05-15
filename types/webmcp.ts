@@ -31,4 +31,9 @@ declare global {
   }
 }
 
-export { WebMCPInputSchema, WebMCPTool, WebMCPContext, ModelContext };
+export type {
+  WebMCPInputSchema,
+  WebMCPTool,
+  WebMCPContext,
+  ModelContext,
+};
