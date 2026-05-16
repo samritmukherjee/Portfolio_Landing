@@ -72,7 +72,7 @@ export const ContactCards = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full"
+      className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-full"
     >
       {contactCards.map((card) => (
         <motion.div key={card.id} variants={cardVariants} className="h-full">
@@ -95,7 +95,7 @@ export const ContactCards = () => {
                   <span className="text-[0.65rem] uppercase tracking-[0.2em] font-black text-[var(--theme-text-muted)] group-hover:text-accent-400 transition-colors duration-300">
                     {card.label}
                   </span>
-                  <div className="mt-2 bg-[var(--theme-surface-2)] rounded-lg p-2.5 border border-[var(--theme-border)] max-h-[60px] overflow-y-auto">
+                  <div className="mt-2 bg-[color-mix(in_oklch,var(--theme-surface-2)_85%,transparent)] rounded-lg p-2.5 border border-[var(--theme-border)] max-h-[60px] overflow-y-auto">
                     <h3 className="text-sm md:text-base font-bold text-[var(--theme-text)] leading-relaxed break-words">
                       {card.value}
                     </h3>
@@ -107,7 +107,7 @@ export const ContactCards = () => {
                 <p className="text-sm text-[var(--theme-text-muted)] group-hover:text-[var(--theme-text)] transition-colors">
                   {card.description}
                 </p>
-                <div className="w-8 h-8 rounded-full bg-[var(--theme-surface-2)] flex items-center justify-center group-hover:bg-accent-500 group-hover:text-[var(--theme-bg)] transition-all duration-300 text-accent-400">
+                <div className="w-8 h-8 rounded-full bg-[color-mix(in_oklch,var(--theme-surface-2)_85%,transparent)] flex items-center justify-center group-hover:bg-accent-500 group-hover:text-[var(--theme-bg)] transition-all duration-300 text-accent-400">
                   <FaArrowRight size={12} />
                 </div>
               </div>

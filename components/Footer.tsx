@@ -74,14 +74,14 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer className="section-surface border-t border-white/5 py-12 md:py-16">
+    <footer className="section-surface border-t border-[var(--theme-border)] py-12 md:py-16">
       <div className="container-custom">
         <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-8 md:gap-12 md:items-center">
           <div className="space-y-3 md:flex-1 text-center md:text-left">
-            <h3 className="text-2xl font-bold tracking-tighter text-stone-50">
+            <h3 className="text-2xl font-bold tracking-tighter text-[var(--theme-text)]">
               SAMRIT<span className="text-accent-500">.</span>
             </h3>
-            <p className="text-stone-500 text-sm max-w-xs mx-auto md:mx-0">
+            <p className="text-[var(--theme-text-muted)] text-sm max-w-xs mx-auto md:mx-0">
               Building the future of interactive web experiences and AI-driven solutions.
             </p>
           </div>
@@ -93,7 +93,7 @@ export const Footer = () => {
             viewport={{ once: true }}
             className="flex flex-col items-center gap-3"
           >
-            <span className="text-xs text-stone-500 font-semibold uppercase tracking-widest">Visitors</span>
+            <span className="text-xs text-[var(--theme-text-muted)] font-semibold uppercase tracking-widest">Visitors</span>
 
             {isLoading && (
               <div className="flex gap-1">
@@ -124,7 +124,7 @@ export const Footer = () => {
             )}
 
             {!isLoading && visitCount === null && (
-              <div className="text-stone-500 text-sm font-semibold tracking-tight">
+              <div className="text-[var(--theme-text-muted)] text-sm font-semibold tracking-tight">
                 {fetchError ? 'Visitor count unavailable' : 'No visitor data'}
               </div>
             )}
@@ -136,7 +136,7 @@ export const Footer = () => {
                 href="https://github.com/samritmukherjee"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-stone-400 hover:text-accent-400 transition-colors text-2xl"
+                className="text-[var(--theme-text-muted)] hover:text-accent-400 transition-colors text-2xl"
                 whileHover={{ scale: 1.15, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label="GitHub"
@@ -147,7 +147,7 @@ export const Footer = () => {
                 href="https://www.linkedin.com/in/samrit-mukherjee-412788318/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-stone-400 hover:text-accent-400 transition-colors text-2xl"
+                className="text-[var(--theme-text-muted)] hover:text-accent-400 transition-colors text-2xl"
                 whileHover={{ scale: 1.15, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label="LinkedIn"
@@ -158,7 +158,7 @@ export const Footer = () => {
                 href="https://mail.google.com/mail/u/0/#inbox?compose=DmwnWtMkNjVFfNxgcLqPZWXVkGFgkNPfBmCsWrKwqhWdSGdTLsTPGKkFxXmTdNCDFpkRsknNfpqG"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-stone-400 hover:text-accent-400 transition-colors text-2xl"
+                className="text-[var(--theme-text-muted)] hover:text-accent-400 transition-colors text-2xl"
                 whileHover={{ scale: 1.15, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label="Email"
@@ -166,7 +166,7 @@ export const Footer = () => {
                 <FaEnvelope />
               </motion.a>
             </div>
-            <p className="text-stone-600 text-xs">
+            <p className="text-[var(--theme-text-muted)] text-xs">
               © {currentYear} Samrit Mukherjee. Handcrafted in India.
             </p>
           </div>

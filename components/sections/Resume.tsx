@@ -9,7 +9,7 @@ export const Resume = () => {
       <div className="container-custom">
         <div className="glass-card p-12 md:p-16 relative overflow-hidden">
           {/* Background decoration */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-accent-500/10 blur-[100px] pointer-events-none" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-accent-500/15 blur-[110px] pointer-events-none" />
           
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -35,28 +35,28 @@ export const Resume = () => {
             <div className="hidden lg:flex justify-end">
               <motion.div 
                 whileHover={{ rotate: 3, scale: 1.02 }}
-                className="w-72 h-[420px] bg-[var(--theme-surface)] rounded-2xl border border-[var(--theme-border)] shadow-[0_20px_50px_rgba(0,0,0,0.4)] relative overflow-hidden group"
+                className="w-72 h-[420px] bg-[var(--theme-surface)] rounded-2xl border border-[var(--theme-border)] shadow-[0_24px_60px_-30px_rgba(0,0,0,0.6)] relative overflow-hidden group"
               >
                 <img 
                   src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133968/portfolio-os_rqsksy.png" 
                   alt="Resume Preview" 
                   className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-surface)] to-transparent flex items-end justify-center p-8 opacity-100 group-hover:opacity-0 transition-opacity">
+                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-surface)] to-transparent flex items-end justify-center p-8 opacity-100 group-hover:opacity-0 transition-opacity">
                    <span className="text-accent-400 font-bold uppercase tracking-[0.3em] text-xs">Preview</span>
                 </div>
               </motion.div>
             </div>
           </div>
           
-          <div className="mt-12 pt-8 border-t border-white/5 flex flex-wrap gap-8">
+             <div className="mt-12 pt-8 border-t border-[var(--theme-border)] flex flex-wrap gap-8">
              <div className="flex flex-col">
-                <span className="text-xs text-stone-500 uppercase tracking-widest font-bold">Latest Edition</span>
-                <span className="text-stone-300">April 2026</span>
+                 <span className="text-xs text-[var(--theme-text-muted)] uppercase tracking-widest font-bold">Latest Edition</span>
+                 <span className="text-[var(--theme-text)]">April 2026</span>
              </div>
              <div className="flex flex-col">
-                <span className="text-xs text-stone-500 uppercase tracking-widest font-bold">Format</span>
-                <span className="text-stone-300">PDF, 53 KB</span>
+                 <span className="text-xs text-[var(--theme-text-muted)] uppercase tracking-widest font-bold">Format</span>
+                 <span className="text-[var(--theme-text)]">PDF, 53 KB</span>
              </div>
           </div>
         </div>

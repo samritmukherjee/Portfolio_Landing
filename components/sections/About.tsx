@@ -6,14 +6,14 @@ export const About = () => {
   return (
     <section id="about" className="section-wrapper overflow-hidden min-h-screen">
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-[var(--theme-text)] mb-6">
+            <h2 className="text-[var(--theme-text)] mb-6 max-w-2xl">
               Turning complex ideas into <span className="gradient-accent">Simple Solutions.</span>
             </h2>
             
@@ -37,11 +37,11 @@ export const About = () => {
             <div className="flex flex-col sm:flex-row gap-8 sm:gap-12 mt-8 sm:mt-12">
               <div>
                 <h4 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[var(--theme-text)]">8+</h4>
-                <p className="text-[0.55rem] sm:text-[0.65rem] uppercase tracking-widest text-[var(--theme-text-muted)] font-bold mt-1">Projects Built</p>
+                <p className="text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.25em] text-[var(--theme-text-muted)] font-semibold mt-1">Projects Built</p>
               </div>
               <div>
                 <h4 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[var(--theme-text)]">5+</h4>
-                <p className="text-[0.55rem] sm:text-[0.65rem] uppercase tracking-widest text-[var(--theme-text-muted)] font-bold mt-1">Students Taught</p>
+                <p className="text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.25em] text-[var(--theme-text-muted)] font-semibold mt-1">Students Taught</p>
               </div>
             </div>
           </motion.div>
@@ -53,7 +53,7 @@ export const About = () => {
             viewport={{ once: true }}
             className="relative flex justify-center lg:justify-end"
           >
-            <div className="relative w-full sm:max-w-sm lg:max-w-md aspect-[4/5] rounded-2xl lg:rounded-[2.5rem] overflow-hidden group shadow-lg lg:shadow-2xl transition-all duration-700 hover:scale-[1.02] hover:shadow-accent-500/10">
+            <div className="relative w-full sm:max-w-sm lg:max-w-md aspect-[4/5] rounded-3xl lg:rounded-[2.75rem] overflow-hidden group shadow-lg lg:shadow-2xl transition-all duration-700 hover:scale-[1.02] hover:shadow-accent-500/10">
               {/* Profile Image */}
               <div className="absolute inset-0 bg-[var(--theme-surface)]">
                   <img 
@@ -66,11 +66,11 @@ export const About = () => {
               </div>
               
               {/* Interactive Frame Overlay */}
-              <div className="absolute inset-0 border-[12px] border-[var(--theme-border)] pointer-events-none rounded-[2.5rem] transition-colors duration-500 group-hover:border-accent-500/10" />
-              <div className="absolute inset-0 border border-white/5 pointer-events-none rounded-[2.5rem]" />
+              <div className="absolute inset-0 border-[10px] border-[var(--theme-border)] pointer-events-none rounded-[2.75rem] transition-colors duration-500 group-hover:border-accent-500/10" />
+              <div className="absolute inset-0 border border-white/5 pointer-events-none rounded-[2.75rem]" />
               
               {/* Bottom Label */}
-              <div className="absolute bottom-10 left-10 right-10 p-6 glass-card !rounded-2xl backdrop-blur-md border-white/10 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                <div className="absolute bottom-10 left-10 right-10 p-6 glass-card !rounded-2xl backdrop-blur-md border-white/10 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                  <p className="text-[var(--theme-text)] font-bold text-sm mb-1 uppercase tracking-wider\">Samrit Mukherjee</p>
                  <p className="text-accent-400 text-[0.65rem] font-black uppercase tracking-widest\">Available for projects</p>
               </div>

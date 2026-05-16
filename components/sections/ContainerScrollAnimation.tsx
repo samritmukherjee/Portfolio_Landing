@@ -13,10 +13,10 @@ export const ContainerScrollAnimation = ({
     <ContainerScroll
       titleComponent={titleComponent || (
         <div className="space-y-6">
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-stone-50 tracking-tighter leading-tight px-2">
-            Explore my portfolio in an <span className="text-accent-500">OS Experience</span>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-[var(--theme-text)] tracking-tight leading-tight px-2">
+            Explore my portfolio in an <span className="gradient-accent">OS Experience</span>
           </h2>
-          <p className="text-stone-400 text-base md:text-lg max-w-2xl mx-auto font-medium">
+          <p className="text-[var(--theme-text-muted)] text-base md:text-lg max-w-2xl mx-auto font-medium">
             Scroll down to see an immersive operating system environment where you can explore my projects, terminal, and interactive features.
           </p>
         </div>
@@ -31,14 +31,14 @@ export const ContainerScrollAnimation = ({
               alt="Portfolio OS Preview"
               className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-bg)]/60 via-transparent to-[var(--theme-bg)]/20 group-hover:from-[var(--theme-bg)]/40 group-hover:via-transparent group-hover:to-[var(--theme-bg)]/10 transition-all duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-bg)]/70 via-transparent to-[var(--theme-bg)]/20 group-hover:from-[var(--theme-bg)]/45 group-hover:via-transparent group-hover:to-[var(--theme-bg)]/10 transition-all duration-700" />
           </div>
 
           {/* CTA Overlay */}
-          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center backdrop-blur-sm">
+          <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center backdrop-blur-sm">
             <a
               href="/portfolio-os"
-              className="px-12 py-6 bg-accent-500 text-stone-950 font-black text-base md:text-lg uppercase tracking-widest rounded-full transform scale-75 group-hover:scale-100 transition-all duration-500 shadow-2xl hover:bg-white hover:shadow-accent-500/50"
+              className="btn-primary px-10 py-4 text-base md:text-lg uppercase tracking-widest transform scale-75 group-hover:scale-100 transition-all duration-500 shadow-2xl"
             >
               Explore OS Experience
             </a>
@@ -46,7 +46,7 @@ export const ContainerScrollAnimation = ({
 
           {/* Floating accent elements */}
           <div className="absolute top-4 right-4 w-32 h-32 bg-accent-500/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-          <div className="absolute bottom-4 left-4 w-24 h-24 bg-blue-500/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+          <div className="absolute bottom-4 left-4 w-24 h-24 bg-secondary-400/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
         </div>
       )}
     </ContainerScroll>

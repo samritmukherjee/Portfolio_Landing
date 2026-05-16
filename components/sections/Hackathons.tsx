@@ -50,7 +50,7 @@ export const Hackathons = () => {
     <section id="hackathons" className="section-wrapper section-surface overflow-hidden">
       <div className="container-custom max-w-full px-4 sm:px-6 md:px-12 lg:px-16">
         <div className="text-center mb-20 space-y-4">
-          <h2 className="text-[var(--theme-text)]">Hackathons & <span className="text-accent-300">Accolades</span></h2>
+          <h2 className="text-[var(--theme-text)]">Hackathons & <span className="gradient-accent">Accolades</span></h2>
           <p className="text-[var(--theme-text-muted)] max-w-2xl mx-auto">
             Competitive programming and building intensive technical solutions under pressure.
           </p>
@@ -60,7 +60,7 @@ export const Hackathons = () => {
         <div className="space-y-12">
           {hackathons.won.length > 0 && (
             <div className="space-y-8">
-              <h3 className="text-xl font-bold text-stone-300 uppercase tracking-[0.2em] pl-4 border-l-2 border-accent-500">Hackathons Won</h3>
+              <h3 className="text-xl font-bold text-[var(--theme-text-muted)] uppercase tracking-[0.2em] pl-4 border-l-2 border-accent-500">Hackathons Won</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hackathon-cards">
                 {hackathons.won.map((event, idx) => (
                   <motion.div
@@ -75,7 +75,7 @@ export const Hackathons = () => {
                       glowColor="orange"
                       customSize
                       transparentBackdrop
-                      className="h-full min-h-[280px] sm:min-h-[320px] rounded-2xl lg:rounded-[2.5rem] border border-theme-border overflow-hidden transition-all duration-500 hackathon-card-wrapper bg-transparent"
+                      className="h-full min-h-[280px] sm:min-h-[320px] rounded-2xl lg:rounded-[2.5rem] border border-[var(--theme-border)] overflow-hidden transition-all duration-500 hackathon-card-wrapper bg-transparent"
                     >
                       {/* Winning Moment Image Reveal */}
                       <div className="absolute inset-0 z-0">
@@ -90,10 +90,10 @@ export const Hackathons = () => {
                       <div className="relative z-10 h-full p-4 sm:p-6 lg:p-8 lg:p-10 flex flex-col justify-between gap-3 sm:gap-4 lg:gap-6 bg-transparent">
                         <div className="space-y-6">
                           <div className="flex justify-between items-start">
-                            <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-2xl bg-accent-500/10 backdrop-blur-md flex items-center justify-center border border-theme-border transition-all duration-500 hackathon-card-icon">
+                            <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-2xl bg-accent-500/10 backdrop-blur-md flex items-center justify-center border border-[var(--theme-border)] transition-all duration-500 hackathon-card-icon">
                               <FaTrophy className="text-lg sm:text-2xl text-accent-400" />
                             </div>
-                            <span className="text-[0.55rem] sm:text-[0.65rem] font-bold text-stone-50 uppercase tracking-widest bg-theme-surface px-2 sm:px-3 py-1 rounded-full border border-theme-border transition-colors duration-500 hackathon-card-year">{event.year}</span>
+                            <span className="text-[0.55rem] sm:text-[0.65rem] font-bold text-stone-50 uppercase tracking-widest bg-[var(--theme-surface)] px-2 sm:px-3 py-1 rounded-full border border-[var(--theme-border)] transition-colors duration-500 hackathon-card-year">{event.year}</span>
                           </div>
 
                           <div className="space-y-1">
@@ -103,7 +103,7 @@ export const Hackathons = () => {
                         </div>
 
                         <div className="space-y-3">
-                          <div className="flex items-center gap-2 sm:gap-3 pb-1 sm:pb-2 border-b border-theme-border">
+                          <div className="flex items-center gap-2 sm:gap-3 pb-1 sm:pb-2 border-b border-[var(--theme-border)]">
                             <MdLocationOn className="text-accent-400 text-base sm:text-lg" />
                             <p className="text-[0.6rem] sm:text-[0.7rem] text-stone-50 font-black uppercase tracking-[0.2em] transition-colors duration-500 hackathon-card-location">{event.location}</p>
                           </div>

@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Manrope, Unbounded } from "next/font/google";
+import { Sora, Fraunces } from "next/font/google";
 import "@/styles/globals.css";
 import { LenisWrapper } from "@/components/LenisWrapper";
 import PageLoader from "@/components/PageLoader";
 
-const manrope = Manrope({
+const sora = Sora({
   subsets: ["latin"],
-  variable: "--font-manrope",
-  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sora",
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
-const unbounded = Unbounded({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-unbounded",
-  weight: ["500", "700", "800"],
+  variable: "--font-fraunces",
+  weight: ["400", "600", "700"],
   display: "swap",
 });
 
@@ -55,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${manrope.variable} ${unbounded.variable}`}>
+    <html lang="en" className={`${sora.variable} ${fraunces.variable}`}>
       <body className="bg-[var(--theme-bg)] transition-colors duration-500">
         <PageLoader />
         <LenisWrapper>

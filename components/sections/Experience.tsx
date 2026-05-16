@@ -51,7 +51,7 @@ export const Experience = () => {
               A timeline of my professional work, volunteer efforts, and leadership roles.
             </p>
           </div>
-          <div className="hidden md:block h-px flex-1 bg-[var(--theme-border)] mx-8 mb-4" />
+          <div className="hidden md:block h-px flex-1 bg-[color-mix(in_oklch,var(--theme-border)_70%,transparent)] mx-8 mb-4" />
         </div>
 
         <div className="space-y-8">
@@ -62,7 +62,7 @@ export const Experience = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="glass-card p-4 sm:p-6 lg:p-8 lg:p-10 group transition-all border-l-4 border-l-[var(--theme-border)] hover:border-l-accent-500"
+              className="glass-card p-5 sm:p-7 lg:p-10 group transition-all border-l-2 border-l-[var(--theme-border)] hover:border-l-accent-500"
             >
               <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                 <div className="space-y-4 flex-1">
@@ -79,7 +79,7 @@ export const Experience = () => {
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 mt-3 sm:mt-4">
                     {exp.highlights.map((highlight, i) => (
                       <li key={i} className="flex gap-2 text-[var(--theme-text-muted)] text-xs sm:text-sm items-start">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[var(--theme-border)] mt-1.5 flex-shrink-0 group-hover:bg-accent-500 transition-colors" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[color-mix(in_oklch,var(--theme-border)_80%,transparent)] mt-1.5 flex-shrink-0 group-hover:bg-accent-500 transition-colors" />
                         {highlight}
                       </li>
                     ))}
@@ -87,7 +87,7 @@ export const Experience = () => {
                 </div>
                 
                 <div className="flex-shrink-0">
-                   <span className="px-4 py-1.5 bg-[var(--theme-surface)] text-[var(--theme-text)] text-xs font-bold rounded-full border border-[var(--theme-border)] uppercase tracking-tighter">
+                   <span className="px-4 py-1.5 bg-[color-mix(in_oklch,var(--theme-surface-2)_80%,transparent)] text-[var(--theme-text)] text-xs font-bold rounded-full border border-[var(--theme-border)] uppercase tracking-tighter">
                       {exp.type}
                    </span>
                 </div>

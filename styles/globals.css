@@ -16,31 +16,31 @@
   }
 
   html[data-theme="dark"] {
-    --theme-bg: #000000;
-    --theme-surface: #0a0a0a;
-    --theme-surface-2: #1a1a1a;
-    --theme-accent: #0C6291;
-    --theme-accent-soft: #2683d8;
-    --theme-secondary: #7E1946;
-    --theme-cherry: #A63446;
-    --theme-text: #EAEAEA;
-    --theme-text-muted: #B8B8B8;
-    --theme-border: rgba(12, 98, 145, 0.28);
-    --theme-hover: rgba(12, 98, 145, 0.08);
+    --theme-bg: #0b0c10;
+    --theme-surface: #12141a;
+    --theme-surface-2: #1b1f27;
+    --theme-accent: #4f7cff;
+    --theme-accent-soft: #8fa4fb;
+    --theme-secondary: #b36a3f;
+    --theme-cherry: #d35d7a;
+    --theme-text: #f5f7fb;
+    --theme-text-muted: #b6bcc7;
+    --theme-border: rgba(79, 124, 255, 0.22);
+    --theme-hover: rgba(79, 124, 255, 0.08);
   }
 
   html[data-theme="light"] {
-    --theme-bg: #FAF9F6;
-    --theme-surface: #FFFFFF;
-    --theme-surface-2: #F3F3F3;
-    --theme-accent: #0C6291;
-    --theme-accent-soft: #2683d8;
-    --theme-secondary: #7E1946;
-    --theme-cherry: #A63446;
-    --theme-text: #000000;
-    --theme-text-muted: #525252;
-    --theme-border: rgba(0, 0, 0, 0.1);
-    --theme-hover: rgba(0, 0, 0, 0.05);
+    --theme-bg: #f4f1ec;
+    --theme-surface: #faf7f2;
+    --theme-surface-2: #f0ebe4;
+    --theme-accent: #3a5bd9;
+    --theme-accent-soft: #7fa0ff;
+    --theme-secondary: #b36a3f;
+    --theme-cherry: #d35d7a;
+    --theme-text: #1b1c1f;
+    --theme-text-muted: #5c616a;
+    --theme-border: rgba(27, 28, 31, 0.12);
+    --theme-hover: rgba(27, 28, 31, 0.04);
   }
 
   html {
@@ -62,6 +62,7 @@
     position: relative;
     z-index: 1;
     text-rendering: optimizeLegibility;
+    letter-spacing: -0.01em;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -69,25 +70,25 @@
   }
 
   h1 {
-    font-size: clamp(2.2rem, 5.4vw, 7.25rem);
-    line-height: 0.95;
-    @apply font-extrabold;
+    font-size: clamp(2.4rem, 6vw, 7.5rem);
+    line-height: 0.94;
+    @apply font-semibold;
   }
 
   h2 {
-    font-size: clamp(2rem, 4vw, 4.8rem);
-    line-height: 1.02;
-    @apply font-bold;
+    font-size: clamp(1.9rem, 4.2vw, 4.6rem);
+    line-height: 1.05;
+    @apply font-semibold;
   }
 
   p {
-    @apply leading-relaxed text-base md:text-lg;
+    @apply leading-relaxed text-[1rem] md:text-[1.05rem];
     color: var(--theme-text-muted);
-    max-width: 72ch;
+    max-width: 70ch;
   }
 
   * ::selection {
-    @apply bg-accent-500/20 text-accent-900;
+    @apply bg-accent-500/25 text-accent-900;
   }
 }
 
@@ -105,9 +106,9 @@
     height: 120vh;
     transform: rotate(12deg);
     background: linear-gradient(
-      180deg,
-      color-mix(in oklch, var(--theme-accent) 8%, transparent),
-      transparent
+      160deg,
+      color-mix(in oklch, var(--theme-accent) 12%, transparent),
+      transparent 65%
     );
     pointer-events: none;
     z-index: -1;
@@ -157,10 +158,10 @@
     position: absolute;
     left: 0;
     top: 32px;
-    width: 64px;
-    height: 2px;
-    background: var(--theme-accent);
-    opacity: 0.45;
+    width: 88px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--theme-accent), transparent 85%);
+    opacity: 0.6;
     transform-origin: left;
   }
 
@@ -187,7 +188,7 @@
   }
 
   .section-wrapper {
-    @apply py-12 sm:py-20 md:py-32 relative overflow-hidden flex flex-col justify-center min-h-[inherit];
+    @apply py-14 sm:py-20 md:py-36 relative overflow-hidden flex flex-col justify-center min-h-[inherit];
     width: 100%;
     background: var(--theme-bg);
     transition: background-color 500ms cubic-bezier(0.25, 1, 0.5, 1);
@@ -199,15 +200,15 @@
   }
 
   .nav-shell {
-    background: color-mix(in oklch, var(--theme-surface) 70%, transparent);
-    border: 1px solid var(--theme-border);
-    box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(12px);
+    background: color-mix(in oklch, var(--theme-surface) 82%, transparent);
+    border: 1px solid color-mix(in oklch, var(--theme-border) 85%, transparent);
+    box-shadow: 0 18px 40px -28px rgba(7, 10, 20, 0.6);
+    backdrop-filter: blur(18px) saturate(140%);
   }
 
   .nav-shell-scrolled {
-    background: color-mix(in oklch, var(--theme-surface-2) 60%, transparent);
-    @apply shadow-lg;
+    background: color-mix(in oklch, var(--theme-surface-2) 76%, transparent);
+    box-shadow: 0 16px 36px -24px rgba(7, 10, 20, 0.6);
   }
 
   .nav-link {
@@ -216,11 +217,11 @@
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    padding: 0.35rem 0.85rem;
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
+    padding: 0.4rem 0.95rem;
+    font-size: 0.74rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--theme-text-muted);
     transition: all 200ms ease;
   }
@@ -228,6 +229,7 @@
   .nav-link:hover,
   .nav-link:focus-visible {
     color: var(--theme-text);
+    background: color-mix(in oklch, var(--theme-accent) 12%, transparent);
   }
 
   .nav-link.is-active {
@@ -238,21 +240,22 @@
     position: absolute;
     inset: -1px;
     border-radius: 999px;
-    border: 1px solid var(--theme-accent);
-    background: color-mix(in oklch, var(--theme-accent) 15%, transparent);
+    border: 1px solid color-mix(in oklch, var(--theme-accent) 70%, transparent);
+    background: color-mix(in oklch, var(--theme-accent) 18%, transparent);
+    box-shadow: 0 10px 30px -20px color-mix(in oklch, var(--theme-accent) 55%, transparent);
     z-index: 0;
   }
 
   .glass-card {
-    background: color-mix(in oklch, var(--theme-surface) 95%, transparent);
-    border: 1px solid var(--theme-border);
-    @apply rounded-[2rem] shadow-sm transition-all duration-300;
+    background: color-mix(in oklch, var(--theme-surface) 92%, transparent);
+    border: 1px solid color-mix(in oklch, var(--theme-border) 90%, transparent);
+    @apply rounded-[1.75rem] shadow-md transition-all duration-300;
   }
 
   html[data-theme="dark"] .glass-card {
-    background: color-mix(in oklch, #050505 95%, transparent);
-    border-color: rgba(12, 98, 145, 0.28);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    background: color-mix(in oklch, #0a0b10 92%, transparent);
+    border-color: rgba(79, 124, 255, 0.22);
+    box-shadow: 0 18px 45px -32px rgba(0, 0, 0, 0.8);
   }
 
   /* Hackathon Cards: Light mode text colors */
@@ -331,53 +334,57 @@
 
   .btn-primary {
     @apply px-7 py-3.5 font-bold rounded-full transition-all duration-300 active:scale-95 flex items-center justify-center;
-    background: var(--theme-accent);
+    background: linear-gradient(135deg, var(--theme-accent), color-mix(in oklch, var(--theme-accent) 65%, var(--theme-cherry)));
     color: white;
-    box-shadow: 0 10px 20px -5px color-mix(in oklch, var(--theme-accent) 30%, transparent);
+    box-shadow: 0 16px 30px -18px color-mix(in oklch, var(--theme-accent) 45%, transparent);
   }
 
   html[data-theme="light"] .btn-primary {
-    background: #000000;
+    background: linear-gradient(135deg, var(--theme-accent), color-mix(in oklch, var(--theme-accent) 65%, var(--theme-secondary)));
     color: #ffffff;
-    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 16px 30px -18px rgba(25, 32, 48, 0.2);
   }
 
   .btn-primary:hover {
-    box-shadow: 0 15px 30px -8px color-mix(in oklch, var(--theme-accent) 40%, transparent);
+    box-shadow: 0 22px 38px -20px color-mix(in oklch, var(--theme-accent) 55%, transparent);
     transform: translateY(-2px);
     opacity: 0.95;
   }
 
   html[data-theme="light"] .btn-primary:hover {
-    background: #1a1a1a;
-    box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 22px 38px -20px rgba(25, 32, 48, 0.3);
   }
 
   .btn-secondary {
     @apply px-7 py-3.5 bg-transparent font-bold rounded-full border transition-all duration-300 active:scale-95;
     color: var(--theme-text);
-    border-color: var(--theme-border);
+    border-color: color-mix(in oklch, var(--theme-border) 90%, transparent);
+    background: color-mix(in oklch, var(--theme-surface) 70%, transparent);
   }
 
   .btn-secondary:hover {
-    background: var(--theme-hover);
-    border-color: var(--theme-accent-soft);
+    background: color-mix(in oklch, var(--theme-hover) 80%, transparent);
+    border-color: color-mix(in oklch, var(--theme-accent) 50%, transparent);
   }
 
   .gradient-accent {
-    color: var(--theme-accent);
+    background: linear-gradient(120deg, var(--theme-accent), color-mix(in oklch, var(--theme-accent) 60%, var(--theme-cherry)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .premium-blur {
-    @apply absolute blur-[100px] rounded-full pointer-events-none;
-    opacity: 0.15;
+    @apply absolute blur-[120px] rounded-full pointer-events-none;
+    opacity: 0.12;
   }
 
   .brand-chip {
     @apply inline-flex items-center gap-3 rounded-full border px-5 py-2 text-[0.7rem] font-bold tracking-[0.1em] uppercase;
-    background: color-mix(in oklch, var(--theme-surface-2) 90%, transparent);
-    border-color: var(--theme-border);
+    background: color-mix(in oklch, var(--theme-surface-2) 86%, transparent);
+    border-color: color-mix(in oklch, var(--theme-border) 80%, transparent);
     color: var(--theme-text-muted);
+    box-shadow: 0 12px 30px -22px color-mix(in oklch, var(--theme-accent) 45%, transparent);
   }
 
   .surface-noise {

@@ -208,7 +208,7 @@ export const CircularProjects = ({
     <section id="projects" className="section-wrapper section-surface overflow-hidden">
       <div className="container-custom">
         <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-[var(--theme-text)] mb-4">
+          <h2 className="text-4xl md:text-5xl font-semibold text-[var(--theme-text)] mb-4">
             Featured Projects
           </h2>
           <p className="text-[var(--theme-text-muted)] max-w-2xl">
@@ -314,7 +314,7 @@ export const CircularProjects = ({
                     href={activeProject.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--theme-surface)] text-[var(--theme-text)] rounded-full font-medium border border-[var(--theme-border)] hover:bg-accent-500 hover:text-white transition-all group shadow-lg"
+                    className="btn-secondary inline-flex items-center gap-2"
                   >
                     View Project 
                     <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
@@ -356,7 +356,7 @@ export const CircularProjects = ({
       <style jsx>{`
         .testimonial-grid {
           display: grid;
-          gap: 2rem;
+          gap: 2.5rem;
           padding: 1rem 0;
         }
         .image-container {
@@ -380,7 +380,8 @@ export const CircularProjects = ({
           height: 100%;
           object-fit: cover;
           border-radius: 1.5rem;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          border: 1px solid var(--theme-border);
+          box-shadow: 0 24px 60px -40px rgba(7, 10, 20, 0.7);
         }
         .testimonial-content {
           display: flex;
@@ -388,7 +389,7 @@ export const CircularProjects = ({
           justify-content: center;
         }
         .name {
-          font-weight: 800;
+          font-weight: 700;
           margin-bottom: 0.25rem;
           letter-spacing: -0.025em;
           font-size: clamp(1.5rem, 5vw, 2rem);
@@ -418,11 +419,11 @@ export const CircularProjects = ({
           cursor: pointer;
           transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
           border: 1px solid var(--theme-border);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 10px 24px -16px rgba(7, 10, 20, 0.6);
         }
         .arrow-button:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 16px 30px -18px rgba(7, 10, 20, 0.7);
         }
         @media (min-width: 640px) {
           .arrow-buttons {

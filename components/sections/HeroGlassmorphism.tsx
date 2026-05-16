@@ -32,12 +32,12 @@ export const HeroGlassmorphism = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 md:pt-24 overflow-hidden surface-noise bg-[var(--theme-bg)] transition-colors duration-500">
+    <section className="relative min-h-screen flex items-center justify-center pt-24 md:pt-28 overflow-hidden surface-noise bg-[var(--theme-bg)] transition-colors duration-500">
       <div className="absolute inset-0 z-0">
-        <div className="premium-blur top-8 left-[2%] w-[32vw] h-[32vw] bg-accent-500/15 animate-pulse-slow" />
-        <div className="premium-blur bottom-10 right-[2%] w-[38vw] h-[38vw] bg-slate-300/10 animate-pulse-slow [animation-delay:1.2s]" />
-        <div className="absolute top-[16%] right-[12%] h-20 w-20 rounded-full border border-accent-200/30" />
-        <div className="absolute bottom-[22%] left-[10%] h-16 w-16 rounded-sm rotate-12 border border-stone-500/30" />
+        <div className="premium-blur top-8 left-[2%] w-[30vw] h-[30vw] bg-accent-500/20 animate-pulse-slow" />
+        <div className="premium-blur bottom-10 right-[2%] w-[36vw] h-[36vw] bg-secondary-400/15 animate-pulse-slow [animation-delay:1.2s]" />
+        <div className="absolute top-[16%] right-[12%] h-20 w-20 rounded-full border border-accent-200/40" />
+        <div className="absolute bottom-[22%] left-[10%] h-16 w-16 rounded-sm rotate-12 border border-stone-400/30" />
       </div>
 
       <div className="container-custom relative z-10 py-8">
@@ -57,7 +57,7 @@ export const HeroGlassmorphism = () => {
             </motion.div>
 
             <motion.div variants={childVariants} className="space-y-5">
-              <h1 className="text-[var(--theme-text)] uppercase">
+              <h1 className="text-[var(--theme-text)]">
                 <DecryptedText 
                   text="SAMRIT" 
                   animateOn="view"
@@ -67,7 +67,7 @@ export const HeroGlassmorphism = () => {
                 <br />
                 <span className="text-accent-500 dark:text-accent-300">MUKHERJEE</span>
               </h1>
-              <p className="text-[0.65rem] tracking-[0.25em] uppercase text-[var(--theme-text-muted)] font-bold">
+              <p className="text-[0.68rem] tracking-[0.3em] uppercase text-[var(--theme-text-muted)] font-semibold">
                 AI Systems • Full Stack Engineering • Product Development
               </p>
             </motion.div>
@@ -116,11 +116,11 @@ export const HeroGlassmorphism = () => {
               </p>
             </div>
             <div className="grid grid-cols-2 gap-5">
-              <motion.div whileHover={prefersReducedMotion ? undefined : { y: -2 }} className="rounded-lg md:rounded-2xl border border-theme-border p-3 md:p-4 bg-theme-surface/70 flex-1 md:flex-none">
+              <motion.div whileHover={prefersReducedMotion ? undefined : { y: -2 }} className="rounded-lg md:rounded-2xl border border-[var(--theme-border)] p-3 md:p-4 bg-[color-mix(in_oklch,var(--theme-surface-2)_80%,transparent)] flex-1 md:flex-none">
                 <p className="text-[var(--theme-text-muted)] text-[0.55rem] md:text-[0.65rem] uppercase tracking-widest font-bold mb-1">Projects</p>
                 <p className="text-[var(--theme-text)] font-black text-lg md:text-xl">8+</p>
               </motion.div>
-              <motion.div whileHover={prefersReducedMotion ? undefined : { y: -2 }} className="rounded-lg md:rounded-2xl border border-theme-border p-3 md:p-4 bg-theme-surface/70 flex-1 md:flex-none">
+              <motion.div whileHover={prefersReducedMotion ? undefined : { y: -2 }} className="rounded-lg md:rounded-2xl border border-[var(--theme-border)] p-3 md:p-4 bg-[color-mix(in_oklch,var(--theme-surface-2)_80%,transparent)] flex-1 md:flex-none">
                 <p className="text-[var(--theme-text-muted)] text-[0.55rem] md:text-[0.65rem] uppercase tracking-widest font-bold mb-1">Experience</p>
                 <p className="text-[var(--theme-text)] font-black text-lg md:text-xl">2+ Yrs</p>
               </motion.div>
@@ -135,7 +135,7 @@ export const HeroGlassmorphism = () => {
         transition={{ delay: 1.2, duration: 0.8 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2"
       >
-        <div className="w-6 h-10 border-2 border-stone-700 rounded-full flex justify-center p-1">
+        <div className="w-6 h-10 border-2 border-[var(--theme-border)] rounded-full flex justify-center p-1">
           <motion.div 
             animate={prefersReducedMotion ? undefined : { y: [0, 12, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: easeOut }}
