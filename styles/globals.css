@@ -17,6 +17,7 @@
     --motion-med: 260ms;
     --motion-slow: 420ms;
     --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+    --noise-opacity: 0.022;
   }
 
   html[data-theme="dark"] {
@@ -36,6 +37,7 @@
     --theme-hover: rgba(79, 124, 255, 0.08);
     --theme-shadow: rgba(4, 6, 10, 0.6);
     --theme-shadow-soft: rgba(4, 6, 10, 0.35);
+    --noise-opacity: 0.03;
   }
 
   html[data-theme="light"] {
@@ -55,6 +57,7 @@
     --theme-hover: rgba(27, 28, 31, 0.04);
     --theme-shadow: rgba(30, 28, 24, 0.18);
     --theme-shadow-soft: rgba(30, 28, 24, 0.1);
+    --noise-opacity: 0.018;
   }
 
   html {
@@ -77,6 +80,31 @@
     z-index: 1;
     text-rendering: optimizeLegibility;
     letter-spacing: -0.01em;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background:
+      radial-gradient(60% 45% at 15% 10%, color-mix(in oklch, var(--theme-accent) 6%, transparent), transparent 70%),
+      radial-gradient(55% 45% at 85% 0%, color-mix(in oklch, var(--theme-secondary) 5%, transparent), transparent 70%),
+      radial-gradient(65% 55% at 30% 90%, color-mix(in oklch, var(--theme-accent-soft) 5%, transparent), transparent 75%);
+    opacity: 0.6;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    background-size: 200px 200px;
+    opacity: var(--noise-opacity);
+    mix-blend-mode: soft-light;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -218,10 +246,21 @@
   }
 
   .section-wrapper {
-    @apply py-12 sm:py-16 md:py-28 relative overflow-hidden flex flex-col justify-center min-h-[inherit];
+    @apply py-12 sm:py-16 md:py-24 lg:py-28 relative overflow-hidden flex flex-col justify-center min-h-[inherit];
     width: 100%;
     background: var(--theme-bg);
     transition: background-color var(--motion-slow) var(--ease-standard);
+  }
+
+  .section-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, color-mix(in oklch, var(--theme-surface) 10%, transparent) 0%, transparent 35%),
+      linear-gradient(120deg, color-mix(in oklch, var(--theme-surface-2) 12%, transparent) 0%, transparent 55%);
+    opacity: 0.35;
   }
 
   .section-surface {
@@ -283,9 +322,14 @@
   }
 
   .glass-card {
-    background: color-mix(in oklch, var(--theme-card) 90%, transparent);
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--theme-card) 96%, transparent) 0%,
+      color-mix(in oklch, var(--theme-card) 90%, var(--theme-surface-2)) 100%
+    );
     border: 1px solid color-mix(in oklch, var(--theme-border) 85%, transparent);
-    box-shadow: 0 18px 40px -32px var(--theme-shadow-soft);
+    box-shadow: 0 18px 40px -32px var(--theme-shadow-soft),
+      inset 0 1px 0 color-mix(in oklch, var(--theme-card) 82%, white);
     transition: transform var(--motion-med) var(--ease-standard),
       box-shadow var(--motion-med) var(--ease-standard),
       border-color var(--motion-fast) var(--ease-standard),
@@ -294,9 +338,14 @@
   }
 
   html[data-theme="dark"] .glass-card {
-    background: color-mix(in oklch, var(--theme-card-elevated) 90%, transparent);
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--theme-card-elevated) 94%, transparent) 0%,
+      color-mix(in oklch, var(--theme-card-elevated) 88%, var(--theme-surface-3)) 100%
+    );
     border-color: rgba(79, 124, 255, 0.22);
-    box-shadow: 0 22px 55px -40px var(--theme-shadow);
+    box-shadow: 0 22px 55px -40px var(--theme-shadow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
   }
 
   /* Hackathon Cards: Light mode text colors */
@@ -390,6 +439,22 @@
     --backdrop: color-mix(in oklch, var(--theme-card-elevated) 92%, transparent) !important;
   }
 
+  .mobile-hackathon-card {
+    background: color-mix(in oklch, var(--theme-card) 92%, transparent);
+  }
+
+  .mobile-hackathon-card--expanded {
+    background: color-mix(in oklch, var(--theme-card) 96%, transparent);
+  }
+
+  .mobile-hackathon-expanded {
+    background: color-mix(in oklch, var(--theme-card-elevated) 90%, transparent);
+  }
+
+  html[data-theme="light"] .mobile-hackathon-expanded {
+    background: color-mix(in oklch, var(--theme-card) 96%, transparent);
+  }
+
   .hackathon-card-wrapper {
     transition: transform var(--motion-med) var(--ease-standard),
       box-shadow var(--motion-med) var(--ease-standard),
@@ -469,9 +534,20 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.03;
+    opacity: var(--noise-opacity);
     background-image: url("https://grainy-gradients.vercel.app/noise.svg");
     filter: contrast(150%) brightness(100%);
+  }
+
+  .hover-lift {
+    transition: transform var(--motion-fast) var(--ease-standard),
+      box-shadow var(--motion-med) var(--ease-standard),
+      border-color var(--motion-fast) var(--ease-standard),
+      background-color var(--motion-med) var(--ease-standard);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-3px);
   }
 
   /* Desktop/laptop: Full hover effects */
@@ -800,6 +876,12 @@ html[data-theme="dark"] .text-accent-500 {
     transition-duration: 150ms !important;
   }
 
+  .page-loader,
+  .page-loader * {
+    animation-duration: revert !important;
+    transition-duration: revert !important;
+  }
+
   /* Disable complex hover effects on touch devices */
   .hover\:shadow-accent-500\/10 {
     box-shadow: none !important;
@@ -812,6 +894,12 @@ html[data-theme="dark"] .text-accent-500 {
   /* Optimize performance for smooth scrolling */
   body {
     -webkit-touch-callout: none;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .section-frame {
+    min-height: auto;
   }
 }
 
@@ -830,6 +918,12 @@ html[data-theme="dark"] .text-accent-500 {
 
 /* Contact Cards - Mobile Performance Optimization */
 @media (hover: none) or (pointer: coarse) {
+  .hover-lift,
+  .hover-lift:hover {
+    transform: none !important;
+    transition: none !important;
+  }
+
   /* Disable scale animation on mobile for better scrolling performance */
   [role="link"]:has(> div[class*="contact"]) {
     transition: none !important;

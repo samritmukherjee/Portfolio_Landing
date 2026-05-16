@@ -54,14 +54,14 @@ export const Skills = () => {
       <div className="premium-blur top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[56vw] h-[56vw] bg-accent-500/10 opacity-10" />
 
       <div className="container-custom max-w-full overflow-x-hidden">
-        <div className="text-center mb-20 space-y-4">
+        <div className="text-center mb-16 md:mb-20 space-y-3 sm:space-y-4">
           <h2 className="text-[var(--theme-text)]">Technical <span className="gradient-accent">Arsenal</span></h2>
           <p className="text-[var(--theme-text-muted)] max-w-2xl mx-auto">
             A comprehensive overview of the tools and technologies I use to bring ideas to life.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7 lg:gap-9">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
           {skillCategories.map((category, idx) => (
             <motion.div
               key={category.category}
@@ -69,10 +69,10 @@ export const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="glass-card p-5 sm:p-7 lg:p-9 group hover:border-accent-500/30 transition-colors"
+              className="glass-card p-5 sm:p-7 lg:p-8 group hover-lift hover:border-accent-500/30"
             >
               <div className="flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6">
-                <div className="text-lg sm:text-2xl w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl bg-[color-mix(in_oklch,var(--theme-surface-2)_85%,transparent)] flex items-center justify-center border border-[var(--theme-border)] group-hover:scale-110 transition-transform">
+                <div className="text-lg sm:text-2xl w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl bg-[color-mix(in_oklch,var(--theme-surface-2)_85%,transparent)] flex items-center justify-center border border-[var(--theme-border)] group-hover:scale-105 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
                   {category.icon}
                 </div>
                 <h3 className="text-base sm:text-xl font-bold text-[var(--theme-text)]">{category.category}</h3>
@@ -82,7 +82,7 @@ export const Skills = () => {
                 {category.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-2 sm:px-3 py-1 sm:py-1.5 bg-[color-mix(in_oklch,var(--theme-surface-2)_85%,transparent)] text-[var(--theme-text-muted)] text-xs sm:text-sm rounded-lg border border-[var(--theme-border)] group-hover:text-accent-400 group-hover:border-accent-500/30 transition-all duration-300">
+                    className="px-2 sm:px-3 py-1 sm:py-1.5 bg-[color-mix(in_oklch,var(--theme-surface-2)_85%,transparent)] text-[var(--theme-text-muted)] text-xs sm:text-sm rounded-lg border border-[var(--theme-border)] group-hover:text-accent-400 group-hover:border-accent-500/30 transition-colors duration-300">
                     {skill}
                   </span>
                 ))}

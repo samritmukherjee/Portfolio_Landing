@@ -7,17 +7,17 @@ export const Resume = () => {
   return (
     <section id="resume" className="section-wrapper">
       <div className="container-custom">
-        <div className="glass-card p-12 md:p-16 relative overflow-hidden">
+        <div className="glass-card p-10 sm:p-12 md:p-14 relative overflow-hidden">
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-accent-500/15 blur-[110px] pointer-events-none" />
           
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+            <div className="space-y-5">
               <h2 className="text-[var(--theme-text)] leading-tight">
                 Interested in working <br />
                 <span className="gradient-accent">With Me?</span>
               </h2>
-              <p className="text-[var(--theme-text-muted)] text-lg">
+              <p className="text-[var(--theme-text-muted)] text-base sm:text-lg">
                 Download my comprehensive resume to learn more about my technical expertise, academic background, and project experience.
               </p>
               
@@ -34,8 +34,8 @@ export const Resume = () => {
             
             <div className="hidden lg:flex justify-end">
               <motion.div 
-                whileHover={{ rotate: 3, scale: 1.02 }}
-                className="w-72 h-[420px] bg-[var(--theme-surface)] rounded-2xl border border-[var(--theme-border)] shadow-[0_24px_60px_-30px_rgba(0,0,0,0.6)] relative overflow-hidden group"
+                whileHover={{ rotate: 2, scale: 1.01 }}
+                className="w-72 h-[420px] bg-[var(--theme-surface)] rounded-2xl border border-[var(--theme-border)] shadow-[0_24px_60px_-35px_var(--theme-shadow)] relative overflow-hidden group hover-lift"
               >
                 <img 
                   src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133968/portfolio-os_rqsksy.png" 

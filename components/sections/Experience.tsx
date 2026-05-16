@@ -44,7 +44,7 @@ export const Experience = () => {
   return (
     <section id="experience" className="section-wrapper section-surface overflow-hidden">
       <div className="container-custom max-w-full overflow-x-hidden">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-14 md:mb-16 gap-4">
           <div className="space-y-4">
             <h2 className="text-[var(--theme-text)]">Professional <span className="gradient-accent">Journey</span></h2>
             <p className="text-[var(--theme-text-muted)] max-w-xl">
@@ -54,7 +54,7 @@ export const Experience = () => {
           <div className="hidden md:block h-px flex-1 bg-[color-mix(in_oklch,var(--theme-border)_70%,transparent)] mx-8 mb-4" />
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           {experiences.map((exp, idx) => (
             <motion.div
               key={idx}
@@ -62,7 +62,7 @@ export const Experience = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="glass-card p-5 sm:p-7 lg:p-10 group transition-all border-l-2 border-l-[var(--theme-border)] hover:border-l-accent-500"
+              className="glass-card p-5 sm:p-7 lg:p-9 group hover-lift border-l-2 border-l-[var(--theme-border)] hover:border-l-accent-500"
             >
               <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                 <div className="space-y-4 flex-1">

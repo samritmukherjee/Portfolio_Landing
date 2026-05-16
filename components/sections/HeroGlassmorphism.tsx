@@ -56,7 +56,7 @@ export const HeroGlassmorphism = () => {
               Available For New Projects
             </motion.div>
 
-            <motion.div variants={childVariants} className="space-y-5">
+            <motion.div variants={childVariants} className="space-y-4">
               <h1 className="text-[var(--theme-text)]">
                 <DecryptedText 
                   text="SAMRIT" 
@@ -67,7 +67,7 @@ export const HeroGlassmorphism = () => {
                 <br />
                 <span className="text-accent-500 dark:text-accent-300">MUKHERJEE</span>
               </h1>
-              <p className="text-[0.68rem] tracking-[0.3em] uppercase text-[var(--theme-text-muted)] font-semibold">
+              <p className="text-[0.7rem] sm:text-[0.72rem] tracking-[0.28em] uppercase text-[var(--theme-text-muted)] font-semibold">
                 AI Systems • Full Stack Engineering • Product Development
               </p>
             </motion.div>
@@ -87,17 +87,17 @@ export const HeroGlassmorphism = () => {
               </motion.button>
               <motion.button
                 onClick={() => scrollToElement('contact')}
-                className="btn-secondary w-full sm:w-auto text-center hover:shadow-[0_0_20px_rgba(239,178,74,0.15)] hover:border-accent-300 transition-all"
+                className="btn-secondary w-full sm:w-auto text-center"
               >
                 Get In Touch
               </motion.button>
             </motion.div>
 
-            <motion.div variants={childVariants} className="flex items-center gap-4 md:gap-8 pt-10">
-              <a href="https://github.com/samritmukherjee" target="_blank" rel="noopener noreferrer" className="text-[var(--theme-text-muted)] hover:text-accent-300 transition-colors duration-300 hover:-translate-y-1 transform">
+            <motion.div variants={childVariants} className="flex items-center gap-4 md:gap-8 pt-8">
+              <a href="https://github.com/samritmukherjee" target="_blank" rel="noopener noreferrer" className="text-[var(--theme-text-muted)] hover:text-accent-300 hover-lift">
                 <FaGithub size={24} />
               </a>
-              <a href="https://www.linkedin.com/in/samrit-mukherjee-412788318/" target="_blank" rel="noopener noreferrer" className="text-[var(--theme-text-muted)] hover:text-accent-300 transition-colors duration-300 hover:-translate-y-1 transform">
+              <a href="https://www.linkedin.com/in/samrit-mukherjee-412788318/" target="_blank" rel="noopener noreferrer" className="text-[var(--theme-text-muted)] hover:text-accent-300 hover-lift">
                 <FaLinkedin size={24} />
               </a>
             </motion.div>
@@ -116,14 +116,14 @@ export const HeroGlassmorphism = () => {
               </p>
             </div>
             <div className="grid grid-cols-2 gap-5">
-              <motion.div whileHover={prefersReducedMotion ? undefined : { y: -2 }} className="rounded-lg md:rounded-2xl border border-[var(--theme-border)] p-3 md:p-4 bg-[color-mix(in_oklch,var(--theme-surface-2)_80%,transparent)] flex-1 md:flex-none">
+              <div className="rounded-lg md:rounded-2xl border border-[var(--theme-border)] p-3 md:p-4 bg-[color-mix(in_oklch,var(--theme-surface-2)_80%,transparent)] flex-1 md:flex-none hover-lift">
                 <p className="text-[var(--theme-text-muted)] text-[0.55rem] md:text-[0.65rem] uppercase tracking-widest font-bold mb-1">Projects</p>
                 <p className="text-[var(--theme-text)] font-black text-lg md:text-xl">8+</p>
-              </motion.div>
-              <motion.div whileHover={prefersReducedMotion ? undefined : { y: -2 }} className="rounded-lg md:rounded-2xl border border-[var(--theme-border)] p-3 md:p-4 bg-[color-mix(in_oklch,var(--theme-surface-2)_80%,transparent)] flex-1 md:flex-none">
+              </div>
+              <div className="rounded-lg md:rounded-2xl border border-[var(--theme-border)] p-3 md:p-4 bg-[color-mix(in_oklch,var(--theme-surface-2)_80%,transparent)] flex-1 md:flex-none hover-lift">
                 <p className="text-[var(--theme-text-muted)] text-[0.55rem] md:text-[0.65rem] uppercase tracking-widest font-bold mb-1">Experience</p>
                 <p className="text-[var(--theme-text)] font-black text-lg md:text-xl">2+ Yrs</p>
-              </motion.div>
+              </div>
             </div>
           </motion.aside>
         </div>

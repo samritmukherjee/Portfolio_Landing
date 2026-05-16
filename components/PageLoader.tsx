@@ -3,13 +3,18 @@
 import React, { useEffect, useState, useImperativeHandle, forwardRef } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
 
 const PageLoader = forwardRef((props, ref) => {
   const [isVisible, setIsVisible] = useState(true);
   const [isOpening, setIsOpening] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px), (pointer: coarse)');
+    const updateMobile = () => setIsMobile(mediaQuery.matches);
+    updateMobile();
+    mediaQuery.addEventListener('change', updateMobile);
+
     // Initial load
     const timer = setTimeout(() => {
       handleClose();
@@ -20,6 +25,7 @@ const PageLoader = forwardRef((props, ref) => {
 
     return () => {
       clearTimeout(timer);
+      mediaQuery.removeEventListener('change', updateMobile);
       window.removeEventListener('trigger-loader', handleTrigger);
     };
   }, []);
@@ -46,15 +52,23 @@ const PageLoader = forwardRef((props, ref) => {
 
   if (!isVisible) return null;
 
-  return (
-    <div
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#000004]"
-      style={{ 
+  const containerStyle = isMobile
+    ? {
+        opacity: isOpening ? 0 : 1,
+        transform: isOpening ? 'scale(0.98)' : 'scale(1)',
+        transition: 'opacity 520ms cubic-bezier(0.76, 0, 0.24, 1), transform 520ms cubic-bezier(0.76, 0, 0.24, 1)'
+      }
+    : {
         clipPath: isOpening ? 'circle(0% at 50% 50%)' : 'circle(150% at 50% 50%)',
         transition: 'clip-path 0.8s cubic-bezier(0.76, 0, 0.24, 1)'
-      }}
+      };
+
+  return (
+    <div
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#000004] page-loader"
+      style={containerStyle}
     >
-      <div className="flex flex-col items-center justify-center gap-24">
+      <div className="flex flex-col items-center justify-center gap-16 sm:gap-24">
          {/* Favicon Icon */}
          <div className="relative w-20 h-20 opacity-100 scale-100 transition-all duration-500">
            <Image
@@ -115,6 +129,7 @@ const StyledWrapper = styled.div`
     transform-origin: 50% 50%;
     margin-top: calc(var(--size) * 1.5 * -1);
     transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg) translateZ(0px);
+    will-change: transform;
   }
 
   .boxes .box {
@@ -124,6 +139,8 @@ const StyledWrapper = styled.div`
     left: 0;
     position: absolute;
     transform-style: preserve-3d;
+    will-change: transform;
+    backface-visibility: hidden;
   }
 
   .boxes .box:nth-child(1) {
@@ -169,6 +186,8 @@ const StyledWrapper = styled.div`
     left: var(--left);
     transform: rotateY(var(--rotateY)) rotateX(var(--rotateX)) translateZ(var(--translateZ));
     box-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
+    will-change: transform;
+    backface-visibility: hidden;
   }
 
   .boxes .box > div:nth-child(1) {
@@ -195,6 +214,30 @@ const StyledWrapper = styled.div`
     --left: 0;
     --translateZ: calc(var(--size) * 3 * -1);
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+  }
+
+  @media (max-width: 768px), (pointer: coarse) {
+    .boxes {
+      --size: 26px;
+      --duration: 1000ms;
+      transform: rotateX(55deg) rotateZ(45deg) translateZ(0px);
+    }
+
+    .boxes .box > div {
+      box-shadow: 0 0 10px rgba(255, 107, 157, 0.35);
+    }
+
+    .boxes .box > div:nth-child(2) {
+      box-shadow: 0 0 10px rgba(0, 217, 255, 0.35);
+    }
+
+    .boxes .box > div:nth-child(3) {
+      box-shadow: 0 0 10px rgba(193, 63, 248, 0.35);
+    }
+
+    .boxes .box > div:nth-child(4) {
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.35);
+    }
   }
 
   @-webkit-keyframes box1 {

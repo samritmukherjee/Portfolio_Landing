@@ -60,14 +60,14 @@ export const MobileHackathons = () => {
   const getResultBadgeStyles = (result: string) => {
     if (result.toLowerCase().includes("winner")) {
       return {
-        bg: "bg-stone-900/50",
+        bg: "bg-[color-mix(in_oklch,var(--theme-card)_88%,transparent)]",
         text: "text-accent-400",
         border: "border-accent-500/40"
       };
     }
     // Track Winner
     return {
-      bg: "bg-stone-900/50",
+      bg: "bg-[color-mix(in_oklch,var(--theme-card)_88%,transparent)]",
       text: "text-accent-300",
       border: "border-accent-500/30"
     };
@@ -100,10 +100,10 @@ export const MobileHackathons = () => {
                   className="w-full text-left transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-95"
                 >
                   <div
-                    className={`relative border rounded-xl transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden backdrop-blur-sm ${
+                    className={`relative border rounded-xl transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden backdrop-blur-sm mobile-hackathon-card ${
                       isExpanded
-                        ? `border-accent-500/40 bg-stone-900/60 shadow-lg`
-                        : "bg-stone-900/30 border-stone-800/50 shadow-md hover:border-accent-500/30"
+                        ? "mobile-hackathon-card--expanded border-accent-500/40 shadow-lg"
+                        : "border-[var(--theme-border)] shadow-md hover:border-accent-500/30"
                     }`}
                   >
                     {/* Gradient Overlay for premium feel */}
@@ -128,7 +128,7 @@ export const MobileHackathons = () => {
                             <div
                               className={`w-11 h-11 rounded-lg flex items-center justify-center transition-all ${
                                 isExpanded
-                                  ? "bg-stone-800/40"
+                                  ? "bg-[color-mix(in_oklch,var(--theme-card-elevated)_80%,transparent)]"
                                   : "bg-accent-500/10 border border-accent-500/30"
                               }`}
                             >
@@ -154,8 +154,8 @@ export const MobileHackathons = () => {
                           <div
                             className={`flex-shrink-0 text-xs font-bold px-2.5 py-1 rounded-lg border transition-all ${
                               isExpanded
-                                ? "bg-stone-800/30 border-stone-700/40 text-stone-400"
-                                : "bg-stone-900/50 border-stone-800/40 text-stone-500"
+                                ? "bg-[color-mix(in_oklch,var(--theme-card)_90%,transparent)] border-[var(--theme-border)] text-[var(--theme-text-muted)]"
+                                : "bg-[color-mix(in_oklch,var(--theme-card)_85%,transparent)] border-[var(--theme-border)] text-[var(--theme-text-muted)]"
                             }`}
                           >
                             {event.year}
@@ -186,7 +186,7 @@ export const MobileHackathons = () => {
 
                       {/* Expanded Content */}
                       {isExpanded && (
-                        <div className="border-t border-[var(--theme-border)] bg-[var(--theme-surface-2)]/40 px-4 py-4 space-y-4">
+                        <div className="border-t border-[var(--theme-border)] bg-[color-mix(in_oklch,var(--theme-card-elevated)_88%,transparent)] px-4 py-4 space-y-4 mobile-hackathon-expanded">
                           {/* Description */}
                           <p className="text-sm text-[var(--theme-text-muted)] leading-relaxed">
                             {event.description}
@@ -194,7 +194,7 @@ export const MobileHackathons = () => {
 
                           {/* Image Preview - Optimized for face visibility */}
                           {event.image && (
-                            <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-stone-900 border border-stone-800/50 shadow-md">
+                            <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-[var(--theme-card-elevated)] border border-[var(--theme-border)] shadow-md">
                               <img
                                 src={event.image}
                                 alt={event.title}
