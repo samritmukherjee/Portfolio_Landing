@@ -74,11 +74,11 @@ export const MobileHackathons = () => {
   };
 
   return (
-    <section id="hackathons" className="section-wrapper py-16">
-      <div className="w-full px-4 space-y-6">
+    <section id="hackathons" className="section-wrapper py-12">
+      <div className="w-full px-4 space-y-5">
         {/* Section Header */}
         <div className="space-y-2">
-          <h2 className="text-3xl font-black text-[var(--theme-text)]">
+          <h2 className="text-3xl font-black text-[var(--theme-text)] leading-tight">
             Hackathons & <span className="gradient-accent">Accolades</span>
           </h2>
           <p className="text-[var(--theme-text-muted)] text-sm">
@@ -97,10 +97,10 @@ export const MobileHackathons = () => {
                 {/* Achievement Card Button */}
                 <button
                   onClick={() => setExpandedId(isExpanded ? null : event.id)}
-                  className="w-full text-left transition-all active:scale-95"
+                  className="w-full text-left transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-95"
                 >
                   <div
-                    className={`relative border rounded-xl transition-all duration-300 overflow-hidden backdrop-blur-sm ${
+                    className={`relative border rounded-xl transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden backdrop-blur-sm ${
                       isExpanded
                         ? `border-accent-500/40 bg-stone-900/60 shadow-lg`
                         : "bg-stone-900/30 border-stone-800/50 shadow-md hover:border-accent-500/30"

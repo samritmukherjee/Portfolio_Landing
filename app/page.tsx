@@ -254,13 +254,13 @@ export default function Home() {
       {/* Contact Section */}
       <motion.section id="contact" className="section-wrapper section-surface section-frame" {...revealProps}>
         <div className="container-custom">
-          <div className="space-y-12">
+          <div className="space-y-10 sm:space-y-12">
             {/* Heading */}
             <div className="space-y-4 max-w-2xl">
-              <h2 className="text-stone-50">
+              <h2 className="text-stone-50 leading-tight">
                 Ready To <span className="text-accent-300">Collaborate?</span>
               </h2>
-              <p className="text-stone-400 text-lg">
+              <p className="text-stone-400 text-base sm:text-lg">
                 Whether you have a question or just want to say hi, my inbox is always open.
               </p>
             </div>
@@ -269,7 +269,7 @@ export default function Home() {
             <ContactCards />
 
             {/* Location Info */}
-            <div className="flex items-center gap-4 text-stone-300 pt-4">
+            <div className="flex items-center gap-3 sm:gap-4 text-stone-300 pt-3 sm:pt-4">
               <div className="w-12 h-12 bg-theme-surface-2 rounded-xl flex items-center justify-center border border-theme-border">
                 <MdLocationOn size={24} className="text-accent-400" />
               </div>

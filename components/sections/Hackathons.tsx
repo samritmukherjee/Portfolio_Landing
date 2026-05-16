@@ -1,5 +1,5 @@
 import { GlowCard } from "../spotlight-card";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { FaTrophy } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 
@@ -49,7 +49,7 @@ export const Hackathons = () => {
   return (
     <section id="hackathons" className="section-wrapper section-surface overflow-hidden">
       <div className="container-custom max-w-full px-4 sm:px-6 md:px-12 lg:px-16">
-        <div className="text-center mb-20 space-y-4">
+        <div className="text-center mb-16 md:mb-20 space-y-3 sm:space-y-4">
           <h2 className="text-[var(--theme-text)]">Hackathons & <span className="gradient-accent">Accolades</span></h2>
           <p className="text-[var(--theme-text-muted)] max-w-2xl mx-auto">
             Competitive programming and building intensive technical solutions under pressure.
@@ -59,9 +59,11 @@ export const Hackathons = () => {
         {/* Hackathons Won */}
         <div className="space-y-12">
           {hackathons.won.length > 0 && (
-            <div className="space-y-8">
-              <h3 className="text-xl font-bold text-[var(--theme-text-muted)] uppercase tracking-[0.2em] pl-4 border-l-2 border-accent-500">Hackathons Won</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hackathon-cards">
+            <div className="space-y-7">
+              <h3 className="text-lg sm:text-xl font-semibold text-[var(--theme-text-muted)] uppercase tracking-[0.18em] pl-4 border-l-2 border-accent-500">
+                Hackathons Won
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 hackathon-cards">
                 {hackathons.won.map((event, idx) => (
                   <motion.div
                     key={event.title}
@@ -75,7 +77,7 @@ export const Hackathons = () => {
                       glowColor="orange"
                       customSize
                       transparentBackdrop
-                      className="h-full min-h-[280px] sm:min-h-[320px] rounded-2xl lg:rounded-[2.5rem] border border-[var(--theme-border)] overflow-hidden transition-all duration-500 hackathon-card-wrapper bg-transparent"
+                      className="h-full min-h-[280px] sm:min-h-[320px] rounded-2xl lg:rounded-[2.5rem] border border-[var(--theme-border)] overflow-hidden hackathon-card-wrapper glow-surface shadow-[0_20px_45px_-35px_var(--theme-shadow-soft)] hover:shadow-[0_28px_60px_-40px_var(--theme-shadow)] transition-[transform,box-shadow,border-color,background-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
                     >
                       {/* Winning Moment Image Reveal */}
                       <div className="absolute inset-0 z-0">
@@ -87,8 +89,8 @@ export const Hackathons = () => {
                       </div>
 
                       {/* Content Layer */}
-                      <div className="relative z-10 h-full p-4 sm:p-6 lg:p-8 lg:p-10 flex flex-col justify-between gap-3 sm:gap-4 lg:gap-6 bg-transparent">
-                        <div className="space-y-6">
+                      <div className="relative z-10 h-full p-5 sm:p-6 lg:p-8 flex flex-col justify-between gap-3 sm:gap-4 lg:gap-5 bg-transparent">
+                        <div className="space-y-5">
                           <div className="flex justify-between items-start">
                             <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-2xl bg-accent-500/10 backdrop-blur-md flex items-center justify-center border border-[var(--theme-border)] transition-all duration-500 hackathon-card-icon">
                               <FaTrophy className="text-lg sm:text-2xl text-accent-400" />
@@ -98,7 +100,7 @@ export const Hackathons = () => {
 
                           <div className="space-y-1">
                             <span className="text-[0.5rem] sm:text-[0.6rem] font-black text-accent-300 uppercase tracking-[0.25em] transition-colors duration-500 hackathon-card-result">{event.result}</span>
-                            <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-stone-50 leading-tight transition-colors duration-500 hackathon-card-title">{event.title}</h4>
+                            <h4 className="text-lg sm:text-xl lg:text-2xl font-semibold text-stone-50 leading-tight transition-colors duration-500 hackathon-card-title">{event.title}</h4>
                           </div>
                         </div>
 

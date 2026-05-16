@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope, FaArrowRight } from "react-icons/fa";
 import { GlowCard } from "@/components/spotlight-card";
 
@@ -45,8 +45,6 @@ const contactCards: ContactCard[] = [
 ];
 
 export const ContactCards = () => {
-  const prefersReducedMotion = useReducedMotion() ?? false;
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -72,42 +70,42 @@ export const ContactCards = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-full"
+      className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 w-full"
     >
       {contactCards.map((card) => (
         <motion.div key={card.id} variants={cardVariants} className="h-full">
           <GlowCard 
             glowColor={card.glowColor} 
             customSize 
-            className="w-full h-full min-h-[280px] p-0 group"
+            className="w-full h-full min-h-[280px] p-0 group glow-surface shadow-[0_20px_45px_-35px_var(--theme-shadow-soft)] hover:shadow-[0_28px_60px_-40px_var(--theme-shadow)] transition-[transform,box-shadow,border-color,background-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
           >
             <a
               href={card.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col justify-between h-full p-8 relative z-10"
+              className="flex flex-col justify-between h-full p-6 sm:p-7 lg:p-8 relative z-10"
             >
               <div className="space-y-6">
-                <div className="text-accent-400 group-hover:scale-110 transition-transform duration-500 origin-left">
+                <div className="text-accent-400 group-hover:scale-110 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] origin-left">
                   {card.icon}
                 </div>
                 <div>
-                  <span className="text-[0.65rem] uppercase tracking-[0.2em] font-black text-[var(--theme-text-muted)] group-hover:text-accent-400 transition-colors duration-300">
+                  <span className="text-[0.65rem] uppercase tracking-[0.18em] font-black text-[var(--theme-text-muted)] group-hover:text-accent-400 transition-colors duration-300">
                     {card.label}
                   </span>
                   <div className="mt-2 bg-[color-mix(in_oklch,var(--theme-surface-2)_85%,transparent)] rounded-lg p-2.5 border border-[var(--theme-border)] max-h-[60px] overflow-y-auto">
-                    <h3 className="text-sm md:text-base font-bold text-[var(--theme-text)] leading-relaxed break-words">
+                    <h3 className="text-sm md:text-base font-semibold text-[var(--theme-text)] leading-relaxed break-words">
                       {card.value}
                     </h3>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between mt-8 pt-6 border-t border-[var(--theme-border)]">
-                <p className="text-sm text-[var(--theme-text-muted)] group-hover:text-[var(--theme-text)] transition-colors">
+              <div className="flex items-center justify-between mt-7 pt-5 border-t border-[var(--theme-border)]">
+                <p className="text-sm text-[var(--theme-text-muted)] group-hover:text-[var(--theme-text)] transition-colors duration-300">
                   {card.description}
                 </p>
-                <div className="w-8 h-8 rounded-full bg-[color-mix(in_oklch,var(--theme-surface-2)_85%,transparent)] flex items-center justify-center group-hover:bg-accent-500 group-hover:text-[var(--theme-bg)] transition-all duration-300 text-accent-400">
+                <div className="w-8 h-8 rounded-full bg-[color-mix(in_oklch,var(--theme-surface-2)_85%,transparent)] flex items-center justify-center group-hover:bg-accent-500 group-hover:text-[var(--theme-bg)] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] text-accent-400">
                   <FaArrowRight size={12} />
                 </div>
               </div>
