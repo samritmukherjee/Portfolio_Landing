@@ -72,7 +72,7 @@ export const Skills = () => {
               className="glass-card p-5 sm:p-7 lg:p-8 group hover-lift hover:border-accent-500/30"
             >
               <div className="flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6">
-                <div className="text-lg sm:text-2xl w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl bg-[color-mix(in_oklch,var(--theme-surface-2)_85%,transparent)] flex items-center justify-center border border-[var(--theme-border)] group-hover:scale-105 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                <div className="text-lg sm:text-2xl group-hover:scale-105 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
                   {category.icon}
                 </div>
                 <h3 className="text-base sm:text-xl font-bold text-[var(--theme-text)]">{category.category}</h3>
