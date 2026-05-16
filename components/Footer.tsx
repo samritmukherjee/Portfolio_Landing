@@ -155,7 +155,7 @@ export const Footer = () => {
                 <FaLinkedin />
               </motion.a>
               <motion.a
-                href="https://mail.google.com/mail/u/0/#inbox?compose=DmwnWtMkNjVFfNxgcLqPZWXVkGFgkNPfBmCsWrKwqhWdSGdTLsTPGKkFxXmTdNCDFpkRsknNfpqG"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=samritmukherjee05@gmail.com&su=Collaboration%20Request&body=Hello%20Samrit,%0A%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20potential%20opportunity/project.%0A%0AProject%20Details:%0A%E2%80%A2%20Type%20of%20work:%0A%E2%80%A2%20Timeline:%0A%E2%80%A2%20Budget%20(optional):%0A%0AMessage:%0A[Write%20your%20message%20here]%0A%0ABest%20regards,%0A[Your%20Name]"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[var(--theme-text-muted)] hover:text-accent-400 transition-colors text-2xl"
