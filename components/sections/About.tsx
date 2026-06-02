@@ -8,10 +8,10 @@ export const About = () => {
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
           >
             <h2 className="text-[var(--theme-text)] mb-6 max-w-2xl">
               Turning complex ideas into <span className="gradient-accent">Simple Solutions.</span>
@@ -47,10 +47,10 @@ export const About = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             className="relative flex justify-center lg:justify-end"
           >
             <div className="relative w-full sm:max-w-sm lg:max-w-md aspect-[4/5] rounded-3xl lg:rounded-[2.75rem] overflow-hidden group shadow-lg lg:shadow-2xl transition-all duration-700 hover:scale-[1.02] hover:shadow-accent-500/10">

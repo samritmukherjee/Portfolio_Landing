@@ -123,11 +123,14 @@ export default function Home() {
   }, []);
 
   const revealProps = prefersReducedMotion
-    ? {}
+    ? {
+      initial: "visible" as const,
+      variants: sectionVariants,
+    }
     : {
       initial: "hidden" as const,
       whileInView: "visible" as const,
-      viewport: { once: true, amount: 0.2 },
+      viewport: { once: true, amount: 0.12 },
       variants: sectionVariants,
     };
 

@@ -58,10 +58,10 @@ export const Experience = () => {
           {experiences.map((exp, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }}
               className="glass-card p-5 sm:p-7 lg:p-9 group hover-lift border-l-2 border-l-[var(--theme-border)] hover:border-l-accent-500"
             >
               <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">

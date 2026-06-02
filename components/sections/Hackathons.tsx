@@ -67,10 +67,10 @@ export const Hackathons = () => {
                 {hackathons.won.map((event, idx) => (
                   <motion.div
                     key={event.title}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, amount: 0.1 }}
                     className="relative group h-full"
                   >
                     <GlowCard

@@ -75,10 +75,11 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-sora)", "Segoe UI", "sans-serif"],
-        display: ["var(--font-fraunces)", "Segoe UI", "serif"],
+        sans: ["var(--font-inter)", "Segoe UI", "sans-serif"],
+        display: ["var(--font-neue-montreal)", "Segoe UI", "serif"],
       },
       letterSpacing: {
+        tightest: "-0.04em",
         tighter: "-0.02em",
         tight: "-0.01em",
         normal: "0em",

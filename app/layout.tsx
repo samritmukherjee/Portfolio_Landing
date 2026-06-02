@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Sora, Fraunces } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import "@/styles/globals.css";
 import { LenisWrapper } from "@/components/LenisWrapper";
 import PageLoader from "@/components/PageLoader";
+import StyledComponentsRegistry from "@/lib/registry";
 
-const sora = Sora({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-sora",
-  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-inter",
   display: "swap",
 });
 
-const fraunces = Fraunces({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  weight: ["400", "600", "700"],
+  variable: "--font-neue-montreal", // Re-using variable for consistency
+  weight: ["400", "500", "700"],
   display: "swap",
 });
 
@@ -55,14 +55,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${sora.variable} ${fraunces.variable}`}>
+    <html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
       <body className="bg-[var(--theme-bg)] transition-colors duration-500">
-        <PageLoader />
-        <LenisWrapper>
-          <div className="aurora-bg"></div>
-          {children}
-        </LenisWrapper>
+        <StyledComponentsRegistry>
+          <PageLoader />
+          <LenisWrapper>
+            <div className="aurora-bg"></div>
+            {children}
+          </LenisWrapper>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );
 }
+

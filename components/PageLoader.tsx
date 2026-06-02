@@ -18,7 +18,7 @@ const PageLoader = forwardRef((props, ref) => {
     // Initial load
     const timer = setTimeout(() => {
       handleClose();
-    }, 2500);
+    }, 1200);
 
     const handleTrigger = () => triggerLoader();
     window.addEventListener('trigger-loader', handleTrigger);
@@ -35,7 +35,7 @@ const PageLoader = forwardRef((props, ref) => {
     setTimeout(() => {
       setIsVisible(false);
       setIsOpening(false);
-    }, 800); // Transition duration
+    }, 600); // Transition duration
   };
 
   const triggerLoader = () => {
