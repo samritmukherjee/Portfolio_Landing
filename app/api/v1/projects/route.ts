@@ -1,7 +1,9 @@
 import { NextResponse, NextRequest } from "next/server";
 import { projectsData, API_CACHE_HEADERS } from "@/lib/projects-data";
 
-/** @deprecated Use /api/v1/projects — kept for backward compatibility */
+/**
+ * GET /api/v1/projects — versioned projects API for agents & LLM crawlers
+ */
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const category = searchParams.get("category");
@@ -21,8 +23,16 @@ ${filtered
 ## ${p.title}
 
 **Category:** ${p.category}
+**Created:** ${p.dateCreated}
+**Author:** ${p.author}
+**Keywords:** ${p.keywords.join(", ")}
+
 **Description:** ${p.description}
+
+**Outcome:** ${p.outcome}
+
 **Technologies:** ${p.technologies.join(", ")}
+
 **Link:** [${p.title}](${p.link})
 
 ---

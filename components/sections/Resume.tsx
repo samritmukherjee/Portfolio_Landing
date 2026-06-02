@@ -22,7 +22,21 @@ export const Resume = () => {
               </p>
               
               <div className="flex flex-wrap gap-4 pt-4">
-                <a href="https://drive.usercontent.google.com/download?id=1ru-wx6T-ulFMwgASOtWuh_uATd7MagLL&export=download&authuser=0" target="_blank" rel="noopener noreferrer" className="btn-primary flex items-center gap-3 inline-flex">
+                <a
+                  href="https://drive.usercontent.google.com/download?id=1ru-wx6T-ulFMwgASOtWuh_uATd7MagLL&export=download&authuser=0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary flex items-center gap-3 inline-flex"
+                  onClick={() => {
+                    if (typeof window !== "undefined" && "gtag" in window) {
+                      (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.(
+                        "event",
+                        "resume_download",
+                        { event_category: "conversion", event_label: "resume_section" }
+                      );
+                    }
+                  }}
+                >
                   <RiFileDownloadLine className="text-xl" />
                   Download PDF
                 </a>

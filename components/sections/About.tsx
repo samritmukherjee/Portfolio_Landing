@@ -1,11 +1,74 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
+
+import React, { useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+
+const LEARNING_NOW = ["WebMCP", "RAG Pipelines", "Edge AI"];
+
+function TiltProfileCard() {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (prefersReducedMotion || !cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    cardRef.current.style.transform = `perspective(900px) rotateY(${x * 14}deg) rotateX(${-y * 14}deg) scale3d(1.02,1.02,1.02)`;
+  };
+
+  const handleLeave = () => {
+    if (!cardRef.current) return;
+    cardRef.current.style.transform =
+      "perspective(900px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)";
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+      className="relative w-full sm:max-w-sm lg:max-w-md aspect-[4/5] rounded-3xl lg:rounded-[2.75rem] overflow-hidden shadow-lg lg:shadow-2xl transition-transform duration-200 ease-out will-change-transform"
+      style={{ transformStyle: "preserve-3d" }}
+    >
+      <div className="absolute inset-0 bg-[var(--theme-surface)]">
+        <img
+          src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg"
+          alt="Samrit Mukherjee — AI engineer and full stack developer portrait"
+          width={480}
+          height={600}
+          className="w-full h-full object-cover object-center"
+          loading="eager"
+          fetchPriority="high"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-bg)] via-transparent to-transparent opacity-60" />
+      </div>
+      <div
+        className="absolute inset-0 border-[10px] border-[var(--theme-border)] pointer-events-none rounded-[2.75rem]"
+        aria-hidden
+      />
+      <div className="absolute bottom-8 left-8 right-8 p-5 glass-card !rounded-2xl backdrop-blur-md border-white/10">
+        <p className="text-[var(--theme-text)] font-bold text-sm mb-1 uppercase tracking-wider">
+          Samrit Mukherjee
+        </p>
+        <p className="text-accent-400 text-[0.65rem] font-black uppercase tracking-widest">
+          AI · Full Stack · Kolkata
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export const About = () => {
   return (
     <section id="about" className="section-wrapper overflow-hidden min-h-screen">
       <div className="container-custom">
+        <blockquote className="philosophy-quote mb-12 md:mb-16 text-center max-w-4xl mx-auto">
+          <p className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold text-[var(--theme-text)] leading-snug italic">
+            &ldquo;Build tools that matter, for people who need them.&rdquo;
+          </p>
+        </blockquote>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -14,34 +77,50 @@ export const About = () => {
             viewport={{ once: true, amount: 0.1 }}
           >
             <h2 className="text-[var(--theme-text)] mb-6 max-w-2xl">
-              Turning complex ideas into <span className="gradient-accent">Simple Solutions.</span>
+              Turning complex ideas into{" "}
+              <span className="gradient-accent">Simple Solutions.</span>
             </h2>
-            
+
             <div className="space-y-4 text-[var(--theme-text-muted)]">
               <p>
-                I'm a BTech Computer Science student specializing in Artificial Intelligence & Machine Learning. 
-                I focus on bridging the gap between complex technology and real-world usability—building 
-                tools that people genuinely find useful.
+                I&apos;m Samrit Mukherjee, a BTech Computer Science student specializing in
+                Artificial Intelligence & Machine Learning. I focus on bridging the gap between
+                complex technology and real-world usability.
               </p>
               <p>
-                As a founder and educator, I teach Computer Science through a project-based approach, 
-                emphasizing practical implementation over theory. I believe the best way to learn 
-                technology is by building with it.
-              </p>
-              <p>
-                My work is guided by one principle: <span className="text-accent-500 font-bold italic underline underline-offset-4 decoration-accent-500/30">
-                &ldquo;Build tools that matter, for people who need them.&rdquo;</span>
+                As a founder and educator, I teach Computer Science through a project-based
+                approach, emphasizing practical implementation over theory.
               </p>
             </div>
-            
+
+            <div className="mt-8">
+              <p className="text-xs uppercase tracking-[0.2em] font-bold text-[var(--theme-text-muted)] mb-3">
+                Currently Learning
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {LEARNING_NOW.map((tech) => (
+                  <span
+                    key={tech}
+                    className="learning-pill px-4 py-2 rounded-full text-sm font-semibold text-accent-300 border border-accent-500/30 bg-accent-500/10"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-8 sm:gap-12 mt-8 sm:mt-12">
               <div>
-                <h4 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[var(--theme-text)]">8+</h4>
-                <p className="text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.25em] text-[var(--theme-text-muted)] font-semibold mt-1">Projects Built</p>
+                <h4 className="text-2xl sm:text-3xl font-black text-[var(--theme-text)]">8+</h4>
+                <p className="text-[0.65rem] uppercase tracking-[0.25em] text-[var(--theme-text-muted)] font-semibold mt-1">
+                  Projects Built
+                </p>
               </div>
               <div>
-                <h4 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[var(--theme-text)]">5+</h4>
-                <p className="text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.25em] text-[var(--theme-text-muted)] font-semibold mt-1">Students Taught</p>
+                <h4 className="text-2xl sm:text-3xl font-black text-[var(--theme-text)]">3</h4>
+                <p className="text-[0.65rem] uppercase tracking-[0.25em] text-[var(--theme-text-muted)] font-semibold mt-1">
+                  Hackathon Wins
+                </p>
               </div>
             </div>
           </motion.div>
@@ -53,32 +132,11 @@ export const About = () => {
             viewport={{ once: true, amount: 0.1 }}
             className="relative flex justify-center lg:justify-end"
           >
-            <div className="relative w-full sm:max-w-sm lg:max-w-md aspect-[4/5] rounded-3xl lg:rounded-[2.75rem] overflow-hidden group shadow-lg lg:shadow-2xl transition-all duration-700 hover:scale-[1.02] hover:shadow-accent-500/10">
-              {/* Profile Image */}
-              <div className="absolute inset-0 bg-[var(--theme-surface)]">
-                  <img 
-                    src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg" 
-                    alt="Samrit Mukherjee" 
-                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-bg)] via-transparent to-transparent opacity-60" />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-accent-500/20 to-transparent mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              </div>
-              
-              {/* Interactive Frame Overlay */}
-              <div className="absolute inset-0 border-[10px] border-[var(--theme-border)] pointer-events-none rounded-[2.75rem] transition-colors duration-500 group-hover:border-accent-500/10" />
-              <div className="absolute inset-0 border border-white/5 pointer-events-none rounded-[2.75rem]" />
-              
-              {/* Bottom Label */}
-                <div className="absolute bottom-10 left-10 right-10 p-6 glass-card !rounded-2xl backdrop-blur-md border-white/10 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                 <p className="text-[var(--theme-text)] font-bold text-sm mb-1 uppercase tracking-wider\">Samrit Mukherjee</p>
-                 <p className="text-accent-400 text-[0.65rem] font-black uppercase tracking-widest\">Available for projects</p>
-              </div>
-            </div>
-            
-            {/* Decorative background element */}
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-accent-500/10 rounded-full blur-3xl -z-10" />
-            <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-blue-500/5 rounded-full blur-3xl -z-10" />
+            <TiltProfileCard />
+            <div
+              className="absolute -top-10 -right-10 w-40 h-40 bg-accent-500/10 rounded-full blur-3xl -z-10"
+              aria-hidden
+            />
           </motion.div>
         </div>
       </div>

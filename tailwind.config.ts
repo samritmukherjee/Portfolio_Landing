@@ -75,8 +75,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "Segoe UI", "sans-serif"],
-        display: ["var(--font-neue-montreal)", "Segoe UI", "serif"],
+        sans: ["var(--font-body)", "DM Sans", "Segoe UI", "sans-serif"],
+        display: ["var(--font-display)", "Syne", "Segoe UI", "sans-serif"],
       },
       letterSpacing: {
         tightest: "-0.04em",

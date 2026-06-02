@@ -1,99 +1,40 @@
-import { NextResponse, NextRequest } from 'next/server';
+import { NextResponse, NextRequest } from "next/server";
+import { skillCategories } from "@/lib/skills-data";
+import { API_CACHE_HEADERS } from "@/lib/projects-data";
 
 /**
- * GET /api/skills
- * Returns portfolio skills and expertise with markdown support
+ * GET /api/skills — portfolio skills (CV-aligned, no proficiency levels)
  */
 export async function GET(request: NextRequest) {
-  const markdown = request.headers.get('accept')?.includes('text/markdown');
+  const markdown = request.headers.get("accept")?.includes("text/markdown");
 
-  const skills = {
-    frontend: [
-      'React',
-      'Next.js',
-      'TypeScript',
-      'Tailwind CSS',
-      'Framer Motion',
-      'Canvas API',
-    ],
-    backend: [
-      'Node.js',
-      'Python',
-      'Flask',
-      'FastAPI',
-      'REST APIs',
-      'Redis',
-      'SQL',
-      'MongoDB',
-    ],
-    programming: [
-      'JavaScript',
-      'TypeScript',
-      'Python',
-      'Java',
-      'C/C++',
-      'Rust',
-    ],
-    aiml: [
-      'Machine Learning',
-      'Deep Learning',
-      'LLMs',
-      'RAG Systems',
-      'NumPy',
-      'Pandas',
-      'TensorFlow',
-    ],
-    tools: [
-      'Git',
-      'GitHub',
-      'Vercel',
-      'AWS',
-      'Docker',
-      'Figma',
-      'VS Code',
-    ],
-    design: [
-      'UI/UX Design',
-      'Figma',
-      'Adobe Photoshop',
-      'Adobe After Effects',
-      'Responsive Design',
-      'Accessibility',
-    ],
-  };
+  const skills = Object.fromEntries(
+    skillCategories.map((cat) => [cat.id, cat.skills])
+  );
 
   if (markdown) {
-    const markdown_content = `# Technical Skills & Expertise
+    const markdown_content = `# Technical Skills
 
-## Frontend Development
-- ${skills.frontend.join('\n- ')}
-
-## Backend Development
-- ${skills.backend.join('\n- ')}
-
-## Programming Languages
-- ${skills.programming.join('\n- ')}
-
-## AI & Machine Learning
-- ${skills.aiml.join('\n- ')}
-
-## Tools & Platforms
-- ${skills.tools.join('\n- ')}
-
-## Design & UX
-- ${skills.design.join('\n- ')}
+${skillCategories
+  .map(
+    (cat) => `## ${cat.label}
+- ${cat.skills.join("\n- ")}`
+  )
+  .join("\n\n")}
 `;
 
     return new NextResponse(markdown_content, {
       headers: {
-        'Content-Type': 'text/markdown; charset=utf-8',
+        "Content-Type": "text/markdown; charset=utf-8",
+        ...API_CACHE_HEADERS,
       },
     });
   }
 
   return NextResponse.json(skills, {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
+      ...API_CACHE_HEADERS,
     },
   });
 }

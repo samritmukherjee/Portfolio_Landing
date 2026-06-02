@@ -1,65 +1,153 @@
 "use client";
-import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
+
+import React, { useEffect, useRef, useState } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  useInView,
+  useSpring,
+} from "framer-motion";
 import { DecryptedText } from "@/components/animations/DecryptedText";
+import { RotatingText } from "@/components/animations/RotatingText";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { scrollToElement } from "@/lib/scrollToElement";
 
+type AvailabilityStatus = "Available" | "Busy";
+
+function CountUpMetric({
+  label,
+  value,
+  suffix = "",
+}: {
+  label: string;
+  value: number;
+  suffix?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.5 });
+  const prefersReducedMotion = useReducedMotion();
+  const spring = useSpring(0, { stiffness: 60, damping: 20 });
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    if (prefersReducedMotion) {
+      setDisplay(value);
+      return;
+    }
+    spring.set(value);
+    const unsub = spring.on("change", (v) => setDisplay(Math.round(v)));
+    return () => unsub();
+  }, [inView, value, spring, prefersReducedMotion]);
+
+  return (
+    <div
+      ref={ref}
+      className="rounded-lg md:rounded-2xl border border-[var(--theme-border)] p-3 md:p-4 bg-[color-mix(in_oklch,var(--theme-surface-2)_80%,transparent)] flex-1"
+    >
+      <p className="text-[var(--theme-text-muted)] text-[0.55rem] md:text-[0.65rem] uppercase tracking-widest font-bold mb-1">
+        {label}
+      </p>
+      <p className="text-[var(--theme-text)] font-black text-lg md:text-xl">
+        {display}
+        {suffix}
+      </p>
+    </div>
+  );
+}
+
+function AvailabilityBadge({ status }: { status: AvailabilityStatus }) {
+  const isAvailable = status === "Available";
+  return (
+    <div className="brand-chip" role="status" aria-live="polite">
+      <span className="relative flex h-2.5 w-2.5">
+        {isAvailable && (
+          <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
+        )}
+        <span
+          className={`relative inline-flex h-2.5 w-2.5 rounded-full ${
+            isAvailable
+              ? "bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]"
+              : "bg-amber-400"
+          }`}
+        />
+      </span>
+      {isAvailable ? "Available For New Projects" : "Limited Availability"}
+    </div>
+  );
+}
+
 export const HeroGlassmorphism = () => {
   const prefersReducedMotion = useReducedMotion() ?? false;
-  const easeOut = [0.16, 1, 0.3, 1] as const;
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const auroraOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.45],
+    prefersReducedMotion ? [1, 1] : [1, 0.15]
+  );
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 32 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.75,
-        ease: easeOut,
-        staggerChildren: 0.08,
-      },
-    },
-  };
+  const [availability, setAvailability] = useState<AvailabilityStatus>(() => {
+    if (typeof window !== "undefined") {
+      const injected = (window as Window & { __AVAILABILITY_STATUS__?: string })
+        .__AVAILABILITY_STATUS__;
+      if (injected === "Busy" || injected === "Available") return injected;
+    }
+    return "Available";
+  });
 
-  const childVariants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 18 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.55, ease: easeOut },
-    },
+  useEffect(() => {
+    const injected = (window as Window & { __AVAILABILITY_STATUS__?: string })
+      .__AVAILABILITY_STATUS__;
+    if (injected === "Busy" || injected === "Available") {
+      setAvailability(injected);
+    }
+  }, []);
+
+  const trackResumeDownload = () => {
+    if (typeof window !== "undefined" && "gtag" in window) {
+      (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.(
+        "event",
+        "resume_download",
+        { event_category: "conversion", event_label: "hero_cta" }
+      );
+    }
+    scrollToElement("resume");
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-24 md:pt-28 overflow-hidden surface-noise bg-[var(--theme-bg)] transition-colors duration-500">
-      <div className="absolute inset-0 z-0">
-        <div className="premium-blur top-8 left-[2%] w-[30vw] h-[30vw] bg-accent-500/20 animate-pulse-slow" />
-        <div className="premium-blur bottom-10 right-[2%] w-[36vw] h-[36vw] bg-secondary-400/15 animate-pulse-slow [animation-delay:1.2s]" />
-        <div className="absolute top-[16%] right-[12%] h-20 w-20 rounded-full border border-accent-200/40" />
-        <div className="absolute bottom-[22%] left-[10%] h-16 w-16 rounded-sm rotate-12 border border-stone-400/30" />
-      </div>
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen min-h-[100dvh] flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-[var(--theme-bg)] transition-colors duration-500 animate-critical"
+    >
+      <div className="hero-grain absolute inset-0 z-[1] pointer-events-none" aria-hidden />
+      <motion.div
+        className="absolute inset-0 z-0 pointer-events-none hero-aurora"
+        style={{ opacity: auroraOpacity }}
+        aria-hidden
+      >
+        <div className="premium-blur top-8 left-[2%] w-[30vw] h-[30vw] bg-accent-500/20" />
+        <div className="premium-blur bottom-10 right-[2%] w-[36vw] h-[36vw] bg-emerald-900/25" />
+      </motion.div>
 
-      <div className="container-custom relative z-10 py-8">
-        <div className="grid items-center gap-8 md:gap-12 lg:gap-16 lg:grid-cols-[1.1fr_0.9fr] xl:grid-cols-[1.15fr_0.85fr]">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="space-y-10"
-          >
-            <motion.div variants={childVariants} className="brand-chip">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-accent-400 opacity-75 animate-ping"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-400"></span>
-              </span>
-              Available For New Projects
-            </motion.div>
+      <div className="w-full max-w-[90rem] mx-auto relative z-10 py-20 md:py-24">
+        <div className="grid items-center gap-8 md:gap-10 lg:gap-14 lg:grid-cols-[1.1fr_0.9fr] xl:grid-cols-[1.15fr_0.85fr]">
+          <div className="space-y-6 sm:space-y-8">
+            <AvailabilityBadge status={availability} />
 
-            <motion.div variants={childVariants} className="space-y-4">
-              <h1 className="text-[var(--theme-text)]">
-                <DecryptedText 
-                  text="SAMRIT" 
+            <div className="space-y-3 sm:space-y-4">
+              <p className="sr-only">Samrit Mukherjee</p>
+              <h1
+                className="text-[var(--theme-text)] font-display font-bold tracking-tightest leading-[0.92]"
+                style={{ fontSize: "clamp(2.5rem, 8vw, 7rem)" }}
+              >
+                <DecryptedText
+                  text="SAMRIT"
                   animateOn="view"
                   revealDirection="center"
                   className="inline-block text-[var(--theme-text)]"
@@ -67,82 +155,80 @@ export const HeroGlassmorphism = () => {
                 <br />
                 <span className="text-accent-500 dark:text-accent-300">MUKHERJEE</span>
               </h1>
-              <p className="text-[0.7rem] sm:text-[0.72rem] tracking-[0.28em] uppercase text-[var(--theme-text-muted)] font-semibold">
-                AI Systems • Full Stack Engineering • Product Development
+              <p className="text-sm sm:text-base tracking-[0.12em] uppercase text-[var(--theme-text-muted)] font-semibold flex flex-wrap items-center gap-2">
+                <span className="text-accent-400">[</span>
+                <RotatingText
+                  words={["AI Systems", "Full Stack", "Product"]}
+                  duration={2}
+                  className="text-[var(--theme-text)] min-w-[8ch]"
+                />
+                <span className="text-accent-400">]</span>
               </p>
-            </motion.div>
+            </div>
 
-            <motion.p variants={childVariants} className="text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl text-[var(--theme-text-muted)] font-medium leading-relaxed max-w-xl">
-              Building intelligent, scalable software that transforms ambitious ideas into practical, user-focused products.
-            </motion.p>
+            <p className="text-base sm:text-lg text-[var(--theme-text-muted)] font-medium leading-relaxed max-w-xl">
+              Samrit Mukherjee builds intelligent, scalable software that transforms ambitious
+              ideas into practical, user-focused products.
+            </p>
 
-            <motion.div variants={childVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5 pt-2">
-              <motion.button
-                onClick={() => scrollToElement('resume')}
-                whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.02 }}
-                whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+              <button
+                type="button"
+                onClick={trackResumeDownload}
                 className="btn-primary w-full sm:w-auto text-center"
               >
                 Download Resume
-              </motion.button>
-              <motion.button
-                onClick={() => scrollToElement('contact')}
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollToElement("projects")}
                 className="btn-secondary w-full sm:w-auto text-center"
               >
-                Get In Touch
-              </motion.button>
-            </motion.div>
+                View Work
+              </button>
+            </div>
 
-            <motion.div variants={childVariants} className="flex items-center gap-4 md:gap-8 pt-8">
-              <a href="https://github.com/samritmukherjee" target="_blank" rel="noopener noreferrer" className="text-[var(--theme-text-muted)] hover:text-accent-300 hover-lift">
-                <FaGithub size={24} />
+            <div className="flex items-center gap-4 md:gap-6 pt-2">
+              <a
+                href="https://github.com/samritmukherjee"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--theme-text-muted)] hover:text-accent-300 focus-visible:ring-2 focus-visible:ring-accent-400 rounded"
+                aria-label="GitHub profile"
+              >
+                <FaGithub size={22} />
               </a>
-              <a href="https://www.linkedin.com/in/samrit-mukherjee-412788318/" target="_blank" rel="noopener noreferrer" className="text-[var(--theme-text-muted)] hover:text-accent-300 hover-lift">
-                <FaLinkedin size={24} />
+              <a
+                href="https://www.linkedin.com/in/samrit-mukherjee-412788318/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--theme-text-muted)] hover:text-accent-300 focus-visible:ring-2 focus-visible:ring-accent-400 rounded"
+                aria-label="LinkedIn profile"
+              >
+                <FaLinkedin size={22} />
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
-          <motion.aside
-            initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, duration: 0.7, ease: easeOut }}
-            className="glass-card p-8 md:p-10 space-y-8 h-fit self-center"
-          >
-            <div className="space-y-3">
-              <p className="text-xs tracking-[0.2em] uppercase font-bold text-[var(--theme-text-muted)]">Current Focus</p>
-              <p className="text-[var(--theme-text)] text-xl font-semibold leading-tight">
+          <aside className="glass-card p-6 sm:p-8 md:p-10 space-y-6 sm:space-y-8 h-fit self-center w-full">
+            <div className="space-y-2">
+              <p className="text-xs tracking-[0.2em] uppercase font-bold text-[var(--theme-text-muted)]">
+                Current Focus
+              </p>
+              <p className="text-[var(--theme-text)] text-lg sm:text-xl font-semibold leading-tight">
                 Production AI workflows, robust APIs, and high-performance frontends.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-5">
-              <div className="rounded-lg md:rounded-2xl border border-[var(--theme-border)] p-3 md:p-4 bg-[color-mix(in_oklch,var(--theme-surface-2)_80%,transparent)] flex-1 md:flex-none hover-lift">
-                <p className="text-[var(--theme-text-muted)] text-[0.55rem] md:text-[0.65rem] uppercase tracking-widest font-bold mb-1">Projects</p>
-                <p className="text-[var(--theme-text)] font-black text-lg md:text-xl">8+</p>
-              </div>
-              <div className="rounded-lg md:rounded-2xl border border-[var(--theme-border)] p-3 md:p-4 bg-[color-mix(in_oklch,var(--theme-surface-2)_80%,transparent)] flex-1 md:flex-none hover-lift">
-                <p className="text-[var(--theme-text-muted)] text-[0.55rem] md:text-[0.65rem] uppercase tracking-widest font-bold mb-1">Experience</p>
-                <p className="text-[var(--theme-text)] font-black text-lg md:text-xl">2+ Yrs</p>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-3">
+              <CountUpMetric label="Projects" value={8} suffix="+" />
+              <CountUpMetric label="Experience" value={2} suffix="+ Yrs" />
+              <div className="col-span-2 sm:col-span-1">
+                <CountUpMetric label="Hackathon Wins" value={3} suffix="×" />
               </div>
             </div>
-          </motion.aside>
+          </aside>
         </div>
       </div>
-
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-      >
-        <div className="w-6 h-10 border-2 border-[var(--theme-border)] rounded-full flex justify-center p-1">
-          <motion.div 
-            animate={prefersReducedMotion ? undefined : { y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: easeOut }}
-            className="w-1 h-2 bg-accent-300 rounded-full"
-          />
-        </div>
-      </motion.div>
     </section>
   );
 };

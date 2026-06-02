@@ -6,8 +6,10 @@ import { MdLocationOn } from "react-icons/md";
 interface HackathonEvent {
   title: string;
   year: string;
+  date: string;
   location: string;
   result: string;
+  proof: string;
   description: string;
   image: string;
 }
@@ -17,8 +19,10 @@ const hackathons = {
     {
       title: "Double Slash 4.0",
       year: "2026",
+      date: "Feb 2026",
       location: "Jadavpur University",
       result: "WINNER",
+      proof: "Top 30 of 300+ teams — winner for technical execution and innovation.",
       description:
         "A 36-hour offline hackathon with 300+ teams. Selected among the Top 30 finalists and secured the winning position through strong technical execution and innovation.",
       image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133900/double-slash_fn9wm5.jpg"
@@ -26,8 +30,10 @@ const hackathons = {
     {
       title: "ShowcaseX   x Techsprint",
       year: "2026",
+      date: "Jan 2026",
       location: "RCCIIT",
       result: "WINNER",
+      proof: "Hack2Skill-powered sprint — rapid prototype to production-ready demo.",
       description:
         "High-intensity hackathon powered by Hack2Skill, focused on rapid prototyping and building scalable solutions.",
       image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133897/showcasex_znf9ug.jpg"
@@ -35,8 +41,10 @@ const hackathons = {
     {
       title: "Hello World Hacks",
       year: "2025",
+      date: "Oct 2025",
       location: "RCCIIT",
       result: "Track Winner",
+      proof: "GDG on Campus — Best Beginner's Team for impactful technical delivery.",
       description:
         "Organized by GDG on Campus RCCIIT. Recognized as Best Beginner's Team for building an impactful technical solution.",
       image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133893/hello-world_gfi0ip.jpg"
@@ -49,12 +57,27 @@ export const Hackathons = () => {
   return (
     <section id="hackathons" className="section-wrapper section-surface overflow-hidden">
       <div className="container-custom max-w-full px-4 sm:px-6 md:px-12 lg:px-16">
-        <div className="text-center mb-16 md:mb-20 space-y-3 sm:space-y-4">
+        <div className="text-center mb-12 md:mb-16 space-y-3 sm:space-y-4">
           <h2 className="text-[var(--theme-text)]">Hackathons & <span className="gradient-accent">Accolades</span></h2>
           <p className="text-[var(--theme-text-muted)] max-w-2xl mx-auto">
             Competitive programming and building intensive technical solutions under pressure.
           </p>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="trophy-shelf glass-card p-8 md:p-10 mb-14 md:mb-16 text-center max-w-2xl mx-auto border border-amber-500/25"
+        >
+          <p className="text-5xl md:text-6xl font-black text-amber-400 font-display">3</p>
+          <p className="text-lg md:text-xl font-bold text-[var(--theme-text)] mt-2">
+            wins across 2 years
+          </p>
+          <p className="text-sm text-[var(--theme-text-muted)] mt-2">
+            3× hackathon wins · 2 overall · 1 track
+          </p>
+        </motion.div>
 
         {/* Hackathons Won */}
         <div className="space-y-12">
@@ -83,7 +106,9 @@ export const Hackathons = () => {
                       <div className="absolute inset-0 z-0">
                         <img
                           src={event.image}
-                          alt={event.title}
+                          alt={`${event.title} hackathon win at ${event.location}, ${event.year}`}
+                          width={640}
+                          height={400}
                           className="w-full h-full object-cover transition-opacity duration-700 opacity-0 hackathon-card-image"
                         />
                       </div>
@@ -95,7 +120,7 @@ export const Hackathons = () => {
                             <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-2xl bg-accent-500/10 backdrop-blur-md flex items-center justify-center border border-[var(--theme-border)] transition-all duration-500 hackathon-card-icon">
                               <FaTrophy className="text-lg sm:text-2xl text-accent-400" />
                             </div>
-                            <span className="text-[0.55rem] sm:text-[0.65rem] font-bold text-stone-50 uppercase tracking-widest bg-[var(--theme-surface)] px-2 sm:px-3 py-1 rounded-full border border-[var(--theme-border)] transition-colors duration-500 hackathon-card-year">{event.year}</span>
+                            <span className="text-[0.55rem] sm:text-[0.65rem] font-bold text-stone-50 uppercase tracking-widest bg-[var(--theme-surface)] px-2 sm:px-3 py-1 rounded-full border border-[var(--theme-border)] transition-colors duration-500 hackathon-card-year" title={event.date}>{event.year}</span>
                           </div>
 
                           <div className="space-y-1">
@@ -109,9 +134,13 @@ export const Hackathons = () => {
                             <MdLocationOn className="text-accent-400 text-base sm:text-lg" />
                             <p className="text-[0.6rem] sm:text-[0.7rem] text-stone-50 font-black uppercase tracking-[0.2em] transition-colors duration-500 hackathon-card-location">{event.location}</p>
                           </div>
+                          <p className="text-accent-200/90 text-xs italic border-l-2 border-amber-500/50 pl-3 mb-2 hackathon-card-proof">
+                            &ldquo;{event.proof}&rdquo;
+                          </p>
                           <p className="text-stone-50 text-xs sm:text-sm md:text-base leading-relaxed transition-colors duration-500 hackathon-card-description">
                             {event.description}
                           </p>
+                          <p className="text-[0.6rem] text-stone-400 uppercase tracking-widest mt-2">{event.date}</p>
                         </div>
                       </div>
                     </GlowCard>

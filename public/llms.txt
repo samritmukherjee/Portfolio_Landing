@@ -1,56 +1,19 @@
-# llms.txt
+# llms.txt — Samrit Mukherjee
 
-site: {{website}}
-name: Samrit Mukherjee - AI & Full Stack Developer
-role: Portfolio of Samrit Mukherjee - Building practical AI-driven tools and interactive web experiences.
+site: https://samrit.dev
+name: Samrit Mukherjee
+role: AI Engineer & Full Stack Developer
+location: Kolkata, India
 contact: samritmukherjee05@gmail.com
-summary:
-- Personal developer portfolio for a Full Stack Developer building modern web products.
-- Focused on scalable SaaS apps, AI-powered features, and production-grade user experiences.
-- Open to hiring, freelance work, and technical collaboration.
 
-core_skills:
-frontend:
-- React
-- Next.js
-- TypeScript
-- Tailwind CSS
-- Framer Motion
+## Summary
+Samrit Mukherjee is a BTech CS/AI student, 3× hackathon winner, and full stack developer building AI-powered products.
 
-backend:
-- Node.js
-- Express
-- REST APIs
-- SQL
-- MongoDB
-- Authentication and role-based access
+## APIs
+- Projects: https://samrit.dev/api/v1/projects
+- Skills: https://samrit.dev/api/skills
+- Contact: https://samrit.dev/api/contact
 
-ai_and_automation:
-- LLM integration
-- AI feature prototyping
-- Workflow automation
-- Prompt-driven product features
-
-project_types:
-- Developer portfolio websites
-- SaaS products and MVPs
-- AI-enabled web applications
-- Dashboards and internal tools
-- API-driven full stack platforms
-
-ideal_use_cases:
-- Hiring evaluation for Full Stack Developer roles
-- Freelance product development for startups and founders
-- Technical collaboration on SaaS or AI application builds
-- Rapid MVP development and feature shipping
-
-keywords:
-- Full Stack Developer
-- React Developer
-- Next.js Developer
-- TypeScript Engineer
-- SaaS Development
-- AI App Development
-- Freelance Web Developer
-- API Development
-- Startup MVP Developer
+## Social
+- GitHub: https://github.com/samritmukherjee
+- LinkedIn: https://www.linkedin.com/in/samrit-mukherjee-412788318/

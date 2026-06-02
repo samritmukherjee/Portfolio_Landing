@@ -1,26 +1,43 @@
-import { NextResponse, NextRequest } from 'next/server';
+import { NextResponse, NextRequest } from "next/server";
+
+const API_CACHE = "public, s-maxage=3600, stale-while-revalidate=86400";
 
 /**
- * Middleware for Markdown for Agents support (Accept: text/markdown)
- * Enables agents to request markdown versions of content
+ * Middleware: markdown negotiation for agents + cache headers on public APIs
  */
 export function middleware(request: NextRequest) {
-  const accept = request.headers.get('accept') || '';
+  const { pathname } = request.nextUrl;
+  const accept = request.headers.get("accept") || "";
 
-  // If agent requests markdown, add custom header
-  if (accept.includes('text/markdown')) {
-    const requestHeaders = new Headers(request.headers);
-    requestHeaders.set('x-agent-markdown-support', 'true');
-    return NextResponse.next({
-      request: {
-        headers: requestHeaders,
-      },
-    });
+  if (pathname.startsWith("/api/")) {
+    const response = accept.includes("text/markdown")
+      ? NextResponse.next({
+          request: {
+            headers: (() => {
+              const h = new Headers(request.headers);
+              h.set("x-agent-markdown-support", "true");
+              return h;
+            })(),
+          },
+        })
+      : NextResponse.next();
+
+    if (
+      pathname.startsWith("/api/projects") ||
+      pathname.startsWith("/api/v1/") ||
+      pathname.startsWith("/api/skills") ||
+      pathname.startsWith("/api/contact") ||
+      pathname.startsWith("/api/health")
+    ) {
+      response.headers.set("Cache-Control", API_CACHE);
+    }
+
+    return response;
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/api/:path*', '/:path*'],
+  matcher: ["/api/:path*"],
 };
