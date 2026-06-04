@@ -107,6 +107,11 @@ export default function RootLayout({
             __html: `window.__AVAILABILITY_STATUS__=${JSON.stringify(availabilityStatus)};`,
           }}
         />
+        <script
+          src={process.env.NEXT_PUBLIC_AVENTO_BOT_URL}
+          data-key={process.env.NEXT_PUBLIC_AVENTO_BOT_KEY}
+          async
+        ></script>
       </body>
     </html>
   );
