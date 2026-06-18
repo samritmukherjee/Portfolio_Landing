@@ -5,17 +5,25 @@ import { AnimatePresence } from "framer-motion";
 import { FaPlay } from "react-icons/fa";
 import { projectsData } from "@/lib/projects-data";
 
+const COMING_SOON_PROJECT_ID = "more-projects-coming-soon";
+
+function getPreviewUrl(link: string) {
+  return link.includes("?") ? `${link}&preview=true` : `${link}?preview=true`;
+}
+
 function PreviewModal({
-  url,
+  previewUrl,
   title,
+  externalUrl,
+  showGoToLink,
   onClose,
 }: {
-  url: string;
+  previewUrl: string;
   title: string;
+  externalUrl: string;
+  showGoToLink: boolean;
   onClose: () => void;
 }) {
-  const previewUrl = url.includes("?") ? `${url}&preview=true` : `${url}?preview=true`;
-
   return (
     <div
       className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
@@ -26,13 +34,25 @@ function PreviewModal({
       <div className="relative w-full max-w-5xl h-[80vh] rounded-2xl overflow-hidden border border-[var(--theme-border)] bg-[var(--theme-surface)]">
         <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--theme-border)]">
           <span className="font-semibold text-[var(--theme-text)]">{title}</span>
-          <button
-            type="button"
-            onClick={onClose}
-            className="px-3 py-1 rounded-lg text-sm bg-[var(--theme-surface-2)] hover:bg-accent-500/20 focus-visible:ring-2 focus-visible:ring-accent-400"
-          >
-            Close
-          </button>
+          <div className="flex items-center gap-2">
+            {showGoToLink && (
+              <a
+                href={externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1 rounded-lg text-sm bg-[var(--theme-surface-2)] hover:bg-accent-500/20 focus-visible:ring-2 focus-visible:ring-accent-400"
+              >
+                Go To Link
+              </a>
+            )}
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-3 py-1 rounded-lg text-sm bg-[var(--theme-surface-2)] hover:bg-accent-500/20 focus-visible:ring-2 focus-visible:ring-accent-400"
+            >
+              Close
+            </button>
+          </div>
         </div>
         <iframe
           src={previewUrl}
@@ -45,8 +65,24 @@ function PreviewModal({
   );
 }
 
+type PreviewState = {
+  previewUrl: string;
+  title: string;
+  externalUrl: string;
+  showGoToLink: boolean;
+};
+
 export const CircularProjects = () => {
-  const [preview, setPreview] = useState<{ url: string; title: string } | null>(null);
+  const [preview, setPreview] = useState<PreviewState | null>(null);
+
+  const openPreview = (project: (typeof projectsData)[number]) => {
+    setPreview({
+      previewUrl: getPreviewUrl(project.link),
+      title: project.title,
+      externalUrl: project.link,
+      showGoToLink: project.id !== COMING_SOON_PROJECT_ID,
+    });
+  };
 
   return (
     <section id="projects" className="section-wrapper section-surface overflow-hidden">
@@ -103,19 +139,13 @@ export const CircularProjects = () => {
                   ))}
                 </div>
                 <div className="pt-2">
-                  {project.link.startsWith("/") ? (
-                    <a href={project.link} className="btn-primary inline-flex items-center gap-2 text-sm">
-                      Live Demo
-                    </a>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => setPreview({ url: project.link, title: project.title })}
-                      className="btn-primary inline-flex items-center gap-2 text-sm"
-                    >
-                      <FaPlay size={12} /> Live Demo
-                    </button>
-                  )}
+                  <button
+                    type="button"
+                    onClick={() => openPreview(project)}
+                    className="btn-primary inline-flex items-center gap-2 text-sm"
+                  >
+                    <FaPlay size={12} /> Live Demo
+                  </button>
                 </div>
               </div>
             </article>
@@ -126,8 +156,10 @@ export const CircularProjects = () => {
       <AnimatePresence>
         {preview && (
           <PreviewModal
-            url={preview.url}
+            previewUrl={preview.previewUrl}
             title={preview.title}
+            externalUrl={preview.externalUrl}
+            showGoToLink={preview.showGoToLink}
             onClose={() => setPreview(null)}
           />
         )}

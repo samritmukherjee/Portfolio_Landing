@@ -6,11 +6,6 @@ import { skillCategories } from "@/lib/skills-data";
 export const Skills = () => {
   return (
     <section id="skills" className="section-wrapper section-surface overflow-hidden">
-      <div
-        className="premium-blur top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[56vw] h-[56vw] bg-accent-500/10 opacity-[0.12] pointer-events-none"
-        aria-hidden
-      />
-
       <div className="container-custom max-w-full relative">
         <div className="text-center mb-14 md:mb-20 space-y-3 sm:space-y-4 max-w-3xl mx-auto">
           <p className="skills-section-tag">Technical stack</p>

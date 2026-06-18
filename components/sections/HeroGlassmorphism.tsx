@@ -2,10 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import {
-  motion,
   useReducedMotion,
-  useScroll,
-  useTransform,
   useInView,
   useSpring,
 } from "framer-motion";
@@ -61,37 +58,19 @@ function CountUpMetric({
 function AvailabilityBadge({ status }: { status: AvailabilityStatus }) {
   const isAvailable = status === "Available";
   return (
-    <div className="brand-chip" role="status" aria-live="polite">
-      <span className="relative flex h-2.5 w-2.5">
-        {isAvailable && (
-          <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-        )}
-        <span
-          className={`relative inline-flex h-2.5 w-2.5 rounded-full ${
-            isAvailable
-              ? "bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]"
-              : "bg-amber-400"
-          }`}
-        />
-      </span>
+    <div className="brand-chip mx-auto lg:mx-0" role="status" aria-live="polite">
+      <span
+        className={`inline-flex h-2.5 w-2.5 rounded-full ${
+          isAvailable ? "bg-emerald-500" : "bg-amber-500"
+        }`}
+      />
       {isAvailable ? "Available For New Projects" : "Limited Availability"}
     </div>
   );
 }
 
 export const HeroGlassmorphism = () => {
-  const prefersReducedMotion = useReducedMotion() ?? false;
   const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-  const auroraOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.45],
-    prefersReducedMotion ? [1, 1] : [1, 0.15]
-  );
-
   const [availability, setAvailability] = useState<AvailabilityStatus>(() => {
     if (typeof window !== "undefined") {
       const injected = (window as Window & { __AVAILABILITY_STATUS__?: string })
@@ -126,18 +105,10 @@ export const HeroGlassmorphism = () => {
       className="relative min-h-screen min-h-[100dvh] flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-[var(--theme-bg)] transition-colors duration-500 animate-critical"
     >
       <div className="hero-grain absolute inset-0 z-[1] pointer-events-none" aria-hidden />
-      <motion.div
-        className="absolute inset-0 z-0 pointer-events-none hero-aurora"
-        style={{ opacity: auroraOpacity }}
-        aria-hidden
-      >
-        <div className="premium-blur top-8 left-[2%] w-[30vw] h-[30vw] bg-accent-500/20" />
-        <div className="premium-blur bottom-10 right-[2%] w-[36vw] h-[36vw] bg-emerald-900/25" />
-      </motion.div>
 
-      <div className="w-full max-w-[90rem] mx-auto relative z-10 py-20 md:py-24">
+      <div className="w-full max-w-[90rem] mx-auto relative z-10 py-20 md:py-24 px-0">
         <div className="grid items-center gap-8 md:gap-10 lg:gap-14 lg:grid-cols-[1.1fr_0.9fr] xl:grid-cols-[1.15fr_0.85fr]">
-          <div className="space-y-6 sm:space-y-8">
+          <div className="space-y-6 sm:space-y-8 flex flex-col items-center text-center lg:items-start lg:text-left w-full">
             <AvailabilityBadge status={availability} />
 
             <div className="space-y-3 sm:space-y-4">
@@ -155,7 +126,7 @@ export const HeroGlassmorphism = () => {
                 <br />
                 <span className="text-accent-500 dark:text-accent-300">MUKHERJEE</span>
               </h1>
-              <p className="text-sm sm:text-base tracking-[0.12em] uppercase text-[var(--theme-text-muted)] font-semibold flex flex-wrap items-center gap-2">
+              <p className="text-sm sm:text-base tracking-[0.12em] uppercase text-[var(--theme-text-muted)] font-semibold flex flex-wrap items-center justify-center lg:justify-start gap-2">
                 <span className="text-accent-400">[</span>
                 <RotatingText
                   words={["AI Systems", "Full Stack", "Product"]}
@@ -166,29 +137,29 @@ export const HeroGlassmorphism = () => {
               </p>
             </div>
 
-            <p className="text-base sm:text-lg text-[var(--theme-text-muted)] font-medium leading-relaxed max-w-xl">
+            <p className="text-base sm:text-lg text-[var(--theme-text-muted)] font-medium leading-relaxed max-w-xl mx-auto lg:mx-0">
               Samrit Mukherjee builds intelligent, scalable software that transforms ambitious
               ideas into practical, user-focused products.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+            <div className="flex flex-col items-center gap-3 w-full max-w-[18rem] sm:max-w-none sm:flex-row sm:items-center sm:justify-start lg:justify-start">
               <button
                 type="button"
                 onClick={trackResumeDownload}
-                className="btn-primary w-full sm:w-auto text-center"
+                className="btn-primary w-full sm:w-auto text-center min-h-[2.75rem] px-5 text-sm sm:text-base"
               >
                 Download Resume
               </button>
               <button
                 type="button"
                 onClick={() => scrollToElement("projects")}
-                className="btn-secondary w-full sm:w-auto text-center"
+                className="btn-secondary w-full sm:w-auto text-center min-h-[2.75rem] px-5 text-sm sm:text-base"
               >
                 View Work
               </button>
             </div>
 
-            <div className="flex items-center gap-4 md:gap-6 pt-2">
+            <div className="flex items-center justify-center lg:justify-start gap-4 md:gap-6 pt-2">
               <a
                 href="https://github.com/samritmukherjee"
                 target="_blank"
@@ -223,7 +194,7 @@ export const HeroGlassmorphism = () => {
               <CountUpMetric label="Projects" value={8} suffix="+" />
               <CountUpMetric label="Experience" value={2} suffix="+ Yrs" />
               <div className="col-span-2 sm:col-span-1">
-                <CountUpMetric label="Hackathon Wins" value={3} suffix="×" />
+                <CountUpMetric label="Hackathon Wins" value={8} suffix="×" />
               </div>
             </div>
           </aside>

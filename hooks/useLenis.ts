@@ -7,18 +7,28 @@ export const useLenis = (shouldEnable: boolean = true) => {
       return;
     }
 
+    const isMobile = typeof window !== 'undefined' &&
+      (window.innerWidth <= 768 || window.matchMedia('(pointer: coarse)').matches);
+
+    // Completely disable Lenis on mobile for native performance and inertial scrolling
+    if (isMobile) {
+      if (typeof document !== 'undefined') {
+        document.documentElement.style.scrollBehavior = 'smooth';
+      }
+      return;
+    }
+
     const prefersReducedMotion = typeof window !== 'undefined' && 
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
-    // Optimized settings for both Desktop and Mobile
+    // Optimized settings for Desktop smooth scrolling
     const lenis = new Lenis({
       duration: prefersReducedMotion ? 0 : 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       lerp: 0.1, // Slightly snappier for better performance
       wheelMultiplier: 1,
-      touchMultiplier: 1.5, // Better feel on mobile
       smoothWheel: true,
-      syncTouch: true, // Sync with touch events
+      syncTouch: false, // Turn off syncTouch to prevent input delay and scroll fights
     });
 
     if (typeof document !== 'undefined') {

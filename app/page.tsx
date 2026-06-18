@@ -8,7 +8,6 @@ import Switch from "@/components/star-wars-toggle-switch";
 import { MdLocationOn } from "react-icons/md";
 import { scrollToElement } from "@/lib/scrollToElement";
 import { initializeWebMCP } from "@/hooks/useWebMCP";
-import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { ContactCards } from "@/components/sections/ContactCards";
 
 const About = dynamic(() => import("@/components/sections/About").then((m) => m.About), {
@@ -73,6 +72,7 @@ export default function Home() {
 
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [showThemeHint, setShowThemeHint] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
   const scrollTimeoutRef = useRef<NodeJS.Timeout>();
 
@@ -81,6 +81,13 @@ export default function Home() {
   useEffect(() => {
     window.scrollTo(0, 0);
     initializeWebMCP();
+
+    // Check for theme hint
+    const hasSeenHint = localStorage.getItem("has-seen-theme-hint");
+    if (!hasSeenHint) {
+      const timer = setTimeout(() => setShowThemeHint(true), 4000);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   useEffect(() => {
@@ -114,6 +121,10 @@ export default function Home() {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
     window.scrollTo({ top: 0, behavior: "instant" });
+    if (showThemeHint) {
+      setShowThemeHint(false);
+      localStorage.setItem("has-seen-theme-hint", "true");
+    }
   };
 
   useEffect(() => {
@@ -166,7 +177,7 @@ export default function Home() {
       <header
         className={`fixed top-0 left-0 right-0 z-[90] transition-all duration-700 ${scrolled ? "py-0.5 sm:py-1" : "py-2 sm:py-2.5"}`}
       >
-        <div className="container-custom flex items-center justify-between h-12 sm:h-auto">
+        <div className="container-custom flex items-center justify-between h-12 sm:h-auto px-4 sm:px-6">
           <div className="flex items-center h-10">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -179,13 +190,23 @@ export default function Home() {
           </div>
 
           <div className="md:hidden">
-            <div className="flex items-center pl-2 pr-2 border-l border-white/5 h-8">
+            <div className="flex items-center pl-2 pr-2 border-l border-white/5 h-8 relative">
               <Switch checked={theme === "light"} onChange={toggleTheme} />
+              {showThemeHint && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9, y: 8 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  className="absolute -bottom-10 right-0 py-1 px-2.5 bg-accent-500 text-stone-950 text-[0.6rem] font-bold rounded-md whitespace-nowrap shadow-xl pointer-events-none z-[100]"
+                >
+                  Switch Theme
+                  <div className="absolute -top-1 right-4 w-2 h-2 bg-accent-500 rotate-45" />
+                </motion.div>
+              )}
             </div>
           </div>
 
           <nav
-            className={`hidden md:flex items-center gap-2.5 px-3 py-1.5 rounded-full nav-shell overflow-hidden ${scrolled ? "nav-shell-scrolled" : ""}`}
+            className={`hidden md:flex items-center gap-2.5 px-3 py-1.5 rounded-full nav-shell ${scrolled ? "nav-shell-scrolled" : ""}`}
           >
             {navItems.map((item) => {
               const itemId = item.toLowerCase();
@@ -219,12 +240,22 @@ export default function Home() {
               onClick={() => scrollToElement("contact")}
               whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.02 }}
               whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
-              className="px-4 py-1.5 bg-accent-400 text-stone-950 text-[0.7rem] font-bold rounded-full transition-all shadow-[0_8px_20px_-12px_rgba(166,52,70,0.5)]"
+              className="px-4 py-1.5 bg-accent-400 text-stone-950 text-[0.7rem] font-bold rounded-full transition-colors"
             >
               Let&apos;s Talk
             </motion.button>
-            <div className="flex items-center pl-2 pr-4 ml-1 border-l border-white/5 h-10">
+            <div className="flex items-center pl-2 pr-4 ml-1 border-l border-white/5 h-10 relative">
               <Switch checked={theme === "light"} onChange={toggleTheme} />
+              {showThemeHint && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9, y: 8 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  className="absolute -bottom-10 right-4 py-1 px-2.5 bg-accent-500 text-stone-950 text-[0.6rem] font-bold rounded-md whitespace-nowrap shadow-xl pointer-events-none z-[100]"
+                >
+                  Switch Theme
+                  <div className="absolute -top-1 right-4 w-2 h-2 bg-accent-500 rotate-45" />
+                </motion.div>
+              )}
             </div>
           </nav>
         </div>
@@ -276,10 +307,10 @@ export default function Home() {
         {...revealProps}
       >
         <div className="container-custom">
-          <div className="space-y-10 sm:space-y-12">
-            <div className="space-y-4 max-w-2xl">
-              <h2 className="text-stone-50 leading-tight">
-                Ready To <span className="text-accent-300">Collaborate?</span>
+          <div className="space-y-10 sm:space-y-12 text-center md:text-left">
+            <div className="space-y-4 max-w-2xl mx-auto md:mx-0 text-center md:text-left">
+              <h2 className="text-[var(--theme-text)] leading-tight">
+                Ready To <span className="text-[var(--theme-text-muted)]">Collaborate?</span>
               </h2>
               <p className="text-stone-400 text-base sm:text-lg">
                 Whether you have a question or just want to say hi, my inbox is always open. I
@@ -289,7 +320,7 @@ export default function Home() {
 
             <ContactCards />
 
-            <div className="flex items-center gap-3 sm:gap-4 text-stone-300 pt-3 sm:pt-4">
+            <div className="flex items-center justify-center md:justify-start gap-3 sm:gap-4 text-stone-300 pt-3 sm:pt-4 max-w-4xl mx-auto md:mx-0">
               <div className="w-12 h-12 bg-theme-surface-2 rounded-xl flex items-center justify-center border border-theme-border">
                 <MdLocationOn size={24} className="text-accent-400" />
               </div>
@@ -305,7 +336,6 @@ export default function Home() {
       </motion.section>
 
       <Footer />
-      <StickyMobileCTA />
     </main>
   );
 }

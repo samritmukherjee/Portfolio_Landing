@@ -15,6 +15,33 @@ interface HackathonEvent {
 
 const hackathons: HackathonEvent[] = [
   {
+    id: "google-solution-challenge",
+    title: "Google Solution Challenge 2026 — Build with AI",
+    year: "2026",
+    location: "Google",
+    result: "TOP 106 GLOBALLY",
+    description: "Selected among the Top 106 teams globally in Google Solution Challenge 2026: Build with AI, out of 85,000+ registrations and 6,700+ prototype submissions worldwide. (Event is still running. Top 10 selection process is ongoing.)",
+    image: "https://res.cloudinary.com/duxrcy3jn/image/upload/w_600,c_scale,q_auto,f_auto/v1781799163/Badge_solution_challenge_xbiihd.png"
+  },
+  {
+    id: "gssoc-26",
+    title: "GSSoC '26",
+    year: "2026",
+    location: "GirlScript Foundation",
+    result: "OPEN SOURCE",
+    description: "GSSoC '26 (GirlScript Summer of Code 2026) is the 9th edition of the GirlScript Foundation's renowned three-month, global open-source program. Designed to promote diversity and skill development, it is open to all ages, skill levels, and genders.",
+    image: "https://res.cloudinary.com/duxrcy3jn/image/upload/w_600,c_scale,q_auto,f_auto/v1781798869/gssoc-badge_tg1et2.png"
+  },
+  {
+    id: "synchronicity",
+    title: "Synchronicity 2.0",
+    year: "2026",
+    location: "Jadavpur University",
+    result: "Track Winner",
+    description: "Secured the Winner position in the Best Startup Track at Synchronicity 2.0 (2026), organized by Jadavpur University.",
+    image: "https://res.cloudinary.com/duxrcy3jn/image/upload/w_600,c_scale,q_auto,f_auto/v1781799635/Best_startup_track_xvzmjd.jpg"
+  },
+  {
     id: "double-slash",
     title: "Double Slash 4.0",
     year: "2026",
@@ -22,7 +49,7 @@ const hackathons: HackathonEvent[] = [
     result: "WINNER",
     description:
       "A 36-hour offline hackathon with 300+ teams. Selected among the Top 30 finalists and secured the winning position through strong technical execution and innovation.",
-    image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133900/double-slash_fn9wm5.jpg"
+    image: "https://res.cloudinary.com/duxrcy3jn/image/upload/w_600,c_scale,q_auto,f_auto/v1777133900/double-slash_fn9wm5.jpg"
   },
   {
     id: "showcasex",
@@ -32,7 +59,7 @@ const hackathons: HackathonEvent[] = [
     result: "WINNER",
     description:
       "High-intensity hackathon powered by Hack2Skill, focused on rapid prototyping and building scalable solutions.",
-    image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133897/showcasex_znf9ug.jpg"
+    image: "https://res.cloudinary.com/duxrcy3jn/image/upload/w_600,c_scale,q_auto,f_auto/v1777133897/showcasex_znf9ug.jpg"
   },
   {
     id: "hello-world",
@@ -42,7 +69,7 @@ const hackathons: HackathonEvent[] = [
     result: "Track Winner",
     description:
       "Organized by GDG on Campus RCCIIT. Recognized as Best Beginner's Team for building an impactful technical solution.",
-    image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133893/hello-world_gfi0ip.jpg"
+    image: "https://res.cloudinary.com/duxrcy3jn/image/upload/w_600,c_scale,q_auto,f_auto/v1777133893/hello-world_gfi0ip.jpg"
   }
 ];
 

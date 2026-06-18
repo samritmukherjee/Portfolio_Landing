@@ -7,9 +7,11 @@ import Image from 'next/image';
 const PageLoader = forwardRef((props, ref) => {
   const [isVisible, setIsVisible] = useState(true);
   const [isOpening, setIsOpening] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     const mediaQuery = window.matchMedia('(max-width: 768px), (pointer: coarse)');
     const updateMobile = () => setIsMobile(mediaQuery.matches);
     updateMobile();
@@ -50,7 +52,8 @@ const PageLoader = forwardRef((props, ref) => {
     trigger: triggerLoader
   }));
 
-  if (!isVisible) return null;
+  // On mobile, we don't show the loader at all for initial load
+  if (!isVisible || (isMounted && isMobile)) return null;
 
   const containerStyle = isMobile
     ? {

@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FaWindows, FaTerminal, FaSpinner } from "react-icons/fa";
+import { FaBrain, FaCode, FaSpinner } from "react-icons/fa";
 
 export default function PortfolioOSPage() {
   return (
@@ -33,7 +33,7 @@ export default function PortfolioOSPage() {
             transition={{ duration: 1.5, repeat: Infinity }}
             className="w-2 h-2 rounded-full bg-accent-400"
           />
-          <span className="text-accent-300 font-medium">Currently Under Development</span>
+          <span className="text-accent-300 font-medium">Coming Soon</span>
         </motion.div>
 
         {/* Main Message */}
@@ -44,10 +44,10 @@ export default function PortfolioOSPage() {
           className="space-y-4"
         >
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-stone-50 leading-tight">
-            Portfolio OS
+            More Projects Coming Soon
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-stone-400 max-w-xl mx-auto leading-relaxed">
-            We're actively working on building an immersive operating system experience. Check back soon for this interactive showcase.
+            I'm constantly designing and developing new high-performance web applications and AI-driven products. Check back soon to explore what's next.
           </p>
         </motion.div>
 
@@ -59,14 +59,14 @@ export default function PortfolioOSPage() {
           className="grid grid-cols-1 sm:grid-cols-2 gap-6 py-8"
         >
           <div className="glass-card p-6 rounded-xl border border-theme-border hover:border-accent-500/50 transition-colors">
-            <FaWindows className="text-blue-400 text-3xl mx-auto mb-3" />
-            <p className="text-sm font-semibold text-stone-300">Multi-Window System</p>
-            <p className="text-xs text-stone-500 mt-1">Interactive window management</p>
+            <FaBrain className="text-blue-400 text-3xl mx-auto mb-3" />
+            <p className="text-sm font-semibold text-stone-300">AI-Powered Products</p>
+            <p className="text-xs text-stone-500 mt-1">Intelligent agents and RAG workflows</p>
           </div>
           <div className="glass-card p-6 rounded-xl border border-theme-border hover:border-accent-500/50 transition-colors">
-            <FaTerminal className="text-green-400 text-3xl mx-auto mb-3" />
-            <p className="text-sm font-semibold text-stone-300">Terminal Interface</p>
-            <p className="text-xs text-stone-500 mt-1">Command-driven interaction</p>
+            <FaCode className="text-green-400 text-3xl mx-auto mb-3" />
+            <p className="text-sm font-semibold text-stone-300">Scalable Web Tools</p>
+            <p className="text-xs text-stone-500 mt-1">Interactive interfaces and developer platforms</p>
           </div>
         </motion.div>
 
@@ -79,10 +79,10 @@ export default function PortfolioOSPage() {
         >
           <div className="flex items-center justify-center gap-2 text-stone-300">
             <FaSpinner className="animate-spin" />
-            <span className="text-sm font-medium">Active Development</span>
+            <span className="text-sm font-medium">Active Research & Design</span>
           </div>
           <p className="text-xs text-stone-500">
-            Expected completion: Q2 2026
+            Expected preview: Q3 2026
           </p>
         </motion.div>
 

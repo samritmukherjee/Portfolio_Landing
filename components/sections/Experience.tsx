@@ -62,7 +62,7 @@ export const Experience = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               viewport={{ once: true, amount: 0.1 }}
-              className="glass-card p-5 sm:p-7 lg:p-9 group hover-lift border-l-2 border-l-[var(--theme-border)] hover:border-l-accent-500"
+              className="glass-card p-5 sm:p-7 lg:p-9 group border-l-2 border-l-[var(--theme-border)]"
             >
               <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                 <div className="space-y-4 flex-1">

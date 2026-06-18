@@ -55,12 +55,26 @@ export const projectsData: ProjectData[] = [
     outcome: "Immersive portfolio experience on samrit.dev",
     category: "web",
     technologies: ["Next.js", "React", "Framer Motion", "Tailwind CSS"],
-    link: "/portfolio-os",
+    link: "https://samrit-portfolio-os.vercel.app/",
     image:
       "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133968/portfolio-os_rqsksy.png",
     dateCreated: "2026-01-20",
     author: "Samrit Mukherjee",
     keywords: ["portfolio", "creative dev", "interaction design"],
+  },
+  {
+    id: "more-projects-coming-soon",
+    title: "3 More Projects Coming Soon",
+    description:
+      "I'm constantly designing and building new tools to solve real-world problems. Keep an eye out for upcoming projects in AI, full stack systems, and developer tooling.",
+    outcome: "Active research & design phase",
+    category: "web",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    link: "/portfolio-os",
+    image: "/coming_soon.png",
+    dateCreated: "2026-06-18",
+    author: "Samrit Mukherjee",
+    keywords: ["upcoming", "future projects", "coming soon"],
   },
 ];
 

@@ -39,26 +39,27 @@ const GlowCard: React.FC<GlowCardProps> = ({
   const innerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const syncPointer = (e: PointerEvent) => {
-      const { clientX: x, clientY: y } = e;
-      
-      if (cardRef.current) {
-        cardRef.current.style.setProperty('--x', x.toFixed(2));
-        cardRef.current.style.setProperty('--xp', (x / window.innerWidth).toFixed(2));
-        cardRef.current.style.setProperty('--y', y.toFixed(2));
-        cardRef.current.style.setProperty('--yp', (y / window.innerHeight).toFixed(2));
-      }
-    };
-
-    // Only track pointer moves on desktop (hover: hover) to prevent mobile scroll friction
-    const supportsHover = window.matchMedia('(hover: hover)').matches;
-    if (supportsHover) {
-      document.addEventListener('pointermove', syncPointer);
-      return () => document.removeEventListener('pointermove', syncPointer);
+    const card = cardRef.current;
+    if (card) {
+      card.style.setProperty('--x', '0');
+      card.style.setProperty('--xp', '0');
+      card.style.setProperty('--y', '0');
+      card.style.setProperty('--yp', '0');
     }
-    
-    return () => {};
   }, []);
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    card.style.setProperty('--x', x.toFixed(2));
+    card.style.setProperty('--xp', (x / rect.width).toFixed(2));
+    card.style.setProperty('--y', y.toFixed(2));
+    card.style.setProperty('--yp', (y / rect.height).toFixed(2));
+  };
 
   const { base, spread } = glowColorMap[glowColor];
 
@@ -92,7 +93,6 @@ const GlowCard: React.FC<GlowCardProps> = ({
       backgroundColor: 'var(--backdrop, transparent)',
       backgroundSize: 'calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)))',
       backgroundPosition: '50% 50%',
-      backgroundAttachment: 'fixed',
       border: 'var(--border-size) solid var(--backup-border)',
       position: 'relative' as const,
       touchAction: 'pan-y' as const,
@@ -118,7 +118,6 @@ const GlowCard: React.FC<GlowCardProps> = ({
       inset: calc(var(--border-size) * -1);
       border: var(--border-size) solid transparent;
       border-radius: calc(var(--radius) * 1px);
-      background-attachment: fixed;
       background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
       background-repeat: no-repeat;
       background-position: 50% 50%;
@@ -172,6 +171,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
         ref={cardRef}
         data-glow
         style={getInlineStyles()}
+        onPointerMove={handlePointerMove}
         className={`
           ${getSizeClasses()}
           ${!customSize ? 'aspect-[3/4]' : ''}

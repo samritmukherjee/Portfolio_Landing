@@ -35,7 +35,6 @@ export async function GET(request: NextRequest) {
       responseTime: "24-48 hours",
       workType: ["Full-time", "Contract", "Freelance", "Consulting"],
     },
-    calendly: process.env.NEXT_PUBLIC_CALENDLY_URL ?? null,
   };
 
   if (markdown) {

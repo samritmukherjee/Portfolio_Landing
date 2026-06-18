@@ -1,4 +1,3 @@
-import { GlowCard } from "../spotlight-card";
 import { motion } from "framer-motion";
 import { FaTrophy } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
@@ -17,6 +16,36 @@ interface HackathonEvent {
 const hackathons = {
   won: [
     {
+      title: "Google Solution Challenge 2026 — Build with AI",
+      year: "2026",
+      date: "Ongoing",
+      location: "Google",
+      result: "TOP 106 GLOBALLY",
+      proof: "organized by google",
+      description: "Selected among the Top 106 teams globally in Google Solution Challenge 2026: Build with AI, out of 85,000+ registrations and 6,700+ prototype submissions worldwide. (Event is still running. Top 10 selection process is ongoing.)",
+      image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1781799163/Badge_solution_challenge_xbiihd.png"
+    },
+    {
+      title: "GSSoC '26",
+      year: "2026",
+      date: "2026",
+      location: "GirlScript Foundation",
+      result: "OPEN SOURCE",
+      proof: "9th Edition — Global Open-Source Program",
+      description: "GSSoC '26 (GirlScript Summer of Code 2026) is the 9th edition of the GirlScript Foundation's renowned three-month, global open-source program. Designed to promote diversity and skill development, it is open to all ages, skill levels, and genders.",
+      image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1781798869/gssoc-badge_tg1et2.png"
+    },
+    {
+      title: "Synchronicity 2.0",
+      year: "2026",
+      date: "2026",
+      location: "Jadavpur University",
+      result: "Track Winner",
+      proof: "Best Startup Track",
+      description: "Secured the Winner position in the Best Startup Track at Synchronicity 2.0 (2026), organized by Jadavpur University.",
+      image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1781799635/Best_startup_track_xvzmjd.jpg"
+    },
+    {
       title: "Double Slash 4.0",
       year: "2026",
       date: "Feb 2026",
@@ -28,7 +57,7 @@ const hackathons = {
       image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133900/double-slash_fn9wm5.jpg"
     },
     {
-      title: "ShowcaseX   x Techsprint",
+      title: "ShowcaseX × Techsprint",
       year: "2026",
       date: "Jan 2026",
       location: "RCCIIT",
@@ -44,9 +73,9 @@ const hackathons = {
       date: "Oct 2025",
       location: "RCCIIT",
       result: "Track Winner",
-      proof: "GDG on Campus — Best Beginner's Team for impactful technical delivery.",
+      proof: "Achievement: Best Beginner Team",
       description:
-        "Organized by GDG on Campus RCCIIT. Recognized as Best Beginner's Team for building an impactful technical solution.",
+        "Organized by GDG on Campus RCCIIT. Recognized as Best Beginner's Team for building an impactful technical solution. Achievement: Best Beginner Team.",
       image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133893/hello-world_gfi0ip.jpg"
     }
   ],
@@ -70,12 +99,12 @@ export const Hackathons = () => {
           viewport={{ once: true }}
           className="trophy-shelf glass-card p-8 md:p-10 mb-14 md:mb-16 text-center max-w-2xl mx-auto border border-amber-500/25"
         >
-          <p className="text-5xl md:text-6xl font-black text-amber-400 font-display">3</p>
+          <p className="text-5xl md:text-6xl font-black text-amber-400 font-display">8</p>
           <p className="text-lg md:text-xl font-bold text-[var(--theme-text)] mt-2">
-            wins across 2 years
+            8x Hackathon Winner
           </p>
           <p className="text-sm text-[var(--theme-text-muted)] mt-2">
-            3× hackathon wins · 2 overall · 1 track
+            8× hackathon wins across various tracks and global challenges
           </p>
         </motion.div>
 
@@ -96,12 +125,7 @@ export const Hackathons = () => {
                     viewport={{ once: true, amount: 0.1 }}
                     className="relative group h-full"
                   >
-                    <GlowCard
-                      glowColor="orange"
-                      customSize
-                      transparentBackdrop
-                      className="h-full min-h-[280px] sm:min-h-[320px] rounded-2xl lg:rounded-[2.5rem] border border-[var(--theme-border)] overflow-hidden hackathon-card-wrapper glow-surface shadow-[0_20px_45px_-35px_var(--theme-shadow-soft)] hover:shadow-[0_28px_60px_-40px_var(--theme-shadow)] transition-[transform,box-shadow,border-color,background-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                    >
+                    <div className="glass-card h-full min-h-[280px] sm:min-h-[320px] rounded-2xl lg:rounded-[2.5rem] border border-[var(--theme-border)] overflow-hidden hackathon-card-wrapper">
                       {/* Winning Moment Image Reveal */}
                       <div className="absolute inset-0 z-0">
                         <img
@@ -143,7 +167,7 @@ export const Hackathons = () => {
                           <p className="text-[0.6rem] text-stone-400 uppercase tracking-widest mt-2">{event.date}</p>
                         </div>
                       </div>
-                    </GlowCard>
+                    </div>
                   </motion.div>
                 ))}
               </div>

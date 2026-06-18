@@ -26,7 +26,7 @@ export default function AboutPage() {
           and Portfolio OS — he builds tools that bridge complex technology and real-world
           usability.
         </p>
-        <blockquote className="border-l-4 border-accent-500 pl-6 italic text-xl text-[var(--theme-text)]">
+        <blockquote className="border-l-4 border-accent-500 pl-6 italic text-lg text-[var(--theme-text)]">
           Build tools that matter, for people who need them.
         </blockquote>
         <div className="flex flex-wrap gap-4 pt-4">

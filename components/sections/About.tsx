@@ -64,7 +64,7 @@ export const About = () => {
     <section id="about" className="section-wrapper overflow-hidden min-h-screen">
       <div className="container-custom">
         <blockquote className="philosophy-quote mb-12 md:mb-16 text-center max-w-4xl mx-auto">
-          <p className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold text-[var(--theme-text)] leading-snug italic">
+          <p className="font-display text-xl sm:text-2xl md:text-3xl font-semibold text-[var(--theme-text)] leading-snug italic">
             &ldquo;Build tools that matter, for people who need them.&rdquo;
           </p>
         </blockquote>
@@ -117,7 +117,7 @@ export const About = () => {
                 </p>
               </div>
               <div>
-                <h4 className="text-2xl sm:text-3xl font-black text-[var(--theme-text)]">3</h4>
+                <h4 className="text-2xl sm:text-3xl font-black text-[var(--theme-text)]">8</h4>
                 <p className="text-[0.65rem] uppercase tracking-[0.25em] text-[var(--theme-text-muted)] font-semibold mt-1">
                   Hackathon Wins
                 </p>
