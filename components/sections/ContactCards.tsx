@@ -2,6 +2,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope, FaArrowRight } from "react-icons/fa";
+import ElectricBorder from "@/components/ElectricBorder";
+import { BlobButton } from "@/components/ui/BlobButton";
 
 interface ContactCard {
   id: string;
@@ -63,39 +65,48 @@ export const ContactCards = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 w-full max-w-4xl mx-auto"
+      className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 w-full"
     >
       {contactCards.map((card) => (
-        <motion.div key={card.id} variants={cardVariants} className="h-full">
-          <a
-            href={card.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="glass-card flex flex-col justify-between h-full min-h-[240px] sm:min-h-[260px] p-6 sm:p-7 group"
+        <motion.div key={card.id} variants={cardVariants} className="h-full min-w-0">
+          <ElectricBorder
+            color="#4f7cff"
+            speed={0.85}
+            chaos={0.1}
+            borderRadius={20}
+            className="h-full w-full contact-electric-border"
+            style={{ borderRadius: 20 }}
           >
-            <div className="space-y-5">
-              <div className="text-[var(--theme-text-muted)] group-hover:text-[var(--theme-text)] transition-colors">
-                {card.icon}
-              </div>
-              <div>
-                <span className="text-[0.65rem] uppercase tracking-[0.18em] font-bold text-[var(--theme-text-muted)]">
-                  {card.label}
-                </span>
-                <div className="mt-2 rounded-lg p-2.5 border border-[var(--theme-border)] bg-[var(--theme-surface-2)]">
-                  <h3 className="text-sm md:text-base font-semibold text-[var(--theme-text)] leading-relaxed break-words">
-                    {card.value}
-                  </h3>
+            <a
+              href={card.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass-card flex flex-col justify-between h-full min-h-[240px] sm:min-h-[260px] p-6 sm:p-7 group border-0"
+            >
+              <div className="space-y-5">
+                <div className="text-[var(--theme-text-muted)] group-hover:text-[var(--theme-text)] transition-colors">
+                  {card.icon}
+                </div>
+                <div>
+                  <span className="text-[0.65rem] uppercase tracking-[0.18em] font-bold text-[var(--theme-text-muted)]">
+                    {card.label}
+                  </span>
+                  <div className="mt-2 rounded-lg p-2.5 border border-[var(--theme-border)] bg-[var(--theme-surface-2)]">
+                    <h3 className="text-sm md:text-base font-semibold text-[var(--theme-text)] leading-relaxed break-words">
+                      {card.value}
+                    </h3>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="flex items-center justify-between mt-6 pt-4 border-t border-[var(--theme-border)]">
-              <p className="text-sm text-[var(--theme-text-muted)]">{card.description}</p>
-              <div className="w-8 h-8 rounded-full border border-[var(--theme-border)] bg-[var(--theme-surface-2)] flex items-center justify-center text-[var(--theme-text-muted)]">
-                <FaArrowRight size={12} />
+              <div className="flex items-center justify-between mt-6 pt-4 border-t border-[var(--theme-border)]">
+                <p className="text-sm text-[var(--theme-text-muted)]">{card.description}</p>
+                <BlobButton variant="icon" decorative className="pointer-events-none">
+                  <FaArrowRight size={12} />
+                </BlobButton>
               </div>
-            </div>
-          </a>
+            </a>
+          </ElectricBorder>
         </motion.div>
       ))}
     </motion.div>

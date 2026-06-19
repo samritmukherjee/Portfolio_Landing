@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { RiFileDownloadLine } from "react-icons/ri";
+import { BlobButton } from "@/components/ui/BlobButton";
 
 export const Resume = () => {
   return (
@@ -22,11 +23,12 @@ export const Resume = () => {
               </p>
               
               <div className="flex flex-wrap gap-4 pt-4">
-                <a
+                <BlobButton
                   href="https://drive.usercontent.google.com/download?id=1ru-wx6T-ulFMwgASOtWuh_uATd7MagLL&export=download&authuser=0"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-primary flex items-center gap-3 inline-flex"
+                  variant="primary"
+                  className="inline-flex items-center gap-3"
                   onClick={() => {
                     if (typeof window !== "undefined" && "gtag" in window) {
                       (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.(
@@ -39,10 +41,16 @@ export const Resume = () => {
                 >
                   <RiFileDownloadLine className="text-xl" />
                   Download PDF
-                </a>
-                <a href="https://drive.google.com/file/d/1ru-wx6T-ulFMwgASOtWuh_uATd7MagLL/view" target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex">
+                </BlobButton>
+                <BlobButton
+                  href="https://drive.google.com/file/d/1ru-wx6T-ulFMwgASOtWuh_uATd7MagLL/view"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="secondary"
+                  className="inline-flex"
+                >
                   View Online
-                </a>
+                </BlobButton>
               </div>
             </div>
             

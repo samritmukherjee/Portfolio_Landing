@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { FaPlay } from "react-icons/fa";
 import { projectsData } from "@/lib/projects-data";
+import { BlobButton } from "@/components/ui/BlobButton";
 
 const COMING_SOON_PROJECT_ID = "more-projects-coming-soon";
 
@@ -16,12 +17,16 @@ function PreviewModal({
   title,
   externalUrl,
   showGoToLink,
+  isComingSoon,
+  image,
   onClose,
 }: {
   previewUrl: string;
   title: string;
   externalUrl: string;
   showGoToLink: boolean;
+  isComingSoon?: boolean;
+  image?: string;
   onClose: () => void;
 }) {
   return (
@@ -30,36 +35,60 @@ function PreviewModal({
       role="dialog"
       aria-modal="true"
       aria-label={`Live preview: ${title}`}
+      onClick={onClose}
     >
-      <div className="relative w-full max-w-5xl h-[80vh] rounded-2xl overflow-hidden border border-[var(--theme-border)] bg-[var(--theme-surface)]">
+      <div
+        className="relative w-full max-w-5xl h-[80vh] rounded-2xl overflow-hidden border border-[var(--theme-border)] bg-[var(--theme-surface)]"
+        onClick={(event) => event.stopPropagation()}
+      >
         <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--theme-border)]">
           <span className="font-semibold text-[var(--theme-text)]">{title}</span>
           <div className="flex items-center gap-2">
             {showGoToLink && (
-              <a
+              <BlobButton
                 href={externalUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1 rounded-lg text-sm bg-[var(--theme-surface-2)] hover:bg-accent-500/20 focus-visible:ring-2 focus-visible:ring-accent-400"
+                variant="secondary"
+                className="px-3 py-1 text-sm min-h-0 rounded-lg"
               >
                 Go To Link
-              </a>
+              </BlobButton>
             )}
-            <button
+            <BlobButton
               type="button"
+              variant="secondary"
               onClick={onClose}
-              className="px-3 py-1 rounded-lg text-sm bg-[var(--theme-surface-2)] hover:bg-accent-500/20 focus-visible:ring-2 focus-visible:ring-accent-400"
+              className="px-3 py-1 text-sm min-h-0 rounded-lg"
             >
               Close
-            </button>
+            </BlobButton>
           </div>
         </div>
-        <iframe
-          src={previewUrl}
-          title={`${title} live preview`}
-          className="w-full h-[calc(100%-52px)] bg-white"
-          sandbox="allow-scripts allow-same-origin allow-popups"
-        />
+        {isComingSoon ? (
+          <div className="w-full h-[calc(100%-52px)] flex flex-col items-center justify-center gap-6 p-8 bg-[var(--theme-bg)]">
+            {image && (
+              <img
+                src={image}
+                alt={title}
+                className="max-w-full max-h-[55%] object-contain rounded-xl border border-[var(--theme-border)]"
+              />
+            )}
+            <div className="text-center space-y-2 max-w-md">
+              <p className="text-lg font-semibold text-[var(--theme-text)]">{title}</p>
+              <p className="text-sm text-[var(--theme-text-muted)]">
+                New projects are in active research and design. Check back soon for live demos.
+              </p>
+            </div>
+          </div>
+        ) : (
+          <iframe
+            src={previewUrl}
+            title={`${title} live preview`}
+            className="w-full h-[calc(100%-52px)] bg-white"
+            sandbox="allow-scripts allow-same-origin allow-popups"
+          />
+        )}
       </div>
     </div>
   );
@@ -70,17 +99,22 @@ type PreviewState = {
   title: string;
   externalUrl: string;
   showGoToLink: boolean;
+  isComingSoon?: boolean;
+  image?: string;
 };
 
 export const CircularProjects = () => {
   const [preview, setPreview] = useState<PreviewState | null>(null);
 
   const openPreview = (project: (typeof projectsData)[number]) => {
+    const isComingSoon = project.id === COMING_SOON_PROJECT_ID;
     setPreview({
       previewUrl: getPreviewUrl(project.link),
       title: project.title,
       externalUrl: project.link,
-      showGoToLink: project.id !== COMING_SOON_PROJECT_ID,
+      showGoToLink: !isComingSoon,
+      isComingSoon,
+      image: project.image,
     });
   };
 
@@ -139,13 +173,14 @@ export const CircularProjects = () => {
                   ))}
                 </div>
                 <div className="pt-2">
-                  <button
+                  <BlobButton
                     type="button"
+                    variant="primary"
                     onClick={() => openPreview(project)}
-                    className="btn-primary inline-flex items-center gap-2 text-sm"
+                    className="inline-flex items-center gap-2 text-sm min-h-0"
                   >
                     <FaPlay size={12} /> Live Demo
-                  </button>
+                  </BlobButton>
                 </div>
               </div>
             </article>
@@ -160,6 +195,8 @@ export const CircularProjects = () => {
             title={preview.title}
             externalUrl={preview.externalUrl}
             showGoToLink={preview.showGoToLink}
+            isComingSoon={preview.isComingSoon}
+            image={preview.image}
             onClose={() => setPreview(null)}
           />
         )}

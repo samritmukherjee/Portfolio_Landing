@@ -138,7 +138,7 @@ export const Hackathons = () => {
                       </div>
 
                       {/* Content Layer */}
-                      <div className="relative z-10 h-full p-5 sm:p-6 lg:p-8 flex flex-col justify-between gap-3 sm:gap-4 lg:gap-5 bg-transparent">
+                      <div className="relative z-10 h-full p-5 sm:p-6 lg:p-8 flex flex-col justify-between gap-3 sm:gap-4 lg:gap-5 bg-transparent hackathon-card-content transition-opacity duration-500">
                         <div className="space-y-5">
                           <div className="flex justify-between items-start">
                             <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-2xl bg-accent-500/10 backdrop-blur-md flex items-center justify-center border border-[var(--theme-border)] transition-all duration-500 hackathon-card-icon">

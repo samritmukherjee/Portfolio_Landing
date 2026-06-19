@@ -9,6 +9,7 @@ import { MdLocationOn } from "react-icons/md";
 import { scrollToElement } from "@/lib/scrollToElement";
 import { initializeWebMCP } from "@/hooks/useWebMCP";
 import { ContactCards } from "@/components/sections/ContactCards";
+import { BlobButton } from "@/components/ui/BlobButton";
 
 const About = dynamic(() => import("@/components/sections/About").then((m) => m.About), {
   loading: () => <SectionPlaceholder />,
@@ -175,7 +176,7 @@ export default function Home() {
       )}
 
       <header
-        className={`fixed top-0 left-0 right-0 z-[90] transition-all duration-700 ${scrolled ? "py-0.5 sm:py-1" : "py-2 sm:py-2.5"}`}
+        className={`fixed top-0 left-0 right-0 z-[90] app-header ${scrolled ? "is-scrolled" : ""}`}
       >
         <div className="container-custom flex items-center justify-between h-12 sm:h-auto px-4 sm:px-6">
           <div className="flex items-center h-10">
@@ -235,15 +236,14 @@ export default function Home() {
                 </motion.button>
               );
             })}
-            <motion.button
+            <BlobButton
               type="button"
+              variant="primary"
               onClick={() => scrollToElement("contact")}
-              whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.02 }}
-              whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
-              className="px-4 py-1.5 bg-accent-400 text-stone-950 text-[0.7rem] font-bold rounded-full transition-colors"
+              className="px-4 py-1.5 text-[0.7rem] font-bold min-h-0"
             >
               Let&apos;s Talk
-            </motion.button>
+            </BlobButton>
             <div className="flex items-center pl-2 pr-4 ml-1 border-l border-white/5 h-10 relative">
               <Switch checked={theme === "light"} onChange={toggleTheme} />
               {showThemeHint && (
@@ -261,7 +261,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section id="hero" className="min-h-0">
+      <section id="hero" className="hero-frame">
         <HeroGlassmorphism />
       </section>
 
@@ -307,7 +307,7 @@ export default function Home() {
         {...revealProps}
       >
         <div className="container-custom">
-          <div className="space-y-10 sm:space-y-12 text-center md:text-left">
+            <div className="space-y-10 sm:space-y-12 text-center md:text-left w-full">
             <div className="space-y-4 max-w-2xl mx-auto md:mx-0 text-center md:text-left">
               <h2 className="text-[var(--theme-text)] leading-tight">
                 Ready To <span className="text-[var(--theme-text-muted)]">Collaborate?</span>

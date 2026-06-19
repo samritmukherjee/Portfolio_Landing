@@ -10,6 +10,7 @@ import { DecryptedText } from "@/components/animations/DecryptedText";
 import { RotatingText } from "@/components/animations/RotatingText";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { scrollToElement } from "@/lib/scrollToElement";
+import { BlobButton } from "@/components/ui/BlobButton";
 
 type AvailabilityStatus = "Available" | "Busy";
 
@@ -102,20 +103,20 @@ export const HeroGlassmorphism = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen min-h-[100dvh] flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-[var(--theme-bg)] transition-colors duration-500 animate-critical"
+      className="hero-section relative h-full w-full flex flex-col justify-center items-center overflow-hidden bg-[var(--theme-bg)] transition-colors duration-500 animate-critical"
     >
       <div className="hero-grain absolute inset-0 z-[1] pointer-events-none" aria-hidden />
 
-      <div className="w-full max-w-[90rem] mx-auto relative z-10 py-20 md:py-24 px-0">
-        <div className="grid items-center gap-8 md:gap-10 lg:gap-14 lg:grid-cols-[1.1fr_0.9fr] xl:grid-cols-[1.15fr_0.85fr]">
-          <div className="space-y-6 sm:space-y-8 flex flex-col items-center text-center lg:items-start lg:text-left w-full">
+      <div className="container-custom w-full relative z-10 hero-inner py-6 sm:py-8 md:py-10">
+        <div className="grid items-center gap-5 sm:gap-6 md:gap-8 lg:gap-10 lg:grid-cols-[1.08fr_0.92fr] xl:grid-cols-[1.12fr_0.88fr]">
+          <div className="hero-main space-y-4 sm:space-y-5 md:space-y-6 flex flex-col items-center text-center lg:items-start lg:text-left w-full">
             <AvailabilityBadge status={availability} />
 
             <div className="space-y-3 sm:space-y-4">
               <p className="sr-only">Samrit Mukherjee</p>
               <h1
                 className="text-[var(--theme-text)] font-display font-bold tracking-tightest leading-[0.92]"
-                style={{ fontSize: "clamp(2.5rem, 8vw, 7rem)" }}
+                style={{ fontSize: "clamp(2rem, 4.2vh + 2.2vw, 5.75rem)" }}
               >
                 <DecryptedText
                   text="SAMRIT"
@@ -143,20 +144,22 @@ export const HeroGlassmorphism = () => {
             </p>
 
             <div className="flex flex-col items-center gap-3 w-full max-w-[18rem] sm:max-w-none sm:flex-row sm:items-center sm:justify-start lg:justify-start">
-              <button
+              <BlobButton
                 type="button"
+                variant="primary"
                 onClick={trackResumeDownload}
-                className="btn-primary w-full sm:w-auto text-center min-h-[2.75rem] px-5 text-sm sm:text-base"
+                className="w-full sm:w-auto min-h-[2.75rem] px-5 text-sm sm:text-base"
               >
                 Download Resume
-              </button>
-              <button
+              </BlobButton>
+              <BlobButton
                 type="button"
+                variant="secondary"
                 onClick={() => scrollToElement("projects")}
-                className="btn-secondary w-full sm:w-auto text-center min-h-[2.75rem] px-5 text-sm sm:text-base"
+                className="w-full sm:w-auto min-h-[2.75rem] px-5 text-sm sm:text-base"
               >
                 View Work
-              </button>
+              </BlobButton>
             </div>
 
             <div className="flex items-center justify-center lg:justify-start gap-4 md:gap-6 pt-2">
@@ -181,7 +184,7 @@ export const HeroGlassmorphism = () => {
             </div>
           </div>
 
-          <aside className="glass-card p-6 sm:p-8 md:p-10 space-y-6 sm:space-y-8 h-fit self-center w-full">
+          <aside className="hero-aside glass-card p-5 sm:p-6 md:p-7 lg:p-8 space-y-4 sm:space-y-5 md:space-y-6 h-fit self-center w-full max-h-full overflow-hidden">
             <div className="space-y-2">
               <p className="text-xs tracking-[0.2em] uppercase font-bold text-[var(--theme-text-muted)]">
                 Current Focus

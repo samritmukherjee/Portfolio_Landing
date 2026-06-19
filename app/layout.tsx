@@ -3,6 +3,7 @@ import { DM_Sans, Syne } from "next/font/google";
 import "@/styles/globals.css";
 import { LenisWrapper } from "@/components/LenisWrapper";
 import PageLoader from "@/components/PageLoader";
+import { BlobGooFilter } from "@/components/ui/BlobButton";
 import StyledComponentsRegistry from "@/lib/registry";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteAnalytics } from "@/components/SiteAnalytics";
@@ -96,6 +97,7 @@ export default function RootLayout({
         <SiteAnalytics />
         <SpeedInsights />
         <StyledComponentsRegistry>
+          <BlobGooFilter />
           <PageLoader />
           <LenisWrapper>
             <div className="aurora-bg" aria-hidden="true" />

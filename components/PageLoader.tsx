@@ -4,31 +4,37 @@ import React, { useEffect, useState, useImperativeHandle, forwardRef } from 'rea
 import styled from 'styled-components';
 import Image from 'next/image';
 
+function shouldSkipLoader() {
+  if (typeof window === 'undefined') return false;
+  if (window.self !== window.top) return true;
+  return new URLSearchParams(window.location.search).has('preview');
+}
+
 const PageLoader = forwardRef((props, ref) => {
   const [isVisible, setIsVisible] = useState(true);
   const [isOpening, setIsOpening] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [skipLoader, setSkipLoader] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
+    if (shouldSkipLoader()) {
+      setSkipLoader(true);
+      setIsVisible(false);
+      return;
+    }
+
     const mediaQuery = window.matchMedia('(max-width: 768px), (pointer: coarse)');
     const updateMobile = () => setIsMobile(mediaQuery.matches);
     updateMobile();
     mediaQuery.addEventListener('change', updateMobile);
 
-    // Initial load
     const timer = setTimeout(() => {
       handleClose();
     }, 1200);
 
-    const handleTrigger = () => triggerLoader();
-    window.addEventListener('trigger-loader', handleTrigger);
-
     return () => {
       clearTimeout(timer);
       mediaQuery.removeEventListener('change', updateMobile);
-      window.removeEventListener('trigger-loader', handleTrigger);
     };
   }, []);
 
@@ -37,10 +43,11 @@ const PageLoader = forwardRef((props, ref) => {
     setTimeout(() => {
       setIsVisible(false);
       setIsOpening(false);
-    }, 600); // Transition duration
+    }, 600);
   };
 
   const triggerLoader = () => {
+    if (shouldSkipLoader()) return;
     setIsVisible(true);
     setIsOpening(false);
     setTimeout(() => {
@@ -52,8 +59,7 @@ const PageLoader = forwardRef((props, ref) => {
     trigger: triggerLoader
   }));
 
-  // On mobile, we don't show the loader at all for initial load
-  if (!isVisible || (isMounted && isMobile)) return null;
+  if (!isVisible || skipLoader) return null;
 
   const containerStyle = isMobile
     ? {
@@ -71,9 +77,8 @@ const PageLoader = forwardRef((props, ref) => {
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#000004] page-loader"
       style={containerStyle}
     >
-      <div className="flex flex-col items-center justify-center gap-16 sm:gap-24">
-         {/* Favicon Icon */}
-         <div className="relative w-20 h-20 opacity-100 scale-100 transition-all duration-500">
+      <div className="flex flex-col items-center justify-center gap-12 sm:gap-16 md:gap-24">
+         <div className="relative w-16 h-16 sm:w-20 sm:h-20 opacity-100 scale-100 transition-all duration-500">
            <Image
               src="https://res.cloudinary.com/duxrcy3jn/image/upload/q_auto/f_auto/v1777463452/SAMRIT_FEBICON_hxnczn.png"
               alt="Samrit Logo"
@@ -84,7 +89,6 @@ const PageLoader = forwardRef((props, ref) => {
             />
          </div>
 
-         {/* Box Animation */}
          <StyledWrapper>
             <div className="boxes">
               <div className="box">
@@ -148,30 +152,26 @@ const StyledWrapper = styled.div`
 
   .boxes .box:nth-child(1) {
     transform: translate(100%, 0);
-    -webkit-animation: box1 var(--duration) linear infinite;
     animation: box1 var(--duration) linear infinite;
   }
 
   .boxes .box:nth-child(2) {
     transform: translate(0, 100%);
-    -webkit-animation: box2 var(--duration) linear infinite;
     animation: box2 var(--duration) linear infinite;
   }
 
   .boxes .box:nth-child(3) {
     transform: translate(100%, 100%);
-    -webkit-animation: box3 var(--duration) linear infinite;
     animation: box3 var(--duration) linear infinite;
   }
 
   .boxes .box:nth-child(4) {
     transform: translate(200%, 0);
-    -webkit-animation: box4 var(--duration) linear infinite;
     animation: box4 var(--duration) linear infinite;
   }
 
   .boxes .box > div {
-    --background: #FF6B9D;
+    --background: #4f7cff;
     --top: auto;
     --right: auto;
     --bottom: auto;
@@ -188,7 +188,7 @@ const StyledWrapper = styled.div`
     bottom: var(--bottom);
     left: var(--left);
     transform: rotateY(var(--rotateY)) rotateX(var(--rotateX)) translateZ(var(--translateZ));
-    box-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
+    box-shadow: none;
     will-change: transform;
     backface-visibility: hidden;
   }
@@ -199,24 +199,21 @@ const StyledWrapper = styled.div`
   }
 
   .boxes .box > div:nth-child(2) {
-    --background: #00D9FF;
+    --background: #6b8fd4;
     --right: 0;
     --rotateY: 90deg;
-    box-shadow: 0 0 20px rgba(0, 217, 255, 0.6);
   }
 
   .boxes .box > div:nth-child(3) {
-    --background: #C13FF8;
+    --background: #8fa4fb;
     --rotateX: -90deg;
-    box-shadow: 0 0 20px rgba(193, 63, 248, 0.6);
   }
 
   .boxes .box > div:nth-child(4) {
-    --background: #FFD700;
+    --background: #b36a3f;
     --top: 0;
     --left: 0;
     --translateZ: calc(var(--size) * 3 * -1);
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
   }
 
   @media (max-width: 768px), (pointer: coarse) {
@@ -224,32 +221,6 @@ const StyledWrapper = styled.div`
       --size: 26px;
       --duration: 1000ms;
       transform: rotateX(55deg) rotateZ(45deg) translateZ(0px);
-    }
-
-    .boxes .box > div {
-      box-shadow: 0 0 10px rgba(255, 107, 157, 0.35);
-    }
-
-    .boxes .box > div:nth-child(2) {
-      box-shadow: 0 0 10px rgba(0, 217, 255, 0.35);
-    }
-
-    .boxes .box > div:nth-child(3) {
-      box-shadow: 0 0 10px rgba(193, 63, 248, 0.35);
-    }
-
-    .boxes .box > div:nth-child(4) {
-      box-shadow: 0 0 10px rgba(255, 215, 0, 0.35);
-    }
-  }
-
-  @-webkit-keyframes box1 {
-    0%, 50% {
-      transform: translate(100%, 0);
-    }
-
-    100% {
-      transform: translate(200%, 0);
     }
   }
 
@@ -260,20 +231,6 @@ const StyledWrapper = styled.div`
 
     100% {
       transform: translate(200%, 0);
-    }
-  }
-
-  @-webkit-keyframes box2 {
-    0% {
-      transform: translate(0, 100%);
-    }
-
-    50% {
-      transform: translate(0, 0);
-    }
-
-    100% {
-      transform: translate(100%, 0);
     }
   }
 
@@ -291,16 +248,6 @@ const StyledWrapper = styled.div`
     }
   }
 
-  @-webkit-keyframes box3 {
-    0%, 50% {
-      transform: translate(100%, 100%);
-    }
-
-    100% {
-      transform: translate(0, 100%);
-    }
-  }
-
   @keyframes box3 {
     0%, 50% {
       transform: translate(100%, 100%);
@@ -308,20 +255,6 @@ const StyledWrapper = styled.div`
 
     100% {
       transform: translate(0, 100%);
-    }
-  }
-
-  @-webkit-keyframes box4 {
-    0% {
-      transform: translate(200%, 0);
-    }
-
-    50% {
-      transform: translate(200%, 100%);
-    }
-
-    100% {
-      transform: translate(100%, 100%);
     }
   }
 
@@ -341,4 +274,3 @@ const StyledWrapper = styled.div`
 `;
 
 export default PageLoader;
-
