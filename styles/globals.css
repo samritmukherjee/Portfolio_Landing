@@ -41,6 +41,23 @@
     --noise-opacity: 0.03;
   }
 
+  html[data-theme="dark"] body {
+    background-image: 
+      /* Vertical margin lines in dark mode */
+      linear-gradient(90deg, transparent 5%, rgba(79, 124, 255, 0.025) 5%, rgba(79, 124, 255, 0.025) calc(5% + 1px), transparent calc(5% + 1px)),
+      linear-gradient(270deg, transparent 5%, rgba(79, 124, 255, 0.025) 5%, rgba(79, 124, 255, 0.025) calc(5% + 1px), transparent calc(5% + 1px)),
+      /* Large subtle geometric polygon overlays for depth */
+      linear-gradient(25deg, rgba(255, 255, 255, 0.005) 0%, rgba(255, 255, 255, 0.005) 30%, transparent 30%),
+      linear-gradient(115deg, rgba(79, 124, 255, 0.008) 0%, rgba(79, 124, 255, 0.008) 45%, transparent 45%),
+      linear-gradient(205deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.15) 40%, transparent 40%),
+      /* Faint base radial highlight behind the content */
+      radial-gradient(circle at 50% 25%, rgba(79, 124, 255, 0.035) 0%, transparent 70%),
+      /* Dark base background */
+      linear-gradient(135deg, #0b0c10 0%, #101217 60%, #08090c 100%);
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
   @media (min-width: 768px) {
     :root {
       --section-gap: 4rem;
@@ -54,27 +71,42 @@
   }
 
   html[data-theme="light"] {
-    --accent-primary: #2563eb;
+    --accent-primary: #2b5a6c;
     --accent-warm: #f59e0b;
-    --accent-teal: #0d9488;
-    --surface-tinted: #eff6ff;
-    --theme-bg: #f4f1ec;
-    --theme-surface: #faf7f2;
-    --theme-surface-2: #f0ebe4;
-    --theme-surface-3: #e6dfd6;
-    --theme-card: #fcfaf6;
-    --theme-card-elevated: #f6f1ea;
+    --accent-teal: #2b5a6c;
+    --surface-tinted: rgba(255, 255, 255, 0.2);
+    --theme-bg: #cbd9db;
+    --theme-surface: rgba(255, 255, 255, 0.45);
+    --theme-surface-2: rgba(255, 255, 255, 0.6);
+    --theme-surface-3: rgba(255, 255, 255, 0.75);
+    --theme-card: rgba(255, 255, 255, 0.45);
+    --theme-card-elevated: rgba(255, 255, 255, 0.6);
     --theme-accent: var(--accent-primary);
-    --theme-accent-soft: #7fa0ff;
+    --theme-accent-soft: #49778a;
     --theme-secondary: #b36a3f;
     --theme-cherry: #d35d7a;
-    --theme-text: #1b1c1f;
-    --theme-text-muted: #5c616a;
-    --theme-border: rgba(27, 28, 31, 0.12);
-    --theme-hover: rgba(27, 28, 31, 0.04);
-    --theme-shadow: rgba(30, 28, 24, 0.18);
-    --theme-shadow-soft: rgba(30, 28, 24, 0.1);
-    --noise-opacity: 0.018;
+    --theme-text: #1c2826;
+    --theme-text-muted: #4e5a59;
+    --theme-border: rgba(43, 90, 108, 0.12);
+    --theme-hover: rgba(43, 90, 108, 0.05);
+    --theme-shadow: rgba(43, 90, 108, 0.08);
+    --theme-shadow-soft: rgba(43, 90, 108, 0.04);
+    --noise-opacity: 0.015;
+  }
+
+  html[data-theme="light"] body {
+    background-image: 
+      /* Vertical margin lines */
+      linear-gradient(90deg, transparent 5%, rgba(43, 90, 108, 0.04) 5%, rgba(43, 90, 108, 0.04) calc(5% + 1px), transparent calc(5% + 1px)),
+      linear-gradient(270deg, transparent 5%, rgba(43, 90, 108, 0.04) 5%, rgba(43, 90, 108, 0.04) calc(5% + 1px), transparent calc(5% + 1px)),
+      /* Large geometric polygon overlays using gradient angles */
+      linear-gradient(25deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.25) 30%, transparent 30%),
+      linear-gradient(115deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.3) 45%, transparent 45%),
+      linear-gradient(205deg, rgba(43, 90, 108, 0.015) 0%, rgba(43, 90, 108, 0.015) 40%, transparent 40%),
+      /* Base gradient */
+      linear-gradient(135deg, #cbd9db 0%, #e6ecea 50%, #f4f6f5 100%);
+    background-attachment: fixed;
+    background-size: cover;
   }
 
   html {
@@ -1075,7 +1107,7 @@ html[data-theme="light"] {
   .text-stone-400, .text-stone-500, .text-stone-600 {
     color: var(--theme-text-muted) !important;
   }
-  .text-accent-300 {
+  .text-accent-300, .text-accent-400, .text-accent-500 {
     color: var(--theme-accent) !important;
   }
   
@@ -1085,6 +1117,11 @@ html[data-theme="light"] {
   }
   .bg-stone-900\/50, .bg-stone-900\/40, .bg-stone-900\/30, .bg-stone-950\/80 {
     background-color: color-mix(in oklch, var(--theme-surface-2) 40%, transparent) !important;
+  }
+
+  /* Section Transparency Mappings */
+  .section-wrapper, .section-surface, .section-frame {
+    background: transparent !important;
   }
   
   /* Border Mappings */
@@ -1097,7 +1134,7 @@ html[data-theme="light"] {
     background: color-mix(in oklch, var(--theme-surface) 80%, transparent) !important;
     backdrop-filter: blur(12px) !important;
     border-color: var(--theme-border) !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 8px 32px rgba(43, 90, 108, 0.05) !important;
   }
 
   /* Specific Component Fixes */
@@ -1111,6 +1148,12 @@ html[data-theme="light"] {
 html[data-theme="dark"] .bg-accent-400,
 html[data-theme="dark"] .bg-accent-500 {
   background-color: var(--theme-accent) !important;
+}
+
+html[data-theme="dark"] .section-wrapper,
+html[data-theme="dark"] .section-surface,
+html[data-theme="dark"] .section-frame {
+  background: transparent !important;
 }
 
 html[data-theme="light"] .bg-accent-400,

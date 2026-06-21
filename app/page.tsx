@@ -121,7 +121,6 @@ export default function Home() {
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
-    window.scrollTo({ top: 0, behavior: "instant" });
     if (showThemeHint) {
       setShowThemeHint(false);
       localStorage.setItem("has-seen-theme-hint", "true");

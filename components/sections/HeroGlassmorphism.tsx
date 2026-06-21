@@ -103,9 +103,14 @@ export const HeroGlassmorphism = () => {
   return (
     <section
       ref={sectionRef}
-      className="hero-section relative h-full w-full flex flex-col justify-center items-center overflow-hidden bg-[var(--theme-bg)] transition-colors duration-500 animate-critical"
+      className="hero-section relative h-full w-full flex flex-col justify-center items-center overflow-hidden bg-transparent transition-colors duration-500 animate-critical"
     >
       <div className="hero-grain absolute inset-0 z-[1] pointer-events-none" aria-hidden />
+
+      {/* Elegant radial glow backdrop for visual depth */}
+      <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden" aria-hidden="true">
+        <div className="w-[100vw] h-[100vh] sm:w-[70vw] sm:h-[70vh] rounded-full filter blur-[100px] sm:blur-[130px] opacity-[0.03] dark:opacity-[0.055] bg-accent-500 transition-opacity duration-500" />
+      </div>
 
       <div className="container-custom w-full relative z-10 hero-inner py-6 sm:py-8 md:py-10">
         <div className="grid items-center gap-5 sm:gap-6 md:gap-8 lg:gap-10 lg:grid-cols-[1.08fr_0.92fr] xl:grid-cols-[1.12fr_0.88fr]">

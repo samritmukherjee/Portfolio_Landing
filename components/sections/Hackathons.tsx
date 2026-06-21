@@ -17,7 +17,7 @@ const hackathons = {
   won: [
     {
       title: "Google Solution Challenge 2026 — Build with AI",
-      year: "2026",
+      year: "ONGOING",
       date: "Ongoing",
       location: "Google",
       result: "TOP 106 GLOBALLY",
@@ -113,7 +113,7 @@ export const Hackathons = () => {
           {hackathons.won.length > 0 && (
             <div className="space-y-7">
               <h3 className="text-lg sm:text-xl font-semibold text-[var(--theme-text-muted)] uppercase tracking-[0.18em] pl-4 border-l-2 border-accent-500">
-                Hackathons Won
+                Competitive & Technical Achievements
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 hackathon-cards">
                 {hackathons.won.map((event, idx) => (
@@ -144,7 +144,14 @@ export const Hackathons = () => {
                             <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-2xl bg-accent-500/10 backdrop-blur-md flex items-center justify-center border border-[var(--theme-border)] transition-all duration-500 hackathon-card-icon">
                               <FaTrophy className="text-lg sm:text-2xl text-accent-400" />
                             </div>
-                            <span className="text-[0.55rem] sm:text-[0.65rem] font-bold text-stone-50 uppercase tracking-widest bg-[var(--theme-surface)] px-2 sm:px-3 py-1 rounded-full border border-[var(--theme-border)] transition-colors duration-500 hackathon-card-year" title={event.date}>{event.year}</span>
+                            {event.year === "ONGOING" ? (
+                              <span className="text-[0.55rem] sm:text-[0.65rem] font-bold uppercase tracking-widest bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2.5 sm:px-3.5 py-1 rounded-full border border-emerald-500/30 transition-colors duration-500 flex items-center gap-1.5 hackathon-card-year" title={event.date}>
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                                ONGOING
+                              </span>
+                            ) : (
+                              <span className="text-[0.55rem] sm:text-[0.65rem] font-bold text-stone-50 uppercase tracking-widest bg-[var(--theme-surface)] px-2 sm:px-3 py-1 rounded-full border border-[var(--theme-border)] transition-colors duration-500 hackathon-card-year" title={event.date}>{event.year}</span>
+                            )}
                           </div>
 
                           <div className="space-y-1">

@@ -17,7 +17,7 @@ const hackathons: HackathonEvent[] = [
   {
     id: "google-solution-challenge",
     title: "Google Solution Challenge 2026 — Build with AI",
-    year: "2026",
+    year: "ONGOING",
     location: "Google",
     result: "TOP 106 GLOBALLY",
     description: "Selected among the Top 106 teams globally in Google Solution Challenge 2026: Build with AI, out of 85,000+ registrations and 6,700+ prototype submissions worldwide. (Event is still running. Top 10 selection process is ongoing.)",
@@ -178,15 +178,24 @@ export const MobileHackathons = () => {
                           </div>
 
                           {/* Year Badge */}
-                          <div
-                            className={`flex-shrink-0 text-xs font-bold px-2.5 py-1 rounded-lg border transition-all ${
-                              isExpanded
-                                ? "bg-[color-mix(in_oklch,var(--theme-card)_90%,transparent)] border-[var(--theme-border)] text-[var(--theme-text-muted)]"
-                                : "bg-[color-mix(in_oklch,var(--theme-card)_85%,transparent)] border-[var(--theme-border)] text-[var(--theme-text-muted)]"
-                            }`}
-                          >
-                            {event.year}
-                          </div>
+                          {event.year === "ONGOING" ? (
+                            <div
+                              className="flex-shrink-0 text-xs font-bold px-2.5 py-1 rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 transition-all"
+                            >
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                              ONGOING
+                            </div>
+                          ) : (
+                            <div
+                              className={`flex-shrink-0 text-xs font-bold px-2.5 py-1 rounded-lg border transition-all ${
+                                isExpanded
+                                  ? "bg-[color-mix(in_oklch,var(--theme-card)_90%,transparent)] border-[var(--theme-border)] text-[var(--theme-text-muted)]"
+                                  : "bg-[color-mix(in_oklch,var(--theme-card)_85%,transparent)] border-[var(--theme-border)] text-[var(--theme-text-muted)]"
+                              }`}
+                            >
+                              {event.year}
+                            </div>
+                          )}
                         </div>
 
                         {/* Title */}
