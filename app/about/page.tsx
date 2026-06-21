@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About Samrit Mukherjee | AI & Full Stack Developer",
+  title: "About Samrit Mukherjee | AI & ML Developer & Hackathon Winner",
   description:
-    "Learn about Samrit Mukherjee — BTech CS/AI student, hackathon winner, and developer building AI-powered products in Kolkata, India.",
+    "Learn about Samrit Mukherjee — BTech Computer Science & Engineering (AI & ML) student at Meghnad Saha Institute of Technology (MSIT), hackathon winner, and AI & ML Developer building AI-powered products.",
   alternates: { canonical: "/about" },
 };
 
@@ -17,25 +17,24 @@ export default function AboutPage() {
         </Link>
         <h1 className="text-[var(--theme-text)]">About Samrit Mukherjee</h1>
         <p className="!max-w-none text-[var(--theme-text-muted)]">
-          Samrit Mukherjee is an AI engineer and full stack developer based in Kolkata, India. He
-          is pursuing BTech in Computer Science with a specialization in Artificial Intelligence
-          and Machine Learning at MSIT.
+          Samrit Mukherjee is an AI & ML Developer and full stack developer based in Kolkata, India. He
+          is pursuing a BTech in Computer Science & Engineering (AI & ML) at Meghnad Saha Institute of Technology (MSIT).
         </p>
         <p className="!max-w-none text-[var(--theme-text-muted)]">
-          With 3× hackathon wins and 8+ shipped projects — including Cosmic Canvas, SUKALYA.ai,
+          With 8× hackathon wins and 8+ shipped projects — including Cosmic Canvas, SUKALYA.ai,
           and Portfolio OS — he builds tools that bridge complex technology and real-world
-          usability.
+          usability. He is also active in open source contributions, including participating in GSSoC (GirlScript Summer of Code).
         </p>
         <blockquote className="border-l-4 border-accent-500 pl-6 italic text-lg text-[var(--theme-text)]">
           Build tools that matter, for people who need them.
         </blockquote>
         <div className="flex flex-wrap gap-4 pt-4">
-          <a href="/#contact" className="btn-primary">
+          <Link href="/#contact" className="btn-primary">
             Get in touch
-          </a>
-          <a href="/#projects" className="btn-secondary">
+          </Link>
+          <Link href="/#projects" className="btn-secondary">
             View projects
-          </a>
+          </Link>
         </div>
       </div>
     </main>

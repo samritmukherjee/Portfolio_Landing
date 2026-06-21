@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
-const LEARNING_NOW = ["WebMCP", "RAG Pipelines", "Edge AI"];
+const LEARNING_NOW = ["WebMCP", "RAG Pipelines", "Edge AI", "Open Source"];
 
 function TiltProfileCard() {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -34,7 +34,7 @@ function TiltProfileCard() {
       <div className="absolute inset-0 bg-[var(--theme-surface)]">
         <img
           src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg"
-          alt="Samrit Mukherjee — AI engineer and full stack developer portrait"
+          alt="Samrit Mukherjee — AI & ML Developer at MSIT portrait"
           width={480}
           height={600}
           className="w-full h-full object-cover object-center"
@@ -83,13 +83,11 @@ export const About = () => {
 
             <div className="space-y-4 text-[var(--theme-text-muted)]">
               <p>
-                I&apos;m Samrit Mukherjee, a BTech Computer Science student specializing in
-                Artificial Intelligence & Machine Learning. I focus on bridging the gap between
-                complex technology and real-world usability.
+                I&apos;m Samrit Mukherjee, a BTech Computer Science & Engineering (AI & ML) student at Meghnad Saha Institute of Technology (MSIT) and an AI & ML Developer. I focus on bridging the gap between complex technology and real-world usability.
               </p>
               <p>
                 As a founder and educator, I teach Computer Science through a project-based
-                approach, emphasizing practical implementation over theory.
+                approach, emphasizing practical implementation over theory. I actively participate in open source contributions, including programs like GSSoC (GirlScript Summer of Code), and have secured multiple Hackathon achievements by building innovative solutions.
               </p>
             </div>
 

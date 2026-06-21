@@ -130,7 +130,7 @@ export const Hackathons = () => {
                       <div className="absolute inset-0 z-0">
                         <img
                           src={event.image}
-                          alt={`${event.title} hackathon win at ${event.location}, ${event.year}`}
+                          alt={`Samrit Mukherjee Hackathon Winner at ${event.title}, ${event.location}, ${event.year}`}
                           width={640}
                           height={400}
                           className="w-full h-full object-cover transition-opacity duration-700 opacity-0 hackathon-card-image"

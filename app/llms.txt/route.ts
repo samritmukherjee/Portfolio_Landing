@@ -2,12 +2,12 @@ const LLMS_CONTENT = `# llms.txt — Samrit Mukherjee
 
 site: https://samrit.dev
 name: Samrit Mukherjee
-role: AI Engineer & Full Stack Developer
+role: AI & ML Developer
 location: Kolkata, India
 contact: samritmukherjee05@gmail.com
 
 ## Summary
-Samrit Mukherjee is a BTech CS/AI student, 3× hackathon winner, and full stack developer building AI-powered products. Portfolio at https://samrit.dev.
+Samrit Mukherjee is a BTech Computer Science & Engineering (AI & ML) student at Meghnad Saha Institute of Technology (MSIT), 8× hackathon winner, and AI & ML Developer building AI-powered products. Portfolio at https://samrit.dev.
 
 ## Core skills
 - AI/ML: LLM integration, AI product prototyping, Python

@@ -60,7 +60,7 @@ export const Resume = () => {
               >
                 <img 
                   src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133968/portfolio-os_rqsksy.png" 
-                  alt="Resume Preview" 
+                  alt="Samrit Mukherjee Resume - AI & ML Developer Preview" 
                   className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700"
                 />
                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-surface)] to-transparent flex items-end justify-center p-8 opacity-100 group-hover:opacity-0 transition-opacity">

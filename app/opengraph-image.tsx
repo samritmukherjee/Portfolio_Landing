@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Samrit Mukherjee — AI Engineer & Full Stack Developer";
+export const alt = "Samrit Mukherjee — AI & ML Developer · Hackathon Winner · MSIT Student";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -49,7 +49,7 @@ export default async function Image() {
             Samrit Mukherjee
           </div>
           <div style={{ fontSize: 32, color: "#b6bcc7", maxWidth: 800 }}>
-            AI Engineer & Full Stack Developer · 3× Hackathon Winner
+            AI & ML Developer · Hackathon Winner · MSIT Student
           </div>
         </div>
         <div style={{ display: "flex", gap: 16, fontSize: 20, color: "#8fa4fb" }}>

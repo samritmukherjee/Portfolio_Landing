@@ -84,7 +84,7 @@ function PreviewModal({
             {image && (
               <img
                 src={image}
-                alt={title}
+                alt={"Project by Samrit Mukherjee: " + title}
                 className="max-w-full max-h-[55%] object-contain rounded-xl border border-[var(--theme-border)]"
               />
             )}
@@ -155,7 +155,7 @@ export const CircularProjects = () => {
               <div className="relative aspect-video lg:aspect-[16/11] overflow-hidden lg:rounded-l-[1.75rem]">
                 <img
                   src={project.image}
-                  alt={`${project.title} — project screenshot`}
+                  alt={`Project by Samrit Mukherjee: ${project.title} screenshot`}
                   width={1200}
                   height={675}
                   className="w-full h-full object-cover"

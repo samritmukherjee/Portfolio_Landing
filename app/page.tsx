@@ -212,10 +212,13 @@ export default function Home() {
               const itemId = item.toLowerCase();
               const isActive = activeSection === itemId;
               return (
-                <motion.button
+                <motion.a
                   key={item}
-                  type="button"
-                  onClick={() => scrollToElement(itemId)}
+                  href={`#${itemId}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToElement(itemId);
+                  }}
                   whileHover={prefersReducedMotion ? undefined : { y: -1 }}
                   className={`nav-link text-[0.7rem] px-3 ${isActive ? "is-active" : ""}`}
                 >
@@ -232,13 +235,16 @@ export default function Home() {
                     />
                   )}
                   <span className="relative z-10">{item}</span>
-                </motion.button>
+                </motion.a>
               );
             })}
             <BlobButton
-              type="button"
+              href="#contact"
               variant="primary"
-              onClick={() => scrollToElement("contact")}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToElement("contact");
+              }}
               className="px-4 py-1.5 text-[0.7rem] font-bold min-h-0"
             >
               Let&apos;s Talk
@@ -260,49 +266,51 @@ export default function Home() {
         </div>
       </header>
 
-      <section id="hero" className="hero-frame">
+      <section id="hero" className="hero-frame" aria-label="Hero Section">
         <HeroGlassmorphism />
       </section>
 
-      <motion.section id="about" className="section-frame animate-secondary" {...revealProps}>
+      <motion.section id="about" className="section-frame animate-secondary" aria-label="About Me" {...revealProps}>
         <About />
       </motion.section>
 
-      <motion.section id="experience" className="section-frame animate-secondary" {...revealProps}>
+      <motion.section id="experience" className="section-frame animate-secondary" aria-label="Experience" {...revealProps}>
         <Experience />
       </motion.section>
 
       <motion.section
         id="hackathons"
         className="section-frame hidden md:block animate-secondary"
+        aria-label="Hackathons"
         {...revealProps}
       >
         <Hackathons />
       </motion.section>
 
-      <section className="md:hidden animate-secondary">
+      <section className="md:hidden animate-secondary" aria-label="Hackathons Mobile">
         <MobileHackathons />
       </section>
 
-      <motion.section id="projects" className="section-frame animate-secondary" {...revealProps}>
+      <motion.section id="projects" className="section-frame animate-secondary" aria-label="Projects" {...revealProps}>
         <CircularProjects />
       </motion.section>
 
-      <motion.section id="os-preview" className="section-frame animate-secondary" {...revealProps}>
+      <motion.section id="os-preview" className="section-frame animate-secondary" aria-label="Portfolio OS Preview" {...revealProps}>
         <ContainerScrollAnimation />
       </motion.section>
 
-      <motion.section id="skills" className="section-frame animate-secondary" {...revealProps}>
+      <motion.section id="skills" className="section-frame animate-secondary" aria-label="Skills" {...revealProps}>
         <Skills />
       </motion.section>
 
-      <motion.section id="resume" className="section-frame animate-secondary" {...revealProps}>
+      <motion.section id="resume" className="section-frame animate-secondary" aria-label="Resume" {...revealProps}>
         <Resume />
       </motion.section>
 
       <motion.section
         id="contact"
         className="section-wrapper section-surface section-frame animate-secondary"
+        aria-label="Contact"
         {...revealProps}
       >
         <div className="container-custom">

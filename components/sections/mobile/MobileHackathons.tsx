@@ -233,7 +233,7 @@ export const MobileHackathons = () => {
                             <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-[var(--theme-card-elevated)] border border-[var(--theme-border)] shadow-md">
                               <img
                                 src={event.image}
-                                alt={event.title}
+                                alt={"Samrit Mukherjee Hackathon Winner at " + event.title}
                                 loading="lazy"
                                 className="w-full h-full object-cover object-center"
                               />

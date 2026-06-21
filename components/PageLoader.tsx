@@ -81,7 +81,7 @@ const PageLoader = forwardRef((props, ref) => {
          <div className="relative w-16 h-16 sm:w-20 sm:h-20 opacity-100 scale-100 transition-all duration-500">
            <Image
               src="https://res.cloudinary.com/duxrcy3jn/image/upload/q_auto/f_auto/v1777463452/SAMRIT_FEBICON_hxnczn.png"
-              alt="Samrit Logo"
+              alt="Samrit Mukherjee - AI & ML Developer Logo"
               width={80}
               height={80}
               priority

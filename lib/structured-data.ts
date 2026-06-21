@@ -8,10 +8,12 @@ export const personJsonLd = {
     "https://github.com/samritmukherjee",
     "https://www.linkedin.com/in/samrit-mukherjee-412788318/",
   ],
-  jobTitle: "AI Engineer & Full Stack Developer",
+  jobTitle: "AI & ML Developer",
+  description: "AI & ML Developer, Hackathon Winner, and BTech CSE student at Meghnad Saha Institute of Technology (MSIT) with multiple Hackathon achievements.",
+  email: "samritmukherjee05@gmail.com",
   affiliation: [
     {
-      "@type": "CollegeOrUniversity",
+      "@type": "EducationalOrganization",
       name: "Meghnad Saha Institute of Technology",
       alternateName: "MSIT",
       url: "https://msit.edu.in",
@@ -23,11 +25,16 @@ export const personJsonLd = {
     }
   ],
   award: [
-    "Winner of Double Slash 4.0 Hackathon",
-    "3x Hackathon Winner",
+    "Google Solution Challenge 2026 - Top 106 Globally",
+    "Synchronicity 2.0 - Best Startup Track Winner",
+    "Double Slash 4.0 - Winner",
+    "ShowcaseX x Techsprint - Winner",
+    "Hello World Hacks - Best Beginner Team",
+    "GirlScript Summer of Code (GSSoC '26) Open Source Contributor",
   ],
   knowsAbout: [
     "Artificial Intelligence",
+    "Machine Learning",
     "React",
     "Next.js",
     "Python",
@@ -48,7 +55,7 @@ export const hackerspaceOrgJsonLd = {
   url: "https://samrit.dev",
   description: "A community of student developers, designers, and creators at Meghnad Saha Institute of Technology.",
   parentOrganization: {
-    "@type": "CollegeOrUniversity",
+    "@type": "EducationalOrganization",
     name: "Meghnad Saha Institute of Technology",
     alternateName: "MSIT",
   },
@@ -64,7 +71,7 @@ export const websiteJsonLd = {
   name: "Samrit Mukherjee",
   url: "https://samrit.dev",
   description:
-    "Portfolio of Samrit Mukherjee — AI engineer and full stack developer based in Kolkata, India.",
+    "Portfolio of Samrit Mukherjee — BTech Computer Science & Engineering (AI & ML) student at Meghnad Saha Institute of Technology (MSIT), 8× hackathon winner, and AI & ML Developer.",
   potentialAction: {
     "@type": "SearchAction",
     target: "https://samrit.dev/#projects",

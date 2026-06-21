@@ -23,15 +23,23 @@ const syne = Syne({
 });
 
 const siteDescription =
-  "Samrit Mukherjee — BTech CS/AI student, 3× hackathon winner, and full stack developer building AI-powered products. Based in Kolkata. Available for projects.";
+  "Samrit Mukherjee — BTech Computer Science & Engineering (AI & ML) student at Meghnad Saha Institute of Technology (MSIT), 8× hackathon winner, and AI & ML Developer building AI-powered products.";
 
 export const metadata: Metadata = {
-  title: "Samrit Mukherjee | AI & ML Developer",
+  title: "Samrit Mukherjee | AI & ML Developer & Hackathon Winner",
   description: siteDescription,
   authors: [{ name: "Samrit Mukherjee", url: "https://samrit.dev" }],
+  creator: "Samrit Mukherjee",
+  publisher: "Samrit Mukherjee",
   keywords: [
     "Samrit Mukherjee",
-    "Samrit Mukherjee developer",
+    "Samrit Mukherjee AI ML",
+    "Samrit Mukherjee MSIT",
+    "Samrit Mukherjee Hackathon",
+    "Samrit Mukherjee Developer",
+    "Samrit Mukherjee Portfolio",
+    "Samrit Mukherjee Hackathon Winner",
+    "Samrit Mukherjee AI & ML Developer",
     "AI Developer Kolkata",
     "Full Stack Developer India",
     "MSIT",
@@ -50,7 +58,7 @@ export const metadata: Metadata = {
     icon: "https://res.cloudinary.com/duxrcy3jn/image/upload/q_auto/f_auto/v1777463452/SAMRIT_FEBICON_hxnczn.png",
   },
   openGraph: {
-    title: "Samrit Mukherjee — AI Engineer & Full Stack Developer",
+    title: "Samrit Mukherjee | AI & ML Developer & Hackathon Winner",
     description: siteDescription,
     url: "https://samrit.dev",
     siteName: "Samrit Mukherjee",
@@ -66,7 +74,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Samrit Mukherjee — AI Engineer",
+    title: "Samrit Mukherjee | AI & ML Developer & Hackathon Winner",
     description: siteDescription,
     images: ["https://samrit.dev/opengraph-image"],
     creator: "@samritmukherjee",
