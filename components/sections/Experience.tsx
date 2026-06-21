@@ -55,12 +55,12 @@ export const Experience = () => {
         </div>
 
         <div className="space-y-6 sm:space-y-8">
-          {experiences.map((exp, idx) => (
+          {experiences.map((exp) => (
             <motion.div
-              key={idx}
+              key={exp.id}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              transition={{ duration: 0.5, delay: (exp.id - 1) * 0.1 }}
               viewport={{ once: true, amount: 0.1 }}
               className="glass-card p-5 sm:p-7 lg:p-9 group border-l-2 border-l-[var(--theme-border)]"
             >

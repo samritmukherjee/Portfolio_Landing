@@ -105,11 +105,11 @@ export function useWebMCP() {
         },
         execute: () => {
           const resumeLink = document.querySelector(
-            'a[href*="drive.google.com"]'
+            'a[href="/Resume.pdf"]'
           ) as HTMLAnchorElement;
           return {
-            resumeUrl: resumeLink?.href || 'Not found',
-            message: 'Resume available at /api/resume endpoint',
+            resumeUrl: resumeLink?.href || '/Resume.pdf',
+            message: 'Resume available at /Resume.pdf',
           };
         },
       },

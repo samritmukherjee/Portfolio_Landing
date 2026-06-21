@@ -9,18 +9,52 @@ export const personJsonLd = {
     "https://www.linkedin.com/in/samrit-mukherjee-412788318/",
   ],
   jobTitle: "AI Engineer & Full Stack Developer",
-  alumniOf: { "@type": "CollegeOrUniversity", name: "MSIT" },
+  affiliation: [
+    {
+      "@type": "CollegeOrUniversity",
+      name: "Meghnad Saha Institute of Technology",
+      alternateName: "MSIT",
+      url: "https://msit.edu.in",
+    },
+    {
+      "@type": "Organization",
+      name: "Hackerspace MSIT",
+      description: "Student-led tech community and creative builders lab.",
+    }
+  ],
+  award: [
+    "Winner of Double Slash 4.0 Hackathon",
+    "3x Hackathon Winner",
+  ],
   knowsAbout: [
     "Artificial Intelligence",
     "React",
     "Next.js",
     "Python",
     "TypeScript",
+    "WebMCP",
   ],
   address: {
     "@type": "PostalAddress",
     addressLocality: "Kolkata",
     addressCountry: "IN",
+  },
+};
+
+export const hackerspaceOrgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Hackerspace MSIT",
+  url: "https://samrit.dev",
+  description: "A community of student developers, designers, and creators at Meghnad Saha Institute of Technology.",
+  parentOrganization: {
+    "@type": "CollegeOrUniversity",
+    name: "Meghnad Saha Institute of Technology",
+    alternateName: "MSIT",
+  },
+  member: {
+    "@type": "Person",
+    name: "Samrit Mukherjee",
   },
 };
 

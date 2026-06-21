@@ -7,7 +7,7 @@ location: Kolkata, India
 contact: samritmukherjee05@gmail.com
 
 ## Summary
-Samrit Mukherjee is a BTech CS/AI student, 3× hackathon winner, and full stack developer building AI-powered products.
+Samrit Mukherjee is a BTech CS/AI student, 8× hackathon winner, and full stack developer building AI-powered products.
 
 ## APIs
 - Projects: https://samrit.dev/api/v1/projects

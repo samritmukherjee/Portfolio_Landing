@@ -22,11 +22,11 @@ export const Resume = () => {
               </p>
               
               <div className="flex flex-wrap gap-4 pt-4">
-                <a href="https://drive.google.com/file/d/1ru-wx6T-ulFMwgASOtWuh_uATd7MagLL/view" target="_blank" rel="noopener noreferrer" className="btn-primary flex items-center gap-3 inline-flex">
+                <a href="/Resume.pdf" download className="btn-primary flex items-center gap-3 inline-flex">
                   <RiFileDownloadLine className="text-xl" />
                   Download PDF
                 </a>
-                <a href="https://drive.google.com/file/d/1ru-wx6T-ulFMwgASOtWuh_uATd7MagLL/view" target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex">
+                <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex">
                   View Online
                 </a>
               </div>

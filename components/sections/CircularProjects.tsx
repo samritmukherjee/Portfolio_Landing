@@ -29,12 +29,26 @@ function PreviewModal({
   image?: string;
   onClose: () => void;
 }) {
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
   return (
     <div
       className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
       role="dialog"
       aria-modal="true"
-      aria-label={`Live preview: ${title}`}
+      aria-labelledby="modal-title"
       onClick={onClose}
     >
       <div
@@ -42,7 +56,7 @@ function PreviewModal({
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--theme-border)]">
-          <span className="font-semibold text-[var(--theme-text)]">{title}</span>
+          <span id="modal-title" className="font-semibold text-[var(--theme-text)]">{title}</span>
           <div className="flex items-center gap-2">
             {showGoToLink && (
               <BlobButton

@@ -24,9 +24,8 @@ export const Resume = () => {
               
               <div className="flex flex-wrap gap-4 pt-4">
                 <BlobButton
-                  href="https://drive.usercontent.google.com/download?id=1ru-wx6T-ulFMwgASOtWuh_uATd7MagLL&export=download&authuser=0"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/Resume.pdf"
+                  download
                   variant="primary"
                   className="inline-flex items-center gap-3"
                   onClick={() => {
@@ -43,7 +42,7 @@ export const Resume = () => {
                   Download PDF
                 </BlobButton>
                 <BlobButton
-                  href="https://drive.google.com/file/d/1ru-wx6T-ulFMwgASOtWuh_uATd7MagLL/view"
+                  href="/Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   variant="secondary"
@@ -74,11 +73,11 @@ export const Resume = () => {
              <div className="mt-12 pt-8 border-t border-[var(--theme-border)] flex flex-wrap gap-8">
              <div className="flex flex-col">
                  <span className="text-xs text-[var(--theme-text-muted)] uppercase tracking-widest font-bold">Latest Edition</span>
-                 <span className="text-[var(--theme-text)]">April 2026</span>
+                 <span className="text-[var(--theme-text)]">22 JUNE 2026</span>
              </div>
              <div className="flex flex-col">
                  <span className="text-xs text-[var(--theme-text-muted)] uppercase tracking-widest font-bold">Format</span>
-                 <span className="text-[var(--theme-text)]">PDF, 53 KB</span>
+                 <span className="text-[var(--theme-text)]">PDF</span>
              </div>
           </div>
         </div>

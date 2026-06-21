@@ -13,7 +13,6 @@ interface DecryptedTextProps {
 export const DecryptedText = ({ 
   text, 
   speed = 40, 
-  maxIterations = 10,
   className = '',
   animateOn = 'load',
   revealDirection = 'start'
@@ -73,7 +72,7 @@ export const DecryptedText = ({
     }, speed);
 
     return () => clearInterval(interval);
-  }, [text, speed, maxIterations, isIntersecting, revealDirection]);
+  }, [text, speed, isIntersecting, revealDirection]);
 
   return (
     <span ref={containerRef} className={className}>

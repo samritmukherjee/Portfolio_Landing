@@ -26,13 +26,17 @@ const siteDescription =
   "Samrit Mukherjee — BTech CS/AI student, 3× hackathon winner, and full stack developer building AI-powered products. Based in Kolkata. Available for projects.";
 
 export const metadata: Metadata = {
-  title: "Samrit Mukherjee | AI Engineer & Full Stack Developer | Kolkata",
+  title: "Samrit Mukherjee | AI & ML Developer",
   description: siteDescription,
+  authors: [{ name: "Samrit Mukherjee", url: "https://samrit.dev" }],
   keywords: [
     "Samrit Mukherjee",
     "Samrit Mukherjee developer",
     "AI Developer Kolkata",
     "Full Stack Developer India",
+    "MSIT",
+    "Hackathon Winner",
+    "Open Source Developer",
     "Cosmic Canvas",
     "Portfolio OS",
     "Next.js Portfolio",

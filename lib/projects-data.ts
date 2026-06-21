@@ -1,4 +1,3 @@
-export type Proficiency = "Learning" | "Proficient" | "Expert";
 
 export interface ProjectData {
   id: string;
@@ -78,18 +77,6 @@ export const projectsData: ProjectData[] = [
   },
 ];
 
-/** Maps skill names to project ids for "Used in" linking */
-export const skillProjectMap: Record<string, string[]> = {
-  "Next.js": ["cosmic-canvas", "sukalya-ai", "portfolio-os"],
-  React: ["cosmic-canvas", "sukalya-ai", "portfolio-os"],
-  TypeScript: ["sukalya-ai", "portfolio-os"],
-  Python: ["sukalya-ai"],
-  "Framer Motion": ["portfolio-os"],
-  "Tailwind CSS": ["cosmic-canvas", "sukalya-ai", "portfolio-os"],
-  "OpenAI API": ["cosmic-canvas"],
-  "Claude API": ["sukalya-ai"],
-  "AI Systems": ["cosmic-canvas", "sukalya-ai"],
-};
 
 export const API_CACHE_HEADERS = {
   "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",

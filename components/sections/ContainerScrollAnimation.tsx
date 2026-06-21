@@ -28,7 +28,7 @@ export const ContainerScrollAnimation = ({
           <div className="absolute inset-0 translate-y-5">
             <img
               src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133968/portfolio-os_rqsksy.png"
-              alt="Portfolio OS Preview"
+              alt="Interactive Portfolio OS desktop preview showcasing folders, terminals, and active web applications"
               className="w-full h-full object-cover object-top"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-bg)]/70 via-transparent to-[var(--theme-bg)]/20" />

@@ -42,6 +42,7 @@ Allow: /
 Disallow: /admin
 Disallow: /dashboard
 Disallow: /private
+Disallow: /_next/
 
 # Sitemaps
 Sitemap: https://samrit.dev/sitemap.xml
