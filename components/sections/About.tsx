@@ -18,8 +18,8 @@ function TiltProfileCard() {
     const y = (e.clientY - rect.top) / rect.height - 0.5;
 
     gsap.to(cardRef.current, {
-      rotateY: x * 14,
-      rotateX: -y * 14,
+      rotateY: x * 8,
+      rotateX: -y * 8,
       scale: 1.02,
       transformPerspective: 900,
       duration: 0.35,
@@ -146,7 +146,7 @@ export const About = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true, amount: 0.1 }}
-            className="relative flex justify-center lg:justify-end"
+            className="relative hidden lg:flex justify-center lg:justify-end"
           >
             <TiltProfileCard />
             <div

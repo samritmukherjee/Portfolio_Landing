@@ -3,6 +3,7 @@
 import React, { useState, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaPlay } from "react-icons/fa";
+import { ArrowRight } from "lucide-react";
 import { projectsData } from "@/lib/projects-data";
 import { BlobButton } from "@/components/ui/BlobButton";
 import { ScrollRevealText } from "@/components/animations/ScrollRevealText";
@@ -144,7 +145,8 @@ function TiltProjectCard({
     const image = imageRef.current;
     if (!card) return;
 
-    const isMobile = window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
+    // Desktop is defined as screen width >= 1024px
+    const isMobile = window.innerWidth < 1024;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (isMobile || prefersReducedMotion) return;
 
@@ -163,10 +165,10 @@ function TiltProjectCard({
 
     if (image) {
       gsap.to(image, {
-        scale: 1.04,
+        scale: 1.05,
         x: -x * 12,
         y: -y * 12,
-        duration: 0.45,
+        duration: 0.4,
         ease: "power2.out",
         overwrite: "auto"
       });
@@ -192,7 +194,7 @@ function TiltProjectCard({
         scale: 1.0,
         x: 0,
         y: 0,
-        duration: 0.5,
+        duration: 0.4,
         ease: "power2.out",
         overwrite: "auto"
       });
@@ -235,25 +237,30 @@ function TiltProjectCard({
         </div>
         <p className="text-[var(--theme-text-muted)] !max-w-none">{project.description}</p>
         <div className="flex flex-wrap gap-2">
-          {project.technologies.map((tech) => (
+          {project.technologies.map((tech, pillIdx) => (
             <span
               key={tech}
-              className="px-2.5 py-1 text-xs rounded-lg border border-[var(--theme-border)] text-[var(--theme-text-muted)] hover:border-accent-500/30 transition-colors duration-300"
+              style={{
+                transitionDelay: `${pillIdx * 60}ms`,
+              }}
+              className="tech-pill px-2.5 py-1 text-xs rounded-lg border border-[var(--theme-border)] text-[var(--theme-text-muted)] hover:border-accent-500/30 transition-all duration-300"
             >
               {tech}
             </span>
           ))}
         </div>
-        <div className="pt-2">
-          <BlobButton
-            type="button"
-            variant="primary"
-            onClick={() => openPreview(project)}
-            className="inline-flex items-center gap-2 text-sm min-h-0"
-          >
-            <FaPlay size={12} /> Live Demo
-          </BlobButton>
-        </div>
+        {project.id !== COMING_SOON_PROJECT_ID && (
+          <div className="pt-2">
+            <BlobButton
+              type="button"
+              variant="primary"
+              onClick={() => openPreview(project)}
+              className="inline-flex items-center gap-2 text-sm min-h-0"
+            >
+              <ArrowRight size={14} className="arrow-icon transition-transform duration-300" /> Live Demo
+            </BlobButton>
+          </div>
+        )}
       </div>
     </article>
   );

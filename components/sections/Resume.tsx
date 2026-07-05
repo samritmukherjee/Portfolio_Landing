@@ -9,7 +9,7 @@ export const Resume = () => {
   return (
     <section id="resume" className="section-wrapper">
       <div className="container-custom">
-        <div className="glass-card p-10 sm:p-12 md:p-14 relative overflow-hidden">
+        <div className="glass-card p-10 sm:p-12 md:p-14 relative overflow-hidden group/resume">
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-accent-500/15 blur-[110px] pointer-events-none" />
           
@@ -23,41 +23,44 @@ export const Resume = () => {
                 Download my comprehensive resume to learn more about my technical expertise, academic background, and project experience.
               </p>
               
-              <div className="flex flex-wrap gap-4 pt-4">
-                <BlobButton
-                  href="/Resume.pdf"
-                  download
-                  variant="primary"
-                  className="inline-flex items-center gap-3"
-                  onClick={() => {
-                    if (typeof window !== "undefined" && "gtag" in window) {
-                      (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.(
-                        "event",
-                        "resume_download",
-                        { event_category: "conversion", event_label: "resume_section" }
-                      );
-                    }
-                  }}
-                >
-                  <RiFileDownloadLine className="text-xl" />
-                  Download PDF
-                </BlobButton>
-                <BlobButton
-                  href="/Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="secondary"
-                  className="inline-flex"
-                >
-                  View Online
-                </BlobButton>
+              <div className="flex flex-col lg:flex-row gap-4 pt-4">
+                <motion.div whileTap={{ scale: 0.97 }} className="w-full lg:w-auto">
+                  <BlobButton
+                    href="/Resume.pdf"
+                    download
+                    variant="primary"
+                    className="inline-flex items-center justify-center gap-3 w-full lg:w-auto text-center"
+                    onClick={() => {
+                      if (typeof window !== "undefined" && "gtag" in window) {
+                        (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.(
+                          "event",
+                          "resume_download",
+                          { event_category: "conversion", event_label: "resume_section" }
+                        );
+                      }
+                    }}
+                  >
+                    <RiFileDownloadLine className="text-xl" />
+                    Download PDF
+                  </BlobButton>
+                </motion.div>
+                <motion.div whileTap={{ scale: 0.97 }} className="w-full lg:w-auto">
+                  <BlobButton
+                    href="/Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="secondary"
+                    className="inline-flex items-center justify-center w-full lg:w-auto text-center"
+                  >
+                    View Online
+                  </BlobButton>
+                </motion.div>
               </div>
             </div>
             
             <div className="hidden lg:flex justify-end">
-              <motion.div 
-                whileHover={{ rotate: 2, scale: 1.01 }}
-                className="w-72 h-[420px] bg-[var(--theme-surface)] rounded-2xl border border-[var(--theme-border)] shadow-[0_24px_60px_-35px_var(--theme-shadow)] relative overflow-hidden group hover-lift"
+              <div 
+                className="w-72 h-[420px] bg-[var(--theme-surface)] rounded-2xl border border-[var(--theme-border)] shadow-[0_24px_60px_-35px_var(--theme-shadow)] relative overflow-hidden group transition-all duration-500 ease-out group-hover/resume:translate-y-[-4px] group-hover/resume:scale-[1.02] group-hover/resume:shadow-2xl"
               >
                 <img 
                   src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133968/portfolio-os_rqsksy.png" 
@@ -67,19 +70,19 @@ export const Resume = () => {
                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-surface)] to-transparent flex items-end justify-center p-8 opacity-100 group-hover:opacity-0 transition-opacity">
                    <span className="text-accent-400 font-bold uppercase tracking-[0.3em] text-xs">Preview</span>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
           
-             <div className="mt-12 pt-8 border-t border-[var(--theme-border)] flex flex-wrap gap-8">
-             <div className="flex flex-col">
-                 <span className="text-xs text-[var(--theme-text-muted)] uppercase tracking-widest font-bold">Latest Edition</span>
-                 <span className="text-[var(--theme-text)]">22 JUNE 2026</span>
-             </div>
-             <div className="flex flex-col">
-                 <span className="text-xs text-[var(--theme-text-muted)] uppercase tracking-widest font-bold">Format</span>
-                 <span className="text-[var(--theme-text)]">PDF</span>
-             </div>
+          <div className="mt-12 pt-8 border-t border-[var(--theme-border)] flex flex-wrap gap-8">
+            <div className="flex flex-col">
+              <span className="text-xs text-[var(--theme-text-muted)] uppercase tracking-widest font-bold">Latest Edition</span>
+              <span className="text-[var(--theme-text)]">22 JUNE 2026</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xs text-[var(--theme-text-muted)] uppercase tracking-widest font-bold">Format</span>
+              <span className="text-[var(--theme-text)]">PDF</span>
+            </div>
           </div>
         </div>
       </div>

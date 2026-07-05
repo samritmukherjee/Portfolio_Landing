@@ -81,10 +81,10 @@ export const ContactCards = () => {
               href={card.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-card flex flex-col justify-between h-full min-h-[240px] sm:min-h-[260px] p-6 sm:p-7 group border-0"
+              className="glass-card flex flex-col justify-between h-full min-h-[240px] sm:min-h-[260px] p-6 sm:p-7 group border-0 contact-card"
             >
               <div className="space-y-5">
-                <div className="text-[var(--theme-text-muted)] group-hover:text-[var(--theme-text)] transition-colors">
+                <div className="text-[var(--theme-text-muted)] group-hover:text-[var(--theme-text)] transition-colors contact-icon">
                   {card.icon}
                 </div>
                 <div>

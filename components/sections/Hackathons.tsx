@@ -1,9 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
+import React, { useState, useRef, useEffect } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { FaTrophy } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { ScrollRevealText } from "@/components/animations/ScrollRevealText";
+import gsap from "gsap";
 
 interface HackathonEvent {
   title: string;
@@ -85,7 +87,157 @@ const hackathons = {
   participated: []
 };
 
+function AchievementCard({ event, index, isDesktop }: { event: HackathonEvent; index: number; isDesktop: boolean }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDesktop || prefersReducedMotion) return;
+    const card = cardRef.current;
+    const image = imageRef.current;
+    if (!card) return;
+
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+    gsap.to(card, {
+      rotateY: x * 6,
+      rotateX: -y * 6,
+      transformPerspective: 1000,
+      duration: 0.35,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+
+    if (image) {
+      gsap.to(image, {
+        scale: 1.08,
+        x: -x * 12,
+        y: -y * 12,
+        duration: 0.45,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isDesktop) return;
+    const card = cardRef.current;
+    const image = imageRef.current;
+    if (!card) return;
+
+    gsap.to(card, {
+      rotateY: 0,
+      rotateX: 0,
+      transformPerspective: 1000,
+      duration: 0.5,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+
+    if (image) {
+      gsap.to(image, {
+        scale: 1.0,
+        x: 0,
+        y: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+    }
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ transformStyle: isDesktop ? "preserve-3d" : "flat" }}
+      className={`relative group ${isDesktop ? "h-full" : "w-[85vw] flex-shrink-0 snap-start"}`}
+    >
+      <div className="glass-card h-full min-h-[280px] sm:min-h-[320px] rounded-2xl lg:rounded-[2.5rem] border border-[var(--theme-border)] overflow-hidden hackathon-card-wrapper transition-all duration-500 hover:shadow-2xl">
+        {/* Winning Moment Image Reveal */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img
+            ref={imageRef}
+            src={event.image}
+            alt={`Samrit Mukherjee Hackathon Winner at ${event.title}, ${event.location}, ${event.year}`}
+            width={640}
+            height={400}
+            className="w-full h-full object-cover transition-all duration-700 ease-out opacity-0 scale-100 hackathon-card-image"
+          />
+        </div>
+
+        {/* Content Layer */}
+        <div className="relative z-10 h-full p-5 sm:p-6 lg:p-8 flex flex-col justify-between gap-3 sm:gap-4 lg:gap-5 bg-transparent hackathon-card-content transition-all duration-500">
+          <div className="space-y-5">
+            <div className="flex justify-between items-start">
+              <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-2xl bg-accent-500/10 backdrop-blur-md flex items-center justify-center border border-[var(--theme-border)] transition-all duration-500 hackathon-card-icon group-hover:scale-110 group-hover:rotate-12 group-hover:bg-accent-500/20">
+                <FaTrophy className="text-lg sm:text-2xl text-accent-400 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]" />
+              </div>
+              {event.year === "ONGOING" ? (
+                <span className="text-[0.55rem] sm:text-[0.65rem] font-bold uppercase tracking-widest bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2.5 sm:px-3.5 py-1 rounded-full border border-emerald-500/30 transition-colors duration-500 flex items-center gap-1.5 hackathon-card-year" title={event.date}>
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  ONGOING
+                </span>
+              ) : (
+                <span className="text-[0.55rem] sm:text-[0.65rem] font-bold text-stone-50 uppercase tracking-widest bg-[var(--theme-surface)] px-2 sm:px-3 py-1 rounded-full border border-[var(--theme-border)] transition-colors duration-500 hackathon-card-year" title={event.date}>{event.year}</span>
+              )}
+            </div>
+
+            <div className="space-y-1">
+              <span className="text-[0.55rem] sm:text-[0.65rem] font-black text-accent-300 uppercase tracking-[0.25em] transition-colors duration-500 hackathon-card-result">{event.result}</span>
+              <h4 className="text-lg sm:text-xl lg:text-2xl font-semibold text-stone-50 leading-tight transition-colors duration-500 hackathon-card-title">{event.title}</h4>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 sm:gap-3 pb-1 sm:pb-2 border-b border-[var(--theme-border)]">
+              <MdLocationOn className="text-accent-400 text-base sm:text-lg" />
+              <p className="text-[0.6rem] sm:text-[0.7rem] text-stone-50 font-black uppercase tracking-[0.2em] transition-colors duration-500 hackathon-card-location">{event.location}</p>
+            </div>
+            <p className="text-accent-200/90 text-xs italic border-l-2 border-amber-500/50 pl-3 mb-2 hackathon-card-proof">
+              &ldquo;{event.proof}&rdquo;
+            </p>
+            <p className="text-stone-50 text-xs sm:text-sm md:text-base leading-relaxed transition-colors duration-500 hackathon-card-description">
+              {event.description}
+            </p>
+            <p className="text-[0.6rem] text-stone-400 uppercase tracking-widest mt-2">{event.date}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export const Hackathons = () => {
+  const [isDesktop, setIsDesktop] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleScroll = () => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    if (maxScroll <= 0) return;
+    setScrollProgress(el.scrollLeft / maxScroll);
+  };
+
   return (
     <section id="hackathons" className="section-wrapper section-surface overflow-hidden">
       <div className="container-custom max-w-full px-4 sm:px-6 md:px-12 lg:px-16">
@@ -115,92 +267,39 @@ export const Hackathons = () => {
           </p>
         </motion.div>
 
-        {/* Hackathons Won */}
-        <div className="space-y-12">
-          {hackathons.won.length > 0 && (
-            <div className="space-y-7">
-              <h3 className="text-lg sm:text-xl font-semibold text-[var(--theme-text-muted)] uppercase tracking-[0.18em] pl-4 border-l-2 border-accent-500">
-                Competitive & Technical Achievements
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 hackathon-cards">
-                {hackathons.won.map((event, idx) => (
-                  <motion.div
-                    key={event.title}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: idx * 0.08 }}
-                    viewport={{ once: true, amount: 0.1 }}
-                    className="relative group h-full"
-                  >
-                    <div className="glass-card h-full min-h-[280px] sm:min-h-[320px] rounded-2xl lg:rounded-[2.5rem] border border-[var(--theme-border)] overflow-hidden hackathon-card-wrapper transition-all duration-500 hover:shadow-2xl">
-                      {/* Winning Moment Image Reveal */}
-                      <div className="absolute inset-0 z-0 overflow-hidden">
-                        <img
-                          src={event.image}
-                          alt={`Samrit Mukherjee Hackathon Winner at ${event.title}, ${event.location}, ${event.year}`}
-                          width={640}
-                          height={400}
-                          className="w-full h-full object-cover transition-all duration-700 ease-out opacity-0 scale-100 hackathon-card-image"
-                        />
-                      </div>
-
-                      {/* Content Layer */}
-                      <div className="relative z-10 h-full p-5 sm:p-6 lg:p-8 flex flex-col justify-between gap-3 sm:gap-4 lg:gap-5 bg-transparent hackathon-card-content transition-all duration-500">
-                        <div className="space-y-5">
-                          <div className="flex justify-between items-start">
-                            <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-2xl bg-accent-500/10 backdrop-blur-md flex items-center justify-center border border-[var(--theme-border)] transition-all duration-500 hackathon-card-icon group-hover:scale-110 group-hover:rotate-12 group-hover:bg-accent-500/20">
-                              <FaTrophy className="text-lg sm:text-2xl text-accent-400 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]" />
-                            </div>
-                            {event.year === "ONGOING" ? (
-                              <span className="text-[0.55rem] sm:text-[0.65rem] font-bold uppercase tracking-widest bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2.5 sm:px-3.5 py-1 rounded-full border border-emerald-500/30 transition-colors duration-500 flex items-center gap-1.5 hackathon-card-year" title={event.date}>
-                                <span className="relative flex h-2 w-2">
-                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                                </span>
-                                ONGOING
-                              </span>
-                            ) : (
-                              <span className="text-[0.55rem] sm:text-[0.65rem] font-bold text-stone-50 uppercase tracking-widest bg-[var(--theme-surface)] px-2 sm:px-3 py-1 rounded-full border border-[var(--theme-border)] transition-colors duration-500 hackathon-card-year" title={event.date}>{event.year}</span>
-                            )}
-                          </div>
-
-                          <div className="space-y-1">
-                            <span className="text-[0.5rem] sm:text-[0.6rem] font-black text-accent-300 uppercase tracking-[0.25em] transition-colors duration-500 hackathon-card-result">{event.result}</span>
-                            <h4 className="text-lg sm:text-xl lg:text-2xl font-semibold text-stone-50 leading-tight transition-colors duration-500 hackathon-card-title">{event.title}</h4>
-                          </div>
-                        </div>
-
-                        <div className="space-y-3">
-                          <div className="flex items-center gap-2 sm:gap-3 pb-1 sm:pb-2 border-b border-[var(--theme-border)]">
-                            <MdLocationOn className="text-accent-400 text-base sm:text-lg" />
-                            <p className="text-[0.6rem] sm:text-[0.7rem] text-stone-50 font-black uppercase tracking-[0.2em] transition-colors duration-500 hackathon-card-location">{event.location}</p>
-                          </div>
-                          <p className="text-accent-200/90 text-xs italic border-l-2 border-amber-500/50 pl-3 mb-2 hackathon-card-proof">
-                            &ldquo;{event.proof}&rdquo;
-                          </p>
-                          <p className="text-stone-50 text-xs sm:text-sm md:text-base leading-relaxed transition-colors duration-500 hackathon-card-description">
-                            {event.description}
-                          </p>
-                          <p className="text-[0.6rem] text-stone-400 uppercase tracking-widest mt-2">{event.date}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+        {isDesktop ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 hackathon-cards">
+            {hackathons.won.map((event, idx) => (
+              <AchievementCard key={event.title} event={event} index={idx} isDesktop={true} />
+            ))}
+          </div>
+        ) : (
+          <div className="w-full">
+            <div
+              ref={carouselRef}
+              onScroll={handleScroll}
+              className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-4"
+              style={{
+                scrollbarWidth: "none",
+                msOverflowStyle: "none",
+              }}
+            >
+              {hackathons.won.map((event, idx) => (
+                <AchievementCard key={event.title} event={event} index={idx} isDesktop={false} />
+              ))}
             </div>
-          )}
 
-          {/* Hackathons Participated (Only if exists) */}
-          {hackathons.participated.length > 0 && (
-            <div className="space-y-8 pt-12">
-              <h3 className="text-xl font-bold text-stone-300 uppercase tracking-widest pl-4 border-l-2 border-stone-600">Participated</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {/* ... */}
-              </div>
+            <div className="w-full h-1 bg-[var(--theme-border)] rounded-full mt-4 overflow-hidden relative">
+              <div
+                className="h-full bg-accent-500 rounded-full transition-transform duration-75 origin-left"
+                style={{
+                  width: "100%",
+                  transform: `scaleX(${scrollProgress})`,
+                }}
+              />
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </section>
   );

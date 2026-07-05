@@ -62,8 +62,23 @@ export const projectsData: ProjectData[] = [
     keywords: ["portfolio", "creative dev", "interaction design"],
   },
   {
+    id: "avento-ai",
+    title: "Avento AI",
+    description:
+      "Built a RAG-powered Customer Service SaaS enabling businesses to embed context-aware support widgets on Framer and custom websites in under 60 seconds with no-code setup. Features document ingestion pipelines with 500-character chunks and 768-dimensional Pinecone embeddings for under 100ms retrieval latency, plus live analytics dashboards, knowledge-gap detection, and Framer plugin integration.",
+    outcome: "Document Ingestion Pipeline | Live Analytics Dashboards | Framer Integration",
+    category: "ai",
+    technologies: ["Next.js 15", "MongoDB Atlas", "Pinecone", "OpenRouter", "Clerk"],
+    link: "https://avento-ai.vercel.app/",
+    image:
+      "https://res.cloudinary.com/duxrcy3jn/image/upload/v1783290758/WhatsApp_Image_2026-07-06_at_3.56.16_AM_ltb6sl.jpg",
+    dateCreated: "2026-07-06",
+    author: "Samrit Mukherjee",
+    keywords: ["RAG SaaS", "AI widgets", "Framer integration"],
+  },
+  {
     id: "more-projects-coming-soon",
-    title: "3 More Projects Coming Soon",
+    title: "2 More Projects Coming Soon",
     description:
       "I'm constantly designing and building new tools to solve real-world problems. Keep an eye out for upcoming projects in AI, full stack systems, and developer tooling.",
     outcome: "Active research & design phase",

@@ -26,21 +26,57 @@ function CountUpMetric({
   suffix?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.5 });
   const prefersReducedMotion = useReducedMotion();
-  const spring = useSpring(0, { stiffness: 60, damping: 20 });
-  const [display, setDisplay] = useState(0);
+  const [display, setDisplay] = useState(value); // Server-render actual final value
+  const [hasMounted, setHasMounted] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
-    if (!inView) return;
-    if (prefersReducedMotion) {
-      setDisplay(value);
-      return;
+    setHasMounted(true);
+    if (!prefersReducedMotion) {
+      setDisplay(0); // Client resets to 0 for count-up
     }
-    spring.set(value);
-    const unsub = spring.on("change", (v) => setDisplay(Math.round(v)));
-    return () => unsub();
-  }, [inView, value, spring, prefersReducedMotion]);
+  }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    if (!hasMounted || prefersReducedMotion || hasStarted) return;
+    const el = ref.current;
+    if (!el) return;
+
+    // Trigger threshold: 0.4 on desktop (>1024px) and 0.2 on mobile (<1024px)
+    const isMobile = window.innerWidth < 1024;
+    const threshold = isMobile ? 0.2 : 0.4;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          setHasStarted(true);
+          observer.disconnect();
+
+          let startTime: number | null = null;
+          const duration = 1200; // 1200ms
+
+          const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+          const step = (timestamp: number) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const currentVal = Math.round(easeOutCubic(progress) * value);
+            setDisplay(currentVal);
+            if (progress < 1) {
+              requestAnimationFrame(step);
+            }
+          };
+          requestAnimationFrame(step);
+        }
+      },
+      { threshold }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [hasMounted, value, prefersReducedMotion, hasStarted]);
 
   return (
     <div

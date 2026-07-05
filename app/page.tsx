@@ -23,10 +23,6 @@ const Hackathons = dynamic(
   () => import("@/components/sections/Hackathons").then((m) => m.Hackathons),
   { loading: () => <SectionPlaceholder /> }
 );
-const MobileHackathons = dynamic(
-  () => import("@/components/sections/mobile/MobileHackathons").then((m) => m.MobileHackathons),
-  { loading: () => <SectionPlaceholder /> }
-);
 const CircularProjects = dynamic(
   () => import("@/components/sections/CircularProjects").then((m) => m.CircularProjects),
   { loading: () => <SectionPlaceholder /> }
@@ -281,16 +277,12 @@ export default function Home() {
 
       <motion.section
         id="hackathons"
-        className="section-frame hidden md:block animate-secondary"
+        className="section-frame animate-secondary"
         aria-label="Hackathons"
         {...revealProps}
       >
         <Hackathons />
       </motion.section>
-
-      <section className="md:hidden animate-secondary" aria-label="Hackathons Mobile">
-        <MobileHackathons />
-      </section>
 
       <motion.section id="projects" className="section-frame animate-secondary" aria-label="Projects" {...revealProps}>
         <CircularProjects />
