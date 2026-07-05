@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import React, { useState, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { FaPlay } from "react-icons/fa";
 import { projectsData } from "@/lib/projects-data";
 import { BlobButton } from "@/components/ui/BlobButton";
+import { ScrollRevealText } from "@/components/animations/ScrollRevealText";
+import gsap from "gsap";
 
 const COMING_SOON_PROJECT_ID = "more-projects-coming-soon";
 
@@ -44,14 +46,22 @@ function PreviewModal({
   }, [onClose]);
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
       className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
       onClick={onClose}
     >
-      <div
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 15 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 15 }}
+        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         className="relative w-full max-w-5xl h-[80vh] rounded-2xl overflow-hidden border border-[var(--theme-border)] bg-[var(--theme-surface)]"
         onClick={(event) => event.stopPropagation()}
       >
@@ -103,8 +113,8 @@ function PreviewModal({
             sandbox="allow-scripts allow-same-origin allow-popups"
           />
         )}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -116,6 +126,138 @@ type PreviewState = {
   isComingSoon?: boolean;
   image?: string;
 };
+
+function TiltProjectCard({
+  project,
+  idx,
+  openPreview,
+}: {
+  project: (typeof projectsData)[number];
+  idx: number;
+  openPreview: (project: (typeof projectsData)[number]) => void;
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = cardRef.current;
+    const image = imageRef.current;
+    if (!card) return;
+
+    const isMobile = window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (isMobile || prefersReducedMotion) return;
+
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+    gsap.to(card, {
+      rotateY: x * 6,
+      rotateX: -y * 6,
+      transformPerspective: 1000,
+      duration: 0.35,
+      ease: "power2.out",
+      overwrite: "auto"
+    });
+
+    if (image) {
+      gsap.to(image, {
+        scale: 1.04,
+        x: -x * 12,
+        y: -y * 12,
+        duration: 0.45,
+        ease: "power2.out",
+        overwrite: "auto"
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    const card = cardRef.current;
+    const image = imageRef.current;
+    if (!card) return;
+
+    gsap.to(card, {
+      rotateY: 0,
+      rotateX: 0,
+      transformPerspective: 1000,
+      duration: 0.5,
+      ease: "power2.out",
+      overwrite: "auto"
+    });
+
+    if (image) {
+      gsap.to(image, {
+        scale: 1.0,
+        x: 0,
+        y: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        overwrite: "auto"
+      });
+    }
+  };
+
+  return (
+    <article
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`project-card grid lg:grid-cols-2 gap-8 items-center overflow-hidden rounded-[1.75rem] border border-[var(--theme-border)] bg-[var(--theme-card)] transition-all duration-500 hover:border-accent-500/40 hover:shadow-2xl will-change-transform ${
+        idx % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""
+      }`}
+      style={{ transformStyle: "preserve-3d" }}
+    >
+      <div className="relative aspect-video lg:aspect-[16/11] overflow-hidden lg:rounded-l-[1.75rem]">
+        <img
+          ref={imageRef}
+          src={project.image}
+          alt={`Project by Samrit Mukherjee: ${project.title} screenshot`}
+          width={1200}
+          height={675}
+          className="w-full h-full object-cover will-change-transform transition-transform duration-500 ease-out"
+          loading={idx === 0 ? "eager" : "lazy"}
+        />
+      </div>
+
+      <div className="p-6 sm:p-8 lg:p-10 space-y-5" style={{ transform: "translateZ(25px)" }}>
+        <div>
+          <p className="text-xs uppercase tracking-[0.2em] text-accent-400 font-bold mb-2">
+            {project.category === "ai" ? "AI Product" : "Web Experience"}
+          </p>
+          <h3 className="text-2xl sm:text-3xl font-bold text-[var(--theme-text)]">
+            {project.title}
+          </h3>
+          <p className="mt-2 text-accent-300 font-semibold text-sm sm:text-base">
+            {project.outcome}
+          </p>
+        </div>
+        <p className="text-[var(--theme-text-muted)] !max-w-none">{project.description}</p>
+        <div className="flex flex-wrap gap-2">
+          {project.technologies.map((tech) => (
+            <span
+              key={tech}
+              className="px-2.5 py-1 text-xs rounded-lg border border-[var(--theme-border)] text-[var(--theme-text-muted)] hover:border-accent-500/30 transition-colors duration-300"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+        <div className="pt-2">
+          <BlobButton
+            type="button"
+            variant="primary"
+            onClick={() => openPreview(project)}
+            className="inline-flex items-center gap-2 text-sm min-h-0"
+          >
+            <FaPlay size={12} /> Live Demo
+          </BlobButton>
+        </div>
+      </div>
+    </article>
+  );
+}
 
 export const CircularProjects = () => {
   const [preview, setPreview] = useState<PreviewState | null>(null);
@@ -136,8 +278,9 @@ export const CircularProjects = () => {
     <section id="projects" className="section-wrapper section-surface overflow-hidden">
       <div className="container-custom">
         <div className="mb-12 md:mb-16">
-          <h2 className="text-[var(--theme-text)] mb-4">
-            Featured <span className="gradient-accent">Case Studies</span>
+          <h2 className="text-[var(--theme-text)] mb-4 flex flex-wrap gap-x-2">
+            <ScrollRevealText text="Featured" />
+            <ScrollRevealText text="Case Studies" className="gradient-accent" />
           </h2>
           <p className="text-[var(--theme-text-muted)] max-w-2xl">
             Outcome-focused work in AI, full stack development, and interactive product design.
@@ -146,58 +289,12 @@ export const CircularProjects = () => {
 
         <div className="grid grid-cols-1 gap-10 lg:gap-14">
           {projectsData.map((project, idx) => (
-            <article
+            <TiltProjectCard
               key={project.id}
-              className={`project-card grid lg:grid-cols-2 gap-8 items-center overflow-hidden rounded-[1.75rem] border border-[var(--theme-border)] bg-[var(--theme-card)] ${
-                idx % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""
-              }`}
-            >
-              <div className="relative aspect-video lg:aspect-[16/11] overflow-hidden lg:rounded-l-[1.75rem]">
-                <img
-                  src={project.image}
-                  alt={`Project by Samrit Mukherjee: ${project.title} screenshot`}
-                  width={1200}
-                  height={675}
-                  className="w-full h-full object-cover"
-                  loading={idx === 0 ? "eager" : "lazy"}
-                />
-              </div>
-
-              <div className="p-6 sm:p-8 lg:p-10 space-y-5">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-accent-400 font-bold mb-2">
-                    {project.category === "ai" ? "AI Product" : "Web Experience"}
-                  </p>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-[var(--theme-text)]">
-                    {project.title}
-                  </h3>
-                  <p className="mt-2 text-accent-300 font-semibold text-sm sm:text-base">
-                    {project.outcome}
-                  </p>
-                </div>
-                <p className="text-[var(--theme-text-muted)] !max-w-none">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2.5 py-1 text-xs rounded-lg border border-[var(--theme-border)] text-[var(--theme-text-muted)]"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className="pt-2">
-                  <BlobButton
-                    type="button"
-                    variant="primary"
-                    onClick={() => openPreview(project)}
-                    className="inline-flex items-center gap-2 text-sm min-h-0"
-                  >
-                    <FaPlay size={12} /> Live Demo
-                  </BlobButton>
-                </div>
-              </div>
-            </article>
+              project={project}
+              idx={idx}
+              openPreview={openPreview}
+            />
           ))}
         </div>
       </div>

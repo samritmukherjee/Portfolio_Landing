@@ -61,23 +61,35 @@ const PageLoader = forwardRef((props, ref) => {
 
   if (!isVisible || skipLoader) return null;
 
-  const containerStyle = isMobile
-    ? {
-        opacity: isOpening ? 0 : 1,
-        transform: isOpening ? 'scale(0.98)' : 'scale(1)',
-        transition: 'opacity 520ms cubic-bezier(0.76, 0, 0.24, 1), transform 520ms cubic-bezier(0.76, 0, 0.24, 1)'
-      }
-    : {
-        clipPath: isOpening ? 'circle(0% at 50% 50%)' : 'circle(150% at 50% 50%)',
-        transition: 'clip-path 0.8s cubic-bezier(0.76, 0, 0.24, 1)'
-      };
+  const leftPanelStyle = {
+    transform: isOpening ? 'translateX(-100%)' : 'translateX(0%)',
+    transition: 'transform 800ms cubic-bezier(0.85, 0, 0.15, 1)'
+  };
+
+  const rightPanelStyle = {
+    transform: isOpening ? 'translateX(100%)' : 'translateX(0%)',
+    transition: 'transform 800ms cubic-bezier(0.85, 0, 0.15, 1)'
+  };
+
+  const contentStyle = {
+    opacity: isOpening ? 0 : 1,
+    transform: isOpening ? 'scale(0.92) translateY(-10px)' : 'scale(1) translateY(0px)',
+    transition: 'opacity 350ms ease, transform 450ms cubic-bezier(0.25, 1, 0.5, 1)'
+  };
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#000004] page-loader"
-      style={containerStyle}
+      className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden"
+      style={{ pointerEvents: isOpening ? 'none' : 'auto' }}
     >
-      <div className="flex flex-col items-center justify-center gap-12 sm:gap-16 md:gap-24">
+      {/* Curtain Panels */}
+      <div className="absolute inset-y-0 left-0 w-1/2 bg-[#000004]" style={leftPanelStyle} />
+      <div className="absolute inset-y-0 right-0 w-1/2 bg-[#000004]" style={rightPanelStyle} />
+
+      <div 
+        className="relative z-10 flex flex-col items-center justify-center gap-12 sm:gap-16 md:gap-24"
+        style={contentStyle}
+      >
          <div className="relative w-16 h-16 sm:w-20 sm:h-20 opacity-100 scale-100 transition-all duration-500">
            <Image
               src="https://res.cloudinary.com/duxrcy3jn/image/upload/q_auto/f_auto/v1777463452/SAMRIT_FEBICON_hxnczn.png"
@@ -91,31 +103,31 @@ const PageLoader = forwardRef((props, ref) => {
 
          <StyledWrapper>
             <div className="boxes">
-              <div className="box">
-                <div />
-                <div />
-                <div />
-                <div />
-              </div>
-              <div className="box">
-                <div />
-                <div />
-                <div />
-                <div />
-              </div>
-              <div className="box">
-                <div />
-                <div />
-                <div />
-                <div />
-              </div>
-              <div className="box">
-                <div />
-                <div />
-                <div />
-                <div />
-              </div>
-            </div>
+               <div className="box">
+                 <div />
+                 <div />
+                 <div />
+                 <div />
+               </div>
+               <div className="box">
+                 <div />
+                 <div />
+                 <div />
+                 <div />
+               </div>
+               <div className="box">
+                 <div />
+                 <div />
+                 <div />
+                 <div />
+               </div>
+               <div className="box">
+                 <div />
+                 <div />
+                 <div />
+                 <div />
+               </div>
+             </div>
           </StyledWrapper>
       </div>
     </div>
@@ -151,22 +163,22 @@ const StyledWrapper = styled.div`
   }
 
   .boxes .box:nth-child(1) {
-    transform: translate(100%, 0);
+    transform: translate3d(100%, 0, 0);
     animation: box1 var(--duration) linear infinite;
   }
 
   .boxes .box:nth-child(2) {
-    transform: translate(0, 100%);
+    transform: translate3d(0, 100%, 0);
     animation: box2 var(--duration) linear infinite;
   }
 
   .boxes .box:nth-child(3) {
-    transform: translate(100%, 100%);
+    transform: translate3d(100%, 100%, 0);
     animation: box3 var(--duration) linear infinite;
   }
 
   .boxes .box:nth-child(4) {
-    transform: translate(200%, 0);
+    transform: translate3d(200%, 0, 0);
     animation: box4 var(--duration) linear infinite;
   }
 
@@ -187,7 +199,7 @@ const StyledWrapper = styled.div`
     right: var(--right);
     bottom: var(--bottom);
     left: var(--left);
-    transform: rotateY(var(--rotateY)) rotateX(var(--rotateX)) translateZ(var(--translateZ));
+    transform: rotateY(var(--rotateY)) rotateX(var(--rotateX)) translate3d(0, 0, var(--translateZ));
     box-shadow: none;
     will-change: transform;
     backface-visibility: hidden;
@@ -220,55 +232,55 @@ const StyledWrapper = styled.div`
     .boxes {
       --size: 26px;
       --duration: 1000ms;
-      transform: rotateX(55deg) rotateZ(45deg) translateZ(0px);
+      transform: rotateX(55deg) rotateZ(45deg) translate3d(0, 0, 0);
     }
   }
 
   @keyframes box1 {
     0%, 50% {
-      transform: translate(100%, 0);
+      transform: translate3d(100%, 0, 0);
     }
 
     100% {
-      transform: translate(200%, 0);
+      transform: translate3d(200%, 0, 0);
     }
   }
 
   @keyframes box2 {
     0% {
-      transform: translate(0, 100%);
+      transform: translate3d(0, 100%, 0);
     }
 
     50% {
-      transform: translate(0, 0);
+      transform: translate3d(0, 0, 0);
     }
 
     100% {
-      transform: translate(100%, 0);
+      transform: translate3d(100%, 0, 0);
     }
   }
 
   @keyframes box3 {
     0%, 50% {
-      transform: translate(100%, 100%);
+      transform: translate3d(100%, 100%, 0);
     }
 
     100% {
-      transform: translate(0, 100%);
+      transform: translate3d(0, 100%, 0);
     }
   }
 
   @keyframes box4 {
     0% {
-      transform: translate(200%, 0);
+      transform: translate3d(200%, 0, 0);
     }
 
     50% {
-      transform: translate(200%, 100%);
+      transform: translate3d(200%, 100%, 0);
     }
 
     100% {
-      transform: translate(100%, 100%);
+      transform: translate3d(100%, 100%, 0);
     }
   }
 `;

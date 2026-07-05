@@ -1,6 +1,9 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { FaTrophy } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
+import { ScrollRevealText } from "@/components/animations/ScrollRevealText";
 
 interface HackathonEvent {
   title: string;
@@ -87,19 +90,23 @@ export const Hackathons = () => {
     <section id="hackathons" className="section-wrapper section-surface overflow-hidden">
       <div className="container-custom max-w-full px-4 sm:px-6 md:px-12 lg:px-16">
         <div className="text-center mb-12 md:mb-16 space-y-3 sm:space-y-4">
-          <h2 className="text-[var(--theme-text)]">Hackathons & <span className="gradient-accent">Accolades</span></h2>
+          <h2 className="text-[var(--theme-text)] flex justify-center flex-wrap gap-x-2">
+            <ScrollRevealText text="Hackathons &" />
+            <ScrollRevealText text="Accolades" className="gradient-accent" />
+          </h2>
           <p className="text-[var(--theme-text-muted)] max-w-2xl mx-auto">
             Competitive programming and building intensive technical solutions under pressure.
           </p>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="trophy-shelf glass-card p-8 md:p-10 mb-14 md:mb-16 text-center max-w-2xl mx-auto border border-amber-500/25"
+          className="trophy-shelf glass-card p-8 md:p-10 mb-14 md:mb-16 text-center max-w-2xl mx-auto border border-amber-500/25 transition-all duration-500 hover:border-amber-500/40 hover:shadow-[0_20px_50px_-25px_rgba(245,158,11,0.15)]"
         >
-          <p className="text-5xl md:text-6xl font-black text-amber-400 font-display">8</p>
+          <p className="text-5xl md:text-6xl font-black text-amber-400 font-display animate-pulse">8</p>
           <p className="text-lg md:text-xl font-bold text-[var(--theme-text)] mt-2">
             8x Hackathon Winner
           </p>
@@ -119,34 +126,37 @@ export const Hackathons = () => {
                 {hackathons.won.map((event, idx) => (
                   <motion.div
                     key={event.title}
-                    initial={{ opacity: 0, y: 15 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: idx * 0.08 }}
                     viewport={{ once: true, amount: 0.1 }}
                     className="relative group h-full"
                   >
-                    <div className="glass-card h-full min-h-[280px] sm:min-h-[320px] rounded-2xl lg:rounded-[2.5rem] border border-[var(--theme-border)] overflow-hidden hackathon-card-wrapper">
+                    <div className="glass-card h-full min-h-[280px] sm:min-h-[320px] rounded-2xl lg:rounded-[2.5rem] border border-[var(--theme-border)] overflow-hidden hackathon-card-wrapper transition-all duration-500 hover:shadow-2xl">
                       {/* Winning Moment Image Reveal */}
-                      <div className="absolute inset-0 z-0">
+                      <div className="absolute inset-0 z-0 overflow-hidden">
                         <img
                           src={event.image}
                           alt={`Samrit Mukherjee Hackathon Winner at ${event.title}, ${event.location}, ${event.year}`}
                           width={640}
                           height={400}
-                          className="w-full h-full object-cover transition-opacity duration-700 opacity-0 hackathon-card-image"
+                          className="w-full h-full object-cover transition-all duration-700 ease-out opacity-0 scale-100 hackathon-card-image"
                         />
                       </div>
 
                       {/* Content Layer */}
-                      <div className="relative z-10 h-full p-5 sm:p-6 lg:p-8 flex flex-col justify-between gap-3 sm:gap-4 lg:gap-5 bg-transparent hackathon-card-content transition-opacity duration-500">
+                      <div className="relative z-10 h-full p-5 sm:p-6 lg:p-8 flex flex-col justify-between gap-3 sm:gap-4 lg:gap-5 bg-transparent hackathon-card-content transition-all duration-500">
                         <div className="space-y-5">
                           <div className="flex justify-between items-start">
-                            <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-2xl bg-accent-500/10 backdrop-blur-md flex items-center justify-center border border-[var(--theme-border)] transition-all duration-500 hackathon-card-icon">
-                              <FaTrophy className="text-lg sm:text-2xl text-accent-400" />
+                            <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-2xl bg-accent-500/10 backdrop-blur-md flex items-center justify-center border border-[var(--theme-border)] transition-all duration-500 hackathon-card-icon group-hover:scale-110 group-hover:rotate-12 group-hover:bg-accent-500/20">
+                              <FaTrophy className="text-lg sm:text-2xl text-accent-400 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]" />
                             </div>
                             {event.year === "ONGOING" ? (
                               <span className="text-[0.55rem] sm:text-[0.65rem] font-bold uppercase tracking-widest bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2.5 sm:px-3.5 py-1 rounded-full border border-emerald-500/30 transition-colors duration-500 flex items-center gap-1.5 hackathon-card-year" title={event.date}>
-                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                                <span className="relative flex h-2 w-2">
+                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                </span>
                                 ONGOING
                               </span>
                             ) : (

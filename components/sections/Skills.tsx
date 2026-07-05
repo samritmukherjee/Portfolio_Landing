@@ -2,6 +2,7 @@
 
 import React from "react";
 import { skillCategories } from "@/lib/skills-data";
+import { ScrollRevealText } from "@/components/animations/ScrollRevealText";
 
 export const Skills = () => {
   return (
@@ -9,8 +10,9 @@ export const Skills = () => {
       <div className="container-custom max-w-full relative">
         <div className="text-center mb-14 md:mb-20 space-y-3 sm:space-y-4 max-w-3xl mx-auto">
           <p className="skills-section-tag">Technical stack</p>
-          <h2 className="text-[var(--theme-text)]">
-            Technical <span className="gradient-accent">Arsenal</span>
+          <h2 className="text-[var(--theme-text)] flex justify-center flex-wrap gap-x-2">
+            <ScrollRevealText text="Technical" />
+            <ScrollRevealText text="Arsenal" className="gradient-accent" />
           </h2>
           <p className="text-[var(--theme-text-muted)] max-w-2xl mx-auto text-base sm:text-lg">
             Tools and technologies I work with — competence shows in the projects, not
@@ -24,11 +26,11 @@ export const Skills = () => {
             return (
               <article
                 key={category.id}
-                className={`skill-card glass-card ${category.fullWidth ? "skill-card--full" : ""}`}
+                className={`skill-card glass-card transition-all duration-300 hover:scale-[1.01] ${category.fullWidth ? "skill-card--full" : ""}`}
               >
                 <div className="skill-card-header">
                   <span
-                    className={`skill-card-icon-wrap skill-card-icon-wrap--${category.id}`}
+                    className={`skill-card-icon-wrap skill-card-icon-wrap--${category.id} transition-transform duration-300 hover:rotate-12`}
                     aria-hidden
                   >
                     <Icon size={22} strokeWidth={2} />
@@ -39,7 +41,7 @@ export const Skills = () => {
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className={`skill-pill skill-pill--${category.id}`}
+                      className={`skill-pill skill-pill--${category.id} transition-transform duration-300 hover:scale-105`}
                     >
                       {skill}
                     </span>

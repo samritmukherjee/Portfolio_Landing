@@ -10,6 +10,7 @@ import { scrollToElement } from "@/lib/scrollToElement";
 import { initializeWebMCP } from "@/hooks/useWebMCP";
 import { ContactCards } from "@/components/sections/ContactCards";
 import { BlobButton } from "@/components/ui/BlobButton";
+import { ScrollRevealText } from "@/components/animations/ScrollRevealText";
 
 const About = dynamic(() => import("@/components/sections/About").then((m) => m.About), {
   loading: () => <SectionPlaceholder />,
@@ -316,8 +317,9 @@ export default function Home() {
         <div className="container-custom">
             <div className="space-y-10 sm:space-y-12 text-center md:text-left w-full">
             <div className="space-y-4 max-w-2xl mx-auto md:mx-0 text-center md:text-left">
-              <h2 className="text-[var(--theme-text)] leading-tight">
-                Ready To <span className="text-[var(--theme-text-muted)]">Collaborate?</span>
+              <h2 className="text-[var(--theme-text)] leading-tight flex justify-center md:justify-start flex-wrap gap-x-2">
+                <ScrollRevealText text="Ready To" />
+                <ScrollRevealText text="Collaborate?" className="text-[var(--theme-text-muted)]" />
               </h2>
               <p className="text-stone-400 text-base sm:text-lg">
                 Whether you have a question or just want to say hi, my inbox is always open. I

@@ -2,6 +2,8 @@
 
 import React, { useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollRevealText } from "@/components/animations/ScrollRevealText";
 
 const LEARNING_NOW = ["WebMCP", "RAG Pipelines", "Edge AI", "Open Source"];
 
@@ -14,13 +16,29 @@ function TiltProfileCard() {
     const rect = cardRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
-    cardRef.current.style.transform = `perspective(900px) rotateY(${x * 14}deg) rotateX(${-y * 14}deg) scale3d(1.02,1.02,1.02)`;
+
+    gsap.to(cardRef.current, {
+      rotateY: x * 14,
+      rotateX: -y * 14,
+      scale: 1.02,
+      transformPerspective: 900,
+      duration: 0.35,
+      ease: "power2.out",
+      overwrite: "auto"
+    });
   };
 
   const handleLeave = () => {
     if (!cardRef.current) return;
-    cardRef.current.style.transform =
-      "perspective(900px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)";
+    gsap.to(cardRef.current, {
+      rotateY: 0,
+      rotateX: 0,
+      scale: 1,
+      transformPerspective: 900,
+      duration: 0.55,
+      ease: "power2.out",
+      overwrite: "auto"
+    });
   };
 
   return (
@@ -28,7 +46,7 @@ function TiltProfileCard() {
       ref={cardRef}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      className="relative w-full sm:max-w-sm lg:max-w-md aspect-[4/5] rounded-3xl lg:rounded-[2.75rem] overflow-hidden shadow-lg lg:shadow-2xl transition-transform duration-200 ease-out will-change-transform"
+      className="relative w-full sm:max-w-sm lg:max-w-md aspect-[4/5] rounded-3xl lg:rounded-[2.75rem] overflow-hidden shadow-lg lg:shadow-2xl transition-all duration-300 will-change-transform"
       style={{ transformStyle: "preserve-3d" }}
     >
       <div className="absolute inset-0 bg-[var(--theme-surface)]">
@@ -37,7 +55,7 @@ function TiltProfileCard() {
           alt="Samrit Mukherjee — AI & ML Developer at MSIT portrait"
           width={480}
           height={600}
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-[1.03]"
           loading="eager"
           fetchPriority="high"
         />
@@ -47,7 +65,7 @@ function TiltProfileCard() {
         className="absolute inset-0 border-[10px] border-[var(--theme-border)] pointer-events-none rounded-[2.75rem]"
         aria-hidden
       />
-      <div className="absolute bottom-8 left-8 right-8 p-5 glass-card !rounded-2xl backdrop-blur-md border-white/10">
+      <div className="absolute bottom-8 left-8 right-8 p-5 glass-card !rounded-2xl backdrop-blur-md border-white/10 transition-transform duration-300 hover:translate-y-[-2px]">
         <p className="text-[var(--theme-text)] font-bold text-sm mb-1 uppercase tracking-wider">
           Samrit Mukherjee
         </p>
@@ -76,9 +94,9 @@ export const About = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true, amount: 0.1 }}
           >
-            <h2 className="text-[var(--theme-text)] mb-6 max-w-2xl">
-              Turning complex ideas into{" "}
-              <span className="gradient-accent">Simple Solutions.</span>
+            <h2 className="text-[var(--theme-text)] mb-6 max-w-2xl flex flex-wrap gap-x-2">
+              <ScrollRevealText text="Turning complex ideas into" />
+              <ScrollRevealText text="Simple Solutions." className="gradient-accent" />
             </h2>
 
             <div className="space-y-4 text-[var(--theme-text-muted)]">
@@ -99,7 +117,7 @@ export const About = () => {
                 {LEARNING_NOW.map((tech) => (
                   <span
                     key={tech}
-                    className="learning-pill px-4 py-2 rounded-full text-sm font-semibold text-accent-300 border border-accent-500/30 bg-accent-500/10"
+                    className="learning-pill px-4 py-2 rounded-full text-sm font-semibold text-accent-300 border border-accent-500/30 bg-accent-500/10 transition-colors duration-300 hover:bg-accent-500/20"
                   >
                     {tech}
                   </span>
@@ -108,14 +126,14 @@ export const About = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-8 sm:gap-12 mt-8 sm:mt-12">
-              <div>
-                <h4 className="text-2xl sm:text-3xl font-black text-[var(--theme-text)]">8+</h4>
+              <div className="group">
+                <h4 className="text-2xl sm:text-3xl font-black text-[var(--theme-text)] transition-colors group-hover:text-accent-400">8+</h4>
                 <p className="text-[0.65rem] uppercase tracking-[0.25em] text-[var(--theme-text-muted)] font-semibold mt-1">
                   Projects Built
                 </p>
               </div>
-              <div>
-                <h4 className="text-2xl sm:text-3xl font-black text-[var(--theme-text)]">8</h4>
+              <div className="group">
+                <h4 className="text-2xl sm:text-3xl font-black text-[var(--theme-text)] transition-colors group-hover:text-accent-400">8</h4>
                 <p className="text-[0.65rem] uppercase tracking-[0.25em] text-[var(--theme-text-muted)] font-semibold mt-1">
                   Hackathon Wins
                 </p>

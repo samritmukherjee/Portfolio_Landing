@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { FaTrophy } from "react-icons/fa";
 import { MdLocationOn, MdExpandMore } from "react-icons/md";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface HackathonEvent {
   id: string;
@@ -73,14 +74,6 @@ const hackathons: HackathonEvent[] = [
   }
 ];
 
-/**
- * Mobile Hackathons Section - Premium Touch-optimized Cards
- * - Vertical scrolling achievement cards
- * - Tap to expand descriptions with images
- * - Premium visual treatment with refined colors and spacing
- * - Trophy badge for visual hierarchy
- * - Optimized for small screens
- */
 export const MobileHackathons = () => {
   const [expandedId, setExpandedId] = useState<string | null>(hackathons[0].id);
 
@@ -92,7 +85,6 @@ export const MobileHackathons = () => {
         border: "border-accent-500/40"
       };
     }
-    // Track Winner
     return {
       bg: "bg-[color-mix(in_oklch,var(--theme-card)_88%,transparent)]",
       text: "text-accent-300",
@@ -123,8 +115,9 @@ export const MobileHackathons = () => {
               <div key={event.id} className="relative">
                 {/* Achievement Card Button */}
                 <button
+                  type="button"
                   onClick={() => setExpandedId(isExpanded ? null : event.id)}
-                  className="w-full text-left transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-95"
+                  className="w-full text-left transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]"
                 >
                   <div
                     className={`relative border rounded-xl transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden backdrop-blur-sm mobile-hackathon-card ${
@@ -161,9 +154,7 @@ export const MobileHackathons = () => {
                             >
                               <FaTrophy
                                 size={18}
-                                className={
-                                  isExpanded ? "text-accent-400" : "text-accent-400"
-                                }
+                                className="text-accent-400"
                               />
                             </div>
                           </div>
@@ -182,7 +173,10 @@ export const MobileHackathons = () => {
                             <div
                               className="flex-shrink-0 text-xs font-bold px-2.5 py-1 rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 transition-all"
                             >
-                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                              <span className="relative flex h-1.5 w-1.5">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                              </span>
                               ONGOING
                             </div>
                           ) : (
@@ -220,29 +214,39 @@ export const MobileHackathons = () => {
                         </div>
                       </div>
 
-                      {/* Expanded Content */}
-                      {isExpanded && (
-                        <div className="border-t border-[var(--theme-border)] bg-[color-mix(in_oklch,var(--theme-card-elevated)_88%,transparent)] px-4 py-4 space-y-4 mobile-hackathon-expanded">
-                          {/* Description */}
-                          <p className="text-sm text-[var(--theme-text-muted)] leading-relaxed">
-                            {event.description}
-                          </p>
+                      {/* Expanded Content with Framer Motion */}
+                      <AnimatePresence initial={false}>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                            className="overflow-hidden border-t border-[var(--theme-border)] bg-[color-mix(in_oklch,var(--theme-card-elevated)_88%,transparent)] mobile-hackathon-expanded"
+                          >
+                            <div className="px-4 py-4 space-y-4">
+                              {/* Description */}
+                              <p className="text-sm text-[var(--theme-text-muted)] leading-relaxed">
+                                {event.description}
+                              </p>
 
-                          {/* Image Preview - Optimized for face visibility */}
-                          {event.image && (
-                            <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-[var(--theme-card-elevated)] border border-[var(--theme-border)] shadow-md">
-                              <img
-                                src={event.image}
-                                alt={"Samrit Mukherjee Hackathon Winner at " + event.title}
-                                loading="lazy"
-                                className="w-full h-full object-cover object-center"
-                              />
-                              {/* Image gradient overlay */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-surface)]/20 to-transparent pointer-events-none" />
+                              {/* Image Preview - Optimized for face visibility */}
+                              {event.image && (
+                                <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-[var(--theme-card-elevated)] border border-[var(--theme-border)] shadow-md">
+                                  <img
+                                    src={event.image}
+                                    alt={"Samrit Mukherjee Hackathon Winner at " + event.title}
+                                    loading="lazy"
+                                    className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
+                                  />
+                                  {/* Image gradient overlay */}
+                                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-surface)]/20 to-transparent pointer-events-none" />
+                                </div>
+                              )}
                             </div>
-                          )}
-                        </div>
-                      )}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   </div>
                 </button>

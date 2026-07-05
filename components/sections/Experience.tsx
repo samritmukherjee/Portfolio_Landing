@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { ScrollRevealText } from "@/components/animations/ScrollRevealText";
 
 interface Experience {
   id: number;
@@ -46,7 +47,10 @@ export const Experience = () => {
       <div className="container-custom max-w-full overflow-x-hidden">
         <div className="flex flex-col md:flex-row justify-between items-end mb-14 md:mb-16 gap-4">
           <div className="space-y-4">
-            <h2 className="text-[var(--theme-text)]">Professional <span className="gradient-accent">Journey</span></h2>
+            <h2 className="text-[var(--theme-text)] flex flex-wrap gap-x-2">
+              <ScrollRevealText text="Professional" />
+              <ScrollRevealText text="Journey" className="gradient-accent" />
+            </h2>
             <p className="text-[var(--theme-text-muted)] max-w-xl">
               A timeline of my professional work, volunteer efforts, and leadership roles.
             </p>
@@ -58,36 +62,36 @@ export const Experience = () => {
           {experiences.map((exp) => (
             <motion.div
               key={exp.id}
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: (exp.id - 1) * 0.1 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: (exp.id - 1) * 0.12 }}
               viewport={{ once: true, amount: 0.1 }}
-              className="glass-card p-5 sm:p-7 lg:p-9 group border-l-2 border-l-[var(--theme-border)]"
+              className="glass-card p-5 sm:p-7 lg:p-9 group border-l-2 border-l-[var(--theme-border)] hover:border-l-accent-500 hover:shadow-[0_24px_50px_-30px_var(--theme-shadow-soft)] hover:translate-y-[-4px] hover:scale-[1.01] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
             >
               <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                 <div className="space-y-4 flex-1">
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-widest text-accent-500 mb-2 block">
+                    <span className="text-xs font-bold uppercase tracking-widest text-accent-500 mb-2 block transition-all group-hover:translate-x-1 duration-300">
                       {exp.duration}
                     </span>
-                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-[var(--theme-text)] group-hover:text-accent-400 transition-colors">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-[var(--theme-text)] group-hover:text-accent-400 transition-colors duration-300">
                       {exp.role}
                     </h3>
-                    <p className="text-sm text-[var(--theme-text-muted)] font-medium">{exp.organization}</p>
+                    <p className="text-sm text-[var(--theme-text-muted)] font-medium mt-1">{exp.organization}</p>
                   </div>
                   
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 mt-3 sm:mt-4">
                     {exp.highlights.map((highlight, i) => (
-                      <li key={i} className="flex gap-2 text-[var(--theme-text-muted)] text-xs sm:text-sm items-start">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[color-mix(in_oklch,var(--theme-border)_80%,transparent)] mt-1.5 flex-shrink-0 group-hover:bg-accent-500 transition-colors" />
-                        {highlight}
+                      <li key={i} className="flex gap-2 text-[var(--theme-text-muted)] text-xs sm:text-sm items-start transition-all duration-300 group-hover:translate-x-0.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[color-mix(in_oklch,var(--theme-border)_80%,transparent)] mt-1.5 flex-shrink-0 group-hover:bg-accent-500 group-hover:scale-110 transition-all duration-300" />
+                        <span className="group-hover:text-[var(--theme-text)] transition-colors duration-300">{highlight}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
                 
                 <div className="flex-shrink-0">
-                   <span className="px-4 py-1.5 bg-[color-mix(in_oklch,var(--theme-surface-2)_80%,transparent)] text-[var(--theme-text)] text-xs font-bold rounded-full border border-[var(--theme-border)] uppercase tracking-tighter">
+                   <span className="px-4 py-1.5 bg-[color-mix(in_oklch,var(--theme-surface-2)_80%,transparent)] group-hover:bg-accent-500/10 group-hover:border-accent-500/40 text-[var(--theme-text)] group-hover:text-accent-400 text-xs font-bold rounded-full border border-[var(--theme-border)] uppercase tracking-tighter transition-all duration-300">
                       {exp.type}
                    </span>
                 </div>

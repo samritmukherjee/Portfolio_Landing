@@ -5,12 +5,14 @@ import {
   useReducedMotion,
   useInView,
   useSpring,
+  motion,
 } from "framer-motion";
 import { DecryptedText } from "@/components/animations/DecryptedText";
 import { RotatingText } from "@/components/animations/RotatingText";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { scrollToElement } from "@/lib/scrollToElement";
 import { BlobButton } from "@/components/ui/BlobButton";
+import { MagneticWrapper } from "@/components/ui/MagneticWrapper";
 
 type AvailabilityStatus = "Available" | "Busy";
 
@@ -43,7 +45,7 @@ function CountUpMetric({
   return (
     <div
       ref={ref}
-      className="rounded-lg md:rounded-2xl border border-[var(--theme-border)] p-3 md:p-4 bg-[color-mix(in_oklch,var(--theme-surface-2)_80%,transparent)] flex-1"
+      className="rounded-lg md:rounded-2xl border border-[var(--theme-border)] p-3 md:p-4 bg-[color-mix(in_oklch,var(--theme-surface-2)_80%,transparent)] flex-1 transition-all duration-300 hover:border-accent-500/40 hover:shadow-lg"
     >
       <p className="text-[var(--theme-text-muted)] text-[0.55rem] md:text-[0.65rem] uppercase tracking-widest font-bold mb-1">
         {label}
@@ -59,11 +61,11 @@ function CountUpMetric({
 function AvailabilityBadge({ status }: { status: AvailabilityStatus }) {
   const isAvailable = status === "Available";
   return (
-    <div className="brand-chip mx-auto lg:mx-0" role="status" aria-live="polite">
+    <div className="brand-chip mx-auto lg:mx-0 transition-transform duration-300 hover:scale-105" role="status" aria-live="polite">
       <span
         className={`inline-flex h-2.5 w-2.5 rounded-full ${
           isAvailable ? "bg-emerald-500" : "bg-amber-500"
-        }`}
+        } ${isAvailable ? "animate-pulse" : ""}`}
       />
       {isAvailable ? "Available For New Projects" : "Limited Availability"}
     </div>
@@ -100,6 +102,29 @@ export const HeroGlassmorphism = () => {
     scrollToElement("resume");
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
+    },
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -114,10 +139,17 @@ export const HeroGlassmorphism = () => {
 
       <div className="container-custom w-full relative z-10 hero-inner py-6 sm:py-8 md:py-10">
         <div className="grid items-center gap-5 sm:gap-6 md:gap-8 lg:gap-10 lg:grid-cols-[1.08fr_0.92fr] xl:grid-cols-[1.12fr_0.88fr]">
-          <div className="hero-main space-y-4 sm:space-y-5 md:space-y-6 flex flex-col items-center text-center lg:items-start lg:text-left w-full">
-            <AvailabilityBadge status={availability} />
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="hero-main space-y-4 sm:space-y-5 md:space-y-6 flex flex-col items-center text-center lg:items-start lg:text-left w-full"
+          >
+            <motion.div variants={itemVariants}>
+              <AvailabilityBadge status={availability} />
+            </motion.div>
 
-            <div className="space-y-3 sm:space-y-4">
+            <motion.div variants={itemVariants} className="space-y-3 sm:space-y-4">
               <p className="sr-only">Samrit Mukherjee</p>
               <h1
                 className="text-[var(--theme-text)] font-display font-bold tracking-tightest leading-[0.92]"
@@ -141,14 +173,14 @@ export const HeroGlassmorphism = () => {
                 />
                 <span className="text-accent-400">]</span>
               </p>
-            </div>
+            </motion.div>
 
-            <p className="text-base sm:text-lg text-[var(--theme-text-muted)] font-medium leading-relaxed max-w-xl mx-auto lg:mx-0">
+            <motion.p variants={itemVariants} className="text-base sm:text-lg text-[var(--theme-text-muted)] font-medium leading-relaxed max-w-xl mx-auto lg:mx-0">
               Samrit Mukherjee builds intelligent, scalable software that transforms ambitious
               ideas into practical, user-focused products.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col items-center gap-3 w-full max-w-[18rem] sm:max-w-none sm:flex-row sm:items-center sm:justify-start lg:justify-start">
+            <motion.div variants={itemVariants} className="flex flex-col items-center gap-4 w-full max-w-[18rem] sm:max-w-none sm:flex-row sm:items-center sm:justify-start lg:justify-start">
               <BlobButton
                 type="button"
                 variant="primary"
@@ -165,31 +197,40 @@ export const HeroGlassmorphism = () => {
               >
                 View Work
               </BlobButton>
-            </div>
+            </motion.div>
 
-            <div className="flex items-center justify-center lg:justify-start gap-4 md:gap-6 pt-2">
-              <a
-                href="https://github.com/samritmukherjee"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[var(--theme-text-muted)] hover:text-accent-300 focus-visible:ring-2 focus-visible:ring-accent-400 rounded"
-                aria-label="GitHub profile"
-              >
-                <FaGithub size={22} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/samrit-mukherjee-412788318/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[var(--theme-text-muted)] hover:text-accent-300 focus-visible:ring-2 focus-visible:ring-accent-400 rounded"
-                aria-label="LinkedIn profile"
-              >
-                <FaLinkedin size={22} />
-              </a>
-            </div>
-          </div>
+            <motion.div variants={itemVariants} className="flex items-center justify-center lg:justify-start gap-4 md:gap-6 pt-2">
+              <MagneticWrapper range={15}>
+                <a
+                  href="https://github.com/samritmukherjee"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--theme-text-muted)] hover:text-accent-300 focus-visible:ring-2 focus-visible:ring-accent-400 rounded p-1 inline-block"
+                  aria-label="GitHub profile"
+                >
+                  <FaGithub size={22} />
+                </a>
+              </MagneticWrapper>
+              <MagneticWrapper range={15}>
+                <a
+                  href="https://www.linkedin.com/in/samrit-mukherjee-412788318/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--theme-text-muted)] hover:text-accent-300 focus-visible:ring-2 focus-visible:ring-accent-400 rounded p-1 inline-block"
+                  aria-label="LinkedIn profile"
+                >
+                  <FaLinkedin size={22} />
+                </a>
+              </MagneticWrapper>
+            </motion.div>
+          </motion.div>
 
-          <aside className="hero-aside glass-card p-5 sm:p-6 md:p-7 lg:p-8 space-y-4 sm:space-y-5 md:space-y-6 h-fit self-center w-full max-h-full overflow-hidden">
+          <motion.aside
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="hero-aside glass-card p-5 sm:p-6 md:p-7 lg:p-8 space-y-4 sm:space-y-5 md:space-y-6 h-fit self-center w-full max-h-full overflow-hidden"
+          >
             <div className="space-y-2">
               <p className="text-xs tracking-[0.2em] uppercase font-bold text-[var(--theme-text-muted)]">
                 Current Focus
@@ -205,7 +246,7 @@ export const HeroGlassmorphism = () => {
                 <CountUpMetric label="Hackathon Wins" value={8} suffix="×" />
               </div>
             </div>
-          </aside>
+          </motion.aside>
         </div>
       </div>
     </section>

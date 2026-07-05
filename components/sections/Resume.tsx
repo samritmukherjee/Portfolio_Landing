@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { RiFileDownloadLine } from "react-icons/ri";
 import { BlobButton } from "@/components/ui/BlobButton";
+import { ScrollRevealText } from "@/components/animations/ScrollRevealText";
 
 export const Resume = () => {
   return (
@@ -14,9 +15,9 @@ export const Resume = () => {
           
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
             <div className="space-y-5">
-              <h2 className="text-[var(--theme-text)] leading-tight">
-                Interested in working <br />
-                <span className="gradient-accent">With Me?</span>
+              <h2 className="text-[var(--theme-text)] leading-tight flex flex-wrap gap-x-2">
+                <ScrollRevealText text="Interested in working" />
+                <ScrollRevealText text="With Me?" className="gradient-accent" />
               </h2>
               <p className="text-[var(--theme-text-muted)] text-base sm:text-lg">
                 Download my comprehensive resume to learn more about my technical expertise, academic background, and project experience.
