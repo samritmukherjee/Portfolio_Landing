@@ -1,161 +1,109 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import gsap from "gsap";
-import { ScrollRevealText } from "@/components/animations/ScrollRevealText";
+import React from "react";
+import { motion } from "framer-motion";
+import { Trophy, Code2, Layers, Sparkles } from "lucide-react";
+import { TextHighlighter } from "@/components/fancy/text/text-highlighter";
 
-const LEARNING_NOW = ["WebMCP", "RAG Pipelines", "Edge AI", "Open Source"];
-
-function TiltProfileCard() {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const prefersReducedMotion = useReducedMotion();
-
-  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (prefersReducedMotion || !cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-
-    gsap.to(cardRef.current, {
-      rotateY: x * 8,
-      rotateX: -y * 8,
-      scale: 1.02,
-      transformPerspective: 900,
-      duration: 0.35,
-      ease: "power2.out",
-      overwrite: "auto"
-    });
-  };
-
-  const handleLeave = () => {
-    if (!cardRef.current) return;
-    gsap.to(cardRef.current, {
-      rotateY: 0,
-      rotateX: 0,
-      scale: 1,
-      transformPerspective: 900,
-      duration: 0.55,
-      ease: "power2.out",
-      overwrite: "auto"
-    });
-  };
+export function About() {
+  const stats = [
+    {
+      icon: <Trophy className="w-6 h-6 text-[#FF0000]" />,
+      value: "11×",
+      label: "Hackathon Wins & Top Placements",
+    },
+    {
+      icon: <Code2 className="w-6 h-6 text-[#FF0000]" />,
+      value: "8×",
+      label: "Production & Research Projects Built",
+    },
+    {
+      icon: <Layers className="w-6 h-6 text-[#FF0000]" />,
+      value: "5",
+      label: "Featured Platforms & Systems",
+    },
+    {
+      icon: <Sparkles className="w-6 h-6 text-[#FF0000]" />,
+      value: "3",
+      label: "New AI Solutions Coming Soon",
+    },
+  ];
 
   return (
-    <div
-      ref={cardRef}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
-      className="relative w-full sm:max-w-sm lg:max-w-md aspect-[4/5] rounded-3xl lg:rounded-[2.75rem] overflow-hidden shadow-lg lg:shadow-2xl transition-all duration-300 will-change-transform"
-      style={{ transformStyle: "preserve-3d" }}
-    >
-      <div className="absolute inset-0 bg-[var(--theme-surface)]">
-        <img
-          src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg"
-          alt="Samrit Mukherjee — AI & ML Developer at MSIT portrait"
-          width={480}
-          height={600}
-          className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-[1.03]"
-          loading="eager"
-          fetchPriority="high"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-bg)] via-transparent to-transparent opacity-60" />
-      </div>
-      <div
-        className="absolute inset-0 border-[10px] border-[var(--theme-border)] pointer-events-none rounded-[2.75rem]"
-        aria-hidden
-      />
-      <div className="absolute bottom-8 left-8 right-8 p-5 glass-card !rounded-2xl backdrop-blur-md border-white/10 transition-transform duration-300 hover:translate-y-[-2px]">
-        <p className="text-[var(--theme-text)] font-bold text-sm mb-1 uppercase tracking-wider">
-          Samrit Mukherjee
-        </p>
-        <p className="text-accent-400 text-[0.65rem] font-black uppercase tracking-widest">
-          AI · Full Stack · Kolkata
-        </p>
-      </div>
-    </div>
+    <section id="about" className="max-w-7xl 2xl:max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 py-20 sm:py-24">
+      <motion.div
+        className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        {/* Left Column: Heading and Narrative with Text Highlighter */}
+        <div className="flex-1 space-y-6">
+          <div>
+            <div className="section-eyebrow">About Samrit</div>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 text-[var(--theme-text)]">
+              Turning Complex Ideas into{" "}
+              <span className="text-gradient-primary">Practical Solutions</span>
+            </h2>
+
+            <div className="space-y-4 text-base md:text-lg text-[var(--theme-text-secondary)] leading-relaxed">
+              <p>
+                I&apos;m Samrit Mukherjee, a{" "}
+                <TextHighlighter highlightColor="rgba(255, 0, 0, 0.18)">
+                  B.Tech Computer Science and Engineering student (AI &amp; ML) at Meghnad Saha Institute of Technology (MSIT)
+                </TextHighlighter>
+                , Kolkata under MAKAUT, graduating in 2027.
+              </p>
+              <p>
+                I build AI-powered products, full-stack applications, automation systems, and management platforms. My interests include{" "}
+                <TextHighlighter highlightColor="rgba(255, 0, 0, 0.18)">
+                  agentic AI, Retrieval-Augmented Generation (RAG), computer vision, intelligent workflows
+                </TextHighlighter>
+                , and scalable software architecture.
+              </p>
+              <p>
+                From developing AI-driven SaaS platforms to building administrative systems and computer vision applications, I enjoy working across the complete development lifecycle—from understanding requirements and designing architectures to implementation, testing, and deployment.
+              </p>
+              <blockquote className="border-l-2 border-[#FF0000] pl-4 py-1 italic text-[var(--theme-text)] font-medium">
+                &ldquo;Build tools that matter, for people who need them.&rdquo;
+              </blockquote>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column: 2x2 Grid of Stat Cards matching myself.txt */}
+        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+          {stats.map((item, idx) => (
+            <motion.div
+              key={idx}
+              className="glass-panel p-6 sm:p-7 rounded-2xl border border-[var(--theme-border)] hover:border-[#FF0000]/50 transition-all duration-300 group relative overflow-hidden shadow-sm hover:shadow-[0_8px_30px_rgba(255,0,0,0.12)]"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: idx * 0.1, duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              {/* Glowing Orb */}
+              <div className="absolute -right-6 -top-6 w-24 h-24 bg-[#FF0000]/10 rounded-full blur-2xl group-hover:bg-[#FF0000]/20 transition-colors pointer-events-none" />
+
+              {/* Icon Container */}
+              <div className="text-primary mb-4 p-3 bg-[#FF0000]/10 border border-[#FF0000]/25 w-max rounded-xl">
+                {item.icon}
+              </div>
+
+              {/* Stat Value & Label */}
+              <h3 className="text-3xl font-extrabold text-[var(--theme-text)] mb-1">
+                {item.value}
+              </h3>
+              <p className="text-sm font-medium text-[var(--theme-text-muted)] leading-snug">
+                {item.label}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </section>
   );
 }
 
-export const About = () => {
-  return (
-    <section id="about" className="section-wrapper overflow-hidden min-h-screen">
-      <div className="container-custom">
-        <blockquote className="philosophy-quote mb-12 md:mb-16 text-center max-w-4xl mx-auto">
-          <p className="font-display text-xl sm:text-2xl md:text-3xl font-semibold text-[var(--theme-text)] leading-snug italic">
-            &ldquo;Build tools that matter, for people who need them.&rdquo;
-          </p>
-        </blockquote>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, amount: 0.1 }}
-          >
-            <h2 className="text-[var(--theme-text)] mb-6 max-w-2xl flex flex-wrap gap-x-2">
-              <ScrollRevealText text="Turning complex ideas into" />
-              <ScrollRevealText text="Simple Solutions." className="gradient-accent" />
-            </h2>
-
-            <div className="space-y-4 text-[var(--theme-text-muted)]">
-              <p>
-                I&apos;m Samrit Mukherjee, a BTech Computer Science & Engineering (AI & ML) student at Meghnad Saha Institute of Technology (MSIT) and an AI & ML Developer. I focus on bridging the gap between complex technology and real-world usability.
-              </p>
-              <p>
-                As a founder and educator, I teach Computer Science through a project-based
-                approach, emphasizing practical implementation over theory. I actively participate in open source contributions, including programs like GSSoC (GirlScript Summer of Code), and have secured multiple Hackathon achievements by building innovative solutions.
-              </p>
-            </div>
-
-            <div className="mt-8">
-              <p className="text-xs uppercase tracking-[0.2em] font-bold text-[var(--theme-text-muted)] mb-3">
-                Currently Learning
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {LEARNING_NOW.map((tech) => (
-                  <span
-                    key={tech}
-                    className="learning-pill px-4 py-2 rounded-full text-sm font-semibold text-accent-300 border border-accent-500/30 bg-accent-500/10 transition-colors duration-300 hover:bg-accent-500/20"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-8 sm:gap-12 mt-8 sm:mt-12">
-              <div className="group">
-                <h4 className="text-2xl sm:text-3xl font-black text-[var(--theme-text)] transition-colors group-hover:text-accent-400">8+</h4>
-                <p className="text-[0.65rem] uppercase tracking-[0.25em] text-[var(--theme-text-muted)] font-semibold mt-1">
-                  Projects Built
-                </p>
-              </div>
-              <div className="group">
-                <h4 className="text-2xl sm:text-3xl font-black text-[var(--theme-text)] transition-colors group-hover:text-accent-400">8</h4>
-                <p className="text-[0.65rem] uppercase tracking-[0.25em] text-[var(--theme-text-muted)] font-semibold mt-1">
-                  Hackathon Wins
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true, amount: 0.1 }}
-            className="relative hidden lg:flex justify-center lg:justify-end"
-          >
-            <TiltProfileCard />
-            <div
-              className="absolute -top-10 -right-10 w-40 h-40 bg-accent-500/10 rounded-full blur-3xl -z-10"
-              aria-hidden
-            />
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-};
+export default About;

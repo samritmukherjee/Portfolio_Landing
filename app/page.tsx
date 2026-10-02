@@ -1,342 +1,111 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { HeroGlassmorphism } from "@/components/sections/HeroGlassmorphism";
-import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
-import { useEffect, useState, useRef } from "react";
-import Switch from "@/components/star-wars-toggle-switch";
-import { MdLocationOn } from "react-icons/md";
-import { scrollToElement } from "@/lib/scrollToElement";
-import { initializeWebMCP } from "@/hooks/useWebMCP";
+import React, { useEffect, useState } from "react";
+import { Navbar } from "@/components/Navbar";
+import { Hero } from "@/components/sections/Hero";
+import { TechStackMarquee } from "@/components/sections/TechStackMarquee";
+import { About } from "@/components/sections/About";
+import { Services } from "@/components/sections/Services";
+import { Projects } from "@/components/sections/Projects";
+import { Experience } from "@/components/sections/Experience";
+import { TechnicalArsenal } from "@/components/sections/TechnicalArsenal";
+import { Hackathons } from "@/components/sections/Hackathons";
 import { ContactCards } from "@/components/sections/ContactCards";
-import { BlobButton } from "@/components/ui/BlobButton";
-import { ScrollRevealText } from "@/components/animations/ScrollRevealText";
-
-const About = dynamic(() => import("@/components/sections/About").then((m) => m.About), {
-  loading: () => <SectionPlaceholder />,
-});
-const Experience = dynamic(
-  () => import("@/components/sections/Experience").then((m) => m.Experience),
-  { loading: () => <SectionPlaceholder /> }
-);
-const Hackathons = dynamic(
-  () => import("@/components/sections/Hackathons").then((m) => m.Hackathons),
-  { loading: () => <SectionPlaceholder /> }
-);
-const CircularProjects = dynamic(
-  () => import("@/components/sections/CircularProjects").then((m) => m.CircularProjects),
-  { loading: () => <SectionPlaceholder /> }
-);
-const ContainerScrollAnimation = dynamic(
-  () =>
-    import("@/components/sections/ContainerScrollAnimation").then(
-      (m) => m.ContainerScrollAnimation
-    ),
-  { loading: () => <SectionPlaceholder /> }
-);
-const Skills = dynamic(() => import("@/components/sections/Skills").then((m) => m.Skills), {
-  loading: () => <SectionPlaceholder />,
-});
-const Resume = dynamic(() => import("@/components/sections/Resume").then((m) => m.Resume), {
-  loading: () => <SectionPlaceholder />,
-});
-const Footer = dynamic(() => import("@/components/Footer").then((m) => m.Footer), {
-  loading: () => null,
-});
-
-function SectionPlaceholder() {
-  return <div className="section-frame min-h-[40vh] animate-pulse opacity-30" aria-hidden />;
-}
-
-const sectionVariants = {
-  hidden: { opacity: 0, y: 36 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
-  },
-};
+import { Footer } from "@/components/Footer";
+import { Dock } from "@/components/ui/Dock";
+import { initializeWebMCP } from "@/hooks/useWebMCP";
 
 export default function Home() {
-  const prefersReducedMotion = useReducedMotion();
-  const [isMobile, setIsMobile] = useState(false);
-
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
-  const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
-  const [showThemeHint, setShowThemeHint] = useState(false);
-  const [activeSection, setActiveSection] = useState("about");
-  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
+  const [activeSection, setActiveSection] = useState("hero");
 
-  const navItems = ["About", "Experience", "Projects", "Skills"] as const;
-
+  // Initialize theme from storage or default to dark
   useEffect(() => {
-    window.scrollTo(0, 0);
-    initializeWebMCP();
-
-    // Check for theme hint
-    const hasSeenHint = localStorage.getItem("has-seen-theme-hint");
-    if (!hasSeenHint) {
-      const timer = setTimeout(() => setShowThemeHint(true), 4000);
-      return () => clearTimeout(timer);
+    try {
+      const savedTheme = localStorage.getItem("samrit_theme") as "dark" | "light" | null;
+      if (savedTheme === "light" || savedTheme === "dark") {
+        setTheme(savedTheme);
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    } catch {
+      document.documentElement.setAttribute("data-theme", "dark");
     }
-  }, []);
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.matchMedia("(max-width: 768px)").matches);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    // Initialize WebMCP for AI agent context
+    initializeWebMCP();
   }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-      scrollTimeoutRef.current = setTimeout(() => {
-        setScrolled(window.scrollY > 50);
-      }, 10);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-    };
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
 
   const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    if (showThemeHint) {
-      setShowThemeHint(false);
-      localStorage.setItem("has-seen-theme-hint", "true");
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    document.documentElement.setAttribute("data-theme", next);
+    try {
+      localStorage.setItem("samrit_theme", next);
+    } catch {
+      // storage unavailable
     }
   };
 
+  // Section visibility tracking for Navbar & Dock active state
   useEffect(() => {
-    const sections = [
+    const sectionIds = [
+      "hero",
       "about",
-      "experience",
-      "hackathons",
+      "services",
       "projects",
-      "skills",
+      "career",
+      "arsenal",
+      "hackathons",
       "contact",
     ];
-    const nodes = sections
-      .map((id) => document.getElementById(id))
-      .filter((node): node is HTMLElement => node !== null);
 
-    if (!nodes.length) return;
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (!elements.length) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target?.id) setActiveSection(visible.target.id);
+
+        if (visible?.target?.id) {
+          setActiveSection(visible.target.id);
+        }
       },
-      { root: null, rootMargin: "-32% 0px -52% 0px", threshold: [0.2] }
+      { root: null, rootMargin: "-20% 0px -40% 0px", threshold: [0.1, 0.3] }
     );
 
-    nodes.forEach((node) => observer.observe(node));
+    elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
-  const revealProps = prefersReducedMotion
-    ? { initial: "visible" as const, variants: sectionVariants }
-    : {
-        initial: "hidden" as const,
-        whileInView: "visible" as const,
-        viewport: { once: true, amount: 0.12 },
-        variants: sectionVariants,
-      };
-
   return (
-    <main className="min-h-screen app-shell">
-      {!isMobile && (
-        <motion.div
-          className="fixed top-0 left-0 right-0 h-1 bg-accent-400 origin-left z-[100]"
-          style={{ scaleX }}
-        />
-      )}
+    <div className="min-h-screen bg-[var(--theme-bg)] text-[var(--theme-text)] transition-colors duration-300 relative selection:bg-[#FF0000] selection:text-white overflow-x-hidden">
+      <Navbar
+        theme={theme}
+        onToggleTheme={toggleTheme}
+        activeSection={activeSection}
+      />
 
-      <header
-        className={`fixed top-0 left-0 right-0 z-[90] app-header ${scrolled ? "is-scrolled" : ""}`}
-      >
-        <div className="container-custom flex items-center justify-between h-12 sm:h-auto px-4 sm:px-6">
-          <div className="flex items-center h-10">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-              className="text-sm sm:text-base md:text-xl font-extrabold tracking-[0.08em] text-stone-100 truncate font-display"
-            >
-              SAMRIT<span className="text-accent-500">.</span>
-            </motion.div>
-          </div>
-
-          <div className="md:hidden">
-            <div className="flex items-center pl-2 pr-2 border-l border-white/5 h-8 relative">
-              <Switch checked={theme === "light"} onChange={toggleTheme} />
-              {showThemeHint && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9, y: 8 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  className="absolute -bottom-10 right-0 py-1 px-2.5 bg-accent-500 text-stone-950 text-[0.6rem] font-bold rounded-md whitespace-nowrap shadow-xl pointer-events-none z-[100]"
-                >
-                  Switch Theme
-                  <div className="absolute -top-1 right-4 w-2 h-2 bg-accent-500 rotate-45" />
-                </motion.div>
-              )}
-            </div>
-          </div>
-
-          <nav
-            className={`hidden md:flex items-center gap-2.5 px-3 py-1.5 rounded-full nav-shell ${scrolled ? "nav-shell-scrolled" : ""}`}
-          >
-            {navItems.map((item) => {
-              const itemId = item.toLowerCase();
-              const isActive = activeSection === itemId;
-              return (
-                <motion.a
-                  key={item}
-                  href={`#${itemId}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToElement(itemId);
-                  }}
-                  whileHover={prefersReducedMotion ? undefined : { y: -1 }}
-                  className={`nav-link text-[0.7rem] px-3 ${isActive ? "is-active" : ""}`}
-                >
-                  {isActive && (
-                    <motion.span
-                      layoutId="nav-active-pill"
-                      className="nav-active-pill"
-                      transition={{
-                        type: "spring",
-                        stiffness: 420,
-                        damping: 36,
-                        mass: 0.7,
-                      }}
-                    />
-                  )}
-                  <span className="relative z-10">{item}</span>
-                </motion.a>
-              );
-            })}
-            <BlobButton
-              href="#contact"
-              variant="primary"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToElement("contact");
-              }}
-              className="px-4 py-1.5 text-[0.7rem] font-bold min-h-0"
-            >
-              Let&apos;s Talk
-            </BlobButton>
-            <div className="flex items-center pl-2 pr-4 ml-1 border-l border-white/5 h-10 relative">
-              <Switch checked={theme === "light"} onChange={toggleTheme} />
-              {showThemeHint && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9, y: 8 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  className="absolute -bottom-10 right-4 py-1 px-2.5 bg-accent-500 text-stone-950 text-[0.6rem] font-bold rounded-md whitespace-nowrap shadow-xl pointer-events-none z-[100]"
-                >
-                  Switch Theme
-                  <div className="absolute -top-1 right-4 w-2 h-2 bg-accent-500 rotate-45" />
-                </motion.div>
-              )}
-            </div>
-          </nav>
-        </div>
-      </header>
-
-      <section id="hero" className="hero-frame" aria-label="Hero Section">
-        <HeroGlassmorphism />
-      </section>
-
-      <motion.section id="about" className="section-frame animate-secondary" aria-label="About Me" {...revealProps}>
+      <main id="main" className="w-full flex flex-col border-none overflow-x-hidden">
+        <Hero />
+        <TechStackMarquee />
         <About />
-      </motion.section>
-
-      <motion.section id="experience" className="section-frame animate-secondary" aria-label="Experience" {...revealProps}>
+        <Services />
+        <Projects />
         <Experience />
-      </motion.section>
-
-      <motion.section
-        id="hackathons"
-        className="section-frame animate-secondary"
-        aria-label="Hackathons"
-        {...revealProps}
-      >
+        <TechnicalArsenal />
         <Hackathons />
-      </motion.section>
-
-      <motion.section id="projects" className="section-frame animate-secondary" aria-label="Projects" {...revealProps}>
-        <CircularProjects />
-      </motion.section>
-
-      <motion.section id="os-preview" className="section-frame animate-secondary" aria-label="Portfolio OS Preview" {...revealProps}>
-        <ContainerScrollAnimation />
-      </motion.section>
-
-      <motion.section id="skills" className="section-frame animate-secondary" aria-label="Skills" {...revealProps}>
-        <Skills />
-      </motion.section>
-
-      <motion.section id="resume" className="section-frame animate-secondary" aria-label="Resume" {...revealProps}>
-        <Resume />
-      </motion.section>
-
-      <motion.section
-        id="contact"
-        className="section-wrapper section-surface section-frame animate-secondary"
-        aria-label="Contact"
-        {...revealProps}
-      >
-        <div className="container-custom">
-            <div className="space-y-10 sm:space-y-12 text-center md:text-left w-full">
-            <div className="space-y-4 max-w-2xl mx-auto md:mx-0 text-center md:text-left">
-              <h2 className="text-[var(--theme-text)] leading-tight flex justify-center md:justify-start flex-wrap gap-x-2">
-                <ScrollRevealText text="Ready To" />
-                <ScrollRevealText text="Collaborate?" className="text-[var(--theme-text-muted)]" />
-              </h2>
-              <p className="text-stone-400 text-base sm:text-lg">
-                Whether you have a question or just want to say hi, my inbox is always open. I
-                typically reply within 24–48 hours.
-              </p>
-            </div>
-
-            <ContactCards />
-
-            <div className="flex items-center justify-center md:justify-start gap-3 sm:gap-4 text-stone-300 pt-3 sm:pt-4 max-w-4xl mx-auto md:mx-0">
-              <div className="w-12 h-12 bg-theme-surface-2 rounded-xl flex items-center justify-center border border-theme-border">
-                <MdLocationOn size={24} className="text-accent-400" />
-              </div>
-              <div>
-                <p className="text-xs text-stone-500 uppercase tracking-widest font-bold">
-                  Location
-                </p>
-                <p className="text-lg">Kolkata, India</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </motion.section>
+        <ContactCards />
+      </main>
 
       <Footer />
-    </main>
+      <Dock />
+    </div>
   );
 }

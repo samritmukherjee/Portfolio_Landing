@@ -1,57 +1,78 @@
 import { useEffect } from 'react';
 import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+// Global reference to prevent duplicate instantiation in Strict Mode
+let globalLenisInstance: Lenis | null = null;
+let rafCallback: ((time: number) => void) | null = null;
 
 export const useLenis = (shouldEnable: boolean = true) => {
   useEffect(() => {
-    if (!shouldEnable) {
+    if (!shouldEnable || typeof window === 'undefined') {
       return;
     }
 
-    const isMobile = typeof window !== 'undefined' &&
-      (window.innerWidth <= 768 || window.matchMedia('(pointer: coarse)').matches);
+    // Detect mobile or coarse pointer devices
+    const isMobile =
+      window.innerWidth <= 768 || window.matchMedia('(pointer: coarse)').matches;
 
-    // Completely disable Lenis on mobile for native performance and inertial scrolling
     if (isMobile) {
-      if (typeof document !== 'undefined') {
-        document.documentElement.style.scrollBehavior = 'smooth';
-      }
+      document.documentElement.style.scrollBehavior = 'auto';
       return;
     }
 
-    const prefersReducedMotion = typeof window !== 'undefined' && 
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    // Optimized settings for Desktop smooth scrolling
-    const lenis = new Lenis({
-      duration: prefersReducedMotion ? 0 : 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      lerp: 0.1, // Slightly snappier for better performance
-      wheelMultiplier: 1,
-      smoothWheel: true,
-      syncTouch: false, // Turn off syncTouch to prevent input delay and scroll fights
-    });
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
 
-    if (typeof document !== 'undefined') {
-      const html = document.documentElement;
-      html.style.scrollBehavior = 'auto';
+    if (prefersReducedMotion) {
+      document.documentElement.style.scrollBehavior = 'auto';
+      return;
     }
 
-    let raf: number;
-    const onRAF = (time: number) => {
-      lenis.raf(time);
-      raf = requestAnimationFrame(onRAF);
-    };
+    // Reuse existing instance if active
+    if (!globalLenisInstance) {
+      const lenis = new Lenis({
+        duration: 1.0,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.5,
+        infinite: false,
+      });
 
-    raf = requestAnimationFrame(onRAF);
+      globalLenisInstance = lenis;
+      (window as unknown as { lenis?: Lenis }).lenis = lenis;
 
-    // Global access for other components if needed
-    (window as any).lenis = lenis;
+      // Coordinate Lenis with GSAP ScrollTrigger to use a SINGLE animation loop
+      lenis.on('scroll', ScrollTrigger.update);
+
+      rafCallback = (time: number) => {
+        lenis.raf(time * 1000);
+      };
+
+      gsap.ticker.add(rafCallback);
+      gsap.ticker.lagSmoothing(0);
+    }
 
     return () => {
-      cancelAnimationFrame(raf);
-      lenis.destroy();
-      delete (window as any).lenis;
+      // In production or unmount, clean up cleanly
+      if (globalLenisInstance) {
+        if (rafCallback) {
+          gsap.ticker.remove(rafCallback);
+          rafCallback = null;
+        }
+        globalLenisInstance.destroy();
+        globalLenisInstance = null;
+        delete (window as unknown as { lenis?: Lenis }).lenis;
+      }
     };
   }, [shouldEnable]);
 };
-

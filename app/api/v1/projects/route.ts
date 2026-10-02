@@ -25,7 +25,7 @@ ${filtered
 **Category:** ${p.category}
 **Created:** ${p.dateCreated}
 **Author:** ${p.author}
-**Keywords:** ${p.keywords.join(", ")}
+**Keywords:** ${(p.keywords || []).join(", ")}
 
 **Description:** ${p.description}
 

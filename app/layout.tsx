@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans, Syne } from "next/font/google";
 import "@/styles/globals.css";
 import { LenisWrapper } from "@/components/LenisWrapper";
 import PageLoader from "@/components/PageLoader";
-import { BlobGooFilter } from "@/components/ui/BlobButton";
 import StyledComponentsRegistry from "@/lib/registry";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteAnalytics } from "@/components/SiteAnalytics";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { BlobGooFilter } from "@/components/ui/BlobButton";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -23,10 +24,20 @@ const syne = Syne({
 });
 
 const siteDescription =
-  "Samrit Mukherjee — BTech Computer Science & Engineering (AI & ML) student at Meghnad Saha Institute of Technology (MSIT), 8× hackathon winner, and AI & ML Developer building AI-powered products.";
+  "Samrit Mukherjee — AI Systems Engineer, Full-Stack Developer, and 11× Hackathon Winner. Building intelligent, scalable software, enterprise systems, and AI-powered products.";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
+};
 
 export const metadata: Metadata = {
-  title: "Samrit Mukherjee | AI & ML Developer & Hackathon Winner",
+  title: "Samrit Mukherjee | AI Systems, Full-Stack Engineering & 11× Hackathon Winner",
   description: siteDescription,
   authors: [{ name: "Samrit Mukherjee", url: "https://samrit.dev" }],
   creator: "Samrit Mukherjee",
@@ -39,16 +50,16 @@ export const metadata: Metadata = {
     "Samrit Mukherjee Developer",
     "Samrit Mukherjee Portfolio",
     "Samrit Mukherjee Hackathon Winner",
-    "Samrit Mukherjee AI & ML Developer",
-    "AI Developer Kolkata",
+    "Product Engineering",
+    "Enterprise Systems",
+    "AI Systems Engineer",
     "Full Stack Developer India",
-    "MSIT",
-    "Hackathon Winner",
-    "Open Source Developer",
+    "Kolkata Developer",
     "Cosmic Canvas",
+    "SUKALYA.ai",
     "Portfolio OS",
-    "Next.js Portfolio",
-    "React Developer",
+    "Avento AI",
+    "Custodian",
   ],
   metadataBase: new URL("https://samrit.dev"),
   alternates: {
@@ -56,17 +67,20 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "https://res.cloudinary.com/duxrcy3jn/image/upload/q_auto/f_auto/v1777463452/SAMRIT_FEBICON_hxnczn.png",
+    shortcut: "https://res.cloudinary.com/duxrcy3jn/image/upload/q_auto/f_auto/v1777463452/SAMRIT_FEBICON_hxnczn.png",
+    apple: "https://res.cloudinary.com/duxrcy3jn/image/upload/q_auto/f_auto/v1777463452/SAMRIT_FEBICON_hxnczn.png",
   },
   openGraph: {
-    title: "Samrit Mukherjee | AI & ML Developer & Hackathon Winner",
+    title: "Samrit Mukherjee | AI Systems, Full-Stack Engineering & 11× Hackathon Winner",
     description: siteDescription,
     url: "https://samrit.dev",
     siteName: "Samrit Mukherjee",
     images: [
       {
-        url: "https://samrit.dev/opengraph-image",
+        url: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg",
         width: 1200,
         height: 630,
+        alt: "Samrit Mukherjee — AI Systems Engineer",
       },
     ],
     locale: "en_IN",
@@ -74,10 +88,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Samrit Mukherjee | AI & ML Developer & Hackathon Winner",
+    title: "Samrit Mukherjee | AI Systems & Full-Stack Engineer",
     description: siteDescription,
-    images: ["https://samrit.dev/opengraph-image"],
-    creator: "@samritmukherjee",
+    images: ["https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg"],
   },
   other: {
     link: [
@@ -101,18 +114,18 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${dmSans.variable} ${syne.variable}`}>
-      <body className="bg-[var(--theme-bg)] transition-colors duration-500">
+      <body className="bg-[var(--theme-bg)] transition-colors duration-500 overflow-x-hidden selection:bg-[#FF0000] selection:text-white">
         <a href="#main" className="skip-link">
           Skip to main content
         </a>
+        <BlobGooFilter />
+        <CustomCursor />
         <JsonLd />
         <SiteAnalytics />
         <SpeedInsights />
         <StyledComponentsRegistry>
-          <BlobGooFilter />
           <PageLoader />
           <LenisWrapper>
-            <div className="aurora-bg" aria-hidden="true" />
             <div id="main">{children}</div>
           </LenisWrapper>
         </StyledComponentsRegistry>

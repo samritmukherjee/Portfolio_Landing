@@ -13,6 +13,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/resume.pdf",
+        destination: "/Resume.pdf",
+      },
+    ];
+  },
   async headers() {
     return [
       {

@@ -1,9 +1,11 @@
-export { HeroGlassmorphism as Hero } from "./HeroGlassmorphism";
+export { Hero } from "./Hero";
 export { About } from "./About";
+export { Services } from "./Services";
 export { Experience } from "./Experience";
+export { EducationSkills } from "./EducationSkills";
 export { Hackathons } from "./Hackathons";
-export { CircularProjects as Projects } from "./CircularProjects";
+export { Projects } from "./Projects";
+export { PortfolioOS } from "./PortfolioOS";
 export { Skills } from "./Skills";
 export { Resume } from "./Resume";
-// Removed: unused Contact component (replaced with ContactCards)
-// export { Contact } from "./Contact";
+export { ContactCards } from "./ContactCards";

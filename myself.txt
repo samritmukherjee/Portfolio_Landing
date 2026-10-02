@@ -1,115 +1,283 @@
-🔹 HERO SECTION
+# SAMRIT MUKHERJEE — PORTFOLIO CONTENT
 
-Samrit Mukherjee
-AI Systems • Full Stack Engineering • Product Development
+## 🔹 HERO SECTION
 
-Available for New Projects
+**Samrit Mukherjee**
 
-Building intelligent, scalable software that transforms ambitious ideas into practical, user-focused products with measurable impact.
+AI Systems • Full-Stack Engineering • Product Development
 
-I specialize in production-ready AI workflows, robust APIs, and high-performance full stack systems, with a strong foundation in data structures and algorithms.
+**Available for New Projects**
 
-🔹 ABOUT ME
+Building intelligent, scalable software that transforms ambitious ideas into practical, user-focused products.
 
-Turning Complex Ideas into Simple, Usable Solutions
+I develop AI-powered applications, full-stack platforms, intelligent automation systems, and production-oriented software, combining AI engineering, backend architecture, and thoughtful user experiences to solve real-world problems.
 
-I'm a BTech Computer Science student specializing in Artificial Intelligence & Machine Learning. I focus on bridging the gap between complex technology and real-world usability—building tools that people genuinely find useful.
+**11× Hackathon Wins | 8 Projects Built | 5 Projects Featured | 3 More Coming Soon**
 
-As a founder and educator, I teach Computer Science through a project-based approach, emphasizing practical implementation over theory. I strongly believe that the best way to learn technology is by building with it.
+## 🔹 ABOUT ME
+
+### Turning Complex Ideas into Practical Solutions
+
+I'm Samrit Mukherjee, a B.Tech Computer Science and Engineering student specializing in Artificial Intelligence and Machine Learning at Meghnad Saha Institute of Technology (MSIT), Kolkata, under MAKAUT. I expect to graduate in 2027.
+
+I build AI-powered products, full-stack applications, automation systems, and management platforms. My interests include agentic AI, Retrieval-Augmented Generation (RAG), computer vision, intelligent workflows, and scalable software architecture.
+
+From developing AI-driven SaaS products to building administrative systems and computer vision applications, I enjoy working across the complete development lifecycle—from understanding requirements and designing architectures to implementation, testing, and deployment.
+
+I actively participate in hackathons, collaborate with developers, and explore emerging technologies to turn ideas into working solutions.
 
 My work is guided by one principle:
-"Build tools that matter, for people who need them."
 
-5+ Students Taught
+**"Build tools that matter, for people who need them."**
 
-🔹 PROFESSIONAL JOURNEY
-Technical Advisor (Internship)
+### Portfolio Statistics
 
-Mount Litera Zee School
-2024 – Present
+- **11×** Hackathon Wins
+- **8×** Projects Built
+- **5** Projects Featured
+- **3** More Projects Coming Soon
 
-Provided technical guidance on digital systems and infrastructure
-Assisted in improving technology-driven learning workflows
-Supported troubleshooting and implementation of technical solutions
-Collaborated with stakeholders to design and structure the school's website and ERP system, including requirement analysis, workflow planning, and coordination with development teams
-Member — Hackerspace (MSIT)
+## 🔹 PROFESSIONAL JOURNEY
 
-Designer & Web Contributor
-2023 – Present
+### Technical Advisor / Internship — Mount Litera Zee School
 
-Designed visual assets, banners, and creatives for community events and initiatives
-Contributed to documentation and structured technical content for internal and external use
-Assisted in maintaining design consistency across community platforms
-Supported web-related tasks and minor development contributions when required
+**2024 – Present**
 
-(This is safe, realistic, and won’t get you questioned.)
+- Provide technical guidance on digital systems, school technology infrastructure, and educational workflows.
+- Contribute to the planning and development of school websites and ERP-related systems.
+- Assist with digitizing administrative processes and improving technology-driven operations.
+- Support requirement analysis, workflow planning, implementation, troubleshooting, and coordination with development teams.
 
-🔹 HACKATHONS & ACCOLADES
-3× hackathon wins across 2 years (2 overall · 1 track)
+### Member — Hackerspace, MSIT
 
-🏆 Double Slash 4.0 — WINNER (2026)
+**Designer & Web Contributor | 2023 – Present**
 
-📍 Jadavpur University
-A 36-hour offline hackathon with 300+ teams. Selected among the Top 30 finalists and ultimately secured the winning position through strong technical execution and innovation.
+- Design visual assets, banners, and creative materials for community events and initiatives.
+- Contribute to technical documentation and structured content.
+- Help maintain design consistency across community platforms.
+- Support web-related tasks and development contributions when required.
 
-🏆 ShowcaseX x Techsprint — WINNER (2026)
+### Technical Leadership & Community
 
-📍 RCCIIT
-A high-intensity hackathon powered by Hack2Skill, focused on rapid prototyping and scalable solution building.
+- Lead and collaborate on software projects and hackathon solutions.
+- Participate in product ideation, rapid prototyping, implementation, and technical demonstrations.
+- Engage with open-source initiatives and developer communities, including GirlScript Summer of Code.
+- Explore practical applications of AI, full-stack engineering, and workflow automation.
 
-🏆 Hello World Hacks — Track Winner (2025)
+## 🔹 HACKATHONS & ACCOLADES
 
-📍 RCCIIT
-Organized by GDG on Campus RCCIIT & RCCTechz. Recognized as Best Beginner’s Team for building an impactful solution.
+**11× Hackathon Wins**
 
-🔹 FEATURED PROJECTS
-Cosmic Canvas
+A collection of hackathon victories, startup-track recognition, finalist placements, and open-source participation.
 
-AI-Powered Design Platform
+### Smart India Hackathon 2026 — Internal Hackathon
 
-An advanced AI design tool that generates fully editable, layered designs from natural language prompts—bridging AI creativity with human customization.
-link: https://cosmic-canvas-delta.vercel.app/
+**Panel Winner | Second Runner-Up Overall | Team Leader**
 
-SUKALYA.ai
+- Secured second runner-up overall among 143 participating teams at MSIT.
+- Won Panel 4 and qualified for the Idea Submission Round.
 
-AI Health Guidance System
+### BuildX 2026 — IIT Kharagpur
 
-An AI-powered assistant that improves healthcare accessibility by providing symptom understanding, disease insights, and preventive guidance through an interactive chat interface.
-link: https://sukalya-ai.vercel.app/
+**Winner | Team Async**
 
-Portfolio OS
+- Won BuildX 2026, organized by Resourcio Community.
+- Progressed through the buildathon and presented the team's solution at the grand finale at IIT Kharagpur.
 
-Interactive Web Experience
+### Google Solution Challenge 2026 — Build with AI
 
-A browser-based operating system showcasing projects through a multi-window interface, terminal simulation, and interactive applications.
+**Top 106 Teams Globally | Status to Be Updated**
 
-🔹 TECHNICAL ARSENAL
-Languages
+- Selected among the Top 106 teams globally, according to the reported competition details.
+- The previously recorded figures cite more than 85,000 registrations and 6,700+ prototype submissions.
+- Update the ongoing status and final results after verification.
 
-Java • C • C++ • Python • JavaScript • TypeScript
+### GirlScript Summer of Code 2026 — GSSoC '26
 
-Core Concepts
+**Open-Source Program Participation**
 
-Data Structures & Algorithms (DSA)
+- Participate in an open-source program focused on collaborative development, practical coding experience, and community contributions.
+- This is an open-source program entry, not a hackathon victory.
 
-Frontend
+### Synchronicity 2.0 — Jadavpur University
 
-React • Next.js • Tailwind CSS • Framer Motion
+**Best Startup Track Winner**
 
-Backend
+- Secured the winning position in the Best Startup Track at Synchronicity 2.0 (2026).
 
-Node.js • REST APIs • SQL • MongoDB
+### Double Slash 4.0 — Jadavpur University
 
-Tools & Platforms
+**Top 30 Finalist | 300+ Teams**
 
-Git • Docker • Vercel • Render • AWS • Razorpay
+- Reached the Top 30 finalists in a 36-hour offline hackathon featuring more than 300 teams.
+- Recognized for technical execution and innovation.
 
-Design & Media
+### ShowcaseX × Techsprint — RCCIIT
 
-Figma • Photoshop • After Effects • Filmora • UI/UX
+**Winner**
 
-🔹 CALL TO ACTION
+- Won a hackathon focused on rapid prototyping and building scalable solutions.
 
-Interested in working with me?
+### Hello World Hacks — RCCIIT
 
-Download my resume to explore my technical expertise, academic background, and project experience in
+**Best Beginner's Team | 2025**
+
+- Recognized as Best Beginner's Team for developing an impactful technical solution.
+- My first hackathon experience.
+
+## 🔹 FEATURED PROJECTS
+
+### 1. Cosmic Canvas
+
+**AI-Powered Design Platform**
+
+Live Demo: https://cosmic-canvas-delta.vercel.app/
+
+An AI-powered design platform that transforms natural-language prompts into editable visual compositions, combining generative AI with interactive design capabilities.
+
+**Focus Areas**
+- AI-assisted design generation.
+- Natural-language-driven creative workflows.
+- Editable visual compositions.
+- Interactive design experiences.
+
+### 2. SUKALYA.ai
+
+**AI Health Guidance System**
+
+Live Demo: https://sukalya-ai.vercel.app/
+
+An AI-powered health guidance application designed to make health information more accessible through conversational interaction, symptom understanding, health insights, and preventive guidance.
+
+**Technologies:** HTML, CSS, JavaScript, SQL, Python.
+
+**Focus Areas**
+- Conversational health guidance.
+- Symptom-oriented information.
+- Health-information accessibility.
+- User-friendly interfaces.
+
+### 3. Portfolio OS
+
+**Interactive Web Experience**
+
+Portfolio: https://samrit.dev/  
+Project Demo: https://samrit-portfolio-os.vercel.app/
+
+An interactive, operating-system-inspired portfolio that presents projects and professional information through a digital workspace featuring desktop-style interfaces, windows, and interactive applications.
+
+**Technologies:** Next.js, React, Framer Motion, Tailwind CSS.
+
+**Focus Areas**
+- Operating-system-inspired UI.
+- Interactive window management.
+- Responsive design.
+- Motion and interaction design.
+
+### 4. Avento AI
+
+**Multi-Tenant AI Customer Support SaaS**
+
+Live Demo: https://www.avento-ai.xyz/
+
+A multi-tenant, RAG-powered customer support platform that transforms business documents and website content into context-aware AI assistants. Businesses can configure and embed support widgets on Framer or custom websites without writing code.
+
+The platform focuses on automated knowledge ingestion, semantic retrieval, conversation analytics, knowledge-gap detection, and website integration.
+
+**Technologies:** Next.js, Node.js, MongoDB Atlas, Pinecone, OpenRouter, Clerk, LangChain, and related AI tooling.
+
+**Focus Areas**
+- Document ingestion and processing.
+- Vector embeddings and semantic retrieval.
+- Context-aware AI support.
+- Website chatbot integration.
+- Live analytics and knowledge-gap detection.
+- Framer integration.
+
+### 5. Custodian
+
+**Asset Management & Administrative Platform**
+
+Live Demo: https://custodian-mlzs.vercel.app/
+
+A web-based asset management platform designed to streamline inventory tracking, requests, approvals, issue-return workflows, and accountability across different user roles.
+
+**Focus Areas**
+- Secure authentication and role-based access control.
+- Asset requests and approval workflows.
+- Issue-return management.
+- Inventory and quantity tracking.
+- Incident management and audit logging.
+- Administrative controls and user management.
+
+### 3 More Projects Coming Soon
+
+Three additional projects will be revealed as they are ready to be featured. Keep this section visually consistent with the portfolio and clearly distinguish upcoming projects from completed, publicly available projects.
+
+## 🔹 TECHNICAL ARSENAL
+
+### Programming Languages
+Python • Java • C • C++ • JavaScript • TypeScript • Prolog
+
+### Frontend Development
+HTML5 • CSS3 • React • Next.js • Tailwind CSS • Framer Motion • Responsive Web Design
+
+### Backend Development
+Node.js • Flask • FastAPI • REST APIs • SQL • MongoDB • Firebase • Firestore
+
+### AI & Machine Learning
+NumPy • Pandas • Large Language Model APIs • RAG • LangChain • LangGraph • Agentic AI • Semantic Search • Vector Databases • Computer Vision • MediaPipe • OpenCV
+
+### Databases, Cloud & Deployment
+MongoDB Atlas • Firebase • Pinecone • AWS • Vercel • Render • Git • GitHub • Docker
+
+### Integrations & APIs
+OpenAI • Gemini • Hugging Face • VAPI • Twilio • Razorpay • WhatsApp integrations • OpenRouter • Sargam • API integration and automation
+
+### Design & Creative Tools
+Figma • Canva • Adobe Photoshop • Filmora • UI/UX Design
+
+### Core Engineering
+Data Structures & Algorithms • Full-Stack Engineering • AI Systems • Software Architecture • ERP Development • Workflow Automation • Authentication & RBAC • Real-Time Applications • Testing • Debugging • Deployment
+
+## 🔹 CURRENT TECHNICAL INTERESTS
+
+- Agentic AI and autonomous workflows.
+- Production-oriented AI applications.
+- RAG pipelines and semantic retrieval.
+- Computer vision and edge AI.
+- AI-powered business automation.
+- ERP and management information systems.
+- Scalable backend architecture and APIs.
+- Interactive web experiences and developer tools.
+- Open-source software and collaborative development.
+
+## 🔹 CALL TO ACTION
+
+### Have an Idea Worth Building?
+
+I'm interested in collaborating on meaningful projects involving AI, full-stack development, automation, and practical software engineering.
+
+Whether you're building an AI-powered product, developing a scalable platform, or exploring a challenging technical idea, let's connect and turn it into something useful.
+
+**Explore my projects, view my work on GitHub, connect with me on LinkedIn, or download my resume to learn more about my technical skills, academic background, achievements, and project experience.**
+
+Portfolio: https://samrit.dev/  
+GitHub: https://github.com/samritmukherjee  
+LinkedIn: https://www.linkedin.com/in/samrit-mukherjee/  
+Email: samritmukherjee05@gmail.com
+
+Location: Kolkata, West Bengal, India
+
+## 🔹 IMPLEMENTATION NOTES
+
+- Preserve the existing portfolio's operating-system-inspired design and established visual identity.
+- Use the latest information in this document instead of outdated descriptions and statistics.
+- Display **11 hackathon wins, 8 projects built, 5 featured projects, and 3 upcoming projects** consistently.
+- Keep the hackathon section ordered from the most recent achievement to the oldest.
+- Distinguish hackathon wins from finalist placements and open-source participation.
+- Keep project descriptions aligned with their actual implementation status.
+- Verify competition statistics and current statuses before publishing.
+- Ensure that all achievement images are carefully analyzed and positioned so faces, certificates, logos, and important details remain visible.
+- Maintain responsive layouts, accessibility, performance, and consistent typography across desktop, tablet, and mobile.
+- Do not invent missing awards, project links, technologies, or performance metrics.

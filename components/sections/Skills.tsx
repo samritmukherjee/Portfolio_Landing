@@ -1,11 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
-import { skillCategories } from "@/lib/skills-data";
-import { ScrollRevealText } from "@/components/animations/ScrollRevealText";
+import React from "react";
+import Image from "next/image";
+import {
+  Code2,
+  Layout,
+  Server,
+  Brain,
+  Wrench,
+  Palette,
+  Lightbulb,
+  type LucideIcon,
+} from "lucide-react";
 
-// Map skill names to their new Cloudinary URLs
-const logoMapping: Record<string, string> = {
+// Map skills to official icon URLs
+const LOGO_MAPPING: Record<string, string> = {
   "UI/UX": "https://res.cloudinary.com/duxrcy3jn/image/upload/v1783290732/UIUX_lfot7i.png",
   "TypeScript": "https://res.cloudinary.com/duxrcy3jn/image/upload/v1783290731/TypeScript_ain5oj.png",
   "Tailwind CSS": "https://res.cloudinary.com/duxrcy3jn/image/upload/v1783290730/Tailwind_CSS_vuykpr.png",
@@ -39,104 +48,159 @@ const logoMapping: Record<string, string> = {
   "C++": "https://res.cloudinary.com/duxrcy3jn/image/upload/v1783290701/C_b2ywco.png",
 };
 
-function SkillPill({
-  skill,
-  logo,
-  isCore,
-  categoryId,
-}: {
-  skill: string;
-  logo?: string;
-  isCore: boolean;
-  categoryId: string;
-}) {
-  const [isFlashed, setIsFlashed] = useState(false);
-
-  const handleTouchStart = () => {
-    if (window.innerWidth >= 1024) return;
-    setIsFlashed(true);
-    setTimeout(() => {
-      setIsFlashed(false);
-    }, 200);
-  };
-
-  const showLogo = logo && !isCore;
-
-  return (
-    <span
-      onTouchStart={handleTouchStart}
-      className={`skill-pill skill-pill--${categoryId} skill-pill-hover-glow flex items-center gap-2 transition-transform duration-300 hover:scale-105 ${
-        isCore ? "core-pill" : ""
-      } ${isFlashed ? "is-flashed" : ""}`}
-    >
-      {showLogo ? (
-        <span className="skill-logo-wrap" data-label={skill}>
-          <img
-            src={logo}
-            alt={`${skill} logo`}
-            title={skill}
-            className="skill-logo-img"
-            loading="lazy"
-          />
-        </span>
-      ) : (
-        <span className="core-skill-text">{skill}</span>
-      )}
-    </span>
-  );
+interface ArsenalCategory {
+  title: string;
+  subtitle: string;
+  icon: LucideIcon;
+  skills: string[];
 }
 
-export const Skills = () => {
+const ARSENAL_CATEGORIES: ArsenalCategory[] = [
+  {
+    title: "Programming Languages",
+    subtitle: "Core syntax & system languages",
+    icon: Code2,
+    skills: ["Java", "Python", "C", "C++", "JavaScript", "TypeScript", "Prolog"],
+  },
+  {
+    title: "AI & Machine Learning",
+    subtitle: "LLM integration, RAG & data manipulation",
+    icon: Brain,
+    skills: ["NumPy", "Pandas", "LLM APIs", "RAG Systems"],
+  },
+  {
+    title: "Frontend Engineering",
+    subtitle: "Modern client-side development",
+    icon: Layout,
+    skills: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "HTML", "CSS"],
+  },
+  {
+    title: "Backend & Systems",
+    subtitle: "APIs, server runtimes & data storage",
+    icon: Server,
+    skills: ["Node.js", "Flask", "FastAPI", "REST APIs", "SQL"],
+  },
+  {
+    title: "Tools & Cloud Platforms",
+    subtitle: "Version control, deployment & payment rails",
+    icon: Wrench,
+    skills: ["Git", "GitHub", "Vercel", "AWS", "Razorpay"],
+  },
+  {
+    title: "Design & Media",
+    subtitle: "Prototyping, visual assets & editing",
+    icon: Palette,
+    skills: ["Figma", "Adobe Photoshop", "Canva", "Filmora", "UI/UX"],
+  },
+];
+
+const CORE_CONCEPTS = [
+  "Data Structures & Algorithms (DSA)",
+  "AI Systems Architecture",
+  "Full Stack Engineering",
+  "Product Development",
+  "Vector Search & Retrieval (RAG)",
+];
+
+export function Skills() {
   return (
-    <section id="skills" className="section-wrapper section-surface overflow-hidden">
-      <div className="container-custom max-w-full relative">
-        <div className="text-center mb-14 md:mb-20 space-y-3 sm:space-y-4 max-w-3xl mx-auto">
-          <p className="skills-section-tag">Technical stack</p>
-          <h2 className="text-[var(--theme-text)] flex justify-center flex-wrap gap-x-2">
-            <ScrollRevealText text="Technical" />
-            <ScrollRevealText text="Arsenal" className="gradient-accent" />
+    <section id="skills" className="section-rhythm border-t border-[var(--theme-border)]">
+      <div className="container-custom">
+        {/* Editorial Eyebrow */}
+        <div className="section-eyebrow">06 / Arsenal</div>
+
+        <div className="max-w-3xl mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[var(--theme-text)] font-display">
+            Technical Arsenal
           </h2>
-          <p className="text-[var(--theme-text-muted)] max-w-2xl mx-auto text-base sm:text-lg">
-            Tools and technologies I work with — competence shows in the projects, not
-            self-ratings.
+          <p className="mt-3 text-base text-[var(--theme-text-secondary)]">
+            An engineer&apos;s practical toolbox. Competence is demonstrated through working software, not self-assigned percentage bars.
           </p>
         </div>
 
-        <div className="skills-grid grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
-          {skillCategories.map((category) => {
-            const Icon = category.icon;
+        {/* Structured Toolbox Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {ARSENAL_CATEGORIES.map((cat) => {
+            const Icon = cat.icon;
             return (
-              <article
-                key={category.id}
-                className={`skill-card glass-card transition-all duration-300 hover:scale-[1.01] ${
-                  category.fullWidth ? "skill-card--full" : ""
-                }`}
-              >
-                <div className="skill-card-header">
-                  <span
-                    className={`skill-card-icon-wrap skill-card-icon-wrap--${category.id} transition-transform duration-300 hover:rotate-12`}
-                    aria-hidden
-                  >
-                    <Icon size={22} strokeWidth={2} />
-                  </span>
-                  <h3 className="skill-card-label">{category.label}</h3>
+              <div key={cat.title} className="editorial-card p-6 flex flex-col justify-between">
+                <div>
+                  {/* Category Header */}
+                  <div className="flex items-center gap-3 pb-3 mb-4 border-b border-[var(--theme-border)]">
+                    <div className="w-9 h-9 rounded-lg bg-[var(--theme-surface-2)] border border-[var(--theme-border)] flex items-center justify-center text-[#FF7A00]">
+                      <Icon size={18} />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold text-[var(--theme-text)]">
+                        {cat.title}
+                      </h3>
+                      <p className="text-[0.6875rem] text-[var(--theme-text-muted)]">
+                        {cat.subtitle}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Skills Grid: Logo + VISIBLE Name */}
+                  <div className="flex flex-wrap gap-2">
+                    {cat.skills.map((skill) => {
+                      const logoUrl = LOGO_MAPPING[skill];
+                      return (
+                        <div
+                          key={skill}
+                          className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-md bg-[var(--theme-surface-2)] border border-[var(--theme-border)] text-xs font-medium text-[var(--theme-text)] transition-colors hover:border-[#FF7A00]/40"
+                        >
+                          {logoUrl && (
+                            <span className="relative w-4 h-4 shrink-0">
+                              <Image
+                                src={logoUrl}
+                                alt={`${skill} logo`}
+                                width={16}
+                                height={16}
+                                className="w-full h-full object-contain"
+                              />
+                            </span>
+                          )}
+                          <span className="leading-none">{skill}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-                <div className={`skill-pill-row ${category.id === "core" ? "justify-center" : ""}`}>
-                  {category.skills.map((skill) => (
-                    <SkillPill
-                      key={skill}
-                      skill={skill}
-                      logo={logoMapping[skill]}
-                      isCore={category.id === "core"}
-                      categoryId={category.id}
-                    />
-                  ))}
-                </div>
-              </article>
+              </div>
             );
           })}
+        </div>
+
+        {/* Core Architectural Disciplines Footer */}
+        <div className="mt-8 p-6 sm:p-7 editorial-card bg-[var(--theme-surface)]">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-lg bg-[#FF7A00]/10 border border-[#FF7A00]/30 flex items-center justify-center text-[#FF7A00] shrink-0">
+                <Lightbulb size={18} />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-[var(--theme-text)]">
+                  Core Engineering Disciplines
+                </h3>
+                <p className="text-xs text-[var(--theme-text-muted)]">
+                  Foundational principles guiding my system design and problem solving.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {CORE_CONCEPTS.map((concept) => (
+                <span
+                  key={concept}
+                  className="px-3 py-1.5 rounded-md bg-[var(--theme-surface-2)] border border-[var(--theme-border)] text-xs font-mono font-semibold text-[var(--theme-text)]"
+                >
+                  {concept}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
-};
+}

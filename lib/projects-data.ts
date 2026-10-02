@@ -1,97 +1,119 @@
-
 export interface ProjectData {
   id: string;
   title: string;
+  subtitle: string;
   description: string;
-  outcome: string;
-  category: string;
   technologies: string[];
   link: string;
   github?: string;
   image: string;
-  dateCreated: string;
-  author: string;
-  keywords: string[];
+  category?: string;
+  dateCreated?: string;
+  author?: string;
+  keywords?: string[];
+  outcome?: string;
+  isUpcoming?: boolean;
 }
 
 export const projectsData: ProjectData[] = [
   {
     id: "cosmic-canvas",
     title: "Cosmic Canvas",
+    subtitle: "AI-Powered Design Platform",
     description:
-      "An advanced AI design tool that generates fully editable, layered designs from natural language prompts.",
-    outcome: "500+ designs generated in week 1",
-    category: "ai",
+      "Transforms natural-language prompts into editable visual compositions, combining generative AI with interactive design capabilities.",
     technologies: ["Next.js", "React", "OpenAI API", "Canvas API", "Tailwind CSS"],
     link: "https://cosmic-canvas-delta.vercel.app/",
     github: "https://github.com/samritmukherjee",
     image:
       "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133961/cosmic-canvas_dbmi8b.png",
-    dateCreated: "2025-11-01",
+    category: "ai",
+    dateCreated: "2025",
     author: "Samrit Mukherjee",
-    keywords: ["AI design", "generative UI", "Next.js"],
+    keywords: ["AI Design", "Generative AI", "Canvas API", "Next.js"],
+    outcome: "Best Beginner's Team Track Winner — Hello World Hacks",
   },
   {
     id: "sukalya-ai",
     title: "SUKALYA.ai",
+    subtitle: "AI Health Guidance System",
     description:
-      "AI-powered health assistant improving accessibility through symptom understanding and preventive guidance.",
-    outcome: "Interactive health guidance at scale",
-    category: "ai",
-    technologies: ["Next.js", "React", "Claude API", "TypeScript", "Tailwind CSS"],
+      "An AI-powered health guidance application making healthcare information accessible through conversational interaction, symptom understanding, and preventive guidance.",
+    technologies: ["HTML", "CSS", "JavaScript", "SQL", "Python"],
     link: "https://sukalya-ai.vercel.app/",
     image:
       "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133963/sukalya-ai_uguskw.png",
-    dateCreated: "2025-09-15",
+    category: "ai",
+    dateCreated: "2026",
     author: "Samrit Mukherjee",
-    keywords: ["healthtech", "AI chat", "accessibility"],
+    keywords: ["Healthcare AI", "NLP", "Conversational AI", "Python"],
+    outcome: "Global Top 106 — Google Solution Challenge 2026",
   },
   {
     id: "portfolio-os",
     title: "Portfolio OS",
+    subtitle: "Interactive Web Experience",
     description:
-      "Browser-based operating system showcasing projects through multi-window UI and terminal simulation.",
-    outcome: "Immersive portfolio experience on samrit.dev",
-    category: "web",
+      "An interactive, operating-system-inspired portfolio that presents projects and information through a digital workspace with desktop interfaces and window management.",
     technologies: ["Next.js", "React", "Framer Motion", "Tailwind CSS"],
     link: "https://samrit-portfolio-os.vercel.app/",
     image:
       "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133968/portfolio-os_rqsksy.png",
-    dateCreated: "2026-01-20",
+    category: "web",
+    dateCreated: "2026",
     author: "Samrit Mukherjee",
-    keywords: ["portfolio", "creative dev", "interaction design"],
+    keywords: ["Web OS", "Interactive UI", "Framer Motion", "Next.js"],
+    outcome: "Full-Featured Web OS Architecture with Multi-Window Management",
   },
   {
     id: "avento-ai",
     title: "Avento AI",
+    subtitle: "Multi-Tenant AI Customer Support SaaS",
     description:
-      "Built a RAG-powered Customer Service SaaS enabling businesses to embed context-aware support widgets on Framer and custom websites in under 60 seconds with no-code setup. Features document ingestion pipelines with 500-character chunks and 768-dimensional Pinecone embeddings for under 100ms retrieval latency, plus live analytics dashboards, knowledge-gap detection, and Framer plugin integration.",
-    outcome: "Document Ingestion Pipeline | Live Analytics Dashboards | Framer Integration",
-    category: "ai",
-    technologies: ["Next.js 15", "MongoDB Atlas", "Pinecone", "OpenRouter", "Clerk"],
-    link: "https://avento-ai.vercel.app/",
+      "A multi-tenant, RAG-powered customer support platform that transforms business documents and website content into context-aware AI assistants embeddable without writing code.",
+    technologies: ["Next.js", "Node.js", "MongoDB Atlas", "Pinecone", "OpenRouter", "LangChain"],
+    link: "https://www.avento-ai.xyz/",
     image:
       "https://res.cloudinary.com/duxrcy3jn/image/upload/v1783290758/WhatsApp_Image_2026-07-06_at_3.56.16_AM_ltb6sl.jpg",
-    dateCreated: "2026-07-06",
+    category: "ai",
+    dateCreated: "2026",
     author: "Samrit Mukherjee",
-    keywords: ["RAG SaaS", "AI widgets", "Framer integration"],
+    keywords: ["RAG Systems", "Multi-Tenant SaaS", "Pinecone", "LangChain"],
+    outcome: "Best Startup Track Winner — Synchronicity 2.0",
   },
   {
-    id: "more-projects-coming-soon",
-    title: "2 More Projects Coming Soon",
+    id: "custodian",
+    title: "Custodian",
+    subtitle: "Asset Management & Administrative Platform",
     description:
-      "I'm constantly designing and building new tools to solve real-world problems. Keep an eye out for upcoming projects in AI, full stack systems, and developer tooling.",
-    outcome: "Active research & design phase",
+      "A web-based asset management platform designed to streamline inventory tracking, requests, approvals, issue-return workflows, and accountability across user roles.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "REST APIs", "SQL"],
+    link: "https://custodian-mlzs.vercel.app/",
+    image:
+      "https://res.cloudinary.com/duxrcy3jn/image/upload/v1783290758/WhatsApp_Image_2026-07-06_at_3.56.16_AM_ltb6sl.jpg",
     category: "web",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    link: "/portfolio-os",
-    image: "/coming_soon.png",
-    dateCreated: "2026-06-18",
+    dateCreated: "2025",
     author: "Samrit Mukherjee",
-    keywords: ["upcoming", "future projects", "coming soon"],
+    keywords: ["ERP Systems", "Role-Based Access Control", "Asset Management", "SQL"],
+    outcome: "Production Enterprise Infrastructure for Institutional Operations",
+  },
+  {
+    id: "coming-soon",
+    title: "3 More Projects Coming Soon",
+    subtitle: "Active Engineering & Prototyping",
+    description:
+      "Three additional projects in agentic workflows, automation, and computer vision will be revealed as they are ready to be featured.",
+    technologies: ["AI Systems", "Full-Stack", "Computer Vision", "Automation"],
+    link: "#contact",
+    image: "/coming_soon.png",
+    category: "ai",
+    dateCreated: "2026",
+    author: "Samrit Mukherjee",
+    keywords: ["Agentic AI", "Computer Vision", "Automation"],
+    outcome: "In Active Development",
+    isUpcoming: true,
   },
 ];
-
 
 export const API_CACHE_HEADERS = {
   "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
