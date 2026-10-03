@@ -42,48 +42,40 @@ A premium, interactive portfolio showcasing AI systems, full-stack engineering, 
 ## 📋 Portfolio Sections
 
 ### Hero
-- Animated headline with `DecryptedText` and `RotatingText` effects
-- Availability badge (Available / Busy), driven by `AVAILABILITY_STATUS` env var
-- Count-up metrics (Projects, Experience, Hackathon Wins)
-- CTA buttons: **Download Resume** (scrolls to Resume section) and **View Work**
-- GitHub and LinkedIn icon links
+- Syne display typography and interactive 3D Lanyard identity badge
+- Live availability indicator and stats
+- CTA buttons: **Explore Work** and **Get in Touch**
+- GitHub and LinkedIn quick links
 
 ### About
-- Personal background, philosophy, and core principles
-- Profile image with hover interactions and stats
+- Personal background, engineering philosophy, and orbiting logo showcase
+- Highlights using custom TextHighlighter animations
 
-### Experience
-- Professional work history and volunteer/leadership roles
-- Timeline format with technologies and impact highlights
+### What I Do (Services)
+- Core capabilities spanning AI Systems, Full-Stack Architecture, and Product Engineering
 
-### Hackathons & Accolades
-- Desktop: full interactive `Hackathons` component with image reveals
-- Mobile: dedicated `MobileHackathons` component with smooth scrolling
+### Accolades (Hackathons)
+- Full interactive hackathon showcase with dynamic card movement and snap scrolling on mobile
+- Real-time photo reveals and podium placements
 
 ### Featured Projects
-- `CircularProjects` carousel with 3D perspective animations
-- Tech stack badges, live demo links, and hover image reveals
+- Interactive project showcase with SVG gooey folder tabs and real-time previews
+- Synchronized horizontal scroll with snap behavior for mobile devices
+- Direct live demo and GitHub repository access
 
-### OS Preview
-- `ContainerScrollAnimation` for the Portfolio OS showcase
-- Scroll-driven reveal with link to `/portfolio-os`
+### Professional Journey (Experience)
+- Interactive timeline format with technologies, roles, and key achievements
 
-### Skills
-- 7 categorized skill groups (Frontend, Backend, Programming, Data & AI, Tools, Design, Core Concepts)
-
-### Resume
-- "Download PDF" button — direct file download of `/Resume.pdf`
-- "View Online" button — opens `/Resume.pdf` in a new browser tab
-- Preview image with hover reveal, and metadata (edition date, file format)
+### Technical Arsenal
+- Core competencies categorized across AI/ML, Languages, Systems, Frontend, and Cloud
 
 ### Contact
-- ElectricBorder-animated cards for GitHub, LinkedIn, and Email
-- Location badge (Kolkata, India)
+- Modern contact cards with Formspree-powered functional contact form
+- Direct LinkedIn, GitHub, and email reach-out options
 
 ### Footer
-- Animated visitor counter (Redis-backed, FlipCountdown animation)
-- Social links with hover animations
-- Copyright notice
+- Real-time global visitor counter backed by Upstash Redis
+- Dock quick navigation and theme switcher
 
 ---
 
@@ -109,10 +101,10 @@ A premium, interactive portfolio showcasing AI systems, full-stack engineering, 
 
 ### Components
 - **Glass Cards** — Semi-transparent with themed borders
-- **BlobButton** — SVG goo-filter animated buttons (primary, secondary, icon variants)
-- **ElectricBorder** — Animated canvas border for contact cards
-- **FlipCountdown** — Animated digit flip for the visitor counter
-- **PageLoader** — Full-screen loading animation on first visit
+- **BlobButton** — SVG goo-filter animated buttons
+- **CustomCursor** — Smooth-following custom cursor with interactive hover reactions
+- **PageLoader** — Full-screen SVG loading animation on initial entry
+- **StarWarsSwitch** — Interactive theme toggle switch
 
 ---
 
@@ -143,39 +135,38 @@ A premium, interactive portfolio showcasing AI systems, full-stack engineering, 
 │
 ├── components/
 │   ├── sections/
-│   │   ├── HeroGlassmorphism.tsx
+│   │   ├── Hero.tsx
+│   │   ├── TechStackMarquee.tsx
 │   │   ├── About.tsx
-│   │   ├── Experience.tsx
-│   │   ├── CircularProjects.tsx
-│   │   ├── Skills.tsx
+│   │   ├── Services.tsx
 │   │   ├── Hackathons.tsx
-│   │   ├── ContainerScrollAnimation.tsx
-│   │   ├── Resume.tsx
-│   │   ├── ContactCards.tsx
-│   │   ├── index.ts
-│   │   └── mobile/
-│   │       └── MobileHackathons.tsx
-│   ├── animations/
-│   │   ├── DecryptedText.tsx
-│   │   ├── RotatingText.tsx
-│   │   └── ...
+│   │   ├── Projects.tsx
+│   │   ├── Experience.tsx
+│   │   ├── TechnicalArsenal.tsx
+│   │   └── ContactCards.tsx
 │   ├── ui/
-│   │   └── BlobButton.tsx
-│   ├── ElectricBorder.jsx
-│   ├── Carousel.jsx
-│   ├── ScrollStack.jsx
-│   ├── Folder.jsx
+│   │   ├── BlobButton.tsx
+│   │   ├── CustomCursor.tsx
+│   │   ├── Dock.tsx
+│   │   ├── DotGrid.tsx
+│   │   ├── LanyardBadge.tsx
+│   │   ├── orbiting-circles-demo.tsx
+│   │   └── orbiting-circles.tsx
+│   ├── fancy/
+│   │   ├── filter/
+│   │   │   └── gooey-svg-filter.tsx
+│   │   └── text/
+│   │       └── text-highlighter.tsx
 │   ├── Footer.tsx
-│   ├── PageLoader.tsx
 │   ├── JsonLd.tsx
 │   ├── LenisWrapper.tsx
+│   ├── Navbar.tsx
+│   ├── PageLoader.tsx
 │   ├── SiteAnalytics.tsx
-│   ├── TreeNavigation.tsx
-│   ├── flip-countdown.tsx
-│   ├── spotlight-card.tsx
 │   └── star-wars-toggle-switch.tsx
 │
 ├── hooks/
+│   ├── useLenis.ts                 # Smooth scroll hook with GSAP synchronization
 │   └── useWebMCP.ts                # WebMCP browser tool registration
 │
 ├── lib/
