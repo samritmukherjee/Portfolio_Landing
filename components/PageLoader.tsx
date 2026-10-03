@@ -218,7 +218,7 @@ export default function PageLoader() {
         {/* Futuristic S M Orbit Emblem (New Logo) */}
         <div className="relative w-16 h-16 sm:w-20 sm:h-20 drop-shadow-[0_0_24px_rgba(255,0,0,0.4)]">
           <Image
-            src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791013135/Futuristic_S_M_Orbit_Emblem_refidi.png"
+            src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791022468/SamritMukherjeeLogo_wherde.png"
             alt="Samrit Mukherjee Logo Emblem"
             width={80}
             height={80}

@@ -124,20 +124,20 @@ export function TechnicalArsenal() {
   ];
 
   return (
-    <section id="arsenal" className="w-full max-w-7xl 2xl:max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 py-20 sm:py-24">
+    <section id="arsenal" className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-20 sm:py-24">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
         transition={{ duration: 0.7 }}
-        className="mb-14 sm:mb-16 text-center md:text-left"
+        className="mb-14 sm:mb-16 text-center max-w-3xl mx-auto"
       >
         <div className="section-eyebrow">Skills &amp; Capabilities</div>
         <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-[var(--theme-text)]">
           Technical <span className="text-gradient-primary">Arsenal</span>
         </h2>
-        <p className="text-[var(--theme-text-secondary)] max-w-2xl text-base md:text-lg">
+        <p className="text-[var(--theme-text-secondary)] max-w-2xl mx-auto text-base md:text-lg">
           A disciplined toolkit spanning AI engineering, full-stack web platforms, database infrastructure, and robust API development.
         </p>
       </motion.div>

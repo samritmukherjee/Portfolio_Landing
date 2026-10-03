@@ -19,11 +19,16 @@ export default function Home() {
   const [theme, setTheme] = useState<"dark" | "light">("light");
   const [activeSection, setActiveSection] = useState("hero");
 
-  // Initialize theme from storage or default to light
+  // Initialize theme with light mode as default opener
   useEffect(() => {
     try {
+      const sessionTheme = sessionStorage.getItem("samrit_session_theme");
       const savedTheme = localStorage.getItem("samrit_theme") as "dark" | "light" | null;
-      const initialTheme = savedTheme === "dark" ? "dark" : "light";
+      const initialTheme = sessionTheme ? (savedTheme === "dark" ? "dark" : "light") : "light";
+      
+      sessionStorage.setItem("samrit_session_theme", initialTheme);
+      localStorage.setItem("samrit_theme", initialTheme);
+      
       setTheme(initialTheme);
       document.documentElement.setAttribute("data-theme", initialTheme);
       if (initialTheme === "dark") {
@@ -50,6 +55,7 @@ export default function Home() {
       document.documentElement.classList.remove("dark");
     }
     try {
+      sessionStorage.setItem("samrit_session_theme", next);
       localStorage.setItem("samrit_theme", next);
     } catch {
       // storage unavailable

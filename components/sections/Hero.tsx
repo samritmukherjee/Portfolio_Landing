@@ -36,7 +36,7 @@ export function Hero() {
       {/* Background Dot Grid with subtle red ambient center glow */}
       <DotGrid width={24} height={24} cx={1.25} cy={1.25} cr={1.25} glow={true} />
 
-      <div className="relative z-10 max-w-7xl 2xl:max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 w-full flex-1 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 pb-6">
+      <div className="relative z-10 w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 flex-1 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 pb-6">
         {/* Left Column: Typography, Status, CTA & Socials */}
         <motion.div
           className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left max-w-3xl"
@@ -117,7 +117,7 @@ export function Hero() {
             </BlobButton>
 
             <BlobButton
-              href="/Resume.pdf"
+              href="/Resume.pdf?v=20261003"
               variant="secondary"
               download="Samrit_Mukherjee_Resume.pdf"
               className="min-h-[2.85rem] px-6 text-sm"

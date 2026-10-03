@@ -27,7 +27,7 @@ const HACKATHONS_DATA: HackathonEvent[] = [
     proof: "Team Leader — Second Runner-Up overall among 143 participating teams & Won Panel 4",
     description:
       "Secured second runner-up overall among 143 participating teams at MSIT, won Panel 4, and qualified for the national Idea Submission Round with an intelligent enterprise system.",
-    image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133897/showcasex_znf9ug.jpg",
+    image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1790955452/1789109571047_qv6pzt.jpg",
   },
   {
     title: "BuildX 2026 — IIT Kharagpur",
@@ -38,7 +38,7 @@ const HACKATHONS_DATA: HackathonEvent[] = [
     proof: "Grand Finale Champion at IIT Kharagpur — Resourcio Community",
     description:
       "Won BuildX 2026 organized by Resourcio Community, progressing through intense sprint buildathons and presenting the production-grade solution at the Grand Finale at IIT Kharagpur.",
-    image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133900/double-slash_fn9wm5.jpg",
+    image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1791036358/1_9_itxutl.jpg",
   },
   {
     title: "Google Solution Challenge 2026",
@@ -416,7 +416,7 @@ export function Hackathons() {
   };
 
   return (
-    <section id="hackathons" className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+    <section id="hackathons" className="relative py-24 sm:py-32 px-4 sm:px-8 lg:px-12 xl:px-16 w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto overflow-hidden">
       {/* Header with 11x trophy badge */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}

@@ -89,7 +89,7 @@ export function Navbar({ theme, onToggleTheme, activeSection }: NavbarProps) {
               >
                 <div className="relative w-8 h-8 sm:w-9 sm:h-9 group-hover:scale-105 transition-transform duration-300 flex items-center justify-center flex-shrink-0">
                   <Image
-                    src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791013135/Futuristic_S_M_Orbit_Emblem_refidi.png"
+                    src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791022468/SamritMukherjeeLogo_wherde.png"
                     alt="Samrit Mukherjee Logo"
                     width={36}
                     height={36}

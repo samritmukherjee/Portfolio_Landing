@@ -154,20 +154,17 @@ export function Experience() {
     <section
       ref={sectionRef}
       id="career"
-      className="w-full max-w-7xl 2xl:max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 py-20 sm:py-24"
+      className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-20 sm:py-24"
     >
       {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 md:mb-16 gap-4">
-        <div className="space-y-3 text-center md:text-left">
-          <div className="section-eyebrow">Professional History</div>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[var(--theme-text)]">
-            Professional <span className="text-gradient-primary">Journey</span>
-          </h2>
-          <p className="text-[var(--theme-text-secondary)] max-w-xl text-base md:text-lg">
-            A track record of technical advisory, educational systems architecture, and community design contributions.
-          </p>
-        </div>
-        <div className="hidden md:block h-px flex-1 bg-[var(--theme-border)] mx-8 mb-4" />
+      <div className="text-center max-w-3xl mx-auto mb-14 md:mb-16 space-y-3">
+        <div className="section-eyebrow">Professional History</div>
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[var(--theme-text)]">
+          Professional <span className="text-gradient-primary">Journey</span>
+        </h2>
+        <p className="text-[var(--theme-text-secondary)] max-w-xl mx-auto text-base md:text-lg">
+          A track record of technical advisory, educational systems architecture, and community design contributions.
+        </p>
       </div>
 
       <div className="relative mt-8">

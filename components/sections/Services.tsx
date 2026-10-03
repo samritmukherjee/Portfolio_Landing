@@ -33,7 +33,7 @@ export function Services() {
   ];
 
   return (
-    <section id="services" className="max-w-7xl 2xl:max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 py-20 sm:py-24">
+    <section id="services" className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-20 sm:py-24">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}

@@ -66,9 +66,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   icons: {
-    icon: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1791013135/Futuristic_S_M_Orbit_Emblem_refidi.png",
-    shortcut: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1791013135/Futuristic_S_M_Orbit_Emblem_refidi.png",
-    apple: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1791013135/Futuristic_S_M_Orbit_Emblem_refidi.png",
+    icon: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1791022468/SamritMukherjeeLogo_wherde.png",
+    shortcut: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1791022468/SamritMukherjeeLogo_wherde.png",
+    apple: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1791022468/SamritMukherjeeLogo_wherde.png",
   },
   openGraph: {
     title: "Samrit Mukherjee | AI Systems, Full-Stack Engineering & 11× Hackathon Winner",
@@ -117,7 +117,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("samrit_theme")||"light";document.documentElement.setAttribute("data-theme",t);if(t==="dark"){document.documentElement.classList.add("dark");}else{document.documentElement.classList.remove("dark");}}catch(e){document.documentElement.setAttribute("data-theme","light");}})();`,
+            __html: `(function(){try{var s=sessionStorage.getItem("samrit_session_theme");var t=s?localStorage.getItem("samrit_theme")||"light":"light";sessionStorage.setItem("samrit_session_theme",t);localStorage.setItem("samrit_theme",t);document.documentElement.setAttribute("data-theme",t);if(t==="dark"){document.documentElement.classList.add("dark");}else{document.documentElement.classList.remove("dark");}}catch(e){document.documentElement.setAttribute("data-theme","light");document.documentElement.classList.remove("dark");}})();`,
           }}
         />
       </head>

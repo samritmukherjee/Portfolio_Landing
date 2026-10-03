@@ -80,13 +80,13 @@ export function Footer() {
       {/* Background Ambient Red Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-[#FF0000]/5 blur-[140px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10 flex flex-col gap-8">
+      <div className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10 flex flex-col gap-8">
         {/* Top Header Row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-[var(--theme-border)]">
           <div className="flex items-center gap-3.5">
             <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0 shadow-sm">
               <img
-                src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791013135/Futuristic_S_M_Orbit_Emblem_refidi.png"
+                src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791022468/SamritMukherjeeLogo_wherde.png"
                 alt="Samrit Mukherjee Logo"
                 className="w-full h-full object-contain"
               />
