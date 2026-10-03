@@ -17,10 +17,10 @@ const NAV_ITEMS = [
   { name: "Home", href: "hero" },
   { name: "About", href: "about" },
   { name: "What I Do", href: "services" },
-  { name: "Projects", href: "projects" },
-  { name: "Career", href: "career" },
-  { name: "Arsenal", href: "arsenal" },
   { name: "Accolades", href: "hackathons" },
+  { name: "Projects", href: "projects" },
+  { name: "Journey", href: "career" },
+  { name: "Arsenal", href: "arsenal" },
   { name: "Contact", href: "contact" },
 ];
 
@@ -87,12 +87,12 @@ export function Navbar({ theme, onToggleTheme, activeSection }: NavbarProps) {
                 className="cursor-pointer flex items-center gap-3 group select-none"
                 aria-label="Samrit Mukherjee Home"
               >
-                <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden p-1 bg-gradient-to-tr from-black via-neutral-900 to-[#FF0000] border border-foreground/10 group-hover:scale-105 transition-transform duration-300 shadow-sm flex items-center justify-center flex-shrink-0">
+                <div className="relative w-8 h-8 sm:w-9 sm:h-9 group-hover:scale-105 transition-transform duration-300 flex items-center justify-center flex-shrink-0">
                   <Image
-                    src="https://res.cloudinary.com/duxrcy3jn/image/upload/q_auto/f_auto/v1777463452/SAMRIT_FEBICON_hxnczn.png"
+                    src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791013135/Futuristic_S_M_Orbit_Emblem_refidi.png"
                     alt="Samrit Mukherjee Logo"
-                    width={40}
-                    height={40}
+                    width={36}
+                    height={36}
                     className="w-full h-full object-contain"
                     priority
                   />

@@ -34,7 +34,7 @@ export function DotGrid({
       <svg
         aria-hidden="true"
         className={cn(
-          "pointer-events-none absolute inset-0 h-full w-full fill-black/35 dark:fill-white/35 [mask-image:radial-gradient(ellipse_at_center,white_60%,transparent_92%)]",
+          "pointer-events-none absolute inset-0 h-full w-full fill-neutral-900/35 dark:fill-white/45 [html[data-theme='dark']_&]:fill-white/45 [mask-image:radial-gradient(ellipse_at_center,white_60%,transparent_92%)]",
           className
         )}
         {...props}

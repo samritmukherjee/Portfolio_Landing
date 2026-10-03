@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useSpring } from "framer-motion";
 
 interface ExperienceEntry {
   id: number;
@@ -69,8 +69,10 @@ function TimelineItem({
         } top-8 z-10`}
       >
         <div
-          className={`w-4 h-4 rounded-full border-2 border-[#FF0000] transition-colors duration-500 ${
-            inView ? "bg-[#FF0000] shadow-[0_0_10px_rgba(255,0,0,0.6)]" : "bg-[var(--theme-surface)]"
+          className={`w-4 h-4 rounded-full border-2 border-[#FF0000] transition-all duration-500 ${
+            inView
+              ? "bg-[#FF0000] shadow-[0_0_12px_rgba(255,0,0,0.8)] scale-110"
+              : "bg-[var(--theme-surface)]"
           }`}
         />
       </div>
@@ -126,6 +128,7 @@ function TimelineItem({
 
 export function Experience() {
   const [isDesktop, setIsDesktop] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -136,8 +139,23 @@ export function Experience() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start 70%", "end 60%"],
+  });
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
   return (
-    <section id="career" className="w-full max-w-7xl 2xl:max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 py-20 sm:py-24">
+    <section
+      ref={sectionRef}
+      id="career"
+      className="w-full max-w-7xl 2xl:max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 py-20 sm:py-24"
+    >
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 md:mb-16 gap-4">
         <div className="space-y-3 text-center md:text-left">
@@ -153,8 +171,14 @@ export function Experience() {
       </div>
 
       <div className="relative mt-8">
-        {/* Continuous Connecting Line */}
-        <div className="absolute left-4 lg:left-1/2 -translate-x-1/2 top-4 bottom-4 w-0.5 bg-[var(--theme-border)]" />
+        {/* Continuous Connecting Line Background Track */}
+        <div className="absolute left-4 lg:left-1/2 -translate-x-1/2 top-8 bottom-8 w-0.5 bg-[var(--theme-border)]" />
+
+        {/* Scroll-Linked Downward Animated Timeline Line */}
+        <motion.div
+          style={{ scaleY }}
+          className="absolute left-4 lg:left-1/2 -translate-x-1/2 top-8 bottom-8 w-0.5 origin-top bg-gradient-to-b from-[#FF0000] via-[#FF4D4D] to-[#FF0000] shadow-[0_0_12px_rgba(255,0,0,0.8)] z-[5]"
+        />
 
         {experiences.map((exp, idx) => (
           <TimelineItem key={exp.id} exp={exp} index={idx} isDesktop={isDesktop} />

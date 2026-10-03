@@ -66,9 +66,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   icons: {
-    icon: "https://res.cloudinary.com/duxrcy3jn/image/upload/q_auto/f_auto/v1777463452/SAMRIT_FEBICON_hxnczn.png",
-    shortcut: "https://res.cloudinary.com/duxrcy3jn/image/upload/q_auto/f_auto/v1777463452/SAMRIT_FEBICON_hxnczn.png",
-    apple: "https://res.cloudinary.com/duxrcy3jn/image/upload/q_auto/f_auto/v1777463452/SAMRIT_FEBICON_hxnczn.png",
+    icon: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1791013135/Futuristic_S_M_Orbit_Emblem_refidi.png",
+    shortcut: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1791013135/Futuristic_S_M_Orbit_Emblem_refidi.png",
+    apple: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1791013135/Futuristic_S_M_Orbit_Emblem_refidi.png",
   },
   openGraph: {
     title: "Samrit Mukherjee | AI Systems, Full-Stack Engineering & 11× Hackathon Winner",
@@ -114,6 +114,13 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${dmSans.variable} ${syne.variable}`}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("samrit_theme")||"light";document.documentElement.setAttribute("data-theme",t);if(t==="dark"){document.documentElement.classList.add("dark");}else{document.documentElement.classList.remove("dark");}}catch(e){document.documentElement.setAttribute("data-theme","light");}})();`,
+          }}
+        />
+      </head>
       <body className="bg-[var(--theme-bg)] transition-colors duration-500 overflow-x-hidden selection:bg-[#FF0000] selection:text-white">
         <a href="#main" className="skip-link">
           Skip to main content
@@ -134,11 +141,6 @@ export default function RootLayout({
             __html: `window.__AVAILABILITY_STATUS__=${JSON.stringify(availabilityStatus)};`,
           }}
         />
-        <script
-          src={process.env.NEXT_PUBLIC_AVENTO_BOT_URL}
-          data-key={process.env.NEXT_PUBLIC_AVENTO_BOT_KEY}
-          async
-        ></script>
       </body>
     </html>
   );

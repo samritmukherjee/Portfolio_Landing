@@ -328,11 +328,11 @@ export function LanyardBadge({
 
               {/* Barcode & Signature */}
               <div className="flex flex-col items-center mt-1 w-full gap-1">
-                <div className="flex gap-[2.5px] items-end h-7 px-3 py-0.5 bg-white/90 dark:bg-black/40 rounded-lg border border-border/40 w-full justify-center">
+                <div className="flex gap-[2.5px] items-end h-7 px-3 py-0.5 bg-neutral-100/90 dark:bg-black/90 [html[data-theme='dark']_&]:bg-black/90 rounded-lg border border-border/40 dark:border-white/15 [html[data-theme='dark']_&]:border-white/15 w-full justify-center">
                   {Array.from({ length: 34 }).map((_, i) => (
                     <div
                       key={i}
-                      className="bg-foreground rounded-[1px]"
+                      className="bg-neutral-900 dark:bg-white [html[data-theme='dark']_&]:bg-white rounded-[1px]"
                       style={{
                         width: i % 4 === 0 ? "3px" : i % 2 === 0 ? "2px" : "1px",
                         height: `${45 + Math.sin(i * 1.5) * 45}%`,

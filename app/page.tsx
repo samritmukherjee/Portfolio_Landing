@@ -6,31 +6,34 @@ import { Hero } from "@/components/sections/Hero";
 import { TechStackMarquee } from "@/components/sections/TechStackMarquee";
 import { About } from "@/components/sections/About";
 import { Services } from "@/components/sections/Services";
+import { Hackathons } from "@/components/sections/Hackathons";
 import { Projects } from "@/components/sections/Projects";
 import { Experience } from "@/components/sections/Experience";
 import { TechnicalArsenal } from "@/components/sections/TechnicalArsenal";
-import { Hackathons } from "@/components/sections/Hackathons";
 import { ContactCards } from "@/components/sections/ContactCards";
 import { Footer } from "@/components/Footer";
 import { Dock } from "@/components/ui/Dock";
 import { initializeWebMCP } from "@/hooks/useWebMCP";
 
 export default function Home() {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme, setTheme] = useState<"dark" | "light">("light");
   const [activeSection, setActiveSection] = useState("hero");
 
-  // Initialize theme from storage or default to dark
+  // Initialize theme from storage or default to light
   useEffect(() => {
     try {
       const savedTheme = localStorage.getItem("samrit_theme") as "dark" | "light" | null;
-      if (savedTheme === "light" || savedTheme === "dark") {
-        setTheme(savedTheme);
-        document.documentElement.setAttribute("data-theme", savedTheme);
+      const initialTheme = savedTheme === "dark" ? "dark" : "light";
+      setTheme(initialTheme);
+      document.documentElement.setAttribute("data-theme", initialTheme);
+      if (initialTheme === "dark") {
+        document.documentElement.classList.add("dark");
       } else {
-        document.documentElement.setAttribute("data-theme", "dark");
+        document.documentElement.classList.remove("dark");
       }
     } catch {
-      document.documentElement.setAttribute("data-theme", "dark");
+      document.documentElement.setAttribute("data-theme", "light");
+      document.documentElement.classList.remove("dark");
     }
 
     // Initialize WebMCP for AI agent context
@@ -41,6 +44,11 @@ export default function Home() {
     const next = theme === "dark" ? "light" : "dark";
     setTheme(next);
     document.documentElement.setAttribute("data-theme", next);
+    if (next === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
     try {
       localStorage.setItem("samrit_theme", next);
     } catch {
@@ -48,16 +56,16 @@ export default function Home() {
     }
   };
 
-  // Section visibility tracking for Navbar & Dock active state
+  // Section visibility tracking for Navbar & Dock active state (matching exact 9-section order)
   useEffect(() => {
     const sectionIds = [
       "hero",
       "about",
       "services",
+      "hackathons",
       "projects",
       "career",
       "arsenal",
-      "hackathons",
       "contact",
     ];
 
@@ -92,15 +100,16 @@ export default function Home() {
         activeSection={activeSection}
       />
 
+      {/* Exact 9-section portfolio structure */}
       <main id="main" className="w-full flex flex-col border-none overflow-x-hidden">
         <Hero />
         <TechStackMarquee />
         <About />
         <Services />
+        <Hackathons />
         <Projects />
         <Experience />
         <TechnicalArsenal />
-        <Hackathons />
         <ContactCards />
       </main>
 

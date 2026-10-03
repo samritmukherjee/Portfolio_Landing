@@ -11,7 +11,7 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#35A7FF",
     icons: [
       {
-        src: "https://res.cloudinary.com/duxrcy3jn/image/upload/q_auto/f_auto/v1777463452/SAMRIT_FEBICON_hxnczn.png",
+        src: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1791013135/Futuristic_S_M_Orbit_Emblem_refidi.png",
         sizes: "any",
         type: "image/png",
       },

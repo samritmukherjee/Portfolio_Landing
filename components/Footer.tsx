@@ -2,13 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUp, Mail, Heart } from "lucide-react";
+import { ArrowUp, Mail } from "lucide-react";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { isNewVisitor, markVisit } from "@/lib/visitor";
 import { scrollToElement } from "@/lib/scrollToElement";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
   const [visitCount, setVisitCount] = useState<number | null>(null);
   const [textIndex, setTextIndex] = useState(0);
 
@@ -59,10 +58,10 @@ export function Footer() {
     { name: "Home", href: "hero" },
     { name: "About", href: "about" },
     { name: "What I Do", href: "services" },
-    { name: "Projects", href: "projects" },
-    { name: "Career", href: "career" },
-    { name: "Technical Arsenal", href: "arsenal" },
     { name: "Hackathons", href: "hackathons" },
+    { name: "Projects", href: "projects" },
+    { name: "Journey", href: "career" },
+    { name: "Arsenal", href: "arsenal" },
     { name: "Let's Connect", href: "contact" },
   ];
 
@@ -77,17 +76,17 @@ export function Footer() {
   };
 
   return (
-    <footer className="w-full relative z-10 pt-16 pb-36 md:pb-44 bg-[var(--theme-surface)]/80 backdrop-blur-2xl border-t border-[var(--theme-border)] shadow-2xl rounded-t-[2.5rem] sm:rounded-t-[3rem] overflow-hidden">
+    <footer className="w-full relative z-10 pt-14 pb-12 sm:pb-14 bg-[var(--theme-surface)]/80 backdrop-blur-2xl border-t border-[var(--theme-border)] shadow-2xl rounded-t-[2.5rem] sm:rounded-t-[3rem] overflow-hidden">
       {/* Background Ambient Red Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-[#FF0000]/5 blur-[140px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10 flex flex-col gap-10">
+      <div className="max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10 flex flex-col gap-8">
         {/* Top Header Row */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-[var(--theme-border)]">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-[var(--theme-border)]">
           <div className="flex items-center gap-3.5">
-            <div className="relative w-11 h-11 rounded-2xl bg-[var(--theme-surface)] border border-[var(--theme-border)] p-1.5 shadow-md flex items-center justify-center overflow-hidden">
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0 shadow-sm">
               <img
-                src="https://res.cloudinary.com/duxrcy3jn/image/upload/q_auto/f_auto/v1777463452/SAMRIT_FEBICON_hxnczn.png"
+                src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791013135/Futuristic_S_M_Orbit_Emblem_refidi.png"
                 alt="Samrit Mukherjee Logo"
                 className="w-full h-full object-contain"
               />
@@ -115,7 +114,7 @@ export function Footer() {
         </div>
 
         {/* Center Big Morphing Banner */}
-        <div className="py-10 px-6 rounded-3xl bg-[var(--theme-card)] border border-[var(--theme-border)] text-center flex flex-col items-center justify-center my-1 shadow-sm">
+        <div className="py-8 px-6 rounded-3xl bg-[var(--theme-card)] border border-[var(--theme-border)] text-center flex flex-col items-center justify-center my-1 shadow-sm">
           <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#FF0000] mb-3 bg-[#FF0000]/10 px-3.5 py-1.5 rounded-full border border-[#FF0000]/25 shadow-sm">
             Focus &amp; Vision
           </span>
@@ -137,7 +136,7 @@ export function Footer() {
         </div>
 
         {/* Navigation Links */}
-        <div className="py-5 border-t border-[var(--theme-border)] flex flex-wrap items-center justify-center gap-5 md:gap-8 text-xs sm:text-sm font-semibold text-[var(--theme-text-secondary)]">
+        <div className="py-4 border-t border-[var(--theme-border)] flex flex-wrap items-center justify-center gap-5 md:gap-8 text-xs sm:text-sm font-semibold text-[var(--theme-text-secondary)]">
           {navLinks.map((link, idx) => (
             <button
               key={idx}
@@ -151,8 +150,8 @@ export function Footer() {
         </div>
 
         {/* Bottom Colophon & Visitor Badge */}
-        <div className="pt-6 border-t border-[var(--theme-border)] flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-[var(--theme-text-secondary)]">
-          {/* Social Icons (Twitter/X removed completely) */}
+        <div className="pt-4 border-t border-[var(--theme-border)] flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-[var(--theme-text-secondary)]">
+          {/* Social Icons */}
           <div className="flex items-center gap-3">
             {socialLinks.map((item, idx) => {
               const Icon = item.icon;
@@ -172,18 +171,21 @@ export function Footer() {
           </div>
 
           {/* Visitor Counter Pill */}
-          {visitCount !== null && (
+          {visitCount !== null && visitCount > 0 ? (
             <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--theme-card)] border border-[var(--theme-border)] text-xs font-mono font-medium">
               <span className="w-2 h-2 rounded-full bg-[#FF0000] animate-pulse" />
               <span>{visitCount.toLocaleString()} global visits</span>
             </div>
+          ) : (
+            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--theme-card)] border border-[var(--theme-border)] text-xs font-mono font-medium text-[var(--theme-text-muted)]">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Live portfolio</span>
+            </div>
           )}
 
-          {/* Copyright */}
-          <div className="flex items-center gap-1.5 font-medium text-center md:text-right">
-            <span>© {currentYear} Samrit Mukherjee. Built with care</span>
-            <Heart className="w-3.5 h-3.5 text-[#FF0000] fill-[#FF0000] inline-block" />
-            <span>&amp; Next.js</span>
+          {/* Copyright: Exactly "© 2026 Samrit Mukherjee." */}
+          <div className="font-medium text-center md:text-right text-[var(--theme-text-secondary)]">
+            © 2026 Samrit Mukherjee.
           </div>
         </div>
       </div>

@@ -90,7 +90,7 @@ export const projectsData: ProjectData[] = [
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "REST APIs", "SQL"],
     link: "https://custodian-mlzs.vercel.app/",
     image:
-      "https://res.cloudinary.com/duxrcy3jn/image/upload/v1783290758/WhatsApp_Image_2026-07-06_at_3.56.16_AM_ltb6sl.jpg",
+      "https://res.cloudinary.com/duxrcy3jn/image/upload/v1791013160/Screenshot_2026-10-03_123913_hzru2f.png",
     category: "web",
     dateCreated: "2025",
     author: "Samrit Mukherjee",

@@ -113,10 +113,10 @@ export function Dock() {
     { icon: <Home className="w-4 h-4" />, label: "Home", onClick: () => scrollToElement("hero") },
     { icon: <User className="w-4 h-4" />, label: "About", onClick: () => scrollToElement("about") },
     { icon: <Layers className="w-4 h-4" />, label: "What I Do", onClick: () => scrollToElement("services") },
+    { icon: <Trophy className="w-4 h-4" />, label: "Accolades", onClick: () => scrollToElement("hackathons") },
     { icon: <FolderGit2 className="w-4 h-4" />, label: "Projects", onClick: () => scrollToElement("projects") },
-    { icon: <Briefcase className="w-4 h-4" />, label: "Career", onClick: () => scrollToElement("career") },
+    { icon: <Briefcase className="w-4 h-4" />, label: "Journey", onClick: () => scrollToElement("career") },
     { icon: <Code2 className="w-4 h-4" />, label: "Arsenal", onClick: () => scrollToElement("arsenal") },
-    { icon: <Trophy className="w-4 h-4" />, label: "Hackathons", onClick: () => scrollToElement("hackathons") },
     { icon: <Mail className="w-4 h-4" />, label: "Connect", onClick: () => scrollToElement("contact") },
   ];
 

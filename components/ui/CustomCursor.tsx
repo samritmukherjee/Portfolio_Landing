@@ -33,13 +33,22 @@ export function CustomCursor() {
     const onMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
+      if (!isVisible) {
+        setIsVisible(true);
+        document.documentElement.classList.add("has-custom-cursor");
+      }
     };
 
     const onMouseDown = () => setIsClicking(true);
     const onMouseUp = () => setIsClicking(false);
-    const onMouseLeave = () => setIsVisible(false);
-    const onMouseEnter = () => setIsVisible(true);
+    const onMouseLeave = () => {
+      setIsVisible(false);
+      document.documentElement.classList.remove("has-custom-cursor");
+    };
+    const onMouseEnter = () => {
+      setIsVisible(true);
+      document.documentElement.classList.add("has-custom-cursor");
+    };
 
     const checkHoverable = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
@@ -60,6 +69,7 @@ export function CustomCursor() {
     document.addEventListener("mouseenter", onMouseEnter);
 
     return () => {
+      document.documentElement.classList.remove("has-custom-cursor");
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mousemove", checkHoverable);
       window.removeEventListener("mousedown", onMouseDown);
@@ -68,6 +78,17 @@ export function CustomCursor() {
       document.removeEventListener("mouseenter", onMouseEnter);
     };
   }, [mouseX, mouseY, isVisible]);
+
+  useEffect(() => {
+    if (isVisible && !isTouchDevice) {
+      document.documentElement.classList.add("has-custom-cursor");
+    } else {
+      document.documentElement.classList.remove("has-custom-cursor");
+    }
+    return () => {
+      document.documentElement.classList.remove("has-custom-cursor");
+    };
+  }, [isVisible, isTouchDevice]);
 
   if (isTouchDevice || !isVisible) return null;
 

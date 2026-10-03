@@ -162,7 +162,7 @@ export function Hero() {
           <LanyardBadge
             name="Samrit Mukherjee"
             role="AI Systems • Full Stack Dev"
-            badgeId="SM-2027-DEV"
+            badgeId="SM-2026-DEV"
             accentColor="#FF0000"
             ropeLength={75}
             ropeColor="#1A1A1A"

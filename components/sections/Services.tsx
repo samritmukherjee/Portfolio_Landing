@@ -3,7 +3,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Boxes, ShieldCheck, Cpu, GitMerge } from "lucide-react";
-import { SpotlightCard } from "@/components/ui/SpotlightCard";
 
 export function Services() {
   const services = [
@@ -37,13 +36,13 @@ export function Services() {
     <section id="services" className="max-w-7xl 2xl:max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 py-20 sm:py-24">
       {/* Section Header */}
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.7 }}
         className="mb-14 sm:mb-16 text-center"
       >
-        <div className="section-eyebrow">Expertise & Disciplines</div>
+        <div className="section-eyebrow">Expertise &amp; Disciplines</div>
         <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-[var(--theme-text)]">
           Product Engineering &amp;{" "}
           <span className="text-gradient-primary">Enterprise Systems</span>
@@ -53,7 +52,7 @@ export function Services() {
         </p>
       </motion.div>
 
-      {/* 2x2 Grid of Spotlight Cards */}
+      {/* 2x2 Grid of Refined Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {services.map((item, idx) => {
           const Icon = item.icon;
@@ -63,25 +62,25 @@ export function Services() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.15, duration: 0.6 }}
+              transition={{ delay: idx * 0.1, duration: 0.5 }}
               className="h-full"
             >
-              <SpotlightCard
-                className="h-full p-7 sm:p-8 rounded-2xl border border-[var(--theme-border)] bg-[var(--theme-card)] hover:border-[#FF0000]/40 transition-colors shadow-sm flex flex-col justify-between"
-                gradientColor="rgba(255, 0, 0, 0.08)"
-              >
+              <div className="group relative h-full p-7 sm:p-8 rounded-2xl border border-[var(--theme-border)] bg-[var(--theme-card)] transition-all duration-300 hover:border-[#FF0000]/50 hover:shadow-[0_12px_36px_rgba(255,0,0,0.06)] hover:-translate-y-1 flex flex-col justify-between overflow-hidden">
+                {/* Subtle top edge accent line on hover */}
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF0000] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-[#FF0000]/10 border border-[#FF0000]/25 flex items-center justify-center text-primary mb-6">
-                    <Icon className="w-6 h-6 text-[#FF0000]" />
+                  <div className="w-12 h-12 rounded-xl bg-[var(--theme-surface-2)] border border-[var(--theme-border)] group-hover:border-[#FF0000]/40 group-hover:bg-[#FF0000]/10 flex items-center justify-center text-[#FF0000] mb-6 transition-all duration-300 shadow-sm">
+                    <Icon className="w-6 h-6 text-[#FF0000] transition-transform duration-300 group-hover:scale-105" />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold mb-3 text-[var(--theme-text)]">
+                  <h3 className="text-xl sm:text-2xl font-bold mb-3 text-[var(--theme-text)] group-hover:text-primary transition-colors">
                     {item.title}
                   </h3>
                   <p className="text-[var(--theme-text-secondary)] text-sm sm:text-base leading-relaxed">
                     {item.description}
                   </p>
                 </div>
-              </SpotlightCard>
+              </div>
             </motion.div>
           );
         })}

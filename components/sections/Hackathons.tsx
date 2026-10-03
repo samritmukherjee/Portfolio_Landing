@@ -161,23 +161,26 @@ function AchievementCard({
     if (imageRef.current) {
       gsap.to(imageRef.current, {
         opacity: 1,
-        duration: 0.5,
-        ease: "power2.out",
+        duration: 0.18,
+        ease: "power1.out",
+        overwrite: "auto",
       });
     }
     if (overlayRef.current) {
       gsap.to(overlayRef.current, {
         opacity: 0.85,
-        duration: 0.4,
-        ease: "power2.out",
+        duration: 0.18,
+        ease: "power1.out",
+        overwrite: "auto",
       });
     }
     if (contentRef.current) {
       gsap.to(contentRef.current, {
         opacity: 0,
-        y: -10,
-        duration: 0.35,
-        ease: "power2.out",
+        y: -6,
+        duration: 0.16,
+        ease: "power1.out",
+        overwrite: "auto",
       });
     }
   };
@@ -191,7 +194,7 @@ function AchievementCard({
     gsap.to(card, {
       rotateY: 0,
       rotateX: 0,
-      duration: 0.5,
+      duration: 0.35,
       ease: "power2.out",
       overwrite: "auto",
     });
@@ -202,8 +205,8 @@ function AchievementCard({
         x: 0,
         y: 0,
         opacity: 0,
-        duration: 0.5,
-        ease: "power2.out",
+        duration: 0.2,
+        ease: "power1.out",
         overwrite: "auto",
       });
     }
@@ -211,8 +214,9 @@ function AchievementCard({
     if (overlayRef.current) {
       gsap.to(overlayRef.current, {
         opacity: 0,
-        duration: 0.4,
-        ease: "power2.out",
+        duration: 0.2,
+        ease: "power1.out",
+        overwrite: "auto",
       });
     }
 
@@ -220,8 +224,9 @@ function AchievementCard({
       gsap.to(contentRef.current, {
         opacity: 1,
         y: 0,
-        duration: 0.4,
-        ease: "power2.out",
+        duration: 0.2,
+        ease: "power1.out",
+        overwrite: "auto",
       });
     }
   };
@@ -235,21 +240,23 @@ function AchievementCard({
       style={{ transformStyle: isDesktop ? "preserve-3d" : "flat" }}
       className={`relative group ${isDesktop ? "h-full" : "w-[85vw] max-w-[360px] flex-shrink-0 snap-start"}`}
     >
-      <div className="relative h-full min-h-[360px] sm:min-h-[380px] rounded-[1.5rem] lg:rounded-[2rem] border border-[var(--theme-border)] bg-[var(--theme-card)] overflow-hidden transition-all duration-500 shadow-sm hover:border-[#FF0000]/60 hover:shadow-[0_12px_40px_rgba(255,0,0,0.12)] flex flex-col justify-between">
-        {/* Background Revealed Image Layer */}
+      <div className="relative h-full min-h-[360px] sm:min-h-[380px] rounded-[1.5rem] lg:rounded-[2rem] border border-[var(--theme-border)] bg-[var(--theme-card)] overflow-hidden transition-all duration-300 shadow-sm hover:border-[#FF0000]/60 hover:shadow-[0_12px_40px_rgba(255,0,0,0.12)] flex flex-col justify-between">
+        {/* Background Revealed Image Layer — Zero delay immediate response */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img
             ref={imageRef}
             src={event.image}
             alt={`${event.title} - Winning Moment`}
-            className={`w-full h-full object-cover transition-opacity duration-500 ${
+            loading="eager"
+            decoding="async"
+            className={`w-full h-full object-cover ${
               !isDesktop && mobilePhotoRevealed ? "opacity-100" : "opacity-0"
             }`}
           />
           {/* Subtle gradient vignette over revealed image so title badge is visible */}
           <div
             ref={overlayRef}
-            className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/60 pointer-events-none transition-opacity duration-400 ${
+            className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/60 pointer-events-none ${
               !isDesktop && mobilePhotoRevealed ? "opacity-85" : "opacity-0"
             }`}
           />
@@ -386,6 +393,18 @@ export function Hackathons() {
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    // Preload all hackathon award images for instant hover display with zero network lag
+    if (typeof window !== "undefined") {
+      HACKATHONS_DATA.forEach((item) => {
+        if (item.image) {
+          const img = new window.Image();
+          img.src = item.image;
+        }
+      });
+    }
   }, []);
 
   const handleScroll = () => {
