@@ -2,10 +2,34 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About Samrit Mukherjee | AI & ML Developer & Hackathon Winner",
+  title: "About Samrit Mukherjee | AI Systems, Full-Stack Engineering & 11× Hackathon Winner",
   description:
-    "Learn about Samrit Mukherjee — BTech Computer Science & Engineering (AI & ML) student at Meghnad Saha Institute of Technology (MSIT), hackathon winner, and AI & ML Developer building AI-powered products.",
-  alternates: { canonical: "/about" },
+    "Learn about Samrit Mukherjee — B.Tech Computer Science & Engineering (AI & ML) student at MSIT Kolkata, 11× hackathon winner, and full-stack engineer building AI systems and enterprise platforms.",
+  alternates: { canonical: "https://samrit.dev/about" },
+  openGraph: {
+    title: "About Samrit Mukherjee | AI Systems & Full-Stack Engineer",
+    description:
+      "Learn about Samrit Mukherjee — B.Tech Computer Science & Engineering (AI & ML) student at MSIT Kolkata, 11× hackathon winner, and full-stack engineer building AI systems and enterprise platforms.",
+    url: "https://samrit.dev/about",
+    siteName: "Samrit Mukherjee",
+    images: [
+      {
+        url: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Samrit Mukherjee — About",
+      },
+    ],
+    locale: "en_IN",
+    type: "profile",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Samrit Mukherjee | AI Systems & Full-Stack Engineer",
+    description:
+      "Learn about Samrit Mukherjee — B.Tech Computer Science & Engineering (AI & ML) student at MSIT Kolkata, 11× hackathon winner, and full-stack engineer building AI systems and enterprise platforms.",
+    images: ["https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg"],
+  },
 };
 
 export default function AboutPage() {
@@ -17,13 +41,13 @@ export default function AboutPage() {
         </Link>
         <h1 className="text-[var(--theme-text)]">About Samrit Mukherjee</h1>
         <p className="!max-w-none text-[var(--theme-text-muted)]">
-          Samrit Mukherjee is an AI & ML Developer and full stack developer based in Kolkata, India. He
-          is pursuing a BTech in Computer Science & Engineering (AI & ML) at Meghnad Saha Institute of Technology (MSIT).
+          Samrit Mukherjee is an AI Systems Engineer and full-stack developer based in Kolkata, India. He
+          is pursuing a B.Tech in Computer Science & Engineering (AI & ML) at Meghnad Saha Institute of Technology (MSIT) under MAKAUT, graduating in 2027.
         </p>
         <p className="!max-w-none text-[var(--theme-text-muted)]">
-          With 8× hackathon wins and 8+ shipped projects — including Cosmic Canvas, SUKALYA.ai,
-          and Portfolio OS — he builds tools that bridge complex technology and real-world
-          usability. He is also active in open source contributions, including participating in GSSoC (GirlScript Summer of Code).
+          With 11× hackathon wins and 8 projects built — including Cosmic Canvas, SUKALYA.ai,
+          Portfolio OS, Avento AI, and Custodian ERP — he builds scalable software that transforms complex technology into practical, real-world
+          solutions. He also contributes to open source initiatives, including participating in GirlScript Summer of Code (GSSoC).
         </p>
         <blockquote className="border-l-4 border-accent-500 pl-6 italic text-lg text-[var(--theme-text)]">
           Build tools that matter, for people who need them.

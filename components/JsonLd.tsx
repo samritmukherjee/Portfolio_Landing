@@ -1,12 +1,13 @@
 import {
   personJsonLd,
   websiteJsonLd,
+  profilePageJsonLd,
   projectsItemListJsonLd,
   hackerspaceOrgJsonLd,
 } from "@/lib/structured-data";
 
 export function JsonLd() {
-  const schemas = [personJsonLd, websiteJsonLd, projectsItemListJsonLd, hackerspaceOrgJsonLd];
+  const schemas = [personJsonLd, websiteJsonLd, profilePageJsonLd, projectsItemListJsonLd, hackerspaceOrgJsonLd];
   return (
     <>
       {schemas.map((schema) => (

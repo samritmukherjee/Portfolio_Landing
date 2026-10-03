@@ -336,7 +336,7 @@ export function Projects() {
                 <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-3.5 flex items-center justify-center shadow-md">
                   <Image
                     src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791024871/Sovereign-Icon-Black_y2adx8.png"
-                    alt="Upcoming Project 1"
+                    alt="Sovereign Architecture AI System"
                     width={48}
                     height={48}
                     unoptimized
@@ -348,7 +348,7 @@ export function Projects() {
                 <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-neutral-950 border border-neutral-700/80 p-3.5 flex items-center justify-center shadow-md">
                   <Image
                     src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791024925/logo_zkwhb6.png"
-                    alt="Upcoming Project 2"
+                    alt="Neural Core AI Platform"
                     width={48}
                     height={48}
                     unoptimized
@@ -515,7 +515,7 @@ export function Projects() {
                   <div className="w-14 h-14 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-2.5 flex items-center justify-center shadow-md">
                     <Image
                       src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791024871/Sovereign-Icon-Black_y2adx8.png"
-                      alt="Upcoming Project 1"
+                      alt="Sovereign Architecture AI System"
                       width={36}
                       height={36}
                       unoptimized
@@ -525,7 +525,7 @@ export function Projects() {
                   <div className="w-14 h-14 rounded-2xl bg-neutral-950 border border-neutral-700/80 p-2.5 flex items-center justify-center shadow-md">
                     <Image
                       src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791024925/logo_zkwhb6.png"
-                      alt="Upcoming Project 2"
+                      alt="Neural Core AI Platform"
                       width={36}
                       height={36}
                       unoptimized

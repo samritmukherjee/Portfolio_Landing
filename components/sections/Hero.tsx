@@ -60,19 +60,21 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* Headline with Large Red Gradient Name */}
+          {/* Headline with Large Red Gradient Name (Semantic H1) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
             className="mb-3 text-center lg:text-left"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-2 text-[var(--theme-text)]">
-              Hi, I&apos;m
+            <h1 className="tracking-tight text-center lg:text-left">
+              <span className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-2 text-[var(--theme-text)] block">
+                Hi, I&apos;m
+              </span>
+              <span className="text-gradient-primary font-extrabold text-[clamp(2.75rem,6.5vw,5.5rem)] leading-none tracking-tight block pb-2 select-none">
+                Samrit Mukherjee
+              </span>
             </h1>
-            <span className="text-gradient-primary font-extrabold text-[clamp(2.75rem,6.5vw,5.5rem)] leading-none tracking-tight block pb-2 select-none">
-              Samrit Mukherjee
-            </span>
           </motion.div>
 
           {/* Tagline & Subtitle from myself.txt */}

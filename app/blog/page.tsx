@@ -4,8 +4,21 @@ import { blogPosts } from "@/lib/blog-posts";
 
 export const metadata: Metadata = {
   title: "Blog | Samrit Mukherjee",
-  description: "Technical writing on AI products, hackathons, and Next.js by Samrit Mukherjee.",
-  alternates: { canonical: "/blog" },
+  description: "Technical writing on AI systems, hackathons, and Next.js by Samrit Mukherjee.",
+  alternates: { canonical: "https://samrit.dev/blog" },
+  openGraph: {
+    title: "Blog | Samrit Mukherjee",
+    description: "Technical writing on AI systems, hackathons, and Next.js by Samrit Mukherjee.",
+    url: "https://samrit.dev/blog",
+    siteName: "Samrit Mukherjee",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | Samrit Mukherjee",
+    description: "Technical writing on AI systems, hackathons, and Next.js by Samrit Mukherjee.",
+  },
 };
 
 export default function BlogIndexPage() {

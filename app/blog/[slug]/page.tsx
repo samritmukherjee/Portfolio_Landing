@@ -15,10 +15,24 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) return { title: "Post not found" };
+  const url = `https://samrit.dev/blog/${slug}`;
   return {
     title: `${post.title} | Samrit Mukherjee`,
     description: post.excerpt,
-    alternates: { canonical: `/blog/${slug}` },
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${post.title} | Samrit Mukherjee`,
+      description: post.excerpt,
+      url,
+      type: "article",
+      siteName: "Samrit Mukherjee",
+      authors: ["Samrit Mukherjee"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} | Samrit Mukherjee`,
+      description: post.excerpt,
+    },
   };
 }
 

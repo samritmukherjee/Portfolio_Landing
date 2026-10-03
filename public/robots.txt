@@ -39,10 +39,10 @@ Disallow: /private
 
 User-agent: *
 Allow: /
+Allow: /_next/static/
 Disallow: /admin
 Disallow: /dashboard
 Disallow: /private
-Disallow: /_next/
 
 # Sitemaps
 Sitemap: https://samrit.dev/sitemap.xml
