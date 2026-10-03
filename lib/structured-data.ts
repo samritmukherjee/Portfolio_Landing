@@ -6,7 +6,7 @@ export const personJsonLd = {
   image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg",
   sameAs: [
     "https://github.com/samritmukherjee",
-    "https://www.linkedin.com/in/samritmukherjee/",
+    "https://www.linkedin.com/in/samrit-mukherjee/",
   ],
   jobTitle: "AI Systems & Full-Stack Engineer",
   description: "Samrit Mukherjee — AI Systems Engineer, Full-Stack Developer, and 11× Hackathon Winner specializing in AI-driven enterprise systems, intelligent automation, and production-grade architectures.",

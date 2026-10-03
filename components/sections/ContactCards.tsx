@@ -44,8 +44,8 @@ export function ContactCards() {
     {
       icon: FiLinkedin,
       label: "LinkedIn Profile",
-      value: "linkedin.com/in/samritmukherjee",
-      href: "https://www.linkedin.com/in/samritmukherjee/",
+      value: "linkedin.com/in/samrit-mukherjee",
+      href: "https://www.linkedin.com/in/samrit-mukherjee/",
       isLink: true,
     },
     {

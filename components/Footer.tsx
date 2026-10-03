@@ -67,7 +67,7 @@ export function Footer() {
 
   const socialLinks = [
     { icon: FiGithub, href: "https://github.com/samritmukherjee", label: "GitHub" },
-    { icon: FiLinkedin, href: "https://www.linkedin.com/in/samritmukherjee/", label: "LinkedIn" },
+    { icon: FiLinkedin, href: "https://www.linkedin.com/in/samrit-mukherjee/", label: "LinkedIn" },
     { icon: Mail, href: "mailto:samritmukherjee05@gmail.com", label: "Email" },
   ];
 

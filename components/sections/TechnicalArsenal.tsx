@@ -183,6 +183,7 @@ export function TechnicalArsenal() {
                                 alt={`${skill} logo`}
                                 width={16}
                                 height={16}
+                                unoptimized
                                 className="w-full h-full object-contain"
                               />
                             </span>

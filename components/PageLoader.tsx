@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 
 function shouldSkipLoader() {
@@ -12,8 +12,12 @@ function shouldSkipLoader() {
 export default function PageLoader() {
   const [isVisible, setIsVisible] = useState(true);
   const [isOpening, setIsOpening] = useState(false);
-  const [percent, setPercent] = useState(0);
   const [skipLoader, setSkipLoader] = useState(false);
+
+  // Refs for 0-rerender direct DOM updates (eliminates React Fiber bottleneck during hydration)
+  const percentTextRef = useRef<HTMLSpanElement>(null);
+  const progressBarRef = useRef<HTMLDivElement>(null);
+  const hasClosedRef = useRef(false);
 
   useEffect(() => {
     if (shouldSkipLoader()) {
@@ -31,55 +35,86 @@ export default function PageLoader() {
       return;
     }
 
-    // Smooth counter animation from 0% to 100% over ~1100ms
-    const startTime = performance.now();
-    const duration = 1100;
+    // Lock page scroll while loader is visible to prevent scroll events fighting during hydration
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
 
+    const triggerClose = () => {
+      if (hasClosedRef.current) return;
+      hasClosedRef.current = true;
+      setIsOpening(true);
+
+      // Restore scroll right as curtains start opening
+      document.body.style.overflow = originalOverflow;
+
+      setTimeout(() => {
+        setIsVisible(false);
+      }, 800);
+    };
+
+    // Hard fallback safety timer (2.5s): guarantees loader NEVER gets stuck under any network condition
+    const safetyTimer = setTimeout(() => {
+      triggerClose();
+    }, 2500);
+
+    // Smooth counter animation from 0% to 100% over ~950ms via direct DOM manipulation
+    const startTime = performance.now();
+    const duration = 950;
     let animId: number;
+
     const frame = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(1, elapsed / duration);
       // easeOutCubic
       const eased = 1 - Math.pow(1 - progress, 3);
-      setPercent(Math.round(eased * 100));
+      const currentPercent = Math.round(eased * 100);
+
+      // Direct DOM update: ZERO React re-renders, 60fps/120fps hardware clock execution
+      if (percentTextRef.current) {
+        percentTextRef.current.textContent = `${currentPercent}%`;
+      }
+      if (progressBarRef.current) {
+        progressBarRef.current.style.width = `${currentPercent}%`;
+      }
 
       if (progress < 1) {
         animId = requestAnimationFrame(frame);
       } else {
         setTimeout(() => {
-          handleClose();
-        }, 120);
+          clearTimeout(safetyTimer);
+          triggerClose();
+        }, 100);
       }
     };
 
     animId = requestAnimationFrame(frame);
-    return () => cancelAnimationFrame(animId);
-  }, []);
 
-  const handleClose = () => {
-    setIsOpening(true);
-    setTimeout(() => {
-      setIsVisible(false);
-      setIsOpening(false);
-    }, 850);
-  };
+    return () => {
+      cancelAnimationFrame(animId);
+      clearTimeout(safetyTimer);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
 
   if (!isVisible || skipLoader) return null;
 
-  const leftPanelStyle = {
-    transform: isOpening ? "translateX(-100%)" : "translateX(0%)",
-    transition: "transform 800ms cubic-bezier(0.85, 0, 0.15, 1)",
+  const leftPanelStyle: React.CSSProperties = {
+    transform: isOpening ? "translate3d(-100%, 0, 0)" : "translate3d(0, 0, 0)",
+    transition: "transform 750ms cubic-bezier(0.77, 0, 0.175, 1)",
+    willChange: "transform",
   };
 
-  const rightPanelStyle = {
-    transform: isOpening ? "translateX(100%)" : "translateX(0%)",
-    transition: "transform 800ms cubic-bezier(0.85, 0, 0.15, 1)",
+  const rightPanelStyle: React.CSSProperties = {
+    transform: isOpening ? "translate3d(100%, 0, 0)" : "translate3d(0, 0, 0)",
+    transition: "transform 750ms cubic-bezier(0.77, 0, 0.175, 1)",
+    willChange: "transform",
   };
 
-  const contentStyle = {
+  const contentStyle: React.CSSProperties = {
     opacity: isOpening ? 0 : 1,
-    transform: isOpening ? "scale(0.94) translateY(-8px)" : "scale(1) translateY(0px)",
-    transition: "opacity 380ms ease, transform 480ms cubic-bezier(0.25, 1, 0.5, 1)",
+    transform: isOpening ? "scale(0.95) translate3d(0, -10px, 0)" : "scale(1) translate3d(0, 0, 0)",
+    transition: "opacity 320ms ease, transform 420ms cubic-bezier(0.25, 1, 0.5, 1)",
+    pointerEvents: isOpening ? "none" : "auto",
   };
 
   return (
@@ -198,7 +233,7 @@ export default function PageLoader() {
         }
       `}</style>
 
-      {/* Split-Curtain Panels */}
+      {/* Hardware-Accelerated Split-Curtain Panels */}
       <div
         className="absolute inset-y-0 left-0 w-1/2 bg-[#000000] border-r border-[#FF0000]/15"
         style={leftPanelStyle}
@@ -215,7 +250,7 @@ export default function PageLoader() {
         className="relative z-10 flex flex-col items-center justify-center gap-6 sm:gap-7"
         style={contentStyle}
       >
-        {/* Futuristic S M Orbit Emblem (New Logo) */}
+        {/* Futuristic S M Orbit Emblem (Preloaded & Unoptimized for instant rendering) */}
         <div className="relative w-16 h-16 sm:w-20 sm:h-20 drop-shadow-[0_0_24px_rgba(255,0,0,0.4)]">
           <Image
             src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791022468/SamritMukherjeeLogo_wherde.png"
@@ -223,6 +258,7 @@ export default function PageLoader() {
             width={80}
             height={80}
             priority
+            unoptimized
             className="w-full h-full object-contain"
           />
         </div>
@@ -267,16 +303,20 @@ export default function PageLoader() {
           </div>
         </div>
 
-        {/* Clear Numeric Progress Counter & Fill Bar */}
+        {/* Clear Numeric Progress Counter & Fill Bar (DOM ref driven, zero re-renders) */}
         <div className="flex flex-col items-center gap-2.5">
           <div className="w-44 h-1 bg-white/10 overflow-hidden rounded-full relative">
             <div
-              className="h-full bg-gradient-to-r from-[#FF0000] via-[#FF4D4D] to-white rounded-full transition-all duration-75"
-              style={{ width: `${percent}%` }}
+              ref={progressBarRef}
+              className="h-full bg-gradient-to-r from-[#FF0000] via-[#FF4D4D] to-white rounded-full"
+              style={{ width: "0%" }}
             />
           </div>
-          <span className="font-mono text-xs font-semibold text-neutral-400 tracking-wider">
-            {percent}%
+          <span
+            ref={percentTextRef}
+            className="font-mono text-xs font-semibold text-neutral-400 tracking-wider"
+          >
+            0%
           </span>
         </div>
       </div>

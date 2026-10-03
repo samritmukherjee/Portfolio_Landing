@@ -30,12 +30,22 @@ export function CustomCursor() {
 
     setIsTouchDevice(false);
 
-    const onMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
       if (!isVisible) {
         setIsVisible(true);
         document.documentElement.classList.add("has-custom-cursor");
+      }
+
+      const target = e.target as HTMLElement | null;
+      if (target) {
+        const isInteractive = Boolean(
+          target.closest(
+            'a, button, [role="button"], input, textarea, select, label, .blob-btn, .glass-card, .editorial-card, [data-cursor="hover"]'
+          )
+        );
+        setIsHovered(isInteractive);
       }
     };
 
@@ -50,19 +60,7 @@ export function CustomCursor() {
       document.documentElement.classList.add("has-custom-cursor");
     };
 
-    const checkHoverable = (e: MouseEvent) => {
-      const target = e.target as HTMLElement | null;
-      if (!target) return;
-      const isInteractive = Boolean(
-        target.closest(
-          'a, button, [role="button"], input, textarea, select, label, .blob-btn, .glass-card, .editorial-card, [data-cursor="hover"]'
-        )
-      );
-      setIsHovered(isInteractive);
-    };
-
-    window.addEventListener("mousemove", onMouseMove, { passive: true });
-    window.addEventListener("mousemove", checkHoverable, { passive: true });
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     window.addEventListener("mousedown", onMouseDown);
     window.addEventListener("mouseup", onMouseUp);
     document.addEventListener("mouseleave", onMouseLeave);
@@ -70,8 +68,7 @@ export function CustomCursor() {
 
     return () => {
       document.documentElement.classList.remove("has-custom-cursor");
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mousemove", checkHoverable);
+      window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("mouseup", onMouseUp);
       document.removeEventListener("mouseleave", onMouseLeave);

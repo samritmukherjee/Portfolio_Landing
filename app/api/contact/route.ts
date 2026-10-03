@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
     timezone: "IST (UTC+5:30)",
     social: {
       github: "https://github.com/samritmukherjee",
-      linkedin: "https://www.linkedin.com/in/samrit-mukherjee-412788318/",
+      linkedin: "https://www.linkedin.com/in/samrit-mukherjee/",
       twitter: "https://twitter.com/samritdev",
       portfolio: "https://samrit.dev",
     },

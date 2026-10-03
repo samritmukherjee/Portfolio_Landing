@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Clock, ExternalLink, Cpu, GitBranch, Terminal, ShieldAlert, Sparkles } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { FiGithub } from "react-icons/fi";
 import Image from "next/image";
 import GooeySvgFilter from "@/components/fancy/filter/gooey-svg-filter";
@@ -83,6 +83,19 @@ function ProjectLogoBadge({ project }: { project: ExtendedProject }) {
 
 export function Projects() {
   const [activeTab, setActiveTab] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const mobileCarouselRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Synchronize screen size for layout switching (lg breakpoint: 1024px)
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Pre-warm browser cache with all project images and logos immediately on mount
   useEffect(() => {
@@ -105,9 +118,18 @@ export function Projects() {
     }
   }, []);
 
+  // Track horizontal scroll progress for mobile carousel
+  const handleMobileScroll = () => {
+    const el = mobileCarouselRef.current;
+    if (!el) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    if (maxScroll <= 0) return;
+    setScrollProgress(el.scrollLeft / maxScroll);
+  };
+
   return (
     <section id="projects" className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-20 sm:py-24">
-      {/* SVG Gooey Filter instance specifically for project visual controls */}
+      {/* SVG Gooey Filter instance specifically for desktop project visual controls */}
       <GooeySvgFilter id="projects-folder-gooey-filter" strength={12} />
 
       {/* Centered Section Header */}
@@ -127,8 +149,10 @@ export function Projects() {
         </p>
       </motion.div>
 
-      {/* Gooey Folder Section (Fitting screen left-to-right) */}
-      <div className="w-full mx-auto relative mt-6">
+      {/* ========================================================================= */}
+      {/* 1. DESKTOP VIEW: Gooey Folder with 6 Tabs (Preserved Desktop Architecture) */}
+      {/* ========================================================================= */}
+      <div className={isDesktop ? "w-full mx-auto relative mt-6 block" : "hidden"}>
         {/* Gooey Filter Layer: fuses active tab pill & content panel into one organic folder */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -298,196 +322,258 @@ export function Projects() {
             );
           })}
 
-          {/* 6th Tab ("Upcoming"): High-Tech Under Active Development Showcase (No AI Generated Art) */}
+          {/* 6th Tab ("Upcoming"): 3 Logos and "Work in Progress" ONLY */}
           <div
             aria-hidden={activeTab !== 5}
             className={`transition-opacity duration-200 ${
-              activeTab === 5 ? "block space-y-8" : "hidden"
+              activeTab === 5 ? "flex flex-col items-center justify-center min-h-[380px] sm:min-h-[420px] py-12 px-4" : "hidden"
             }`}
           >
-            {/* Engineering Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-neutral-300/70 dark:border-neutral-800">
-              <div className="space-y-1.5">
+            <div className="flex flex-col items-center justify-center gap-8 max-w-xl mx-auto text-center">
+              {/* Preserved 3 authentic upcoming-project logos */}
+              <div className="flex items-center justify-center gap-6 sm:gap-10">
+                {/* Logo 1: Sovereign Architecture Icon */}
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-3.5 flex items-center justify-center shadow-md">
+                  <Image
+                    src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791024871/Sovereign-Icon-Black_y2adx8.png"
+                    alt="Upcoming Project 1"
+                    width={48}
+                    height={48}
+                    unoptimized
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+
+                {/* Logo 2: Neural Core Logo */}
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-neutral-950 border border-neutral-700/80 p-3.5 flex items-center justify-center shadow-md">
+                  <Image
+                    src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791024925/logo_zkwhb6.png"
+                    alt="Upcoming Project 2"
+                    width={48}
+                    height={48}
+                    unoptimized
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+
+                {/* Logo 3: Zenith Swarm Coordinator SVG */}
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-3.5 flex items-center justify-center shadow-md">
+                  <ZenithArcSvg className="w-9 h-9 sm:w-11 sm:h-11" />
+                </div>
+              </div>
+
+              {/* Text: Work in Progress */}
+              <div className="space-y-2">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF0000]/10 border border-[#FF0000]/25 text-[#FF0000] text-xs font-mono font-semibold">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF0000] opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF0000]" />
                   </span>
-                  <span>Active Prototyping Pipeline</span>
+                  <span>Active</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-black dark:text-white tracking-tight">
-                  3 Systems Under Active Development
+                <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-black dark:text-white">
+                  Work in Progress
                 </h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-2xl">
-                  Engineering next-generation AI agent architectures, streaming inference engines, and decentralized coordination protocols.
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-neutral-200/80 dark:bg-neutral-800/80 border border-neutral-300 dark:border-neutral-700 text-xs font-mono shrink-0">
-                <Clock className="w-4 h-4 text-[#FF0000]" />
-                <span className="text-neutral-700 dark:text-neutral-300">Phase: Model Training &amp; Benchmarks</span>
-              </div>
-            </div>
-
-            {/* 3 Authentic Engineering Pods Featuring User's Provided Logos */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-              {/* Pod 1: Sovereign Architecture */}
-              <div className="p-6 rounded-2xl border border-neutral-300/80 dark:border-neutral-800 bg-white/70 dark:bg-neutral-900/60 shadow-md hover:shadow-xl hover:border-[#FF0000]/50 transition-all duration-300 flex flex-col justify-between gap-6 group">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="w-12 h-12 p-2 rounded-xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-300 dark:border-white/20 flex items-center justify-center shadow-xs">
-                      <Image
-                        src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791024871/Sovereign-Icon-Black_y2adx8.png"
-                        alt="Upcoming System"
-                        width={36}
-                        height={36}
-                        unoptimized
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                    <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-[11px] font-mono font-bold">
-                      v0.9 • Pipeline Active
-                    </span>
-                  </div>
-
-                  <div>
-                    <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#FF0000]">
-                      System 01 / Agentic Core
-                    </span>
-                    <h4 className="text-lg font-bold text-black dark:text-white mt-0.5">
-                      Autonomous Task Orchestration Architecture
-                    </h4>
-                    <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
-                      Deterministic agentic workflow execution, memory stores, tool-calling governance, and self-healing multi-agent chains.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="space-y-3 pt-3 border-t border-neutral-200 dark:border-neutral-800">
-                  <div className="flex items-center justify-between text-xs font-mono text-neutral-500 dark:text-neutral-400">
-                    <span>Engineering Progress</span>
-                    <span className="font-bold text-[#FF0000]">88%</span>
-                  </div>
-                  <div className="w-full h-2 rounded-full bg-neutral-200 dark:bg-neutral-800 overflow-hidden">
-                    <div className="h-full bg-[#FF0000] rounded-full w-[88%]" />
-                  </div>
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-neutral-200/80 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
-                      Python
-                    </span>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-neutral-200/80 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
-                      LangChain
-                    </span>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-neutral-200/80 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
-                      Vector Store
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Pod 2: Astra Neural Core */}
-              <div className="p-6 rounded-2xl border border-neutral-300/80 dark:border-neutral-800 bg-white/70 dark:bg-neutral-900/60 shadow-md hover:shadow-xl hover:border-[#FF0000]/50 transition-all duration-300 flex flex-col justify-between gap-6 group">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="w-12 h-12 p-2 rounded-xl bg-neutral-950 border border-neutral-700 flex items-center justify-center shadow-xs">
-                      <Image
-                        src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791024925/logo_zkwhb6.png"
-                        alt="Upcoming System"
-                        width={36}
-                        height={36}
-                        unoptimized
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                    <span className="px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 text-[11px] font-mono font-bold">
-                      v0.7 • Model Training
-                    </span>
-                  </div>
-
-                  <div>
-                    <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-amber-500">
-                      System 02 / Neural Inference
-                    </span>
-                    <h4 className="text-lg font-bold text-black dark:text-white mt-0.5">
-                      Low-Latency Streaming Vision Engine
-                    </h4>
-                    <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
-                      Optimized CUDA tensor pipelines, multimodal vision synthesis, and real-time inference serving for embedded environments.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="space-y-3 pt-3 border-t border-neutral-200 dark:border-neutral-800">
-                  <div className="flex items-center justify-between text-xs font-mono text-neutral-500 dark:text-neutral-400">
-                    <span>Engineering Progress</span>
-                    <span className="font-bold text-amber-500">72%</span>
-                  </div>
-                  <div className="w-full h-2 rounded-full bg-neutral-200 dark:bg-neutral-800 overflow-hidden">
-                    <div className="h-full bg-amber-500 rounded-full w-[72%]" />
-                  </div>
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-neutral-200/80 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
-                      PyTorch
-                    </span>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-neutral-200/80 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
-                      CUDA
-                    </span>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-neutral-200/80 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
-                      FastAPI
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Pod 3: Zenith Swarm Coordinator */}
-              <div className="p-6 rounded-2xl border border-neutral-300/80 dark:border-neutral-800 bg-white/70 dark:bg-neutral-900/60 shadow-md hover:shadow-xl hover:border-[#FF0000]/50 transition-all duration-300 flex flex-col justify-between gap-6 group">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="w-12 h-12 p-2 rounded-xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-300 dark:border-white/20 flex items-center justify-center shadow-xs">
-                      <ZenithArcSvg className="w-7 h-7" />
-                    </div>
-                    <span className="px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 text-[11px] font-mono font-bold">
-                      v0.5 • Architecture Review
-                    </span>
-                  </div>
-
-                  <div>
-                    <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-cyan-500">
-                      System 03 / Swarm Protocol
-                    </span>
-                    <h4 className="text-lg font-bold text-black dark:text-white mt-0.5">
-                      Multi-Agent Consensus &amp; Swarm Protocol
-                    </h4>
-                    <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
-                      Decentralized multi-model consensus layer, event-driven WebSocket bus, and distributed state synchronization.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="space-y-3 pt-3 border-t border-neutral-200 dark:border-neutral-800">
-                  <div className="flex items-center justify-between text-xs font-mono text-neutral-500 dark:text-neutral-400">
-                    <span>Engineering Progress</span>
-                    <span className="font-bold text-cyan-500">58%</span>
-                  </div>
-                  <div className="w-full h-2 rounded-full bg-neutral-200 dark:bg-neutral-800 overflow-hidden">
-                    <div className="h-full bg-cyan-500 rounded-full w-[58%]" />
-                  </div>
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-neutral-200/80 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
-                      TypeScript
-                    </span>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-neutral-200/80 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
-                      WebSockets
-                    </span>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-neutral-200/80 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
-                      Docker
-                    </span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 2. MOBILE VIEW: Horizontal Snap-Scroll (Matching Hackathon Wins Pattern)   */}
+      {/* ========================================================================= */}
+      <div className={!isDesktop ? "w-full block" : "hidden"}>
+        <div
+          ref={mobileCarouselRef}
+          onScroll={handleMobileScroll}
+          data-lenis-prevent
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-4 px-2"
+          style={{
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+            WebkitOverflowScrolling: "touch",
+          }}
+        >
+          {/* 5 Live Project Cards */}
+          {LIVE_PROJECTS.map((project, idx) => (
+            <div
+              key={project.id}
+              className="w-[85vw] max-w-[360px] flex-shrink-0 snap-start"
+            >
+              <div className="relative h-full min-h-[490px] rounded-[1.5rem] border border-[var(--theme-border)] bg-[var(--theme-card)] p-5 flex flex-col justify-between shadow-sm">
+                <div>
+                  {/* Top Project Banner Image */}
+                  <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-[var(--theme-border)] bg-neutral-950 mb-4 shadow-sm">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      sizes="360px"
+                      unoptimized
+                      priority={idx < 2}
+                      className="object-cover object-top"
+                    />
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute top-2.5 right-2.5 p-1.5 rounded-lg bg-black/70 backdrop-blur-md text-white border border-white/20 hover:bg-[#FF0000] transition-colors"
+                        aria-label={`Open ${project.title} live demo`}
+                      >
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
+
+                  {/* Metadata Header: Logo + Year + Title */}
+                  <div className="flex items-center gap-3 mb-2.5">
+                    <ProjectLogoBadge project={project} />
+                    <div>
+                      <div className="flex items-center gap-2">
+                        {project.year && (
+                          <span className="font-mono text-xs font-bold text-[#FF0000] px-2 py-0.5 rounded-md bg-[#FF0000]/10 border border-[#FF0000]/20">
+                            {project.year}
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="text-xl font-bold tracking-tight text-[var(--theme-text)] mt-0.5">
+                        {project.title}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* Subtitle */}
+                  <p className="text-xs font-semibold text-[#FF0000] uppercase tracking-wider mb-2">
+                    {project.subtitle}
+                  </p>
+
+                  {/* Description */}
+                  <p className="text-xs text-[var(--theme-text-secondary)] leading-relaxed line-clamp-3 mb-4">
+                    {project.description}
+                  </p>
+
+                  {/* Technologies */}
+                  <div className="space-y-1.5 mb-4">
+                    <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-[var(--theme-text-muted)]">
+                      Core Technologies
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.technologies.slice(0, 4).map((tech, tIdx) => (
+                        <span
+                          key={tIdx}
+                          className="px-2 py-0.5 text-[11px] font-mono rounded-md bg-[var(--theme-surface-2)] border border-[var(--theme-border)] text-[var(--theme-text)] shadow-2xs"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.technologies.length > 4 && (
+                        <span className="px-1.5 py-0.5 text-[10px] font-mono rounded-md text-[var(--theme-text-muted)]">
+                          +{project.technologies.length - 4}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Action Buttons */}
+                <div className="pt-3 border-t border-[var(--theme-border)] flex items-center gap-2 mt-auto">
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 py-2 px-3 rounded-xl bg-[#FF0000] hover:bg-[#CC0000] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition-all"
+                    >
+                      <span>Live Demo</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-2 px-3 rounded-xl bg-[var(--theme-surface-2)] hover:bg-[var(--theme-surface)] text-[var(--theme-text)] text-xs font-semibold flex items-center justify-center gap-1.5 border border-[var(--theme-border)] transition-all"
+                    >
+                      <FiGithub className="w-3.5 h-3.5" />
+                      <span>Source</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {/* 6th Card: Upcoming Projects ("Work in Progress" only) */}
+          <div className="w-[85vw] max-w-[360px] flex-shrink-0 snap-start">
+            <div className="relative h-full min-h-[490px] rounded-[1.5rem] border border-[var(--theme-border)] bg-[var(--theme-card)] p-6 flex flex-col justify-between shadow-sm">
+              <div className="space-y-6 my-auto text-center flex flex-col items-center justify-center">
+                {/* 3 Upcoming Logos */}
+                <div className="flex items-center justify-center gap-4">
+                  <div className="w-14 h-14 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-2.5 flex items-center justify-center shadow-md">
+                    <Image
+                      src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791024871/Sovereign-Icon-Black_y2adx8.png"
+                      alt="Upcoming Project 1"
+                      width={36}
+                      height={36}
+                      unoptimized
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="w-14 h-14 rounded-2xl bg-neutral-950 border border-neutral-700/80 p-2.5 flex items-center justify-center shadow-md">
+                    <Image
+                      src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791024925/logo_zkwhb6.png"
+                      alt="Upcoming Project 2"
+                      width={36}
+                      height={36}
+                      unoptimized
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="w-14 h-14 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-2.5 flex items-center justify-center shadow-md">
+                    <ZenithArcSvg className="w-8 h-8" />
+                  </div>
+                </div>
+
+                {/* Only "Work in Progress" text */}
+                <div className="space-y-2">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF0000]/10 border border-[#FF0000]/25 text-[#FF0000] text-xs font-mono font-semibold">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF0000] opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF0000]" />
+                    </span>
+                    <span>Active</span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-[var(--theme-text)]">
+                    Work in Progress
+                  </h3>
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-[var(--theme-border)] text-center">
+                <span className="text-[11px] font-mono text-[var(--theme-text-secondary)] uppercase tracking-wider">
+                  Upcoming Deployments
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll progress bar (Matching Hackathon Wins) */}
+        <div className="w-full max-w-xs mx-auto h-1 bg-[var(--theme-border)] rounded-full mt-4 overflow-hidden relative">
+          <div
+            className="h-full bg-[#FF0000] rounded-full transition-transform duration-75 origin-left"
+            style={{
+              width: "100%",
+              transform: `scaleX(${Math.max(scrollProgress, 0.16)})`,
+            }}
+          />
+        </div>
+        <p className="text-center text-[11px] font-mono text-[var(--theme-text-secondary)] mt-2">
+          ← Swipe horizontally to explore all projects →
+        </p>
       </div>
     </section>
   );

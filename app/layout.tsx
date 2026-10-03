@@ -115,6 +115,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSans.variable} ${syne.variable}`}>
       <head>
+        <link
+          rel="preload"
+          as="image"
+          href="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791022468/SamritMukherjeeLogo_wherde.png"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var s=sessionStorage.getItem("samrit_session_theme");var t=s?localStorage.getItem("samrit_theme")||"light":"light";sessionStorage.setItem("samrit_session_theme",t);localStorage.setItem("samrit_theme",t);document.documentElement.setAttribute("data-theme",t);if(t==="dark"){document.documentElement.classList.add("dark");}else{document.documentElement.classList.remove("dark");}}catch(e){document.documentElement.setAttribute("data-theme","light");document.documentElement.classList.remove("dark");}})();`,

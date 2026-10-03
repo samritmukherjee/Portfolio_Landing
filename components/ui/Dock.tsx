@@ -97,16 +97,24 @@ export function Dock() {
   const mouseX = useMotionValue(Infinity);
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      const currentY = window.scrollY;
-      const isPastHero = currentY > window.innerHeight * 0.35;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentY = window.scrollY;
+          const isPastHero = currentY > window.innerHeight * 0.35;
 
-      // Hide dock when user reaches bottom footer to avoid overlap
-      const scrollHeight = document.documentElement.scrollHeight;
-      const clientHeight = window.innerHeight;
-      const isNearBottom = currentY + clientHeight >= scrollHeight - 140;
+          // Hide dock when user reaches bottom footer to avoid overlap
+          const scrollHeight = document.documentElement.scrollHeight;
+          const clientHeight = window.innerHeight;
+          const isNearBottom = currentY + clientHeight >= scrollHeight - 140;
 
-      setVisible(isPastHero && !isNearBottom);
+          setVisible(isPastHero && !isNearBottom);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });

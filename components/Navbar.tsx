@@ -30,15 +30,24 @@ export function Navbar({ theme, onToggleTheme, activeSection }: NavbarProps) {
 
   useEffect(() => {
     let lastY = window.scrollY;
+    let ticking = false;
+
     const handleScroll = () => {
-      const currentY = window.scrollY;
-      if (currentY > lastY && currentY > 90) {
-        setVisible(false);
-      } else {
-        setVisible(true);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentY = window.scrollY;
+          if (currentY > lastY && currentY > 90) {
+            setVisible(false);
+          } else {
+            setVisible(true);
+          }
+          lastY = currentY;
+          ticking = false;
+        });
+        ticking = true;
       }
-      lastY = currentY;
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -95,6 +104,7 @@ export function Navbar({ theme, onToggleTheme, activeSection }: NavbarProps) {
                     height={36}
                     className="w-full h-full object-contain"
                     priority
+                    unoptimized
                   />
                 </div>
                 <div className="flex flex-col justify-center text-left leading-tight">

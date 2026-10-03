@@ -472,10 +472,12 @@ export function Hackathons() {
           <div
             ref={carouselRef}
             onScroll={handleScroll}
+            data-lenis-prevent
             className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-4 px-2"
             style={{
               scrollbarWidth: "none",
               msOverflowStyle: "none",
+              WebkitOverflowScrolling: "touch",
             }}
           >
             {HACKATHONS_DATA.map((event, idx) => (
