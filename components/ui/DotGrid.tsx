@@ -24,7 +24,7 @@ export function DotGrid({
   cy = 1.25,
   cr = 1.25,
   className,
-  glow = true,
+  glow = false,
   ...props
 }: DotGridProps) {
   const patternId = useId();
@@ -52,9 +52,6 @@ export function DotGrid({
         </defs>
         <rect width="100%" height="100%" strokeWidth={0} fill={`url(#${patternId})`} />
       </svg>
-      {glow && (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[450px] bg-[#FF0000]/10 dark:bg-[#FF0000]/14 blur-[140px] rounded-full pointer-events-none" />
-      )}
     </div>
   );
 }

@@ -65,15 +65,15 @@ export function Services() {
               transition={{ delay: idx * 0.1, duration: 0.5 }}
               className="h-full"
             >
-              <div className="group relative h-full p-7 sm:p-8 rounded-2xl border border-[var(--theme-border)] bg-[var(--theme-card)] transition-all duration-300 hover:border-[#FF0000]/50 hover:shadow-[0_12px_36px_rgba(255,0,0,0.06)] hover:-translate-y-1 flex flex-col justify-between overflow-hidden">
+              <div className="group relative h-full p-7 sm:p-8 rounded-2xl border border-[var(--theme-border)] bg-[var(--theme-card)] transition-all duration-200 hover:border-[#2563EB]/40 dark:hover:border-[#3B82F6]/50 hover:-translate-y-0.5 flex flex-col justify-between overflow-hidden shadow-sm">
                 {/* Subtle top edge accent line on hover */}
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF0000] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#2563EB] dark:bg-[#3B82F6] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
 
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-[var(--theme-surface-2)] border border-[var(--theme-border)] group-hover:border-[#FF0000]/40 group-hover:bg-[#FF0000]/10 flex items-center justify-center text-[#FF0000] mb-6 transition-all duration-300 shadow-sm">
-                    <Icon className="w-6 h-6 text-[#FF0000] transition-transform duration-300 group-hover:scale-105" />
+                  <div className="w-12 h-12 rounded-xl bg-[var(--theme-surface-2)] border border-[var(--theme-border)] group-hover:border-[#2563EB]/30 dark:group-hover:border-[#3B82F6]/40 flex items-center justify-center mb-6 transition-colors duration-200">
+                    <Icon className="w-6 h-6 text-[#2563EB] dark:text-[#60A5FA]" />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold mb-3 text-[var(--theme-text)] group-hover:text-primary transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-bold mb-3 text-[var(--theme-text)] transition-colors">
                     {item.title}
                   </h3>
                   <p className="text-[var(--theme-text-secondary)] text-sm sm:text-base leading-relaxed">

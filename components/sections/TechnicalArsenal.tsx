@@ -2,7 +2,6 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import {
   Code2,
   Server,
@@ -127,10 +126,10 @@ export function TechnicalArsenal() {
     <section id="arsenal" className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-20 sm:py-24">
       {/* Header */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         className="mb-14 sm:mb-16 text-center max-w-3xl mx-auto"
       >
         <div className="section-eyebrow">Skills &amp; Capabilities</div>
@@ -142,27 +141,26 @@ export function TechnicalArsenal() {
         </p>
       </motion.div>
 
-      {/* Categorized Skills Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mb-12">
-        {technicalCategories.map((cat, idx) => {
+      {/* Categorized Skills Grid - Unified single hardware-accelerated container */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.05 }}
+        transition={{ duration: 0.45, ease: "easeOut" }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mb-12"
+      >
+        {technicalCategories.map((cat) => {
           const Icon = cat.icon;
           return (
-            <motion.div
-              key={cat.label}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.06, duration: 0.5 }}
-              className="h-full"
-            >
-              <div className="group h-full p-6 rounded-2xl border border-[var(--theme-border)] bg-[var(--theme-card)] hover:border-[#FF0000]/50 hover:shadow-[0_8px_30px_rgba(255,0,0,0.06)] transition-all duration-300 flex flex-col justify-between">
+            <div key={cat.label} className="h-full">
+              <div className="group h-full p-6 rounded-2xl border border-[var(--theme-border)] bg-[var(--theme-card)] hover:border-[#2563EB]/40 dark:hover:border-[#3B82F6]/50 transition-colors duration-200 shadow-sm flex flex-col justify-between">
                 <div>
                   {/* Category Header */}
                   <div className="flex items-center gap-3 pb-3 mb-4 border-b border-[var(--theme-border)]">
-                    <div className="w-9 h-9 rounded-xl bg-[var(--theme-surface-2)] border border-[var(--theme-border)] group-hover:border-[#FF0000]/40 group-hover:bg-[#FF0000]/10 flex items-center justify-center text-[#FF0000] flex-shrink-0 transition-all duration-300 shadow-sm">
-                      <Icon className="w-4 h-4 text-[#FF0000]" />
+                    <div className="w-9 h-9 rounded-xl bg-[var(--theme-surface-2)] border border-[var(--theme-border)] group-hover:border-[#2563EB]/40 dark:group-hover:border-[#3B82F6]/50 group-hover:bg-[#2563EB]/8 dark:group-hover:bg-[#3B82F6]/15 flex items-center justify-center text-[#2563EB] dark:text-[#60A5FA] flex-shrink-0 transition-colors duration-200 shadow-sm">
+                      <Icon className="w-4 h-4 text-[#2563EB] dark:text-[#60A5FA]" />
                     </div>
-                    <h3 className="font-bold text-sm sm:text-base text-[var(--theme-text)] group-hover:text-primary transition-colors">
+                    <h3 className="font-bold text-sm sm:text-base text-[var(--theme-text)] transition-colors">
                       {cat.label}
                     </h3>
                   </div>
@@ -174,21 +172,22 @@ export function TechnicalArsenal() {
                       return (
                         <div
                           key={skill}
-                          className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-[var(--theme-surface-2)] border border-[var(--theme-border)] hover:border-[#FF0000]/40 transition-colors shadow-sm"
+                          className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-[var(--theme-surface-2)] border border-[var(--theme-border)] hover:border-[var(--theme-accent)]/40 transition-colors shadow-sm"
                         >
                           {logoUrl ? (
                             <span className="relative w-4 h-4 flex-shrink-0">
-                              <Image
+                              <img
                                 src={logoUrl}
-                                alt={`${skill} logo`}
+                                alt=""
                                 width={16}
                                 height={16}
-                                unoptimized
-                                className="w-full h-full object-contain"
+                                loading="lazy"
+                                decoding="async"
+                                className="w-full h-full object-contain pointer-events-none"
                               />
                             </span>
                           ) : (
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#FF0000] flex-shrink-0" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-[var(--theme-accent)] flex-shrink-0" />
                           )}
                           <span className="text-xs font-semibold text-[var(--theme-text)]">
                             {skill}
@@ -199,22 +198,22 @@ export function TechnicalArsenal() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           );
         })}
-      </div>
+      </motion.div>
 
       {/* Core Competencies & Engineering Principles */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.2, duration: 0.6 }}
+        viewport={{ once: true, amount: 0.05 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         className="p-6 sm:p-8 rounded-2xl border border-[var(--theme-border)] bg-[var(--theme-card)] shadow-sm"
       >
         <div className="flex items-center gap-3.5 mb-6 pb-4 border-b border-[var(--theme-border)]">
-          <div className="w-10 h-10 rounded-xl bg-[var(--theme-surface-2)] border border-[var(--theme-border)] flex items-center justify-center text-[#FF0000] flex-shrink-0 shadow-sm">
-            <Cpu className="w-5 h-5 text-[#FF0000]" />
+          <div className="w-10 h-10 rounded-xl bg-[var(--theme-surface-2)] border border-[var(--theme-border)] flex items-center justify-center text-[var(--theme-accent)] flex-shrink-0 shadow-sm">
+            <Cpu className="w-5 h-5 text-[var(--theme-accent)]" />
           </div>
           <div>
             <h3 className="text-lg sm:text-xl font-bold text-[var(--theme-text)]">
@@ -232,10 +231,10 @@ export function TechnicalArsenal() {
             return (
               <div
                 key={comp.title}
-                className="group flex items-center gap-3 p-3.5 rounded-xl bg-[var(--theme-surface-2)] border border-[var(--theme-border)] hover:border-[#FF0000]/40 transition-colors shadow-sm"
+                className="group flex items-center gap-3 p-3.5 rounded-xl bg-[var(--theme-surface-2)] border border-[var(--theme-border)] hover:border-[var(--theme-accent)]/40 transition-colors shadow-sm"
               >
-                <div className="w-8 h-8 rounded-lg bg-[var(--theme-card)] border border-[var(--theme-border)] group-hover:border-[#FF0000]/40 flex items-center justify-center text-[#FF0000] flex-shrink-0 transition-colors">
-                  <CompIcon className="w-4 h-4 text-[#FF0000]" />
+                <div className="w-8 h-8 rounded-lg bg-[var(--theme-card)] border border-[var(--theme-border)] group-hover:border-[var(--theme-accent)]/40 flex items-center justify-center text-[var(--theme-accent)] flex-shrink-0 transition-colors">
+                  <CompIcon className="w-4 h-4 text-[var(--theme-accent)]" />
                 </div>
                 <span className="text-xs font-semibold text-[var(--theme-text)] leading-snug">
                   {comp.title}

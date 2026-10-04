@@ -139,7 +139,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-[var(--theme-bg)] transition-colors duration-500 overflow-x-hidden selection:bg-[#FF0000] selection:text-white">
+      <body className="bg-[var(--theme-bg)] transition-colors duration-500 overflow-x-hidden selection:bg-primary selection:text-white">
         <a href="#main" className="skip-link">
           Skip to main content
         </a>

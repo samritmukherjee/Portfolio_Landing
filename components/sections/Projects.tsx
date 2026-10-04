@@ -7,6 +7,7 @@ import { FiGithub } from "react-icons/fi";
 import Image from "next/image";
 import GooeySvgFilter from "@/components/fancy/filter/gooey-svg-filter";
 import { ZenithArcSvg } from "@/components/ui/orbiting-circles-demo";
+import { BlobButton } from "@/components/ui/BlobButton";
 import { projectsData, ProjectData } from "@/lib/projects-data";
 
 interface ExtendedProject extends ProjectData {
@@ -165,7 +166,7 @@ export function Projects() {
                 {activeTab === index && (
                   <motion.div
                     layoutId="active-folder-tab-pill"
-                    className="absolute inset-0 bg-[#efefef] dark:bg-[#18181b] rounded-t-3xl"
+                    className="absolute inset-0 bg-[#EFF6FF] dark:bg-[#111D32] rounded-t-3xl"
                     transition={{
                       type: "spring",
                       bounce: 0.05,
@@ -178,7 +179,7 @@ export function Projects() {
           </div>
 
           {/* Content panel in background: merged organically with active tab */}
-          <div className="w-full h-[calc(100%-3rem)] sm:h-[calc(100%-3.5rem)] bg-[#efefef] dark:bg-[#18181b] rounded-b-3xl rounded-tr-3xl" />
+          <div className="w-full h-[calc(100%-3rem)] sm:h-[calc(100%-3.5rem)] bg-[#EFF6FF] dark:bg-[#111D32] rounded-b-3xl rounded-tr-3xl" />
         </div>
 
         {/* Interactive Text Overlay: Unfiltered, crisp typography */}
@@ -225,7 +226,7 @@ export function Projects() {
                     <div>
                       <div className="flex items-center gap-2">
                         {project.year && (
-                          <span className="font-mono text-xs font-bold text-[#FF0000] px-2.5 py-0.5 rounded-md bg-[#FF0000]/10 border border-[#FF0000]/20">
+                          <span className="font-mono text-xs font-bold text-[#2563EB] dark:text-[#60A5FA] px-2.5 py-0.5 rounded-md bg-[#2563EB]/10 dark:bg-[#3B82F6]/15 border border-[#2563EB]/20 dark:border-[#3B82F6]/30">
                             {project.year}
                           </span>
                         )}
@@ -238,7 +239,7 @@ export function Projects() {
 
                   {/* Subtitle */}
                   <div>
-                    <p className="text-sm font-semibold text-[#FF0000] uppercase tracking-wider">
+                    <p className="text-sm font-semibold text-[#2563EB] dark:text-[#60A5FA] uppercase tracking-wider">
                       {project.subtitle}
                     </p>
                   </div>
@@ -268,26 +269,28 @@ export function Projects() {
                   {/* Action Buttons */}
                   <div className="pt-2 flex flex-wrap items-center gap-3">
                     {project.link && (
-                      <a
+                      <BlobButton
+                        variant="primary"
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-5 py-2.5 rounded-xl bg-[#FF0000] hover:bg-[#CC0000] text-white text-sm font-semibold flex items-center gap-2 transition-all duration-300 shadow-md shadow-[#FF0000]/20 hover:scale-[1.02]"
+                        className="text-xs !py-2 !px-4"
                       >
                         <span>Live Demo</span>
-                        <ArrowUpRight className="w-4 h-4" />
-                      </a>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </BlobButton>
                     )}
                     {project.github && (
-                      <a
+                      <BlobButton
+                        variant="secondary"
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-4 py-2.5 rounded-xl bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white text-sm font-semibold flex items-center gap-2 transition-all border border-neutral-300 dark:border-neutral-700"
+                        className="text-xs !py-2 !px-4"
                       >
-                        <FiGithub className="w-4 h-4" />
+                        <FiGithub className="w-3.5 h-3.5" />
                         <span>Source</span>
-                      </a>
+                      </BlobButton>
                     )}
                   </div>
                 </div>
@@ -313,7 +316,7 @@ export function Projects() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                       <div className="px-4 py-2 rounded-xl bg-black/80 text-white text-xs font-mono font-bold backdrop-blur-md border border-white/20 flex items-center gap-2">
                         <span>Open Live Demo</span>
-                        <ArrowUpRight className="w-3.5 h-3.5 text-[#FF0000]" />
+                        <ArrowUpRight className="w-3.5 h-3.5 text-[#2563EB] dark:text-[#60A5FA]" />
                       </div>
                     </div>
                   </a>
@@ -364,10 +367,10 @@ export function Projects() {
 
               {/* Text: Work in Progress */}
               <div className="space-y-2">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF0000]/10 border border-[#FF0000]/25 text-[#FF0000] text-xs font-mono font-semibold">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2563EB]/10 dark:bg-[#3B82F6]/15 border border-[#2563EB]/25 dark:border-[#3B82F6]/35 text-[#2563EB] dark:text-[#60A5FA] text-xs font-mono font-semibold">
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF0000] opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF0000]" />
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2563EB] dark:bg-[#3B82F6] opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563EB] dark:bg-[#3B82F6]" />
                   </span>
                   <span>Active</span>
                 </div>
@@ -419,7 +422,7 @@ export function Projects() {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="absolute top-2.5 right-2.5 p-1.5 rounded-lg bg-black/70 backdrop-blur-md text-white border border-white/20 hover:bg-[#FF0000] transition-colors"
+                        className="absolute top-2.5 right-2.5 p-1.5 rounded-lg bg-black/70 backdrop-blur-md text-white border border-white/20 hover:bg-[#2563EB] dark:hover:bg-[#3B82F6] transition-colors"
                         aria-label={`Open ${project.title} live demo`}
                       >
                         <ArrowUpRight className="w-3.5 h-3.5" />
@@ -433,7 +436,7 @@ export function Projects() {
                     <div>
                       <div className="flex items-center gap-2">
                         {project.year && (
-                          <span className="font-mono text-xs font-bold text-[#FF0000] px-2 py-0.5 rounded-md bg-[#FF0000]/10 border border-[#FF0000]/20">
+                          <span className="font-mono text-xs font-bold text-[#2563EB] dark:text-[#60A5FA] px-2 py-0.5 rounded-md bg-[#2563EB]/10 dark:bg-[#3B82F6]/15 border border-[#2563EB]/20 dark:border-[#3B82F6]/30">
                             {project.year}
                           </span>
                         )}
@@ -445,7 +448,7 @@ export function Projects() {
                   </div>
 
                   {/* Subtitle */}
-                  <p className="text-xs font-semibold text-[#FF0000] uppercase tracking-wider mb-2">
+                  <p className="text-xs font-semibold text-[#2563EB] dark:text-[#60A5FA] uppercase tracking-wider mb-2">
                     {project.subtitle}
                   </p>
 
@@ -480,26 +483,28 @@ export function Projects() {
                 {/* Bottom Action Buttons */}
                 <div className="pt-3 border-t border-[var(--theme-border)] flex items-center gap-2 mt-auto">
                   {project.link && (
-                    <a
+                    <BlobButton
+                      variant="primary"
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 py-2 px-3 rounded-xl bg-[#FF0000] hover:bg-[#CC0000] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition-all"
+                      className="flex-1 text-xs !py-1.5 !px-3 shadow-sm"
                     >
                       <span>Live Demo</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
+                    </BlobButton>
                   )}
                   {project.github && (
-                    <a
+                    <BlobButton
+                      variant="secondary"
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="py-2 px-3 rounded-xl bg-[var(--theme-surface-2)] hover:bg-[var(--theme-surface)] text-[var(--theme-text)] text-xs font-semibold flex items-center justify-center gap-1.5 border border-[var(--theme-border)] transition-all"
+                      className="text-xs !py-1.5 !px-3"
                     >
                       <FiGithub className="w-3.5 h-3.5" />
                       <span>Source</span>
-                    </a>
+                    </BlobButton>
                   )}
                 </div>
               </div>
@@ -539,10 +544,10 @@ export function Projects() {
 
                 {/* Only "Work in Progress" text */}
                 <div className="space-y-2">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF0000]/10 border border-[#FF0000]/25 text-[#FF0000] text-xs font-mono font-semibold">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2563EB]/10 dark:bg-[#3B82F6]/15 border border-[#2563EB]/25 dark:border-[#3B82F6]/35 text-[#2563EB] dark:text-[#60A5FA] text-xs font-mono font-semibold">
                     <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF0000] opacity-75" />
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF0000]" />
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2563EB] dark:bg-[#3B82F6] opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563EB] dark:bg-[#3B82F6]" />
                     </span>
                     <span>Active</span>
                   </div>
@@ -564,7 +569,7 @@ export function Projects() {
         {/* Scroll progress bar (Matching Hackathon Wins) */}
         <div className="w-full max-w-xs mx-auto h-1 bg-[var(--theme-border)] rounded-full mt-4 overflow-hidden relative">
           <div
-            className="h-full bg-[#FF0000] rounded-full transition-transform duration-75 origin-left"
+            className="h-full bg-[#2563EB] dark:bg-[#3B82F6] rounded-full transition-transform duration-75 origin-left"
             style={{
               width: "100%",
               transform: `scaleX(${Math.max(scrollProgress, 0.16)})`,

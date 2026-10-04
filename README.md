@@ -29,7 +29,7 @@ The website delivers an interactive, editorial web experience featuring smooth p
 ## ✨ Key Architectural Features
 
 - **Coordinated Scroll Pipeline**: Smooth vertical scrolling powered by Lenis, unified with GSAP's central RAF ticker loop to prevent competing animation frames. Native touch momentum is preserved on mobile devices, and reduced-motion user preferences (`prefers-reduced-motion: reduce`) are honored automatically.
-- **Dynamic Dual Theme System**: Features a high-contrast dark mode (`#000000`) and editorial light mode (`#FFFFFF`) with crimson red accents (`#FF0000`). Initial theme state is evaluated synchronously in `<head>` via an inline IIFE to eliminate flash of unstyled theme (FOUC).
+- **Dynamic Dual Theme System**: Features a deep midnight navy dark mode (`#080F1E`) and crisp modern light mode (`#F8FAFC`) with vibrant blue and cyan accents (`#2563EB` / `#3B82F6` / `#06B6D4`). Initial theme state is evaluated synchronously in `<head>` via an inline IIFE to eliminate flash of unstyled theme (FOUC).
 - **Interactive Projects Showcase**:
   - *Desktop*: SVG gooey-filtered folder tabs that blend the active tab pill into the project card.
   - *Mobile*: Touch-optimized horizontal card carousel with CSS scroll snap points.
@@ -51,32 +51,34 @@ All styling tokens are declared as CSS custom properties in `styles/globals.css`
 ```css
 /* Dark Mode (Default) */
 html[data-theme="dark"], html.dark {
-  --theme-bg: #000000;
-  --theme-surface: #0A0A0A;
-  --theme-surface-2: #121212;
-  --theme-surface-elevated: #181818;
-  --theme-card: #0A0A0A;
-  --theme-text: #FFFFFF;
-  --theme-text-secondary: #A3A3A3;
-  --theme-text-muted: #737373;
-  --theme-border: rgba(255, 255, 255, 0.12);
-  --theme-accent: #FF0000;
-  --theme-accent-glow: rgba(255, 0, 0, 0.28);
+  --theme-bg: #080F1E;
+  --theme-surface: #0F1B30;
+  --theme-surface-2: #14223C;
+  --theme-surface-elevated: #172846;
+  --theme-card: #111D32;
+  --theme-text: #F1F5F9;
+  --theme-text-secondary: #B6C3D5;
+  --theme-text-muted: #8E9FB8;
+  --theme-border: #263750;
+  --theme-accent: #3B82F6;
+  --theme-accent-secondary: #60A5FA;
+  --theme-accent-cyan: #22D3EE;
 }
 
 /* Light Mode */
 html[data-theme="light"] {
-  --theme-bg: #FFFFFF;
-  --theme-surface: #FAFAFA;
-  --theme-surface-2: #F4F4F5;
+  --theme-bg: #F8FAFC;
+  --theme-surface: #EFF6FF;
+  --theme-surface-2: #E2EDF9;
   --theme-surface-elevated: #FFFFFF;
   --theme-card: #FFFFFF;
-  --theme-text: #000000;
-  --theme-text-secondary: #404040;
-  --theme-text-muted: #737373;
-  --theme-border: #E5E5E5;
-  --theme-accent: #FF0000;
-  --theme-accent-glow: rgba(255, 0, 0, 0.14);
+  --theme-text: #0F172A;
+  --theme-text-secondary: #475569;
+  --theme-text-muted: #64748B;
+  --theme-border: #DCE6F1;
+  --theme-accent: #2563EB;
+  --theme-accent-secondary: #3B82F6;
+  --theme-accent-cyan: #0891B2;
 }
 ```
 

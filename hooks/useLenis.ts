@@ -51,7 +51,7 @@ export const useLenis = (shouldEnable: boolean = true) => {
         lenis.raf(time * 1000);
       };
       gsap.ticker.add(tickerCallback);
-      gsap.ticker.lagSmoothing(0);
+      gsap.ticker.lagSmoothing(500, 33);
     }
 
     return () => {

@@ -34,7 +34,7 @@ export function OrbitingCirclesDemo() {
     /* Completely borderless container with NO outer card box, flowing directly into the webpage */
     <div className="relative flex h-[380px] sm:h-[440px] w-full flex-col items-center justify-center overflow-visible">
       {/* Central Brand Badge: Samrit's Portfolio Logo */}
-      <div className="relative z-10 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-black border-2 border-[#FF0000] flex items-center justify-center p-3 shadow-[0_0_35px_rgba(255,0,0,0.35)] group transition-transform duration-300 hover:scale-105">
+      <div className="relative z-10 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-black border-2 border-[#2563EB] dark:border-[#3B82F6] flex items-center justify-center p-3 shadow-md group transition-transform duration-200 hover:scale-105">
         <Image
           src={LOGOS.portfolio}
           alt="Samrit Mukherjee Portfolio Logo"
@@ -43,7 +43,7 @@ export function OrbitingCirclesDemo() {
           className="w-full h-full object-contain"
           priority
         />
-        <div className="absolute -bottom-2.5 px-2.5 py-0.5 rounded-full bg-[#FF0000] text-[9px] font-mono font-bold text-white uppercase tracking-wider shadow-sm">
+        <div className="absolute -bottom-2.5 px-2.5 py-0.5 rounded-full bg-[#2563EB] dark:bg-[#3B82F6] text-[9px] font-mono font-bold text-white uppercase tracking-wider shadow-sm">
           SAMRIT.DEV
         </div>
       </div>

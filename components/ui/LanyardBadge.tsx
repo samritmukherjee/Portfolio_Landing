@@ -261,10 +261,10 @@ export function LanyardBadge({
 
           <div className="flex flex-col h-full bg-card w-full">
             {/* Top gradient banner with authentic profile photo */}
-            <div className="relative px-5 pt-7 pb-6 flex flex-col items-center bg-gradient-to-br from-neutral-900 via-black to-[#2A0505] text-white overflow-hidden border-b border-[#FF0000]/20">
+            <div className="relative px-5 pt-7 pb-6 flex flex-col items-center bg-gradient-to-br from-neutral-900 via-slate-950 to-[#0F224A] text-white overflow-hidden border-b border-primary/30">
               <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:12px_12px] pointer-events-none" />
 
-              <div className="mt-1 relative w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-[#FF0000] via-neutral-700 to-white backdrop-blur-md shadow-2xl border border-white/30 overflow-hidden group">
+              <div className="mt-1 relative w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-primary via-neutral-700 to-white backdrop-blur-md shadow-2xl border border-white/30 overflow-hidden group">
                 <Image
                   src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg"
                   alt={name || "Samrit Mukherjee"}

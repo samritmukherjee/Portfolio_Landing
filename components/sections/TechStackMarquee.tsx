@@ -103,7 +103,7 @@ export function TechStackMarquee() {
         {displayItems.map((tech, idx) => (
           <div
             key={`${tech.name}-${idx}`}
-            className="mx-2 sm:mx-3 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-[var(--theme-border)] bg-[var(--theme-surface)] text-[var(--theme-text)] font-semibold text-xs sm:text-sm flex items-center gap-2.5 transition-all duration-300 hover:scale-105 hover:border-[#FF0000]/60 hover:shadow-[0_0_12px_rgba(255,0,0,0.2)] cursor-default shadow-sm group shrink-0"
+            className="mx-2 sm:mx-3 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-[var(--theme-border)] bg-[var(--theme-surface)] text-[var(--theme-text)] font-semibold text-xs sm:text-sm flex items-center gap-2.5 transition-all duration-200 hover:border-[#2563EB]/50 dark:hover:border-[#3B82F6]/60 cursor-default shadow-xs group shrink-0"
           >
             <div className="w-5 h-5 relative flex-shrink-0">
               <Image

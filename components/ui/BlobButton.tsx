@@ -95,9 +95,9 @@ export function BlobButton({
     );
   }
 
-  const buttonProps = props as React.ButtonHTMLAttributes<HTMLButtonElement>;
+  const { type = "button", ...restButtonProps } = props as React.ButtonHTMLAttributes<HTMLButtonElement>;
   return (
-    <button type="button" className={classes} {...buttonProps}>
+    <button type={type} className={classes} {...restButtonProps}>
       <span className="blob-btn__label">{children}</span>
       <BlobInner />
     </button>

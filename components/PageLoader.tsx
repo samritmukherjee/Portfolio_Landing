@@ -169,7 +169,7 @@ export default function PageLoader() {
           animation: ldr-box4 var(--duration) linear infinite;
         }
         .loader-boxes .loader-box > div {
-          --background: #FF0000;
+          --background: #3B82F6;
           --top: auto;
           --right: auto;
           --bottom: auto;
@@ -194,16 +194,16 @@ export default function PageLoader() {
           --left: 0;
         }
         .loader-boxes .loader-box > div:nth-child(2) {
-          --background: #D90000;
+          --background: #2563EB;
           --right: 0;
           --rotateY: 90deg;
         }
         .loader-boxes .loader-box > div:nth-child(3) {
-          --background: #A60000;
+          --background: #1D4ED8;
           --rotateX: -90deg;
         }
         .loader-boxes .loader-box > div:nth-child(4) {
-          --background: #400000;
+          --background: #172554;
           --top: 0;
           --left: 0;
           --translateZ: calc(var(--size) * 3 * -1);
@@ -235,23 +235,20 @@ export default function PageLoader() {
 
       {/* Hardware-Accelerated Split-Curtain Panels */}
       <div
-        className="absolute inset-y-0 left-0 w-1/2 bg-[#000000] border-r border-[#FF0000]/15"
+        className="absolute inset-y-0 left-0 w-1/2 bg-[#080F1E] border-r border-[#3B82F6]/15"
         style={leftPanelStyle}
       />
       <div
-        className="absolute inset-y-0 right-0 w-1/2 bg-[#000000] border-l border-[#FF0000]/15"
+        className="absolute inset-y-0 right-0 w-1/2 bg-[#080F1E] border-l border-[#3B82F6]/15"
         style={rightPanelStyle}
       />
-
-      {/* Subtle Center Red Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#FF0000]/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div
         className="relative z-10 flex flex-col items-center justify-center gap-6 sm:gap-7"
         style={contentStyle}
       >
-        {/* Futuristic S M Orbit Emblem (Preloaded & Unoptimized for instant rendering) */}
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 drop-shadow-[0_0_24px_rgba(255,0,0,0.4)]">
+        {/* S M Orbit Emblem (Preloaded & Unoptimized for instant rendering) */}
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20">
           <Image
             src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791022468/SamritMukherjeeLogo_wherde.png"
             alt="Samrit Mukherjee Logo Emblem"
@@ -269,7 +266,7 @@ export default function PageLoader() {
             Samrit Mukherjee
           </h2>
           <p className="text-neutral-400 text-xs tracking-[0.16em] uppercase">
-            AI Systems <span className="text-[#FF0000] mx-1">•</span> Full-Stack
+            AI Systems <span className="text-[#3B82F6] mx-1">•</span> Full-Stack
           </p>
         </div>
 
@@ -308,7 +305,7 @@ export default function PageLoader() {
           <div className="w-44 h-1 bg-white/10 overflow-hidden rounded-full relative">
             <div
               ref={progressBarRef}
-              className="h-full bg-gradient-to-r from-[#FF0000] via-[#FF4D4D] to-white rounded-full"
+              className="h-full bg-gradient-to-r from-[#2563EB] via-[#3B82F6] to-[#06B6D4] rounded-full"
               style={{ width: "0%" }}
             />
           </div>

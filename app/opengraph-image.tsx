@@ -16,7 +16,7 @@ export default async function Image() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: "radial-gradient(circle at 10% 20%, #170707 0%, #050505 60%, #000000 100%)",
+          background: "radial-gradient(circle at 10% 20%, #0F1B30 0%, #080F1E 60%, #050B15 100%)",
           color: "#f5f5f5",
           fontFamily: "system-ui, -apple-system, sans-serif",
         }}
@@ -28,14 +28,14 @@ export default async function Image() {
                 width: 72,
                 height: 72,
                 borderRadius: 18,
-                background: "linear-gradient(135deg, #FF0000 0%, #990000 100%)",
+                background: "linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 fontSize: 32,
                 fontWeight: 800,
                 color: "#ffffff",
-                boxShadow: "0 8px 30px rgba(255, 0, 0, 0.3)",
+                boxShadow: "0 8px 30px rgba(37, 99, 235, 0.35)",
               }}
             >
               SM
@@ -51,9 +51,9 @@ export default async function Image() {
             style={{
               padding: "8px 20px",
               borderRadius: 30,
-              border: "1px solid rgba(255, 0, 0, 0.4)",
-              background: "rgba(255, 0, 0, 0.1)",
-              color: "#ff4d4d",
+              border: "1px solid rgba(37, 99, 235, 0.4)",
+              background: "rgba(37, 99, 235, 0.12)",
+              color: "#60A5FA",
               fontSize: 16,
               fontWeight: 700,
             }}

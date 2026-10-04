@@ -138,7 +138,7 @@ export function Navbar({ theme, onToggleTheme, activeSection }: NavbarProps) {
                           {item.name}
                         </button>
                         <motion.span
-                          className="absolute -bottom-1.5 left-1/2 h-[2.5px] bg-primary rounded-full shadow-[0_0_8px_rgba(255,0,0,0.8)]"
+                          className="absolute -bottom-1.5 left-1/2 h-[2px] bg-[#2563EB] dark:bg-[#3B82F6] rounded-full"
                           initial={false}
                           animate={
                             isActive

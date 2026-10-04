@@ -98,14 +98,10 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
+// Memoized main content to prevent re-rendering 9 sections during scroll-based activeSection changes
+const MainContent = React.memo(function MainContent() {
   return (
-    <div className="min-h-screen bg-[var(--theme-bg)] text-[var(--theme-text)] transition-colors duration-300 relative selection:bg-[#FF0000] selection:text-white overflow-x-hidden">
-      <Navbar
-        theme={theme}
-        onToggleTheme={toggleTheme}
-        activeSection={activeSection}
-      />
-
+    <>
       {/* Exact 9-section portfolio structure */}
       <main id="main" className="w-full flex flex-col border-none overflow-x-hidden">
         <Hero />
@@ -121,6 +117,19 @@ export default function Home() {
 
       <Footer />
       <Dock />
+    </>
+  );
+});
+
+  return (
+    <div className="min-h-screen bg-[var(--theme-bg)] text-[var(--theme-text)] transition-colors duration-300 relative selection:bg-primary selection:text-white overflow-x-hidden">
+      <Navbar
+        theme={theme}
+        onToggleTheme={toggleTheme}
+        activeSection={activeSection}
+      />
+
+      <MainContent />
     </div>
   );
 }

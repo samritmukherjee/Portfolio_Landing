@@ -10,22 +10,22 @@ import { OrbitingCirclesDemo } from "@/components/ui/orbiting-circles-demo";
 export function About() {
   const stats = [
     {
-      icon: <Trophy className="w-6 h-6 text-[#FF0000]" />,
+      icon: <Trophy className="w-6 h-6 text-[#2563EB] dark:text-[#60A5FA]" />,
       value: "11×",
       label: "Hackathon Wins & Top Placements",
     },
     {
-      icon: <Code2 className="w-6 h-6 text-[#FF0000]" />,
+      icon: <Code2 className="w-6 h-6 text-[#2563EB] dark:text-[#60A5FA]" />,
       value: "8×",
       label: "Production & Research Projects Built",
     },
     {
-      icon: <Layers className="w-6 h-6 text-[#FF0000]" />,
+      icon: <Layers className="w-6 h-6 text-[#2563EB] dark:text-[#60A5FA]" />,
       value: "5",
       label: "Featured Platforms & Systems",
     },
     {
-      icon: <Sparkles className="w-6 h-6 text-[#FF0000]" />,
+      icon: <Sparkles className="w-6 h-6 text-[#2563EB] dark:text-[#60A5FA]" />,
       value: "3",
       label: "New AI Solutions Coming Soon",
     },
@@ -64,14 +64,14 @@ export function About() {
           <div className="space-y-4 text-base md:text-lg text-[var(--theme-text-secondary)] leading-relaxed">
             <p>
               I&apos;m Samrit Mukherjee, a{" "}
-              <TextHighlighter highlightColor="rgba(255, 0, 0, 0.18)">
+              <TextHighlighter highlightColor="rgba(37, 99, 235, 0.18)">
                 B.Tech Computer Science and Engineering student (AI &amp; ML) at Meghnad Saha Institute of Technology (MSIT)
               </TextHighlighter>
               , Kolkata under MAKAUT, graduating in 2027.
             </p>
               <p>
                 I build AI-powered products, full-stack applications, automation systems, and management platforms. My interests include{" "}
-                <TextHighlighter highlightColor="rgba(255, 0, 0, 0.18)">
+                <TextHighlighter highlightColor="rgba(37, 99, 235, 0.18)">
                   agentic AI, Retrieval-Augmented Generation (RAG), computer vision, intelligent workflows
                 </TextHighlighter>
                 , and scalable software architecture.
@@ -79,7 +79,7 @@ export function About() {
               <p>
                 From developing AI-driven SaaS platforms to building administrative systems and computer vision applications, I enjoy working across the complete development lifecycle—from understanding requirements and designing architectures to implementation, testing, and deployment.
               </p>
-              <blockquote className="border-l-2 border-[#FF0000] pl-4 py-1 italic text-[var(--theme-text)] font-medium">
+              <blockquote className="border-l-2 border-[#2563EB] dark:border-[#3B82F6] pl-4 py-1 italic text-[var(--theme-text)] font-medium">
                 &ldquo;Build tools that matter, for people who need them.&rdquo;
               </blockquote>
             </div>
@@ -96,17 +96,14 @@ export function About() {
         {stats.map((item, idx) => (
           <motion.div
             key={idx}
-            className="glass-panel p-6 rounded-2xl border border-[var(--theme-border)] hover:border-[#FF0000]/50 transition-all duration-300 group relative overflow-hidden shadow-sm hover:shadow-[0_8px_30px_rgba(255,0,0,0.12)]"
+            className="glass-panel p-6 rounded-2xl border border-[var(--theme-border)] hover:border-[#2563EB]/40 dark:hover:border-[#3B82F6]/50 transition-colors duration-200 group relative overflow-hidden shadow-sm"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.08, duration: 0.5 }}
             viewport={{ once: true }}
           >
-            {/* Glowing Orb */}
-            <div className="absolute -right-6 -top-6 w-24 h-24 bg-[#FF0000]/10 rounded-full blur-2xl group-hover:bg-[#FF0000]/20 transition-colors pointer-events-none" />
-
             {/* Icon Container */}
-            <div className="text-primary mb-3.5 p-3 bg-[#FF0000]/10 border border-[#FF0000]/25 w-max rounded-xl">
+            <div className="text-primary mb-3.5 p-2.5 bg-[#2563EB]/8 dark:bg-[#3B82F6]/15 border border-[#2563EB]/20 dark:border-[#3B82F6]/30 w-max rounded-xl">
               {item.icon}
             </div>
 
@@ -114,7 +111,7 @@ export function About() {
             <h3 className="text-3xl font-extrabold text-[var(--theme-text)] mb-1">
               {item.value}
             </h3>
-            <p className="text-xs sm:text-sm font-medium text-[var(--theme-text-muted)] leading-snug">
+            <p className="text-xs sm:text-sm font-medium text-[var(--theme-text-secondary)] leading-snug">
               {item.label}
             </p>
           </motion.div>

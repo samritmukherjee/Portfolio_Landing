@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { motion, useInView, useScroll, useSpring } from "framer-motion";
+import { motion, useInView, useScroll } from "framer-motion";
 
 interface ExperienceEntry {
   id: number;
@@ -69,9 +69,9 @@ function TimelineItem({
         } top-8 z-10`}
       >
         <div
-          className={`w-4 h-4 rounded-full border-2 border-[#FF0000] transition-all duration-500 ${
+          className={`w-4 h-4 rounded-full border-2 border-[#2563EB] dark:border-[#3B82F6] transition-colors duration-200 ${
             inView
-              ? "bg-[#FF0000] shadow-[0_0_12px_rgba(255,0,0,0.8)] scale-110"
+              ? "bg-[#2563EB] dark:bg-[#3B82F6] ring-4 ring-[#2563EB]/25 dark:ring-[#3B82F6]/30"
               : "bg-[var(--theme-surface)]"
           }`}
         />
@@ -81,16 +81,16 @@ function TimelineItem({
       <motion.div
         initial={{
           opacity: 0,
-          x: isDesktop ? (isLeft ? -40 : 40) : -16,
+          x: isDesktop ? (isLeft ? -30 : 30) : -12,
         }}
         animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
         className={`w-full ${isDesktop ? "lg:w-[calc(50%-2rem)]" : "pl-10"}`}
       >
-        <div className="glass-card p-6 sm:p-8 rounded-2xl group border border-[var(--theme-border)] border-l-4 border-l-[#FF0000] hover:shadow-[0_16px_40px_rgba(255,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
+        <div className="glass-card p-6 sm:p-8 rounded-2xl group border border-[var(--theme-border)] border-l-4 border-l-[#2563EB] dark:border-l-[#3B82F6] hover:-translate-y-0.5 transition-all duration-200 shadow-sm">
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
             <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#FF0000] block">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#2563EB] dark:text-[#60A5FA] block">
                 {exp.duration}
               </span>
               <h3 className="text-xl sm:text-2xl font-bold text-[var(--theme-text)] group-hover:text-primary transition-colors">
@@ -101,7 +101,7 @@ function TimelineItem({
               </p>
             </div>
 
-            <span className="px-3.5 py-1 bg-[#FF0000]/10 text-primary border border-[#FF0000]/25 text-xs font-bold rounded-full uppercase tracking-wider self-start">
+            <span className="px-3.5 py-1 bg-[#2563EB]/10 dark:bg-[#3B82F6]/15 text-primary border border-[#2563EB]/25 dark:border-[#3B82F6]/35 text-xs font-bold rounded-full uppercase tracking-wider self-start">
               {exp.type}
             </span>
           </div>
@@ -112,7 +112,7 @@ function TimelineItem({
                 key={i}
                 className="flex gap-2.5 text-[var(--theme-text-secondary)] text-xs sm:text-sm items-start leading-relaxed"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FF0000] mt-2 flex-shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB] dark:bg-[#3B82F6] mt-2 flex-shrink-0" />
                 <span>{highlight}</span>
               </li>
             ))}
@@ -144,12 +144,6 @@ export function Experience() {
     offset: ["start 70%", "end 60%"],
   });
 
-  const scaleY = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
   return (
     <section
       ref={sectionRef}
@@ -173,8 +167,8 @@ export function Experience() {
 
         {/* Scroll-Linked Downward Animated Timeline Line */}
         <motion.div
-          style={{ scaleY }}
-          className="absolute left-4 lg:left-1/2 -translate-x-1/2 top-8 bottom-8 w-0.5 origin-top bg-gradient-to-b from-[#FF0000] via-[#FF4D4D] to-[#FF0000] shadow-[0_0_12px_rgba(255,0,0,0.8)] z-[5]"
+          style={{ scaleY: scrollYProgress, willChange: "transform" }}
+          className="absolute left-4 lg:left-1/2 -translate-x-1/2 top-8 bottom-8 w-0.5 origin-top bg-gradient-to-b from-[#2563EB] via-[#3B82F6] to-[#06B6D4] dark:from-[#3B82F6] dark:via-[#60A5FA] dark:to-[#22D3EE] z-[5]"
         />
 
         {experiences.map((exp, idx) => (

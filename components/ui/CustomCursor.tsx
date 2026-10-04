@@ -93,7 +93,7 @@ export function CustomCursor() {
     <div className="fixed inset-0 pointer-events-none z-[99999] overflow-hidden select-none">
       {/* Outer Smooth Spring Ring */}
       <motion.div
-        className="fixed top-0 left-0 rounded-full pointer-events-none border border-[#FF0000]/70"
+        className="fixed top-0 left-0 rounded-full pointer-events-none border border-[#2563EB]/70 dark:border-[#3B82F6]/70"
         style={{
           x: smoothX,
           y: smoothY,
@@ -101,20 +101,18 @@ export function CustomCursor() {
           translateY: "-50%",
         }}
         animate={{
-          width: isHovered ? 48 : isClicking ? 20 : 28,
-          height: isHovered ? 48 : isClicking ? 20 : 28,
-          backgroundColor: isHovered ? "rgba(255, 0, 0, 0.12)" : "rgba(255, 0, 0, 0.04)",
-          boxShadow: isHovered
-            ? "0 0 16px rgba(255, 0, 0, 0.45)"
-            : "0 0 8px rgba(255, 0, 0, 0.2)",
-          borderColor: isHovered ? "rgba(255, 0, 0, 0.9)" : "rgba(255, 0, 0, 0.6)",
+          width: isHovered ? 44 : isClicking ? 20 : 28,
+          height: isHovered ? 44 : isClicking ? 20 : 28,
+          backgroundColor: isHovered ? "rgba(37, 99, 235, 0.06)" : "transparent",
+          boxShadow: "none",
+          borderColor: isHovered ? "rgba(37, 99, 235, 0.8)" : "rgba(37, 99, 235, 0.4)",
         }}
         transition={{ type: "spring", damping: 25, stiffness: 400 }}
       />
 
       {/* Inner Pinpoint Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-[#FF0000] pointer-events-none"
+        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-[#2563EB] dark:bg-[#3B82F6] pointer-events-none"
         style={{
           x: mouseX,
           y: mouseY,

@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
       "Samrit Mukherjee — AI Systems Engineer, Full-Stack Developer, and 11× Hackathon Winner building intelligent software, enterprise platforms, and AI-powered products.",
     start_url: "/",
     display: "standalone",
-    background_color: "#050505",
-    theme_color: "#050505",
+    background_color: "#080F1E",
+    theme_color: "#080F1E",
     icons: [
       {
         src: "/favicon.ico",

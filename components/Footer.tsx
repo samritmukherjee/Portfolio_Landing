@@ -6,6 +6,7 @@ import { ArrowUp, Mail } from "lucide-react";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { isNewVisitor, markVisit } from "@/lib/visitor";
 import { scrollToElement } from "@/lib/scrollToElement";
+import { BlobButton } from "@/components/ui/BlobButton";
 
 export function Footer() {
   const [visitCount, setVisitCount] = useState<number | null>(null);
@@ -76,10 +77,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="w-full relative z-10 pt-14 pb-12 sm:pb-14 bg-[var(--theme-surface)]/80 backdrop-blur-2xl border-t border-[var(--theme-border)] shadow-2xl rounded-t-[2.5rem] sm:rounded-t-[3rem] overflow-hidden">
-      {/* Background Ambient Red Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-[#FF0000]/5 blur-[140px] rounded-full pointer-events-none" />
-
+    <footer className="w-full relative z-10 pt-14 pb-12 sm:pb-14 bg-[var(--theme-surface)] border-t border-[var(--theme-border)] rounded-t-[2.5rem] sm:rounded-t-[3rem] overflow-hidden">
       <div className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10 flex flex-col gap-8">
         {/* Top Header Row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-[var(--theme-border)]">
@@ -95,27 +93,25 @@ export function Footer() {
               <span className="font-extrabold tracking-tight text-[var(--theme-text)] text-base leading-none">
                 Samrit Mukherjee
               </span>
-              <span className="text-[10px] font-mono font-bold text-[#FF0000] tracking-wider uppercase mt-1">
+              <span className="text-[10px] font-mono font-bold text-[#2563EB] dark:text-[#60A5FA] tracking-wider uppercase mt-1">
                 AI Systems • Full Stack Engineering
               </span>
             </div>
           </div>
 
-          <motion.button
-            type="button"
+          <BlobButton
+            variant="secondary"
             onClick={scrollToTop}
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--theme-card)] border border-[var(--theme-border)] text-xs font-mono font-bold text-[var(--theme-text)] hover:text-[#FF0000] hover:border-[#FF0000]/50 transition-all shadow-sm cursor-pointer"
+            className="text-xs font-mono font-bold !py-2 !px-4 shadow-sm"
           >
             <span>Back to top</span>
-            <ArrowUp className="w-3.5 h-3.5 text-[#FF0000]" />
-          </motion.button>
+            <ArrowUp className="w-3.5 h-3.5 text-[#2563EB] dark:text-[#60A5FA]" />
+          </BlobButton>
         </div>
 
-        {/* Center Big Morphing Banner */}
-        <div className="py-8 px-6 rounded-3xl bg-[var(--theme-card)] border border-[var(--theme-border)] text-center flex flex-col items-center justify-center my-1 shadow-sm">
-          <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#FF0000] mb-3 bg-[#FF0000]/10 px-3.5 py-1.5 rounded-full border border-[#FF0000]/25 shadow-sm">
+        {/* Center Morphing Banner — Clean, open presentation */}
+        <div className="py-6 px-4 text-center flex flex-col items-center justify-center my-1">
+          <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#2563EB] dark:text-[#60A5FA] mb-2.5">
             Focus &amp; Vision
           </span>
 
@@ -142,7 +138,7 @@ export function Footer() {
               key={idx}
               type="button"
               onClick={() => scrollToElement(link.href)}
-              className="hover:text-[#FF0000] transition-colors duration-200 cursor-pointer"
+              className="hover:text-[var(--theme-accent)] transition-colors duration-200 cursor-pointer"
             >
               {link.name}
             </button>
@@ -162,7 +158,7 @@ export function Footer() {
                   target={item.href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
                   aria-label={item.label}
-                  className="w-9 h-9 rounded-full bg-[var(--theme-card)] border border-[var(--theme-border)] flex items-center justify-center text-[var(--theme-text-secondary)] hover:text-[#FF0000] hover:border-[#FF0000]/50 hover:scale-110 transition-all shadow-sm"
+                  className="w-9 h-9 rounded-full bg-[var(--theme-card)] border border-[var(--theme-border)] flex items-center justify-center text-[var(--theme-text-secondary)] hover:text-[var(--theme-accent)] hover:border-[var(--theme-accent)]/50 hover:scale-110 transition-all shadow-sm"
                 >
                   <Icon className="w-4 h-4" />
                 </a>
@@ -173,7 +169,7 @@ export function Footer() {
           {/* Visitor Counter Pill */}
           {visitCount !== null && visitCount > 0 ? (
             <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--theme-card)] border border-[var(--theme-border)] text-xs font-mono font-medium">
-              <span className="w-2 h-2 rounded-full bg-[#FF0000] animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-[#2563EB] dark:bg-[#3B82F6] animate-pulse" />
               <span>{visitCount.toLocaleString()} global visits</span>
             </div>
           ) : (

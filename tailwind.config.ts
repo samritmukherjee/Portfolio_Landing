@@ -8,13 +8,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // Semantic system colors mapped to CSS variables and White/Black/Red palette
+      // Semantic system colors mapped to CSS variables and Modern Blue palette
       colors: {
         primary: {
-          DEFAULT: "#FF0000",
+          DEFAULT: "var(--theme-accent)",
           foreground: "#FFFFFF",
-          hover: "#E60000",
-          subtle: "rgba(255, 0, 0, 0.12)",
+          hover: "#1D4ED8",
+          subtle: "var(--theme-accent-tint)",
+          light: "#2563EB",
+          dark: "#3B82F6",
         },
         background: "var(--theme-bg)",
         foreground: "var(--theme-text)",
@@ -32,31 +34,33 @@ const config: Config = {
         },
         border: "var(--theme-border)",
 
-        // Monochromatic scale for black/white architecture
+        // Monochromatic scale for slate/navy architecture
         mono: {
-          black: "#000000",
-          darkest: "#0A0A0A",
-          dark: "#121212",
-          surface: "#181818",
-          muted: "#737373",
-          light: "#E5E5E5",
-          lighter: "#F5F5F5",
-          white: "#FFFFFF",
+          black: "#080F1E",
+          darkest: "#0F1B30",
+          dark: "#111D32",
+          surface: "#172C49",
+          muted: "#64748B",
+          light: "#DCE6F1",
+          lighter: "#EFF6FF",
+          white: "#F8FAFC",
         },
 
-        // Precise Crimson Red Accent (#FF0000)
+        // Premium Modern Blue Scale
         accent: {
-          50: "#FFF0F0",
-          100: "#FFE0E0",
-          200: "#FFC2C2",
-          300: "#FF8F8F",
-          400: "#FF4D4D",
-          500: "#FF0000",
-          600: "#E60000",
-          700: "#CC0000",
-          800: "#990000",
-          900: "#660000",
-          950: "#330000",
+          50: "#EFF6FF",
+          100: "#DBEAFE",
+          200: "#BFDBFE",
+          300: "#93C5FD",
+          400: "#60A5FA",
+          500: "#3B82F6",
+          600: "#2563EB",
+          700: "#1D4ED8",
+          800: "#1E40AF",
+          900: "#1E3A8A",
+          950: "#172554",
+          cyan: "#06B6D4",
+          "cyan-light": "#22D3EE",
         },
       },
       fontFamily: {
@@ -80,9 +84,9 @@ const config: Config = {
       },
       backgroundImage: {
         "gradient-radial-accent":
-          "radial-gradient(circle at 30% 50%, rgba(255, 0, 0, 0.08) 0%, transparent 70%)",
+          "radial-gradient(circle at 30% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 70%)",
         "gradient-radial-accent-strong":
-          "radial-gradient(circle at 30% 50%, rgba(255, 0, 0, 0.15) 0%, transparent 60%)",
+          "radial-gradient(circle at 30% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 60%)",
       },
     },
   },
