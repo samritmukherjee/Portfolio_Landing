@@ -14,9 +14,89 @@ import { ContactCards } from "@/components/sections/ContactCards";
 import { Footer } from "@/components/Footer";
 import { Dock } from "@/components/ui/Dock";
 import { initializeWebMCP } from "@/hooks/useWebMCP";
+// @ts-ignore - official React Bits PixelSwap component
+import PixelSwap from "@/components/PixelSwap";
+
+// Use official JS component cleanly in TypeScript without custom .d.ts files
+const OfficialPixelSwap = PixelSwap as React.ComponentType<any>;
+
+function ThemePixelOverlay({
+  from,
+  to,
+  onThemeChange,
+  onComplete,
+}: {
+  from: "dark" | "light";
+  to: "dark" | "light";
+  onThemeChange: () => void;
+  onComplete: () => void;
+}) {
+  const [active, setActive] = useState(from === "dark");
+  const themeAppliedRef = React.useRef(false);
+
+  useEffect(() => {
+    // 1. Trigger PixelSwap transition on next tick
+    const triggerTimer = setTimeout(() => {
+      setActive(to === "dark");
+    }, 20);
+
+    // 2. Change the DOM theme at transition midpoint (~200ms) beneath the active pixels
+    const themeTimer = setTimeout(() => {
+      if (!themeAppliedRef.current) {
+        themeAppliedRef.current = true;
+        onThemeChange();
+      }
+    }, 200);
+
+    return () => {
+      clearTimeout(triggerTimer);
+      clearTimeout(themeTimer);
+    };
+  }, [to, onThemeChange]);
+
+  const handleComplete = () => {
+    if (!themeAppliedRef.current) {
+      themeAppliedRef.current = true;
+      onThemeChange();
+    }
+    onComplete();
+  };
+
+  return (
+    <div
+      className="fixed inset-0 z-50 pointer-events-none overflow-hidden theme-pixel-transition select-none"
+      aria-hidden="true"
+    >
+      <OfficialPixelSwap
+        trigger="custom"
+        initialActive={from === "dark"}
+        active={active}
+        duration={400}
+        pixelDuration={200}
+        pixelSize={80}
+        gap={0}
+        pixelRadius={0}
+        pixelSpin={0}
+        pixelScale={0.2}
+        pattern="diagonal"
+        fade={true}
+        aspectRatio="auto"
+        className="w-full h-full pointer-events-none"
+        style={{ width: "100%", height: "100%" }}
+        onComplete={handleComplete}
+        firstContent={<div className="w-full h-full bg-[#F8FAFC]" />}
+        secondContent={<div className="w-full h-full bg-[#080F1E]" />}
+      />
+    </div>
+  );
+}
 
 export default function Home() {
   const [theme, setTheme] = useState<"dark" | "light">("light");
+  const [themeTransition, setThemeTransition] = useState<{
+    from: "dark" | "light";
+    to: "dark" | "light";
+  } | null>(null);
   const [activeSection, setActiveSection] = useState("hero");
 
   // Initialize theme with light mode as default opener
@@ -45,8 +125,7 @@ export default function Home() {
     initializeWebMCP();
   }, []);
 
-  const toggleTheme = () => {
-    const next = theme === "dark" ? "light" : "dark";
+  const applyThemeToDOM = (next: "dark" | "light") => {
     setTheme(next);
     document.documentElement.setAttribute("data-theme", next);
     if (next === "dark") {
@@ -60,6 +139,27 @@ export default function Home() {
     } catch {
       // storage unavailable
     }
+  };
+
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+
+    // Immediate transition if user prefers reduced motion
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      applyThemeToDOM(next);
+      return;
+    }
+
+    // Avoid triggering if already transitioning
+    if (themeTransition) return;
+
+    setThemeTransition({
+      from: theme,
+      to: next,
+    });
   };
 
   // Section visibility tracking for Navbar & Dock active state (matching exact 9-section order)
@@ -123,8 +223,17 @@ const MainContent = React.memo(function MainContent() {
 
   return (
     <div className="min-h-screen bg-[var(--theme-bg)] text-[var(--theme-text)] transition-colors duration-300 relative selection:bg-primary selection:text-white overflow-x-hidden">
+      {themeTransition && (
+        <ThemePixelOverlay
+          from={themeTransition.from}
+          to={themeTransition.to}
+          onThemeChange={() => applyThemeToDOM(themeTransition.to)}
+          onComplete={() => setThemeTransition(null)}
+        />
+      )}
+
       <Navbar
-        theme={theme}
+        theme={themeTransition ? themeTransition.to : theme}
         onToggleTheme={toggleTheme}
         activeSection={activeSection}
       />

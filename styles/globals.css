@@ -570,3 +570,8 @@ html.lenis body {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
+/* PixelSwap Theme Transition: Base layer transparent so live site is visible beneath pixel wave */
+.theme-pixel-transition .pixel-swap > .pixel-swap__layer {
+  opacity: 0;
+}
