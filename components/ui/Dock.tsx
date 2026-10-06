@@ -124,7 +124,8 @@ export function Dock() {
           const totalHeight = cachedScrollHeight || document.body.offsetHeight;
           const isNearBottom = currentY + window.innerHeight >= totalHeight - 140;
 
-          setVisible(isPastHero && !isNearBottom);
+          const nextVisible = isPastHero && !isNearBottom;
+          setVisible((prev) => (prev !== nextVisible ? nextVisible : prev));
           ticking = false;
         });
         ticking = true;

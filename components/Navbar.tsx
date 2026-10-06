@@ -36,11 +36,8 @@ export function Navbar({ theme, onToggleTheme, activeSection }: NavbarProps) {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const currentY = window.scrollY;
-          if (currentY > lastY && currentY > 90) {
-            setVisible(false);
-          } else {
-            setVisible(true);
-          }
+          const nextVisible = !(currentY > lastY && currentY > 90);
+          setVisible((prev) => (prev !== nextVisible ? nextVisible : prev));
           lastY = currentY;
           ticking = false;
         });

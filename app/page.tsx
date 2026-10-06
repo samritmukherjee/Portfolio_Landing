@@ -188,7 +188,7 @@ export default function Home() {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
         if (visible?.target?.id) {
-          setActiveSection(visible.target.id);
+          setActiveSection((prev) => (prev !== visible.target.id ? visible.target.id : prev));
         }
       },
       { root: null, rootMargin: "-20% 0px -40% 0px", threshold: [0.1, 0.3] }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
 
 export function CustomCursor() {
@@ -16,6 +16,8 @@ export function CustomCursor() {
   const springConfig = { damping: 28, stiffness: 350, mass: 0.5 };
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
+
+  const isVisibleRef = useRef(false);
 
   useEffect(() => {
     // Detect touch-only devices
@@ -33,7 +35,8 @@ export function CustomCursor() {
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
-      if (!isVisible) {
+      if (!isVisibleRef.current) {
+        isVisibleRef.current = true;
         setIsVisible(true);
         document.documentElement.classList.add("has-custom-cursor");
       }
@@ -45,17 +48,19 @@ export function CustomCursor() {
             'a, button, [role="button"], input, textarea, select, label, .blob-btn, .glass-card, .editorial-card, [data-cursor="hover"]'
           )
         );
-        setIsHovered(isInteractive);
+        setIsHovered((prev) => (prev !== isInteractive ? isInteractive : prev));
       }
     };
 
     const onMouseDown = () => setIsClicking(true);
     const onMouseUp = () => setIsClicking(false);
     const onMouseLeave = () => {
+      isVisibleRef.current = false;
       setIsVisible(false);
       document.documentElement.classList.remove("has-custom-cursor");
     };
     const onMouseEnter = () => {
+      isVisibleRef.current = true;
       setIsVisible(true);
       document.documentElement.classList.add("has-custom-cursor");
     };
@@ -74,7 +79,7 @@ export function CustomCursor() {
       document.removeEventListener("mouseleave", onMouseLeave);
       document.removeEventListener("mouseenter", onMouseEnter);
     };
-  }, [mouseX, mouseY, isVisible]);
+  }, [mouseX, mouseY]);
 
   useEffect(() => {
     if (isVisible && !isTouchDevice) {

@@ -1,4 +1,4 @@
-import Lenis from 'lenis';
+import type Lenis from 'lenis';
 
 export const scrollToElement = (elementId: string) => {
   if (typeof window === 'undefined') return;
