@@ -23,7 +23,6 @@ export async function GET(request: NextRequest) {
     social: {
       github: "https://github.com/samritmukherjee",
       linkedin: "https://www.linkedin.com/in/samrit-mukherjee/",
-      twitter: "https://twitter.com/samritdev",
       portfolio: "https://samrit.dev",
     },
     availability: {

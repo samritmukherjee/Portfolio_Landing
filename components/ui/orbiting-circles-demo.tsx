@@ -57,7 +57,7 @@ export function OrbitingCirclesDemo() {
         >
           <Image
             src={LOGOS.cosmicCanvas}
-            alt="Cosmic Canvas"
+            alt="Cosmic Canvas AI Design Platform"
             width={38}
             height={38}
             className="w-full h-full object-contain"
@@ -71,7 +71,7 @@ export function OrbitingCirclesDemo() {
         >
           <Image
             src={LOGOS.sukalyaAI}
-            alt="SUKALYA.ai"
+            alt="SUKALYA.ai Health Guidance System"
             width={38}
             height={38}
             className="w-full h-full object-contain"
@@ -85,7 +85,7 @@ export function OrbitingCirclesDemo() {
         >
           <Image
             src={LOGOS.custodian}
-            alt="Custodian"
+            alt="Custodian Asset Management Platform"
             width={38}
             height={38}
             className="w-full h-full object-contain"
@@ -99,7 +99,7 @@ export function OrbitingCirclesDemo() {
         >
           <Image
             src={LOGOS.avento}
-            alt="Avento AI"
+            alt="Avento AI Customer Support SaaS"
             width={38}
             height={38}
             className="w-full h-full object-contain"
@@ -116,7 +116,7 @@ export function OrbitingCirclesDemo() {
         >
           <Image
             src={LOGOS.sovereign}
-            alt="Sovereign"
+            alt="Sovereign AI Architecture"
             width={32}
             height={32}
             className="w-full h-full object-contain"
@@ -130,7 +130,7 @@ export function OrbitingCirclesDemo() {
         >
           <Image
             src={LOGOS.upcomingAstra}
-            alt="Upcoming System"
+            alt="Astra AI Upcoming System"
             width={32}
             height={32}
             className="w-full h-full object-contain"

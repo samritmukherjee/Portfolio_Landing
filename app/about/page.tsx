@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About Samrit Mukherjee | AI Systems, Full-Stack Engineering & 11× Hackathon Winner",
+  title: {
+    absolute: "About Samrit Mukherjee | AI Systems & Full-Stack Engineer",
+  },
   description:
     "Learn about Samrit Mukherjee — B.Tech Computer Science & Engineering (AI & ML) student at MSIT Kolkata, 11× hackathon winner, and full-stack engineer building AI systems and enterprise platforms.",
   alternates: { canonical: "https://samrit.dev/about" },

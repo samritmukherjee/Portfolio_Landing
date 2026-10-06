@@ -17,7 +17,9 @@ export async function generateMetadata({
   if (!post) return { title: "Post not found" };
   const url = `https://samrit.dev/blog/${slug}`;
   return {
-    title: `${post.title} | Samrit Mukherjee`,
+    title: {
+      absolute: `${post.title} | Samrit Mukherjee`,
+    },
     description: post.excerpt,
     alternates: { canonical: url },
     openGraph: {
@@ -27,11 +29,20 @@ export async function generateMetadata({
       type: "article",
       siteName: "Samrit Mukherjee",
       authors: ["Samrit Mukherjee"],
+      images: [
+        {
+          url: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg",
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${post.title} | Samrit Mukherjee`,
       description: post.excerpt,
+      images: ["https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg"],
     },
   };
 }

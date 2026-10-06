@@ -2,22 +2,24 @@ const LLMS_CONTENT = `# llms.txt — Samrit Mukherjee
 
 site: https://samrit.dev
 name: Samrit Mukherjee
-role: AI & ML Developer
+role: AI Systems Engineer & Full-Stack Developer
 location: Kolkata, India
 contact: samritmukherjee05@gmail.com
 
 ## Summary
-Samrit Mukherjee is a BTech Computer Science & Engineering (AI & ML) student at Meghnad Saha Institute of Technology (MSIT), 8× hackathon winner, and AI & ML Developer building AI-powered products. Portfolio at https://samrit.dev.
+Samrit Mukherjee is a B.Tech Computer Science and Engineering student specializing in AI & ML at Meghnad Saha Institute of Technology (MSIT), Kolkata (graduating 2027), 11× hackathon winner, and full-stack engineer building AI systems, scalable software, and enterprise platforms. Portfolio at https://samrit.dev.
 
 ## Core skills
-- AI/ML: LLM integration, AI product prototyping, Python
-- Frontend: React, Next.js, TypeScript, Tailwind CSS, Framer Motion
-- Backend: Node.js, REST APIs, SQL
+- AI/ML & Systems: LLM APIs, Agentic AI, RAG pipelines, Semantic Search, Vector DBs, Computer Vision, Python
+- Frontend: React, Next.js, TypeScript, Tailwind CSS, Framer Motion, Responsive Design
+- Backend & Cloud: Node.js, Flask, FastAPI, REST APIs, SQL, MongoDB Atlas, Firebase, Docker, Vercel
 
 ## Featured projects
-- Cosmic Canvas — AI design tool (https://cosmic-canvas-delta.vercel.app/)
-- SUKALYA.ai — AI health assistant (https://sukalya-ai.vercel.app/)
-- Portfolio OS — Interactive portfolio (https://samrit.dev/portfolio-os)
+- Cosmic Canvas — AI-powered design platform (https://cosmic-canvas-delta.vercel.app/)
+- SUKALYA.ai — AI health guidance system (https://sukalya-ai.vercel.app/)
+- Portfolio OS — Operating-system-inspired portfolio (https://samrit.dev/portfolio-os)
+- Avento AI — Multi-tenant RAG customer support SaaS (https://www.avento-ai.xyz/)
+- Custodian — Asset management & administrative platform (https://custodian-mlzs.vercel.app/)
 
 ## APIs
 - Projects: https://samrit.dev/api/v1/projects
@@ -27,10 +29,10 @@ Samrit Mukherjee is a BTech Computer Science & Engineering (AI & ML) student at 
 
 ## Social
 - GitHub: https://github.com/samritmukherjee
-- LinkedIn: https://www.linkedin.com/in/samrit-mukherjee-412788318/
+- LinkedIn: https://www.linkedin.com/in/samrit-mukherjee/
 
 ## Availability
-Open to full-time, contract, freelance, and consulting. Response within 24–48 hours.
+Available for software engineering roles, enterprise systems development, and AI engineering collaborations. Response within 24–48 hours.
 `;
 
 export async function GET() {

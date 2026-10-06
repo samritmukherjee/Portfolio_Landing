@@ -2,18 +2,19 @@
 
 site: https://samrit.dev
 name: Samrit Mukherjee
-role: AI & ML Developer
+role: AI Systems Engineer & Full-Stack Developer
 location: Kolkata, India
 contact: samritmukherjee05@gmail.com
 
 ## Summary
-Samrit Mukherjee is a BTech Computer Science & Engineering (AI & ML) student at Meghnad Saha Institute of Technology (MSIT), 8× hackathon winner, and AI & ML Developer building AI-powered products.
+Samrit Mukherjee is a B.Tech Computer Science and Engineering student specializing in AI & ML at Meghnad Saha Institute of Technology (MSIT), Kolkata (graduating 2027), 11× hackathon winner, and full-stack engineer building AI systems, scalable software, and enterprise platforms.
 
 ## APIs
 - Projects: https://samrit.dev/api/v1/projects
 - Skills: https://samrit.dev/api/skills
 - Contact: https://samrit.dev/api/contact
+- Health: https://samrit.dev/api/health
 
 ## Social
 - GitHub: https://github.com/samritmukherjee
-- LinkedIn: https://www.linkedin.com/in/samrit-mukherjee-412788318/
+- LinkedIn: https://www.linkedin.com/in/samrit-mukherjee/

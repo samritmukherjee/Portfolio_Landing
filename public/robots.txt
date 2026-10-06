@@ -3,12 +3,14 @@
 
 User-agent: Googlebot
 Allow: /
+Disallow: /api/
 Disallow: /admin
 Disallow: /dashboard
 Disallow: /private
 
 User-agent: Bingbot
 Allow: /
+Disallow: /api/
 Disallow: /admin
 Disallow: /dashboard
 Disallow: /private
@@ -40,6 +42,7 @@ Disallow: /private
 User-agent: *
 Allow: /
 Allow: /_next/static/
+Disallow: /api/
 Disallow: /admin
 Disallow: /dashboard
 Disallow: /private

@@ -69,7 +69,7 @@ function ProjectLogoBadge({ project }: { project: ExtendedProject }) {
       {project.logoUrl && (
         <Image
           src={project.logoUrl}
-          alt={project.title}
+          alt={`${project.title} Logo`}
           width={32}
           height={32}
           unoptimized
@@ -305,7 +305,7 @@ export function Projects() {
                   >
                     <Image
                       src={project.image}
-                      alt={project.title}
+                      alt={`${project.title} — Interface Screenshot`}
                       fill
                       sizes="(max-width: 1024px) 100vw, 60vw"
                       unoptimized
@@ -410,7 +410,7 @@ export function Projects() {
                   <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-[var(--theme-border)] bg-neutral-950 mb-4 shadow-sm">
                     <Image
                       src={project.image}
-                      alt={project.title}
+                      alt={`${project.title} — Interface Screenshot`}
                       fill
                       sizes="360px"
                       unoptimized

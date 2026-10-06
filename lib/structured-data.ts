@@ -1,31 +1,35 @@
 export const personJsonLd = {
-  "@context": "https://schema.org",
   "@type": "Person",
   "@id": "https://samrit.dev/#person",
   name: "Samrit Mukherjee",
   alternateName: "Samrit",
   url: "https://samrit.dev/",
-  image: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg",
+  image: {
+    "@type": "ImageObject",
+    "@id": "https://samrit.dev/#profile-image",
+    url: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg",
+    caption: "Samrit Mukherjee",
+  },
   sameAs: [
     "https://github.com/samritmukherjee",
     "https://www.linkedin.com/in/samrit-mukherjee/",
   ],
-  jobTitle: "AI Systems & Full-Stack Engineer",
+  jobTitle: ["AI Systems Engineer", "Full-Stack Developer"],
   description:
-    "Samrit Mukherjee is an AI Systems Engineer, Full-Stack Developer, and 11× Hackathon Winner building intelligent, scalable software, enterprise platforms, and AI-powered products.",
+    "Samrit Mukherjee is an AI Systems Engineer and Full-Stack Developer based in Kolkata, India. He builds AI-powered software, scalable platforms, and intelligent automation systems.",
   email: "samritmukherjee05@gmail.com",
   worksFor: [
     {
       "@type": "Organization",
       name: "Mount Litera Zee School",
-      description: "Technical Advisor / Internship on digital infrastructure, administrative systems, and ERP workflows.",
+      description: "Technical Advisor / Internship on digital infrastructure, school technology workflows, and administrative systems.",
     },
   ],
   affiliation: [
     {
       "@type": "Organization",
       name: "Hackerspace MSIT",
-      description: "Designer & Web Contributor.",
+      description: "Designer & Web Contributor at student-led technical community.",
     },
   ],
   alumniOf: {
@@ -35,14 +39,13 @@ export const personJsonLd = {
     url: "https://msit.edu.in",
   },
   award: [
-    "Smart India Hackathon 2026 - Panel Winner & 2nd Runner-Up Overall",
+    "Smart India Hackathon 2026 - Panel Winner & Second Runner-Up Overall",
     "BuildX 2026 (IIT Kharagpur) - Winner",
     "Google Solution Challenge 2026 - Top 106 Globally",
     "Synchronicity 2.0 (Jadavpur University) - Best Startup Track Winner",
     "Double Slash 4.0 (Jadavpur University) - Top 30 Finalist (300+ Teams)",
     "ShowcaseX x Techsprint (RCCIIT) - Winner",
     "Hello World Hacks (RCCIIT) - Best Beginner's Team",
-    "GirlScript Summer of Code (GSSoC '26) - Open Source Contributor",
   ],
   knowsAbout: [
     "Artificial Intelligence",
@@ -68,55 +71,43 @@ export const personJsonLd = {
 };
 
 export const websiteJsonLd = {
-  "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": "https://samrit.dev/#website",
   name: "Samrit Mukherjee",
   url: "https://samrit.dev/",
   description:
-    "Official portfolio of Samrit Mukherjee — 11× hackathon winner, AI Systems and Full-Stack Engineer building enterprise platforms and intelligent software.",
+    "Official portfolio of Samrit Mukherjee — AI Systems Engineer, Full-Stack Developer, and 11× Hackathon Winner building intelligent software and enterprise platforms.",
+  inLanguage: "en-IN",
   publisher: {
     "@id": "https://samrit.dev/#person",
   },
 };
 
 export const profilePageJsonLd = {
-  "@context": "https://schema.org",
   "@type": "ProfilePage",
   "@id": "https://samrit.dev/#webpage",
   url: "https://samrit.dev/",
-  name: "Samrit Mukherjee | AI Systems, Full-Stack Engineering & 11× Hackathon Winner",
+  name: "Samrit Mukherjee | AI Systems & Full-Stack Engineering",
   description:
-    "Explore the portfolio, projects, and hackathon achievements of Samrit Mukherjee, an AI Systems Engineer and Full-Stack Developer based in Kolkata, India.",
+    "Official portfolio and engineering projects of Samrit Mukherjee, an AI Systems Engineer and Full-Stack Developer based in Kolkata, India.",
+  inLanguage: "en-IN",
   mainEntity: {
     "@id": "https://samrit.dev/#person",
   },
   isPartOf: {
     "@id": "https://samrit.dev/#website",
   },
-};
-
-export const hackerspaceOrgJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Hackerspace MSIT",
-  url: "https://samrit.dev/",
-  description: "Student-led tech community and creative builders lab at Meghnad Saha Institute of Technology.",
-  parentOrganization: {
-    "@type": "EducationalOrganization",
-    name: "Meghnad Saha Institute of Technology",
-    alternateName: "MSIT",
-    url: "https://msit.edu.in",
-  },
-  member: {
-    "@id": "https://samrit.dev/#person",
+  primaryImageOfPage: {
+    "@id": "https://samrit.dev/#profile-image",
   },
 };
 
 export const projectsItemListJsonLd = {
-  "@context": "https://schema.org",
   "@type": "ItemList",
+  "@id": "https://samrit.dev/#featured-projects",
   name: "Featured Projects by Samrit Mukherjee",
+  description: "Production-ready platforms and AI systems engineered by Samrit Mukherjee.",
+  numberOfItems: 5,
   itemListElement: [
     {
       "@type": "ListItem",
@@ -125,7 +116,7 @@ export const projectsItemListJsonLd = {
         "@type": "CreativeWork",
         name: "Cosmic Canvas",
         url: "https://cosmic-canvas-delta.vercel.app/",
-        description: "AI-powered design platform transforming natural language prompts into editable visual compositions.",
+        description: "AI-powered design platform that transforms natural-language prompts into editable visual compositions.",
         creator: {
           "@id": "https://samrit.dev/#person",
         },
@@ -138,7 +129,7 @@ export const projectsItemListJsonLd = {
         "@type": "CreativeWork",
         name: "SUKALYA.ai",
         url: "https://sukalya-ai.vercel.app/",
-        description: "AI-driven health guidance application offering conversational health insights and preventive support.",
+        description: "AI health guidance application providing conversational symptom understanding, preventive insights, and health accessibility.",
         creator: {
           "@id": "https://samrit.dev/#person",
         },
@@ -151,7 +142,7 @@ export const projectsItemListJsonLd = {
         "@type": "CreativeWork",
         name: "Portfolio OS",
         url: "https://samrit.dev/portfolio-os",
-        description: "Operating-system-inspired portfolio interface with desktop-style navigation and multi-window multitasking.",
+        description: "Operating-system-inspired portfolio interface with draggable desktop windows, terminal workflows, and interactive applications.",
         creator: {
           "@id": "https://samrit.dev/#person",
         },
@@ -164,7 +155,7 @@ export const projectsItemListJsonLd = {
         "@type": "CreativeWork",
         name: "Avento AI",
         url: "https://www.avento-ai.xyz/",
-        description: "Multi-tenant, RAG-powered customer support SaaS platform that transforms business documents into context-aware AI assistants.",
+        description: "Multi-tenant, RAG-powered customer support SaaS platform converting business documents and web content into context-aware AI support widgets.",
         creator: {
           "@id": "https://samrit.dev/#person",
         },
@@ -177,7 +168,7 @@ export const projectsItemListJsonLd = {
         "@type": "CreativeWork",
         name: "Custodian",
         url: "https://custodian-mlzs.vercel.app/",
-        description: "Web-based asset management and administrative platform designed to streamline inventory tracking, requests, approvals, and accountability.",
+        description: "Web-based asset management and administrative platform streamlining inventory tracking, requests, role-based approvals, and accountability.",
         creator: {
           "@id": "https://samrit.dev/#person",
         },

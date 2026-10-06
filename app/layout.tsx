@@ -23,8 +23,9 @@ const syne = Syne({
   display: "swap",
 });
 
+const siteTitle = "Samrit Mukherjee | AI Systems & Full-Stack Engineering";
 const siteDescription =
-  "Samrit Mukherjee — AI Systems Engineer, Full-Stack Developer, and 11× Hackathon Winner. Building intelligent, scalable software, enterprise systems, and AI-powered products.";
+  "Portfolio of Samrit Mukherjee, an AI systems and full-stack engineer in Kolkata, India. Building intelligent software, scalable platforms, and AI products.";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -37,7 +38,10 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Samrit Mukherjee | AI Systems, Full-Stack Engineering & 11× Hackathon Winner",
+  title: {
+    default: siteTitle,
+    template: "%s | Samrit Mukherjee",
+  },
   description: siteDescription,
   authors: [{ name: "Samrit Mukherjee", url: "https://samrit.dev" }],
   creator: "Samrit Mukherjee",
@@ -45,20 +49,20 @@ export const metadata: Metadata = {
   keywords: [
     "Samrit Mukherjee",
     "Samrit Mukherjee Portfolio",
-    "Samrit Mukherjee AI ML",
-    "Samrit Mukherjee Full Stack",
-    "Samrit Mukherjee Hackathon Winner",
-    "Samrit Mukherjee MSIT",
     "AI Systems Engineer",
-    "Full Stack Engineering",
-    "Product Development",
-    "Cosmic Canvas",
-    "SUKALYA.ai",
-    "Portfolio OS",
-    "Avento AI",
-    "Custodian ERP",
+    "Full-Stack Developer",
+    "Machine Learning",
     "Agentic AI",
     "RAG Systems",
+    "Next.js",
+    "React",
+    "Python",
+    "TypeScript",
+    "Cosmic Canvas",
+    "SUKALYA.ai",
+    "Avento AI",
+    "Custodian",
+    "Kolkata Developer",
   ],
   metadataBase: new URL("https://samrit.dev"),
   alternates: {
@@ -84,7 +88,7 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Samrit Mukherjee | AI Systems, Full-Stack Engineering & 11× Hackathon Winner",
+    title: siteTitle,
     description: siteDescription,
     url: "https://samrit.dev/",
     siteName: "Samrit Mukherjee",
@@ -93,7 +97,7 @@ export const metadata: Metadata = {
         url: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg",
         width: 1200,
         height: 630,
-        alt: "Samrit Mukherjee — AI Systems Engineer & 11× Hackathon Winner",
+        alt: "Samrit Mukherjee — AI Systems Engineer & Full-Stack Developer",
       },
     ],
     locale: "en_IN",
@@ -101,7 +105,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Samrit Mukherjee | AI Systems, Full-Stack Engineering & 11× Hackathon Winner",
+    title: siteTitle,
     description: siteDescription,
     images: ["https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg"],
   },

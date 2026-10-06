@@ -3,21 +3,30 @@ import Link from "next/link";
 import { blogPosts } from "@/lib/blog-posts";
 
 export const metadata: Metadata = {
-  title: "Blog | Samrit Mukherjee",
-  description: "Technical writing on AI systems, hackathons, and Next.js by Samrit Mukherjee.",
+  title: "Blog",
+  description: "Technical writing on AI systems, hackathons, and software engineering by Samrit Mukherjee.",
   alternates: { canonical: "https://samrit.dev/blog" },
   openGraph: {
     title: "Blog | Samrit Mukherjee",
-    description: "Technical writing on AI systems, hackathons, and Next.js by Samrit Mukherjee.",
+    description: "Technical writing on AI systems, hackathons, and software engineering by Samrit Mukherjee.",
     url: "https://samrit.dev/blog",
     siteName: "Samrit Mukherjee",
+    images: [
+      {
+        url: "https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Writing by Samrit Mukherjee",
+      },
+    ],
     locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Blog | Samrit Mukherjee",
-    description: "Technical writing on AI systems, hackathons, and Next.js by Samrit Mukherjee.",
+    description: "Technical writing on AI systems, hackathons, and software engineering by Samrit Mukherjee.",
+    images: ["https://res.cloudinary.com/duxrcy3jn/image/upload/v1777133776/samrit-profile_hrusin.jpg"],
   },
 };
 

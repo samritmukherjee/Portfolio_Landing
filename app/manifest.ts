@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Samrit Mukherjee | Portfolio",
     short_name: "Samrit.dev",
     description:
-      "Samrit Mukherjee — AI Systems Engineer, Full-Stack Developer, and 11× Hackathon Winner building intelligent software, enterprise platforms, and AI-powered products.",
+      "Portfolio of Samrit Mukherjee, an AI systems and full-stack engineer in Kolkata, India. Building intelligent software, scalable platforms, and AI products.",
     start_url: "/",
     display: "standalone",
     background_color: "#080F1E",
