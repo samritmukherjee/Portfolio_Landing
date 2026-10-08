@@ -33,17 +33,22 @@ export function Services() {
   ];
 
   return (
-    <section id="services" className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-20 sm:py-24">
+    <section id="services" className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-14 sm:py-16 md:py-20">
       {/* Section Header */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.1 }}
-        transition={{ duration: 0.7 }}
-        className="mb-14 sm:mb-16 text-center"
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="mb-10 sm:mb-12 text-center max-w-4xl mx-auto"
       >
-        <div className="section-eyebrow">Expertise &amp; Disciplines</div>
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-[var(--theme-text)]">
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <span className="section-eyebrow">Expertise &amp; Disciplines</span>
+          <span className="font-sans font-medium text-xs sm:text-sm text-[var(--theme-text-muted)] tracking-wide hidden sm:inline">
+            • what I do
+          </span>
+        </div>
+        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-4 text-[var(--theme-text)] leading-[1.05]">
           Product Engineering &amp;{" "}
           <span className="font-serif italic text-gradient-primary">Enterprise Systems</span>
         </h2>
@@ -52,26 +57,27 @@ export function Services() {
         </p>
       </motion.div>
 
-      {/* 2x2 Grid of Refined Cards */}
+      {/* 2x2 Grid of Refined Cards with Reversible Entrance */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {services.map((item, idx) => {
           const Icon = item.icon;
+          const isLeft = idx % 2 === 0;
           return (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 0.5 }}
+              initial={{ opacity: 0, x: isLeft ? -24 : 24, y: 20, scale: 0.97 }}
+              whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.15 }}
+              transition={{ delay: (idx % 2) * 0.1, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
               className="h-full"
             >
-              <div className="group relative h-full p-7 sm:p-8 rounded-2xl border border-[var(--theme-border)] bg-[var(--theme-card)] transition-all duration-200 hover:border-[#2563EB]/40 dark:hover:border-[#3B82F6]/50 hover:-translate-y-0.5 flex flex-col justify-between overflow-hidden shadow-sm">
+              <div className="group relative h-full p-7 sm:p-8 rounded-2xl border border-[var(--theme-border)] bg-[var(--theme-card)] transition-all duration-200 hover:border-primary/40 hover:-translate-y-0.5 flex flex-col justify-between overflow-hidden shadow-xs">
                 {/* Subtle top edge accent line on hover */}
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#2563EB] dark:bg-[#3B82F6] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
 
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-[var(--theme-surface-2)] border border-[var(--theme-border)] group-hover:border-[#2563EB]/30 dark:group-hover:border-[#3B82F6]/40 flex items-center justify-center mb-6 transition-colors duration-200">
-                    <Icon className="w-6 h-6 text-[#2563EB] dark:text-[#60A5FA]" />
+                  <div className="w-12 h-12 rounded-xl bg-[var(--theme-surface-2)] border border-[var(--theme-border)] group-hover:border-primary/30 flex items-center justify-center mb-6 transition-colors duration-200">
+                    <Icon className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold mb-3 text-[var(--theme-text)] transition-colors">
                     {item.title}

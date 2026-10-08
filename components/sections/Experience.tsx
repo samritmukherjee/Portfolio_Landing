@@ -51,7 +51,7 @@ function TimelineItem({
   isDesktop: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.2 });
+  const inView = useInView(ref, { once: false, amount: 0.2 });
 
   const isLeft = index % 2 === 0;
 
@@ -62,35 +62,39 @@ function TimelineItem({
         isDesktop ? (isLeft ? "lg:flex-row" : "lg:flex-row-reverse") : ""
       } items-stretch w-full gap-8 mb-12 last:mb-0`}
     >
-      {/* Timeline Node Dot */}
+      {/* Timeline Node Dot with Reversible Active Glow */}
       <div
         className={`absolute ${
           isDesktop ? "lg:left-1/2 lg:-translate-x-1/2" : "left-4 -translate-x-1/2"
         } top-8 z-10`}
       >
         <div
-          className={`w-4 h-4 rounded-full border-2 border-[#2563EB] dark:border-[#3B82F6] transition-colors duration-200 ${
+          className={`w-4 h-4 rounded-full border-2 border-primary transition-all duration-300 ${
             inView
-              ? "bg-[#2563EB] dark:bg-[#3B82F6] ring-4 ring-[#2563EB]/25 dark:ring-[#3B82F6]/30"
-              : "bg-[var(--theme-surface)]"
+              ? "bg-primary ring-4 ring-primary/25 scale-110"
+              : "bg-[var(--theme-surface)] scale-100"
           }`}
         />
       </div>
 
-      {/* Card Element */}
+      {/* Card Element with Reversible Lateral Reveal */}
       <motion.div
         initial={{
           opacity: 0,
-          x: isDesktop ? (isLeft ? -30 : 30) : -12,
+          x: isDesktop ? (isLeft ? -35 : 35) : -15,
         }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.4, ease: "easeOut" }}
+        animate={
+          inView
+            ? { opacity: 1, x: 0 }
+            : { opacity: 0, x: isDesktop ? (isLeft ? -35 : 35) : -15 }
+        }
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className={`w-full ${isDesktop ? "lg:w-[calc(50%-2rem)]" : "pl-10"}`}
       >
-        <div className="glass-card p-6 sm:p-8 rounded-2xl group border border-[var(--theme-border)] border-l-4 border-l-[#2563EB] dark:border-l-[#3B82F6] hover:-translate-y-0.5 transition-all duration-200 shadow-sm">
+        <div className="glass-card p-6 sm:p-8 rounded-2xl group border border-[var(--theme-border)] border-l-4 border-l-primary hover:-translate-y-0.5 transition-all duration-200 shadow-xs">
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
             <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#2563EB] dark:text-[#60A5FA] block">
+              <span className="text-xs font-bold uppercase tracking-widest text-primary block">
                 {exp.duration}
               </span>
               <h3 className="text-xl sm:text-2xl font-bold text-[var(--theme-text)] group-hover:text-primary transition-colors">
@@ -101,7 +105,7 @@ function TimelineItem({
               </p>
             </div>
 
-            <span className="px-3.5 py-1 bg-[#2563EB]/10 dark:bg-[#3B82F6]/15 text-primary border border-[#2563EB]/25 dark:border-[#3B82F6]/35 text-xs font-bold rounded-full uppercase tracking-wider self-start">
+            <span className="px-3.5 py-1 bg-primary/10 text-primary border border-primary/25 text-xs font-bold rounded-full uppercase tracking-wider self-start">
               {exp.type}
             </span>
           </div>
@@ -112,7 +116,7 @@ function TimelineItem({
                 key={i}
                 className="flex gap-2.5 text-[var(--theme-text-secondary)] text-xs sm:text-sm items-start leading-relaxed"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB] dark:bg-[#3B82F6] mt-2 flex-shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
                 <span>{highlight}</span>
               </li>
             ))}
@@ -148,18 +152,29 @@ export function Experience() {
     <section
       ref={sectionRef}
       id="career"
-      className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-20 sm:py-24"
+      className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-14 sm:py-16 md:py-20"
     >
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto mb-14 md:mb-16 space-y-3">
-        <div className="section-eyebrow">Professional History</div>
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[var(--theme-text)]">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="text-center max-w-4xl mx-auto mb-10 sm:mb-12 space-y-3"
+      >
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <span className="section-eyebrow">Professional History</span>
+          <span className="font-sans font-medium text-xs sm:text-sm text-[var(--theme-text-muted)] tracking-wide hidden sm:inline">
+            • chronological journey
+          </span>
+        </div>
+        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[var(--theme-text)] leading-[1.05]">
           Professional <span className="font-serif italic text-gradient-primary">Journey</span>
         </h2>
         <p className="text-[var(--theme-text-secondary)] max-w-xl mx-auto text-base md:text-lg">
           A track record of technical advisory, educational systems architecture, and community design contributions.
         </p>
-      </div>
+      </motion.div>
 
       <div className="relative mt-8">
         {/* Continuous Connecting Line Background Track */}
@@ -168,7 +183,7 @@ export function Experience() {
         {/* Scroll-Linked Downward Animated Timeline Line */}
         <motion.div
           style={{ scaleY: scrollYProgress, willChange: "transform" }}
-          className="absolute left-4 lg:left-1/2 -translate-x-1/2 top-8 bottom-8 w-0.5 origin-top bg-gradient-to-b from-[#2563EB] via-[#3B82F6] to-[#06B6D4] dark:from-[#3B82F6] dark:via-[#60A5FA] dark:to-[#22D3EE] z-[5]"
+          className="absolute left-4 lg:left-1/2 -translate-x-1/2 top-8 bottom-8 w-0.5 origin-top bg-gradient-to-b from-primary via-[#FF3333] to-[#FF6666] z-[5]"
         />
 
         {experiences.map((exp, idx) => (

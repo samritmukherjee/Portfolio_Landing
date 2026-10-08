@@ -61,7 +61,7 @@ export function ContactCards() {
   return (
     <section
       id="contact"
-      className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-20 sm:py-24 relative"
+      className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-14 sm:py-16 md:py-20 relative"
     >
       {/* Background Section Container */}
 
@@ -69,19 +69,24 @@ export function ContactCards() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6 }}
-        className="text-center max-w-3xl mx-auto mb-14 sm:mb-16 space-y-4"
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="text-center max-w-4xl mx-auto mb-10 sm:mb-12 space-y-3"
       >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/30 dark:border-[#3B82F6]/35 bg-[#2563EB]/10 dark:bg-[#3B82F6]/15 text-[#2563EB] dark:text-[#60A5FA] text-xs font-mono font-bold uppercase tracking-wider">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2563EB] dark:bg-[#3B82F6] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563EB] dark:bg-[#3B82F6]"></span>
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-mono font-bold uppercase tracking-wider">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            Available for new opportunities
+          </div>
+          <span className="font-sans font-medium text-xs sm:text-sm text-[var(--theme-text-muted)] tracking-wide hidden sm:inline">
+            • direct line
           </span>
-          Available for new opportunities
         </div>
 
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-[var(--theme-text)]">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[var(--theme-text)] leading-[1.05]">
           Let&apos;s <span className="font-serif italic text-gradient-primary">Connect</span>
         </h2>
 
@@ -92,22 +97,22 @@ export function ContactCards() {
       </motion.div>
 
       {/* Main 2-column layout directly on webpage, vertically centered */}
-      <motion.div
-        initial={{ opacity: 0, y: 35 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.15 }}
-        transition={{ duration: 0.7 }}
-        className="relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-16 items-center justify-between"
-      >
+      <div className="relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-16 items-center justify-between">
         {/* Left Column: Direct Info, Plain Email Display & Résumé */}
-        <div className="w-full lg:w-1/2 space-y-4">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.15 }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full lg:w-1/2 space-y-4"
+        >
 
           {/* Channels List */}
           <div className="space-y-3">
             {/* Direct Email Card — Plain readable text, no redirect */}
-            <div className="flex items-center justify-between p-4 rounded-2xl bg-[var(--theme-surface)] border border-[var(--theme-border)] shadow-sm">
+            <div className="flex items-center justify-between p-4 rounded-2xl bg-[var(--theme-surface)] border border-[var(--theme-border)] shadow-xs">
               <div className="flex items-center gap-3.5 min-w-0 flex-1">
-                <div className="w-10 h-10 rounded-xl bg-[#2563EB]/10 dark:bg-[#3B82F6]/15 border border-[#2563EB]/25 dark:border-[#3B82F6]/35 flex items-center justify-center text-[#2563EB] dark:text-[#60A5FA] shrink-0 shadow-sm">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/25 flex items-center justify-center text-primary shrink-0 shadow-xs">
                   <Mail className="w-4 h-4" />
                 </div>
                 <div className="flex flex-col min-w-0">
@@ -216,10 +221,16 @@ export function ContactCards() {
               </BlobButton>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Right Column: Properly Proportioned Formspree Form, Vertically Centered in terms of height */}
-        <div className="w-full lg:w-1/2 p-7 sm:p-9 rounded-[2rem] border border-[var(--theme-border)] bg-[var(--theme-card)] shadow-xl relative overflow-hidden">
+        {/* Right Column: Properly Proportioned Formspree Form, Vertically Centered with Reversible Reveal */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.15 }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full lg:w-1/2 p-7 sm:p-9 rounded-[2rem] border border-[var(--theme-border)] bg-[var(--theme-card)] shadow-xl relative overflow-hidden"
+        >
           <div className="mb-6">
             <h3 className="text-xl sm:text-2xl font-bold text-[var(--theme-text)] mb-1.5">
               Send a Message
@@ -331,8 +342,8 @@ export function ContactCards() {
               )}
             </form>
           )}
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }

@@ -77,8 +77,14 @@ export function Footer() {
   };
 
   return (
-    <footer className="w-full relative z-10 pt-14 pb-12 sm:pb-14 bg-[var(--theme-surface)] border-t border-[var(--theme-border)] rounded-t-[2.5rem] sm:rounded-t-[3rem] overflow-hidden">
-      <div className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10 flex flex-col gap-8">
+    <footer className="w-full relative z-10 pt-12 pb-10 sm:pb-12 bg-[var(--theme-surface)] border-t border-[var(--theme-border)] rounded-t-[2.5rem] sm:rounded-t-[3rem] overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.15 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10 flex flex-col gap-8"
+      >
         {/* Top Header Row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-[var(--theme-border)]">
           <div className="flex items-center gap-3.5">
@@ -93,7 +99,7 @@ export function Footer() {
               <span className="font-extrabold tracking-tight text-[var(--theme-text)] text-base leading-none">
                 Samrit Mukherjee
               </span>
-              <span className="text-[10px] font-mono font-bold text-[#2563EB] dark:text-[#60A5FA] tracking-wider uppercase mt-1">
+              <span className="text-[10px] font-mono font-bold text-primary tracking-wider uppercase mt-1">
                 AI Systems • Full Stack Engineering
               </span>
             </div>
@@ -105,13 +111,13 @@ export function Footer() {
             className="text-xs font-mono font-bold !py-2 !px-4 shadow-sm"
           >
             <span>Back to top</span>
-            <ArrowUp className="w-3.5 h-3.5 text-[#2563EB] dark:text-[#60A5FA]" />
+            <ArrowUp className="w-3.5 h-3.5 text-primary" />
           </BlobButton>
         </div>
 
         {/* Center Morphing Banner — Clean, open presentation */}
         <div className="py-6 px-4 text-center flex flex-col items-center justify-center my-1">
-          <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#2563EB] dark:text-[#60A5FA] mb-2.5">
+          <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-primary mb-2.5">
             Focus &amp; Vision
           </span>
 
@@ -169,7 +175,7 @@ export function Footer() {
           {/* Visitor Counter Pill */}
           {visitCount !== null && visitCount > 0 ? (
             <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--theme-card)] border border-[var(--theme-border)] text-xs font-mono font-medium">
-              <span className="w-2 h-2 rounded-full bg-[#2563EB] dark:bg-[#3B82F6] animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               <span>{visitCount.toLocaleString()} global visits</span>
             </div>
           ) : (
@@ -183,10 +189,10 @@ export function Footer() {
           <div className="font-medium text-center md:text-right text-[var(--theme-text-secondary)] flex items-center justify-center md:justify-end gap-2 text-xs">
             <span>© 2026 Samrit Mukherjee.</span>
             <span className="text-[var(--theme-border)] hidden sm:inline">•</span>
-            <span className="font-accent text-xs text-[var(--theme-text-muted)] hidden sm:inline">crafted with intention</span>
+            <span className="font-accent text-xs text-[var(--theme-text-muted)] hidden sm:inline">crafted with intention &amp; code</span>
           </div>
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 }

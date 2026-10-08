@@ -44,7 +44,7 @@ export default function AboutPage() {
         <h1 className="text-[var(--theme-text)]">About Samrit Mukherjee</h1>
         <p className="!max-w-none text-[var(--theme-text-muted)]">
           Samrit Mukherjee is an AI Systems Engineer and full-stack developer based in Kolkata, India. He
-          is pursuing a B.Tech in Computer Science & Engineering (AI & ML) at Meghnad Saha Institute of Technology (MSIT) under MAKAUT, graduating in 2027.
+          is pursuing a B.Tech in Computer Science & Engineering (AI & ML) at Meghnad Saha Institute of Technology (MSIT) under MAKAUT, graduating in 2028.
         </p>
         <p className="!max-w-none text-[var(--theme-text-muted)]">
           With 11× hackathon wins and 8 projects built — including Cosmic Canvas, SUKALYA.ai,

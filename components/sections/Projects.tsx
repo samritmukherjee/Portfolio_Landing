@@ -129,20 +129,25 @@ export function Projects() {
   };
 
   return (
-    <section id="projects" className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-20 sm:py-24">
+    <section id="projects" className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-14 sm:py-16 md:py-20">
       {/* SVG Gooey Filter instance specifically for desktop project visual controls */}
       <GooeySvgFilter id="projects-folder-gooey-filter" strength={12} />
 
       {/* Centered Section Header */}
       <motion.div
-        initial={{ opacity: 0, y: 35 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.15 }}
-        transition={{ duration: 0.7 }}
-        className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 space-y-3"
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="text-center max-w-4xl mx-auto mb-8 sm:mb-10 space-y-3"
       >
-        <div className="section-eyebrow">Portfolio Works</div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[var(--theme-text)]">
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <span className="section-eyebrow">Portfolio Works</span>
+          <span className="font-serif italic text-xs sm:text-sm text-[var(--theme-text-muted)] tracking-wide hidden sm:inline">
+            • selected builds &amp; architectures
+          </span>
+        </div>
+        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[var(--theme-text)] leading-[1.05]">
           Featured <span className="font-serif italic text-gradient-primary">Projects</span>
         </h2>
         <p className="text-[var(--theme-text-secondary)] max-w-2xl mx-auto text-base md:text-lg">
@@ -153,7 +158,13 @@ export function Projects() {
       {/* ========================================================================= */}
       {/* 1. DESKTOP VIEW: Gooey Folder with 6 Tabs (Preserved Desktop Architecture) */}
       {/* ========================================================================= */}
-      <div className={isDesktop ? "w-full mx-auto relative mt-6 block" : "hidden"}>
+      <motion.div
+        initial={{ opacity: 0, y: 25, scale: 0.98 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: false, amount: 0.1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className={isDesktop ? "w-full mx-auto relative mt-6 block" : "hidden"}
+      >
         {/* Gooey Filter Layer: fuses active tab pill & content panel into one organic folder */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -381,12 +392,18 @@ export function Projects() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* ========================================================================= */}
       {/* 2. MOBILE VIEW: Horizontal Snap-Scroll (Matching Hackathon Wins Pattern)   */}
       {/* ========================================================================= */}
-      <div className={!isDesktop ? "w-full block" : "hidden"}>
+      <motion.div
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className={!isDesktop ? "w-full block" : "hidden"}
+      >
         <div
           ref={mobileCarouselRef}
           onScroll={handleMobileScroll}
@@ -579,7 +596,7 @@ export function Projects() {
         <p className="text-center text-[11px] font-mono text-[var(--theme-text-secondary)] mt-2">
           ← Swipe horizontally to explore all projects →
         </p>
-      </div>
+      </motion.div>
     </section>
   );
 }

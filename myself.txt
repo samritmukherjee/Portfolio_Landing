@@ -18,7 +18,7 @@ I develop AI-powered applications, full-stack platforms, intelligent automation 
 
 ### Turning Complex Ideas into Practical Solutions
 
-I'm Samrit Mukherjee, a B.Tech Computer Science and Engineering student specializing in Artificial Intelligence and Machine Learning at Meghnad Saha Institute of Technology (MSIT), Kolkata, under MAKAUT. I expect to graduate in 2027.
+I'm Samrit Mukherjee, a B.Tech Computer Science and Engineering student specializing in Artificial Intelligence and Machine Learning at Meghnad Saha Institute of Technology (MSIT), Kolkata, under MAKAUT. I expect to graduate in 2028.
 
 I build AI-powered products, full-stack applications, automation systems, and management platforms. My interests include agentic AI, Retrieval-Augmented Generation (RAG), computer vision, intelligent workflows, and scalable software architecture.
 

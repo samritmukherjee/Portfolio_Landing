@@ -416,34 +416,39 @@ export function Hackathons() {
   };
 
   return (
-    <section id="hackathons" className="relative py-24 sm:py-32 px-4 sm:px-8 lg:px-12 xl:px-16 w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto overflow-hidden">
+    <section id="hackathons" className="relative py-14 sm:py-16 md:py-20 px-4 sm:px-8 lg:px-12 xl:px-16 w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto overflow-hidden">
       {/* Header with 11x trophy badge */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6 }}
-        className="text-center max-w-3xl mx-auto mb-16 space-y-4"
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="text-center max-w-4xl mx-auto mb-10 sm:mb-12 space-y-3"
       >
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#2563EB]/30 dark:border-[#3B82F6]/35 bg-[#2563EB]/10 dark:bg-[#3B82F6]/15 text-[#2563EB] dark:text-[#60A5FA] text-xs font-mono font-bold uppercase tracking-wider">
-          <Trophy className="w-3.5 h-3.5" />
-          <span>Competitive Accolades &amp; Honors</span>
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-mono font-bold uppercase tracking-wider">
+            <Trophy className="w-3.5 h-3.5" />
+            <span>Competitive Accolades &amp; Honors</span>
+          </div>
+          <span className="font-sans font-medium text-xs sm:text-sm text-[var(--theme-text-muted)] tracking-wide hidden sm:inline">
+            • verified wins
+          </span>
         </div>
 
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[var(--theme-text)]">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[var(--theme-text)] leading-[1.05]">
           Hackathons &amp; <span className="font-serif italic text-gradient-primary">Accolades</span>
         </h2>
 
-        <p className="text-sm sm:text-base text-[var(--theme-text-secondary)] leading-relaxed">
+        <p className="text-sm sm:text-base text-[var(--theme-text-secondary)] leading-relaxed max-w-2xl mx-auto">
           Building intensive, production-grade technical architectures under pressure. A collection of 11× hackathon victories,
           startup-track recognition, finalist placements, and open-source contributions.
         </p>
 
         {/* Highlight Stats Shelf */}
-        <div className="pt-4 flex justify-center">
-          <div className="inline-flex items-center gap-6 px-6 py-3 rounded-2xl border border-[var(--theme-border)] bg-[var(--theme-card)] shadow-sm">
+        <div className="pt-2 flex justify-center">
+          <div className="inline-flex items-center gap-6 px-6 py-3 rounded-2xl border border-[var(--theme-border)] bg-[var(--theme-card)] shadow-xs">
             <div className="text-center">
-              <span className="text-2xl sm:text-3xl font-black text-[#2563EB] dark:text-[#60A5FA] block">11×</span>
+              <span className="text-2xl sm:text-3xl font-black text-primary block">11×</span>
               <span className="text-[10px] font-mono font-medium text-[var(--theme-text-secondary)] uppercase tracking-wider">Wins &amp; Honors</span>
             </div>
             <div className="h-8 w-px bg-[var(--theme-border)]" />
@@ -460,15 +465,27 @@ export function Hackathons() {
         </div>
       </motion.div>
 
-      {/* Cards: Desktop 3-column grid / Mobile & Tablet horizontal snap-scroll */}
+      {/* Cards: Desktop 3-column grid / Mobile & Tablet horizontal snap-scroll with Reversible Reveal */}
       {isDesktop ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+        >
           {HACKATHONS_DATA.map((event, idx) => (
             <AchievementCard key={event.title} event={event} index={idx} isDesktop={true} />
           ))}
-        </div>
+        </motion.div>
       ) : (
-        <div className="w-full">
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full"
+        >
           <div
             ref={carouselRef}
             onScroll={handleScroll}
@@ -498,7 +515,7 @@ export function Hackathons() {
           <p className="text-center text-[11px] font-mono text-[var(--theme-text-secondary)] mt-2">
             ← Swipe horizontally to explore all 8 achievements →
           </p>
-        </div>
+        </motion.div>
       )}
     </section>
   );

@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface TechItem {
   name: string;
@@ -90,7 +91,13 @@ export function TechStackMarquee() {
   const displayItems = [...TECHNOLOGIES, ...TECHNOLOGIES, ...TECHNOLOGIES];
 
   return (
-    <section className="relative w-full py-8 overflow-hidden bg-[var(--theme-bg)] border-y border-[var(--theme-border)]/60 select-none">
+    <motion.section
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.3 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="relative w-full py-5 sm:py-6 overflow-hidden bg-[var(--theme-bg)] border-y border-[var(--theme-border)]/60 select-none"
+    >
       {/* Left/Right Edge Fades for Smooth Infinite Illusion */}
       <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-36 bg-gradient-to-r from-[var(--theme-bg)] to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-36 bg-gradient-to-l from-[var(--theme-bg)] to-transparent z-10 pointer-events-none" />
@@ -138,7 +145,7 @@ export function TechStackMarquee() {
           }
         }
       `}</style>
-    </section>
+    </motion.section>
   );
 }
 

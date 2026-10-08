@@ -44,23 +44,27 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Status & Availability Badge */}
+          {/* Status & Availability Badge with Editorial Phrase */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="mb-5"
+            className="mb-5 flex flex-wrap items-center justify-center lg:justify-start gap-3"
           >
-            <div className="inline-flex items-center gap-2.5 py-1.5 px-4 rounded-full border border-[var(--theme-border)] bg-[var(--theme-surface)]/80 text-xs font-medium shadow-sm">
+            <div className="inline-flex items-center gap-2.5 py-1.5 px-4 rounded-full glass-panel border border-[var(--theme-border)] text-xs font-semibold shadow-sm">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
-              <span className="text-[var(--theme-text-secondary)] font-medium">Available for New Projects</span>
+              <span className="text-[var(--theme-text-muted)]">Available for New Projects</span>
             </div>
+
+            <span className="font-serif italic text-xs sm:text-sm text-[var(--theme-text-muted)] tracking-wide hidden sm:inline">
+              personal engineering journal &amp; portfolio
+            </span>
           </motion.div>
 
-          {/* Headline with High-Contrast Blue Accent (Semantic H1) */}
+          {/* Headline with Large Red Gradient Name (Semantic H1) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -77,31 +81,33 @@ export function Hero() {
             </h1>
           </motion.div>
 
-          {/* Tagline & Subtitle with high-contrast blue kicker */}
+          {/* Tagline & Subtitle */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.45, duration: 0.8 }}
             className="space-y-3 mb-6 w-full"
           >
-            <p className="text-xs sm:text-sm tracking-[0.14em] uppercase text-[#2563EB] dark:text-[#60A5FA] font-bold">
-              AI Systems <span className="text-[var(--theme-border)] mx-1.5">•</span> Full-Stack Engineering{" "}
-              <span className="text-[var(--theme-border)] mx-1.5">•</span> Product Development
+            <p className="text-sm sm:text-base tracking-[0.14em] uppercase text-primary font-bold">
+              AI Systems <span className="text-[var(--theme-text-muted)] mx-1">•</span> Full-Stack Engineering{" "}
+              <span className="text-[var(--theme-text-muted)] mx-1">•</span> Product Development
             </p>
 
             <p className="text-base sm:text-lg text-[var(--theme-text-secondary)] max-w-2xl leading-relaxed font-normal">
               Building intelligent, scalable software that transforms ambitious ideas into practical, user-focused products. I develop AI-powered applications, full-stack platforms, intelligent automation systems, and production-oriented software, combining AI engineering, backend architecture, and thoughtful user experiences to solve real-world problems.
             </p>
 
-            {/* Authentic Portfolio Stats — Clean, open layout without excessive boxed wrappers */}
-            <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1.5 text-xs text-[var(--theme-text-secondary)]">
-              <span><strong className="text-[var(--theme-text)] font-semibold">11×</strong> Hackathon Wins</span>
-              <span className="text-[var(--theme-border)]">•</span>
-              <span><strong className="text-[var(--theme-text)] font-semibold">8</strong> Projects Built</span>
-              <span className="text-[var(--theme-border)]">•</span>
-              <span><strong className="text-[var(--theme-text)] font-semibold">5</strong> Featured Systems</span>
-              <span className="text-[var(--theme-border)]">•</span>
-              <span><strong className="text-[var(--theme-text)] font-semibold">3</strong> In Development</span>
+            {/* Authentic Portfolio Stats Banner */}
+            <div className="pt-1">
+              <div className="inline-flex flex-wrap items-center gap-x-3 gap-y-1.5 px-3.5 py-1.5 rounded-lg border border-[var(--theme-border)] bg-[var(--theme-surface-2)] text-xs font-semibold text-[var(--theme-text)] shadow-sm">
+                <span>11× Hackathon Wins</span>
+                <span className="text-primary font-bold">|</span>
+                <span>8 Projects Built</span>
+                <span className="text-primary font-bold">|</span>
+                <span>5 Projects Featured</span>
+                <span className="text-primary font-bold">|</span>
+                <span>3 More Coming Soon</span>
+              </div>
             </div>
           </motion.div>
 
@@ -133,7 +139,7 @@ export function Hero() {
             </BlobButton>
           </motion.div>
 
-          {/* Social Links Row (Twitter/X completely removed) */}
+          {/* Social Links Row */}
           <motion.div
             className="flex items-center gap-4 justify-center lg:justify-start w-full lg:w-auto"
             initial={{ opacity: 0 }}
@@ -149,7 +155,7 @@ export function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={item.label}
-                  className="w-10 h-10 rounded-full glass-panel border border-[var(--theme-border)] flex items-center justify-center text-[var(--theme-text-muted)] hover:text-[var(--theme-accent)] hover:border-[var(--theme-accent)]/40 hover:-translate-y-1 transition-all duration-200 shadow-sm"
+                  className="w-10 h-10 rounded-full glass-panel border border-[var(--theme-border)] flex items-center justify-center text-[var(--theme-text-muted)] hover:text-primary hover:border-primary/40 hover:-translate-y-1 transition-all duration-200 shadow-sm"
                 >
                   <Icon className="w-4 h-4" />
                 </a>
@@ -169,7 +175,7 @@ export function Hero() {
             name="Samrit Mukherjee"
             role="AI Systems • Full Stack Dev"
             badgeId="SM-2026-DEV"
-            accentColor="#3B82F6"
+            accentColor="#FF0000"
             ropeLength={75}
             ropeColor="#1A1A1A"
             cardWidth="w-72 sm:w-80 md:w-84"
