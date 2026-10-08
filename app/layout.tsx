@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Syne } from "next/font/google";
+import { DM_Sans, Syne, Noto_Serif, Playwrite_CA_Guides } from "next/font/google";
 import "@/styles/globals.css";
 import { LenisWrapper } from "@/components/LenisWrapper";
 import PageLoader from "@/components/PageLoader";
@@ -20,6 +20,20 @@ const syne = Syne({
   subsets: ["latin"],
   variable: "--font-display",
   weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
+const notoSerif = Noto_Serif({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const playwrite = Playwrite_CA_Guides({
+  weight: "400",
+  variable: "--font-accent",
   display: "swap",
 });
 
@@ -130,7 +144,7 @@ export default function RootLayout({
     process.env.AVAILABILITY_STATUS === "Busy" ? "Busy" : "Available";
 
   return (
-    <html lang="en" className={`${dmSans.variable} ${syne.variable}`}>
+    <html lang="en" className={`${dmSans.variable} ${syne.variable} ${notoSerif.variable} ${playwrite.variable}`}>
       <head>
         <link
           rel="preload"

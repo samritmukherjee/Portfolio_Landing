@@ -68,7 +68,7 @@ export function Hero() {
             className="mb-3 text-center lg:text-left"
           >
             <h1 className="tracking-tight text-center lg:text-left">
-              <span className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-2 text-[var(--theme-text)] block">
+              <span className="text-4xl sm:text-5xl md:text-6xl font-normal font-serif italic tracking-tight mb-2 text-[var(--theme-text)] block">
                 Hi, I&apos;m
               </span>
               <span className="text-gradient-primary font-extrabold text-[clamp(2.75rem,6.5vw,5.5rem)] leading-none tracking-tight block pb-2 select-none">

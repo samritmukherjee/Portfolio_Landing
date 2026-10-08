@@ -66,6 +66,8 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-body)", "DM Sans", "Segoe UI", "sans-serif"],
         display: ["var(--font-display)", "Syne", "Segoe UI", "sans-serif"],
+        serif: ["var(--font-serif)", "Noto Serif", "Georgia", "serif"],
+        accent: ["var(--font-accent)", "Playwrite CA Guides", "cursive"],
       },
       letterSpacing: {
         tightest: "-0.04em",

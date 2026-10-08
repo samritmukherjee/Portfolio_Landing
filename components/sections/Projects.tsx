@@ -143,7 +143,7 @@ export function Projects() {
       >
         <div className="section-eyebrow">Portfolio Works</div>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[var(--theme-text)]">
-          Featured <span className="text-gradient-primary">Projects</span>
+          Featured <span className="font-serif italic text-gradient-primary">Projects</span>
         </h2>
         <p className="text-[var(--theme-text-secondary)] max-w-2xl mx-auto text-base md:text-lg">
           Explore individual production systems, architectural details, and upcoming research prototypes.

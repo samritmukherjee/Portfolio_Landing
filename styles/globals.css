@@ -143,6 +143,14 @@
     color: #60A5FA;
   }
 
+  .font-serif {
+    font-family: var(--font-serif), "Noto Serif", Georgia, serif;
+  }
+
+  .font-accent {
+    font-family: var(--font-accent), "Playwrite CA Guides", cursive;
+  }
+
   .text-gradient {
     color: var(--theme-text);
     font-weight: inherit;

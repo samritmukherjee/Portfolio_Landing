@@ -14,7 +14,7 @@ export default function PageLoader() {
   const [isOpening, setIsOpening] = useState(false);
   const [skipLoader, setSkipLoader] = useState(false);
 
-  // Refs for 0-rerender direct DOM updates (eliminates React Fiber bottleneck during hydration)
+  // Refs for zero-rerender direct DOM updates (hardware clock execution, 0 React re-renders)
   const percentTextRef = useRef<HTMLSpanElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const hasClosedRef = useRef(false);
@@ -35,7 +35,7 @@ export default function PageLoader() {
       return;
     }
 
-    // Lock page scroll while loader is visible to prevent scroll events fighting during hydration
+    // Lock page scroll while loader is active
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
@@ -44,34 +44,34 @@ export default function PageLoader() {
       hasClosedRef.current = true;
       setIsOpening(true);
 
-      // Restore scroll right as curtains start opening
+      // Restore body overflow as curtain starts lifting
       document.body.style.overflow = originalOverflow;
 
       setTimeout(() => {
         setIsVisible(false);
-      }, 800);
+      }, 750);
     };
 
-    // Hard fallback safety timer (2.5s): guarantees loader NEVER gets stuck under any network condition
+    // Hard fallback safety timer (2.0s): guarantees loader never blocks user
     const safetyTimer = setTimeout(() => {
       triggerClose();
-    }, 2500);
+    }, 2000);
 
-    // Smooth counter animation from 0% to 100% over ~950ms via direct DOM manipulation
+    // Fast, responsive progress counter (~700ms total duration)
     const startTime = performance.now();
-    const duration = 950;
+    const duration = 720;
     let animId: number;
 
     const frame = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(1, elapsed / duration);
-      // easeOutCubic
-      const eased = 1 - Math.pow(1 - progress, 3);
+      // Clean easeOutQuart
+      const eased = 1 - Math.pow(1 - progress, 4);
       const currentPercent = Math.round(eased * 100);
 
-      // Direct DOM update: ZERO React re-renders, 60fps/120fps hardware clock execution
+      // Direct DOM update: 0 React re-renders, 60fps/120fps hardware clock execution
       if (percentTextRef.current) {
-        percentTextRef.current.textContent = `${currentPercent}%`;
+        percentTextRef.current.textContent = `${currentPercent}`;
       }
       if (progressBarRef.current) {
         progressBarRef.current.style.width = `${currentPercent}%`;
@@ -83,7 +83,7 @@ export default function PageLoader() {
         setTimeout(() => {
           clearTimeout(safetyTimer);
           triggerClose();
-        }, 100);
+        }, 90);
       }
     };
 
@@ -98,21 +98,16 @@ export default function PageLoader() {
 
   if (!isVisible || skipLoader) return null;
 
-  const leftPanelStyle: React.CSSProperties = {
-    transform: isOpening ? "translate3d(-100%, 0, 0)" : "translate3d(0, 0, 0)",
-    transition: "transform 750ms cubic-bezier(0.77, 0, 0.175, 1)",
-    willChange: "transform",
-  };
-
-  const rightPanelStyle: React.CSSProperties = {
-    transform: isOpening ? "translate3d(100%, 0, 0)" : "translate3d(0, 0, 0)",
-    transition: "transform 750ms cubic-bezier(0.77, 0, 0.175, 1)",
+  // Editorial curtain lift: smooth upward slide revealing the hydrated portfolio underneath
+  const curtainStyle: React.CSSProperties = {
+    transform: isOpening ? "translate3d(0, -100%, 0)" : "translate3d(0, 0, 0)",
+    transition: "transform 720ms cubic-bezier(0.85, 0, 0.15, 1)",
     willChange: "transform",
   };
 
   const contentStyle: React.CSSProperties = {
     opacity: isOpening ? 0 : 1,
-    transform: isOpening ? "scale(0.95) translate3d(0, -10px, 0)" : "scale(1) translate3d(0, 0, 0)",
+    transform: isOpening ? "translate3d(0, -14px, 0)" : "translate3d(0, 0, 0)",
     transition: "opacity 320ms ease, transform 420ms cubic-bezier(0.25, 1, 0.5, 1)",
     pointerEvents: isOpening ? "none" : "auto",
   };
@@ -122,199 +117,59 @@ export default function PageLoader() {
       className="fixed inset-0 z-[99999] flex items-center justify-center overflow-hidden select-none"
       style={{ pointerEvents: isOpening ? "none" : "auto" }}
     >
-      <style>{`
-        .loader-boxes-wrap {
-          --size: 26px;
-          --duration: 800ms;
-          height: 70px;
-          width: 90px;
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .loader-boxes {
-          height: calc(var(--size) * 2);
-          width: calc(var(--size) * 3);
-          position: relative;
-          transform-style: preserve-3d;
-          transform-origin: 50% 50%;
-          transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg) translateZ(0px);
-          will-change: transform;
-        }
-        .loader-boxes .loader-box {
-          width: var(--size);
-          height: var(--size);
-          top: 0;
-          left: 0;
-          position: absolute;
-          transform-style: preserve-3d;
-          will-change: transform;
-          backface-visibility: hidden;
-        }
-        .loader-boxes .loader-box:nth-child(1) {
-          transform: translate3d(100%, 0, 0);
-          animation: ldr-box1 var(--duration) linear infinite;
-        }
-        .loader-boxes .loader-box:nth-child(2) {
-          transform: translate3d(0, 100%, 0);
-          animation: ldr-box2 var(--duration) linear infinite;
-        }
-        .loader-boxes .loader-box:nth-child(3) {
-          transform: translate3d(100%, 100%, 0);
-          animation: ldr-box3 var(--duration) linear infinite;
-        }
-        .loader-boxes .loader-box:nth-child(4) {
-          transform: translate3d(200%, 0, 0);
-          animation: ldr-box4 var(--duration) linear infinite;
-        }
-        .loader-boxes .loader-box > div {
-          --background: #3B82F6;
-          --top: auto;
-          --right: auto;
-          --bottom: auto;
-          --left: auto;
-          --translateZ: calc(var(--size) / 2);
-          --rotateY: 0deg;
-          --rotateX: 0deg;
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          background: var(--background);
-          top: var(--top);
-          right: var(--right);
-          bottom: var(--bottom);
-          left: var(--left);
-          transform: rotateY(var(--rotateY)) rotateX(var(--rotateX)) translate3d(0, 0, var(--translateZ));
-          will-change: transform;
-          backface-visibility: hidden;
-        }
-        .loader-boxes .loader-box > div:nth-child(1) {
-          --top: 0;
-          --left: 0;
-        }
-        .loader-boxes .loader-box > div:nth-child(2) {
-          --background: #2563EB;
-          --right: 0;
-          --rotateY: 90deg;
-        }
-        .loader-boxes .loader-box > div:nth-child(3) {
-          --background: #1D4ED8;
-          --rotateX: -90deg;
-        }
-        .loader-boxes .loader-box > div:nth-child(4) {
-          --background: #172554;
-          --top: 0;
-          --left: 0;
-          --translateZ: calc(var(--size) * 3 * -1);
-        }
-        @keyframes ldr-box1 {
-          0%, 50% { transform: translate3d(100%, 0, 0); }
-          100% { transform: translate3d(200%, 0, 0); }
-        }
-        @keyframes ldr-box2 {
-          0% { transform: translate3d(0, 100%, 0); }
-          50% { transform: translate3d(0, 0, 0); }
-          100% { transform: translate3d(100%, 0, 0); }
-        }
-        @keyframes ldr-box3 {
-          0%, 50% { transform: translate3d(100%, 100%, 0); }
-          100% { transform: translate3d(0, 100%, 0); }
-        }
-        @keyframes ldr-box4 {
-          0% { transform: translate3d(200%, 0, 0); }
-          50% { transform: translate3d(200%, 100%, 0); }
-          100% { transform: translate3d(100%, 100%, 0); }
-        }
-        @media (max-width: 640px) {
-          .loader-boxes-wrap {
-            --size: 22px;
-          }
-        }
-      `}</style>
-
-      {/* Hardware-Accelerated Split-Curtain Panels */}
+      {/* Editorial Obsidian Curtain Panel */}
       <div
-        className="absolute inset-y-0 left-0 w-1/2 bg-[#080F1E] border-r border-[#3B82F6]/15"
-        style={leftPanelStyle}
-      />
-      <div
-        className="absolute inset-y-0 right-0 w-1/2 bg-[#080F1E] border-l border-[#3B82F6]/15"
-        style={rightPanelStyle}
+        className="absolute inset-0 bg-[#080F1E] border-b border-white/10"
+        style={curtainStyle}
       />
 
+      {/* Centered Editorial Content */}
       <div
-        className="relative z-10 flex flex-col items-center justify-center gap-6 sm:gap-7"
+        className="relative z-10 flex flex-col items-center justify-center px-6 text-center max-w-sm"
         style={contentStyle}
       >
-        {/* S M Orbit Emblem (Preloaded & Unoptimized for instant rendering) */}
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20">
+        {/* Subtle Brand Emblem with Soft Ambient Glow */}
+        <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.04] border border-white/10 p-2.5 flex items-center justify-center shadow-lg mb-5">
           <Image
             src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791022468/SamritMukherjeeLogo_wherde.png"
-            alt="Samrit Mukherjee Logo Emblem"
-            width={80}
-            height={80}
+            alt="Samrit Mukherjee Logo"
+            width={56}
+            height={56}
             priority
             unoptimized
             className="w-full h-full object-contain"
           />
         </div>
 
-        {/* Name & Identity */}
-        <div className="text-center space-y-1">
-          <h2 className="text-white text-base sm:text-lg font-bold tracking-[0.22em] uppercase">
+        {/* Typographic Title & Identity */}
+        <div className="space-y-1.5 mb-6">
+          <h2 className="text-white text-xs sm:text-sm font-bold tracking-[0.28em] uppercase font-display">
             Samrit Mukherjee
           </h2>
-          <p className="text-neutral-400 text-xs tracking-[0.16em] uppercase">
-            AI Systems <span className="text-[#3B82F6] mx-1">•</span> Full-Stack
+          <p className="text-neutral-400 text-xs sm:text-sm font-serif italic tracking-wide">
+            AI Systems &amp; Full-Stack Engineering
           </p>
         </div>
 
-        {/* 3D Isometric Jumping Boxes Loader — Isolated Container with zero overlap */}
-        <div className="loader-boxes-wrap my-1">
-          <div className="loader-boxes">
-            <div className="loader-box">
-              <div />
-              <div />
-              <div />
-              <div />
-            </div>
-            <div className="loader-box">
-              <div />
-              <div />
-              <div />
-              <div />
-            </div>
-            <div className="loader-box">
-              <div />
-              <div />
-              <div />
-              <div />
-            </div>
-            <div className="loader-box">
-              <div />
-              <div />
-              <div />
-              <div />
-            </div>
-          </div>
-        </div>
-
-        {/* Clear Numeric Progress Counter & Fill Bar (DOM ref driven, zero re-renders) */}
-        <div className="flex flex-col items-center gap-2.5">
-          <div className="w-44 h-1 bg-white/10 overflow-hidden rounded-full relative">
+        {/* Minimal Progress Line & Numeric Indicator */}
+        <div className="flex flex-col items-center gap-2.5 w-full">
+          {/* Whisper-thin 1px progress track */}
+          <div className="w-28 sm:w-32 h-[1px] bg-white/15 overflow-hidden relative">
             <div
               ref={progressBarRef}
-              className="h-full bg-gradient-to-r from-[#2563EB] via-[#3B82F6] to-[#06B6D4] rounded-full"
+              className="h-full bg-white transition-none"
               style={{ width: "0%" }}
             />
           </div>
-          <span
-            ref={percentTextRef}
-            className="font-mono text-xs font-semibold text-neutral-400 tracking-wider"
-          >
-            0%
-          </span>
+
+          {/* Minimal Monospaced Counter & Context Tag */}
+          <div className="flex items-center justify-between w-28 sm:w-32 text-[10px] font-mono text-neutral-400">
+            <span>
+              <span ref={percentTextRef}>0</span>
+              <span className="text-neutral-400/80">%</span>
+            </span>
+            <span className="text-neutral-400/80 tracking-widest uppercase">2026</span>
+          </div>
         </div>
       </div>
     </div>

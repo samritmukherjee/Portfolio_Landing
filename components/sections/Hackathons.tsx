@@ -431,7 +431,7 @@ export function Hackathons() {
         </div>
 
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[var(--theme-text)]">
-          Hackathons &amp; <span className="text-gradient-primary">Accolades</span>
+          Hackathons &amp; <span className="font-serif italic text-gradient-primary">Accolades</span>
         </h2>
 
         <p className="text-sm sm:text-base text-[var(--theme-text-secondary)] leading-relaxed">

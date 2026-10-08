@@ -45,7 +45,7 @@ export function Services() {
         <div className="section-eyebrow">Expertise &amp; Disciplines</div>
         <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-[var(--theme-text)]">
           Product Engineering &amp;{" "}
-          <span className="text-gradient-primary">Enterprise Systems</span>
+          <span className="font-serif italic text-gradient-primary">Enterprise Systems</span>
         </h2>
         <p className="text-[var(--theme-text-secondary)] max-w-2xl mx-auto text-base md:text-lg">
           Transforming ambitious concepts into practical, production-ready software with disciplined engineering, automation, and enterprise-grade reliability.

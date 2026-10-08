@@ -44,7 +44,7 @@ export function About() {
         <div className="section-eyebrow">About Samrit</div>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 text-[var(--theme-text)]">
           Turning Complex Ideas into{" "}
-          <span className="text-gradient-primary">Practical Solutions</span>
+          <span className="font-serif italic text-gradient-primary">Practical Solutions</span>
         </h2>
         <p className="text-[var(--theme-text-secondary)] text-base md:text-lg">
           AI systems engineer and full-stack developer dedicated to building scalable enterprise platforms, agentic workflows, and high-impact software products.
@@ -79,8 +79,13 @@ export function About() {
               <p>
                 From developing AI-driven SaaS platforms to building administrative systems and computer vision applications, I enjoy working across the complete development lifecycle—from understanding requirements and designing architectures to implementation, testing, and deployment.
               </p>
-              <blockquote className="border-l-2 border-[#2563EB] dark:border-[#3B82F6] pl-4 py-1 italic text-[var(--theme-text)] font-medium">
-                &ldquo;Build tools that matter, for people who need them.&rdquo;
+              <blockquote className="border-l-2 border-[#2563EB] dark:border-[#3B82F6] pl-4 py-1 text-[var(--theme-text)]">
+                <span className="font-serif italic text-lg sm:text-xl font-normal block leading-snug">
+                  &ldquo;Build tools that matter, for people who need them.&rdquo;
+                </span>
+                <span className="font-accent text-xs sm:text-sm text-[var(--theme-text-muted)] mt-1.5 block">
+                  — Samrit Mukherjee
+                </span>
               </blockquote>
             </div>
           </div>

@@ -82,7 +82,7 @@ export function ContactCards() {
         </div>
 
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-[var(--theme-text)]">
-          Let&apos;s <span className="text-gradient-primary">Connect</span>
+          Let&apos;s <span className="font-serif italic text-gradient-primary">Connect</span>
         </h2>
 
         <p className="text-[var(--theme-text-secondary)] text-base sm:text-lg max-w-xl mx-auto leading-relaxed">

@@ -134,7 +134,7 @@ export function TechnicalArsenal() {
       >
         <div className="section-eyebrow">Skills &amp; Capabilities</div>
         <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-[var(--theme-text)]">
-          Technical <span className="text-gradient-primary">Arsenal</span>
+          Technical <span className="font-serif italic text-gradient-primary">Arsenal</span>
         </h2>
         <p className="text-[var(--theme-text-secondary)] max-w-2xl mx-auto text-base md:text-lg">
           A disciplined toolkit spanning AI engineering, full-stack web platforms, database infrastructure, and robust API development.

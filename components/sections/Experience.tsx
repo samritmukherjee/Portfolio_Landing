@@ -154,7 +154,7 @@ export function Experience() {
       <div className="text-center max-w-3xl mx-auto mb-14 md:mb-16 space-y-3">
         <div className="section-eyebrow">Professional History</div>
         <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[var(--theme-text)]">
-          Professional <span className="text-gradient-primary">Journey</span>
+          Professional <span className="font-serif italic text-gradient-primary">Journey</span>
         </h2>
         <p className="text-[var(--theme-text-secondary)] max-w-xl mx-auto text-base md:text-lg">
           A track record of technical advisory, educational systems architecture, and community design contributions.

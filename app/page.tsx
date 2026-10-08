@@ -91,6 +91,30 @@ function ThemePixelOverlay({
   );
 }
 
+// Memoized main content defined at top-level module scope so its reference is permanently stable across Home re-renders.
+// This prevents React from destroying and remounting the 9-section tree during theme toggles or activeSection updates.
+const MainContent = React.memo(function MainContent() {
+  return (
+    <>
+      {/* Exact 9-section portfolio structure */}
+      <main id="main" className="w-full flex flex-col border-none overflow-x-hidden">
+        <Hero />
+        <TechStackMarquee />
+        <About />
+        <Services />
+        <Hackathons />
+        <Projects />
+        <Experience />
+        <TechnicalArsenal />
+        <ContactCards />
+      </main>
+
+      <Footer />
+      <Dock />
+    </>
+  );
+});
+
 export default function Home() {
   const [theme, setTheme] = useState<"dark" | "light">("light");
   const [themeTransition, setThemeTransition] = useState<{
@@ -197,29 +221,6 @@ export default function Home() {
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
-
-// Memoized main content to prevent re-rendering 9 sections during scroll-based activeSection changes
-const MainContent = React.memo(function MainContent() {
-  return (
-    <>
-      {/* Exact 9-section portfolio structure */}
-      <main id="main" className="w-full flex flex-col border-none overflow-x-hidden">
-        <Hero />
-        <TechStackMarquee />
-        <About />
-        <Services />
-        <Hackathons />
-        <Projects />
-        <Experience />
-        <TechnicalArsenal />
-        <ContactCards />
-      </main>
-
-      <Footer />
-      <Dock />
-    </>
-  );
-});
 
   return (
     <div className="min-h-screen bg-[var(--theme-bg)] text-[var(--theme-text)] transition-colors duration-300 relative selection:bg-primary selection:text-white overflow-x-hidden">

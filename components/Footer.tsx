@@ -179,9 +179,11 @@ export function Footer() {
             </div>
           )}
 
-          {/* Copyright: Exactly "© 2026 Samrit Mukherjee." */}
-          <div className="font-medium text-center md:text-right text-[var(--theme-text-secondary)]">
-            © 2026 Samrit Mukherjee.
+          {/* Copyright: Exactly "© 2026 Samrit Mukherjee." with subtle human signature */}
+          <div className="font-medium text-center md:text-right text-[var(--theme-text-secondary)] flex items-center justify-center md:justify-end gap-2 text-xs">
+            <span>© 2026 Samrit Mukherjee.</span>
+            <span className="text-[var(--theme-border)] hidden sm:inline">•</span>
+            <span className="font-accent text-xs text-[var(--theme-text-muted)] hidden sm:inline">crafted with intention</span>
           </div>
         </div>
       </div>
