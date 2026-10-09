@@ -162,11 +162,8 @@ export function Experience() {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="text-center max-w-4xl mx-auto mb-10 sm:mb-12 space-y-3"
       >
-        <div className="flex items-center justify-center gap-2 mb-2">
+        <div className="mb-2">
           <span className="section-eyebrow">Professional History</span>
-          <span className="font-sans font-medium text-xs sm:text-sm text-[var(--theme-text-muted)] tracking-wide hidden sm:inline">
-            • chronological journey
-          </span>
         </div>
         <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[var(--theme-text)] leading-[1.05]">
           Professional <span className="font-serif italic text-gradient-primary">Journey</span>

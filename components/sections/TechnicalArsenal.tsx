@@ -132,11 +132,8 @@ export function TechnicalArsenal() {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="mb-10 sm:mb-12 text-center max-w-4xl mx-auto"
       >
-        <div className="flex items-center justify-center gap-2 mb-2">
+        <div className="mb-2">
           <span className="section-eyebrow">Skills &amp; Capabilities</span>
-          <span className="font-sans font-medium text-xs sm:text-sm text-[var(--theme-text-muted)] tracking-wide hidden sm:inline">
-            • technical stack &amp; tools
-          </span>
         </div>
         <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-4 text-[var(--theme-text)] leading-[1.05]">
           Technical <span className="font-serif italic text-gradient-primary">Arsenal</span>

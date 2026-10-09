@@ -32,7 +32,7 @@ export function ZenithArcSvg({ className = "w-full h-full" }: { className?: stri
 export function OrbitingCirclesDemo() {
   return (
     /* Completely borderless container with NO outer card box, flowing directly into the webpage */
-    <div className="relative flex h-[380px] sm:h-[440px] w-full flex-col items-center justify-center overflow-visible">
+    <div className="relative flex h-[360px] sm:h-[400px] w-full flex-col items-center justify-center overflow-visible">
       {/* Central Brand Badge: Samrit's Portfolio Logo */}
       <div className="relative z-10 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-black border-2 border-[#2563EB] dark:border-[#3B82F6] flex items-center justify-center p-3 shadow-md group transition-transform duration-200 hover:scale-105">
         <Image

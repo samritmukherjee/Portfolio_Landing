@@ -141,11 +141,8 @@ export function Projects() {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="text-center max-w-4xl mx-auto mb-8 sm:mb-10 space-y-3"
       >
-        <div className="flex items-center justify-center gap-2 mb-2">
+        <div className="mb-2">
           <span className="section-eyebrow">Portfolio Works</span>
-          <span className="font-serif italic text-xs sm:text-sm text-[var(--theme-text-muted)] tracking-wide hidden sm:inline">
-            • selected builds &amp; architectures
-          </span>
         </div>
         <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[var(--theme-text)] leading-[1.05]">
           Featured <span className="font-serif italic text-gradient-primary">Projects</span>

@@ -32,20 +32,17 @@ export function About() {
   ];
 
   return (
-    <section id="about" className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-14 sm:py-16 md:py-20">
+    <section id="about" className="w-full max-w-[96vw] 2xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-12 sm:py-14 md:py-16">
       {/* Centered Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.2 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="text-center max-w-4xl mx-auto mb-10 sm:mb-12"
+        className="text-center max-w-4xl mx-auto mb-8 sm:mb-10"
       >
-        <div className="flex items-center justify-center gap-2 mb-2">
+        <div className="mb-2">
           <span className="section-eyebrow">About Samrit</span>
-          <span className="font-serif italic text-xs sm:text-sm text-[var(--theme-text-muted)] tracking-wide hidden sm:inline">
-            • background &amp; philosophy
-          </span>
         </div>
         <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-4 text-[var(--theme-text)] leading-[1.05]">
           Turning Complex Ideas into{" "}
@@ -57,7 +54,7 @@ export function About() {
       </motion.div>
 
       {/* 2-Column: Story Narrative & Borderless Orbiting Projects Component */}
-      <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
         {/* Left Column: Authentic Narrative with Text Highlighter & Reversible Slide */}
         <motion.div
           className="flex-1 space-y-6"
@@ -117,7 +114,7 @@ export function About() {
       </div>
 
       {/* Bottom Row: 4 Authentic Key Stats Cards with Reversible Stagger */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full mt-10 sm:mt-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full mt-8 sm:mt-10">
         {stats.map((item, idx) => (
           <motion.div
             key={idx}

@@ -73,7 +73,7 @@ export function ContactCards() {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="text-center max-w-4xl mx-auto mb-10 sm:mb-12 space-y-3"
       >
-        <div className="flex items-center justify-center gap-2 mb-2">
+        <div className="mb-2">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-mono font-bold uppercase tracking-wider">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -81,9 +81,6 @@ export function ContactCards() {
             </span>
             Available for new opportunities
           </div>
-          <span className="font-sans font-medium text-xs sm:text-sm text-[var(--theme-text-muted)] tracking-wide hidden sm:inline">
-            • direct line
-          </span>
         </div>
 
         <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[var(--theme-text)] leading-[1.05]">

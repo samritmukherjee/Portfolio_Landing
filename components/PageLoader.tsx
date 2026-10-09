@@ -125,16 +125,16 @@ export default function PageLoader() {
 
       {/* Centered Editorial Content */}
       <div
-        className="relative z-10 flex flex-col items-center justify-center px-6 text-center max-w-sm"
+        className="relative z-10 flex flex-col items-center justify-center px-6 text-center max-w-lg"
         style={contentStyle}
       >
-        {/* Subtle Brand Emblem with Soft Ambient Glow */}
-        <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.04] border border-white/10 p-2.5 flex items-center justify-center shadow-lg mb-5">
+        {/* Subtle Brand Emblem with Soft Ambient Border */}
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-[1.35rem] bg-white/[0.04] border border-white/15 p-3.5 sm:p-4 flex items-center justify-center shadow-xl mb-6 sm:mb-7">
           <Image
             src="https://res.cloudinary.com/duxrcy3jn/image/upload/v1791022468/SamritMukherjeeLogo_wherde.png"
             alt="Samrit Mukherjee Logo"
-            width={56}
-            height={56}
+            width={80}
+            height={80}
             priority
             unoptimized
             className="w-full h-full object-contain"
@@ -142,19 +142,19 @@ export default function PageLoader() {
         </div>
 
         {/* Typographic Title & Identity */}
-        <div className="space-y-1.5 mb-6">
-          <h2 className="text-white text-xs sm:text-sm font-bold tracking-[0.28em] uppercase font-display">
+        <div className="space-y-2 mb-7 sm:mb-8">
+          <h2 className="text-white text-base sm:text-lg md:text-xl font-bold tracking-[0.24em] sm:tracking-[0.28em] uppercase font-display">
             Samrit Mukherjee
           </h2>
-          <p className="text-neutral-400 text-xs sm:text-sm font-serif italic tracking-wide">
+          <p className="text-neutral-300 text-sm sm:text-base font-serif italic tracking-wide">
             AI Systems &amp; Full-Stack Engineering
           </p>
         </div>
 
         {/* Minimal Progress Line & Numeric Indicator */}
-        <div className="flex flex-col items-center gap-2.5 w-full">
-          {/* Whisper-thin 1px progress track */}
-          <div className="w-28 sm:w-32 h-[1px] bg-white/15 overflow-hidden relative">
+        <div className="flex flex-col items-center gap-3 w-full">
+          {/* Crisp progress track */}
+          <div className="w-44 sm:w-56 md:w-60 h-[2px] bg-white/20 overflow-hidden relative rounded-full">
             <div
               ref={progressBarRef}
               className="h-full bg-white transition-none"
@@ -163,7 +163,7 @@ export default function PageLoader() {
           </div>
 
           {/* Minimal Monospaced Counter & Context Tag */}
-          <div className="flex items-center justify-between w-28 sm:w-32 text-[10px] font-mono text-neutral-400">
+          <div className="flex items-center justify-between w-44 sm:w-56 md:w-60 text-xs sm:text-sm font-mono text-neutral-400">
             <span>
               <span ref={percentTextRef}>0</span>
               <span className="text-neutral-400/80">%</span>
