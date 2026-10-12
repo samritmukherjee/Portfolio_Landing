@@ -305,3 +305,6 @@ To update the resume, replace `public/Resume.pdf` with the updated PDF. The file
 - **LinkedIn**: [linkedin.com/in/samrit-mukherjee/](https://www.linkedin.com/in/samrit-mukherjee/)
 - **Email**: [samritmukherjee05@gmail.com](mailto:samritmukherjee05@gmail.com)
 - **Base Location**: Kolkata, West Bengal, India
+
+
+---
