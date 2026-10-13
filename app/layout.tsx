@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { DM_Sans, Syne, Noto_Serif, Playwrite_CA_Guides } from "next/font/google";
 import "@/styles/globals.css";
 import { LenisWrapper } from "@/components/LenisWrapper";
@@ -176,6 +177,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `window.__AVAILABILITY_STATUS__=${JSON.stringify(availabilityStatus)};`,
           }}
+        />
+        <Script
+          src="https://www.avento-ai.xyz/sdk.js"
+          data-key={process.env.NEXT_PUBLIC_AVENTO_KEY}
+          strategy="afterInteractive"
         />
       </body>
     </html>
