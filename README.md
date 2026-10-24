@@ -1,4 +1,4 @@
-# Samrit Mukherjee — Portfolio (Samrit.dev)
+# Samrit Mukherjee — Portfolio
 
 A modern, high-performance personal portfolio and engineering showcase built for **Samrit Mukherjee** — AI Systems Engineer, Full-Stack Developer, and 11× Hackathon Winner.
 
