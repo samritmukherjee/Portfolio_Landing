@@ -4,7 +4,7 @@ A modern, high-performance personal portfolio and engineering showcase built for
 
 The website delivers an interactive, editorial web experience featuring smooth physics-based scrolling, light and dark themes, interactive project showcases, real-time accolades with photo reveals, AI agent discovery protocols, and a locally delivered resume.
 
-🌐 **Live Website**: [https://samrit.dev/](https://samrit.dev/)
+🌐 **Live Website**: [samrit.dev](https://samrit.dev/)
 
 ---
 
