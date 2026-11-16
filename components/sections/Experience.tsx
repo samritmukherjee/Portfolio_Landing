@@ -1,24 +1,49 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 import { motion, useInView, useScroll } from "framer-motion";
 
 interface ExperienceEntry {
   id: number;
   role: string;
   organization: string;
-  duration: string;
-  type: "Technical Advisor" | "Community & Design";
+  duration?: string;
+  location?: string;
+  website?: string;
+  type: string;
+  logo?: string;
+  logoBg?: string;
   highlights: string[];
 }
 
 const experiences: ExperienceEntry[] = [
   {
     id: 1,
+    role: "Assistant Teacher",
+    organization: "Subho's Computer Institute",
+    duration: "Present",
+    location: "Barrackpore, West Bengal, India",
+    website: "https://subhoscomputerinstitute.com/",
+    type: "Teaching / Academic Role",
+    logo: "/assets/subhos-computer-institute.png",
+    logoBg: "bg-[#0A1628] border border-slate-700/70",
+    highlights: [
+      "Conduct Java and Python programming classes for students from Classes VIII to XII.",
+      "Explain programming fundamentals, syntax, concepts and problem-solving techniques.",
+      "Guide students through practical coding exercises and program implementation.",
+      "Help students understand code structure, debugging and logical reasoning.",
+      "Support students in strengthening their computer science and programming foundations.",
+    ],
+  },
+  {
+    id: 2,
     role: "Technical Advisor (Internship)",
     organization: "Mount Litera Zee School",
     duration: "2024 – Present",
     type: "Technical Advisor",
+    logo: "/assets/Logo MLZS.png",
+    logoBg: "bg-white border border-neutral-200 dark:border-neutral-300",
     highlights: [
       "Provide technical guidance on digital systems, school technology infrastructure, and educational workflows.",
       "Contribute to the planning and development of school websites and ERP-related systems.",
@@ -27,7 +52,7 @@ const experiences: ExperienceEntry[] = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     role: "Member — Hackerspace (MSIT)",
     organization: "Designer & Web Contributor",
     duration: "2023 – Present",
@@ -93,19 +118,56 @@ function TimelineItem({
       >
         <div className="glass-card p-6 sm:p-8 rounded-2xl group border border-[var(--theme-border)] border-l-4 border-l-primary hover:-translate-y-0.5 transition-all duration-200 shadow-xs">
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
-            <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-widest text-primary block">
-                {exp.duration}
-              </span>
+            <div className="space-y-1.5">
+              {exp.duration && (
+                <span className="text-xs font-bold uppercase tracking-widest text-primary block">
+                  {exp.duration}
+                </span>
+              )}
               <h3 className="text-xl sm:text-2xl font-bold text-[var(--theme-text)] group-hover:text-primary transition-colors">
                 {exp.role}
               </h3>
-              <p className="text-sm font-semibold text-[var(--theme-text-secondary)]">
-                {exp.organization}
-              </p>
+
+              {/* Organization row with vertically centered logo */}
+              <div className="flex items-center gap-2.5 pt-0.5">
+                {exp.logo && (
+                  <div
+                    className={`relative w-8 h-8 sm:w-9 sm:h-9 rounded-lg overflow-hidden flex items-center justify-center p-1 sm:p-1.5 ${
+                      exp.logoBg || "bg-white dark:bg-neutral-900"
+                    } shadow-xs shrink-0`}
+                  >
+                    <Image
+                      src={exp.logo}
+                      alt={`${exp.organization} logo`}
+                      width={36}
+                      height={36}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                )}
+                <p className="text-sm font-semibold text-[var(--theme-text-secondary)] flex items-center gap-2 flex-wrap">
+                  {exp.website ? (
+                    <a
+                      href={exp.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-primary transition-colors inline-flex items-center gap-1"
+                    >
+                      <span>{exp.organization}</span>
+                    </a>
+                  ) : (
+                    <span>{exp.organization}</span>
+                  )}
+                  {exp.location && (
+                    <span className="font-normal text-xs text-[var(--theme-text-muted)]">
+                      • {exp.location}
+                    </span>
+                  )}
+                </p>
+              </div>
             </div>
 
-            <span className="px-3.5 py-1 bg-primary/10 text-primary border border-primary/25 text-xs font-bold rounded-full uppercase tracking-wider self-start">
+            <span className="px-3.5 py-1 bg-primary/10 text-primary border border-primary/25 text-xs font-bold rounded-full uppercase tracking-wider self-start flex-shrink-0">
               {exp.type}
             </span>
           </div>

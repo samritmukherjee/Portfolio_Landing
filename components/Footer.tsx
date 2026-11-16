@@ -152,9 +152,9 @@ export function Footer() {
         </div>
 
         {/* Bottom Colophon & Visitor Badge */}
-        <div className="pt-4 border-t border-[var(--theme-border)] flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-[var(--theme-text-secondary)]">
-          {/* Social Icons */}
-          <div className="flex items-center gap-3">
+        <div className="pt-4 border-t border-[var(--theme-border)] grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center gap-4 text-xs text-[var(--theme-text-secondary)]">
+          {/* Social Icons - Left Column */}
+          <div className="flex items-center justify-center md:justify-start gap-3">
             {socialLinks.map((item, idx) => {
               const Icon = item.icon;
               return (
@@ -172,20 +172,22 @@ export function Footer() {
             })}
           </div>
 
-          {/* Visitor Counter Pill */}
-          {visitCount !== null && visitCount > 0 ? (
-            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--theme-card)] border border-[var(--theme-border)] text-xs font-mono font-medium">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span>{visitCount.toLocaleString()} global visits</span>
-            </div>
-          ) : (
-            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--theme-card)] border border-[var(--theme-border)] text-xs font-mono font-medium text-[var(--theme-text-muted)]">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Live portfolio</span>
-            </div>
-          )}
+          {/* Visitor Counter Pill - True Horizontal Center */}
+          <div className="flex items-center justify-center">
+            {visitCount !== null && visitCount > 0 ? (
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--theme-card)] border border-[var(--theme-border)] text-xs font-mono font-medium">
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span>{visitCount.toLocaleString()} global visits</span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--theme-card)] border border-[var(--theme-border)] text-xs font-mono font-medium text-[var(--theme-text-muted)]">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Live portfolio</span>
+              </div>
+            )}
+          </div>
 
-          {/* Copyright: Exactly "© 2026 Samrit Mukherjee." with subtle human signature */}
+          {/* Copyright: Exactly "© 2026 Samrit Mukherjee." with subtle human signature - Right Column */}
           <div className="font-medium text-center md:text-right text-[var(--theme-text-secondary)] flex items-center justify-center md:justify-end gap-2 text-xs">
             <span>© 2026 Samrit Mukherjee.</span>
             <span className="text-[var(--theme-border)] hidden sm:inline">•</span>

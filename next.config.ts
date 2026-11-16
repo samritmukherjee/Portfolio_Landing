@@ -19,6 +19,22 @@ const nextConfig: NextConfig = {
         source: "/resume.pdf",
         destination: "/Resume.pdf",
       },
+      {
+        source: "/.well-known/api-catalog",
+        destination: "/api/well-known/api-catalog",
+      },
+      {
+        source: "/.well-known/agent-skills/index.json",
+        destination: "/api/well-known/agent-skills-index",
+      },
+      {
+        source: "/.well-known/mcp/server-card.json",
+        destination: "/api/well-known/mcp/server-card",
+      },
+      {
+        source: "/.well-known/openapi.json",
+        destination: "/api/well-known/openapi",
+      },
     ];
   },
   async headers() {

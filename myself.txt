@@ -39,6 +39,19 @@ My work is guided by one principle:
 
 ## 🔹 PROFESSIONAL JOURNEY
 
+### Assistant Teacher — Subho's Computer Institute
+
+**Teaching / Academic Role | Barrackpore, West Bengal, India**  
+Website: https://subhoscomputerinstitute.com/
+
+Teaching computer programming to school students from Classes VIII to XII, with a focus on Java and Python. Helping students understand programming concepts, develop logical thinking, and gain practical coding experience through structured lessons and hands-on exercises.
+
+- Conduct Java and Python programming classes for students from Classes VIII to XII.
+- Explain programming fundamentals, syntax, concepts and problem-solving techniques.
+- Guide students through practical coding exercises and program implementation.
+- Help students understand code structure, debugging and logical reasoning.
+- Support students in strengthening their computer science and programming foundations.
+
 ### Technical Advisor / Internship — Mount Litera Zee School
 
 **2024 – Present**
