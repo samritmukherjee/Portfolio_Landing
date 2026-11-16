@@ -1,71 +1,56 @@
-# Complete Technical Project Audit Report — samrit.dev
+# Complete Project Technical Audit Report — samrit.dev
 
-**Date of Audit**: November 16, 2026  
-**Project**: Samrit Mukherjee Portfolio (`samrit-portfolio`)  
+**Audit Date**: November 16, 2026  
+**Project**: Samrit Mukherjee — Personal Portfolio (`samrit-portfolio`)  
 **Production URL**: [https://samrit.dev](https://samrit.dev)  
-**Framework**: Next.js 16.2.4 (App Router, Turbopack) • React 18.3.1 • TypeScript 5.0.0 • Tailwind CSS 3.4.0  
-**Audit Scope**: Complete code audit, directory structure, routes, components, assets, integrations, SEO, performance, validation checks, and recent updates.
+**Architecture**: Next.js 16.2.4 (App Router, Turbopack) • React 18.3.1 • TypeScript 5.0.0 • Tailwind CSS 3.4.0  
+**Audit Purpose**: Complete technical audit of the cleaned, reduced, production-ready codebase after removal of all standalone pages, dead code, unused assets, and temporary documentation.
 
 ---
 
-## A. Project Overview
+## 1. Project Overview
 
-### 1. Purpose and Identity
-The website is the primary personal portfolio, technical publication, and software engineering showcase of **Samrit Mukherjee** — an AI Systems Engineer, Full-Stack Developer, and 11× Hackathon Winner based in Kolkata, India. He is currently pursuing a B.Tech in Computer Science & Engineering (Artificial Intelligence and Machine Learning) at Meghnad Saha Institute of Technology (MSIT), MAKAUT, graduating in 2028.
+The website is the canonical personal portfolio, technical showcase, and professional profile of **Samrit Mukherjee** — an AI Systems Engineer, Full-Stack Developer, and 11× Hackathon Winner based in Kolkata, India. He is pursuing a B.Tech in Computer Science & Engineering (Artificial Intelligence and Machine Learning) at Meghnad Saha Institute of Technology (MSIT), MAKAUT, graduating in 2028.
 
-### 2. Architecture Summary
-The application is engineered on Next.js 16 with the modern App Router architecture, compiled via Turbopack. It pairs server-rendered content, static site generation (SSG) for articles and API manifests, client-side physics animations (Lenis smooth scroll synchronized with GSAP ticker loop), a dynamic theme system (Dark `#080F1E` vs Light `#F8FAFC` toggled with custom pixel-swap and Star Wars audio-visual controls), and AI agent discovery compliance (WebMCP, OpenAPI 3.0, and RFC 9727 Linksets).
-
-### 3. Current Project Status
-- **Core Production Website**: Fully active and operational at `https://samrit.dev`.
-- **Validation**: TypeScript type checking (`npx tsc --noEmit`) passes with 0 errors. Turbopack production build (`next build`) compiles cleanly (22 static and dynamic routes generated).
-- **Recent Expansions**: Horizontal center alignment of the footer visit counter, integration of Subho's Computer Institute professional journey role with verified official transparent logo, local asset reorganization of the Mount Litera Zee School logo, and complete route discovery.
+The project has been streamlined from a multi-page site containing an experimental blog and placeholder subpages into a lean, high-performance portfolio application. The only user-facing destinations are the **Homepage (`/`)** and the **Resume resource (`/Resume.pdf` and its aliases `/resume` / `/resume.pdf`)**.
 
 ---
 
-## B. Complete Directory Structure
+## 2. Final Directory and Folder Structure
 
-```
+```text
 E:\Coding\Web-Developement Projects\3. Samrit Portfolio Landing
-├── .agents/                        # Skill bundles and design reference documentation
-│   └── skills/                     # Local customization and audit guidance rules
-├── .next/                          # Next.js build cache and Turbopack compiler output
+├── .agents/                        # Installed agent skill references (locked by skills-lock.json)
+│   └── skills/                     # Local customization and design reference documentation
+├── .next/                          # Turbopack build cache and compiled server/static output
 ├── app/                            # Next.js 16 App Router tree
-│   ├── about/                      # Secondary biographical route
-│   │   └── page.tsx                # Standalone profile page (/about)
-│   ├── api/                        # REST & WebMCP Route Handlers
+│   ├── api/                        # Backend REST & WebMCP Route Handlers
 │   │   ├── contact/route.ts        # GET contact details (JSON + Markdown negotiation)
-│   │   ├── health/route.ts         # GET service uptime and health check
+│   │   ├── health/route.ts         # GET service uptime & health check
 │   │   ├── projects/route.ts       # GET canonical projects array
 │   │   ├── skills/route.ts         # GET categorized skills hierarchy
-│   │   ├── v1/projects/route.ts    # Versioned filtered projects REST API
+│   │   ├── v1/projects/route.ts    # Versioned REST API with category filtering
 │   │   ├── visitors/route.ts       # GET & POST Redis visitor counter
-│   │   └── well-known/             # Machine-readable discovery endpoints
+│   │   └── well-known/             # Agent discovery endpoints (Linkset, OpenAPI, WebMCP)
 │   │       ├── agent-skills-index/ # Agent skills registry
 │   │       ├── api-catalog/        # RFC 9727 linkset catalog
 │   │       ├── mcp/server-card/    # MCP server manifest
 │   │       └── openapi/            # OpenAPI 3.0 specification
-│   ├── blog/                       # Technical writing & case studies
-│   │   ├── [slug]/page.tsx         # Pre-rendered SSG dynamic article reader
-│   │   └── page.tsx                # Blog index (/blog)
-│   ├── llms.txt/route.ts           # Dynamic LLM plain text crawler endpoint
-│   ├── portfolio-os/               # Standalone workstation teaser
-│   │   ├── layout.tsx              # Standalone metadata & OpenGraph wrapper
-│   │   └── page.tsx                # Coming soon interactive OS showcase (/portfolio-os)
 │   ├── layout.tsx                  # Root layout (fonts, metadata, analytics, theme init)
-│   ├── manifest.ts                 # Dynamic Web App Manifest (/manifest.webmanifest)
+│   ├── manifest.ts                 # Web App Manifest (/manifest.webmanifest)
 │   ├── opengraph-image.tsx         # Edge-rendered dynamic social card (1200×630)
-│   ├── page.tsx                    # Main 9-section portfolio landing page (/)
+│   ├── page.tsx                    # Landing page composed of 9 active sections
+│   ├── robots.ts                   # Dynamic Next.js robots.txt metadata route
 │   └── sitemap.ts                  # Dynamic XML sitemap generator (/sitemap.xml)
 ├── components/                     # Component architecture
-│   ├── fancy/                      # Advanced SVG and typographic visual effects
+│   ├── fancy/                      # Advanced SVG filters and typography effects
 │   │   ├── filter/gooey-svg-filter.tsx # Reusable SVG feGaussianBlur / feColorMatrix filter
 │   │   └── text/text-highlighter.tsx   # Hand-drawn marker highlighter effect
-│   ├── sections/                   # 9 primary modular sections of the homepage
+│   ├── sections/                   # 9 primary homepage sections
 │   │   ├── About.tsx               # About section with orbiting project logos
 │   │   ├── ContactCards.tsx        # Formspree contact form & reach-out channels
 │   │   ├── Experience.tsx          # Professional journey timeline (Subho's, MLZS, Hackerspace)
-│   │   ├── Hackathons.tsx          # Accolades grid with hover photo reveals
+│   │   ├── Hackathons.tsx          # Accolades display (11 wins) with hover photo reveals
 │   │   ├── Hero.tsx                # Interactive Hero with 3D Lanyard ID badge
 │   │   ├── Projects.tsx            # Featured projects with desktop folder tabs & mobile snap
 │   │   ├── Services.tsx            # What I Do / Core Capabilities breakdown
@@ -79,20 +64,17 @@ E:\Coding\Web-Developement Projects\3. Samrit Portfolio Landing
 │   │   ├── LanyardBadge.tsx        # Interactive physics-based 3D ID card
 │   │   ├── orbiting-circles.tsx    # CSS orbit animation primitive
 │   │   └── orbiting-circles-demo.tsx # Multi-tier brand orbit animation
-│   ├── Footer.tsx                  # Footer with visit counter, navigation, and colophon
+│   ├── Footer.tsx                  # Footer with centered visitor counter and colophon
 │   ├── JsonLd.tsx                  # Schema.org structured data graph generator
 │   ├── LenisWrapper.tsx            # Smooth scrolling client boundary
-│   ├── Navbar.tsx                  # Floating responsive navigation bar with theme toggle
+│   ├── Navbar.tsx                  # Floating navigation bar with theme toggle
 │   ├── PageLoader.tsx              # First-visit split-shutter entrance loader
 │   ├── PixelSwap.css               # Official React Bits PixelSwap transition stylesheet
 │   ├── PixelSwap.jsx               # PixelSwap theme transition component
-│   ├── SiteAnalytics.tsx           # Google Analytics 4 (gtag) script loader
+│   ├── SiteAnalytics.tsx           # Google Analytics 4 (gtag.js) script loader
 │   └── star-wars-toggle-switch.tsx # Theme toggle switch component with styled-components
-├── hooks/                          # Custom React hooks
-│   ├── useLenis.ts                 # Smooth scroll hook synchronized with GSAP ticker
-│   └── useWebMCP.ts                # WebMCP browser tool registration hook
-├── lib/                            # Shared utilities and data models
-│   ├── blog-posts.ts               # Blog posts and case study metadata
+├── hooks/                          # Custom React hooks (useLenis, useWebMCP)
+├── lib/                            # Canonical data models, Redis client, utilities
 │   ├── projects-data.ts            # Canonical project records and metadata
 │   ├── redis.ts                    # Redis client initialization and visitor logic
 │   ├── registry.tsx                # styled-components SSR stylesheet manager
@@ -101,15 +83,13 @@ E:\Coding\Web-Developement Projects\3. Samrit Portfolio Landing
 │   ├── structured-data.ts          # Schema.org linked data graph
 │   ├── utils.ts                    # Shared clsx and twMerge helper (`cn`)
 │   └── visitor.ts                  # Client session visitor deduplication logic
-├── public/                         # Public static assets served from root
-│   ├── assets/                     # Professional Journey & institutional logos
+├── public/                         # Public static assets
+│   ├── assets/                     # Institutional logos
 │   │   ├── Logo MLZS.png           # Mount Litera Zee School official logo (2700×2700, PNG)
-│   │   └── subhos-computer-institute.png # Subho's Computer Institute logo (1280×720, PNG)
+│   │   └── subhos-computer-institute.png # Subho's Institute logo (1280×720, PNG)
 │   ├── apple-touch-icon.png        # 180×180 Apple Touch Icon
 │   ├── favicon.ico                 # Root favicon icon
-│   ├── llms.txt                    # Plain text summary for LLM scrapers (fallback)
-│   ├── Resume.pdf                  # Official PDF resume document
-│   └── robots.txt                  # Search crawler directives
+│   └── Resume.pdf                  # Official PDF resume document
 ├── styles/
 │   └── globals.css                 # Design tokens, CSS custom properties, utility classes
 ├── types/
@@ -118,243 +98,278 @@ E:\Coding\Web-Developement Projects\3. Samrit Portfolio Landing
 ├── .gitignore                      # Git ignored files and directories
 ├── components.json                 # shadcn/ui configuration
 ├── middleware.ts                   # API caching and Markdown negotiation middleware
-├── myself.txt                      # Canonical personal bio and project source of truth
 ├── next.config.ts                  # Next.js configuration, rewrites, and headers
 ├── package.json                    # Dependencies, scripts, and project metadata
 ├── tailwind.config.ts              # Tailwind CSS configuration and theme extensions
-└── tsconfig.json                   # Strict TypeScript compiler options
+├── tsconfig.json                   # Strict TypeScript compiler options
+├── README.md                       # Streamlined developer documentation
+└── PROJECT_AUDIT_REPORT.md         # This technical audit report
 ```
 
 ---
 
-## C. Application Architecture
+## 3. Framework and Technology Stack
 
-### 1. Root Layout & Theme System
-- `app/layout.tsx` is the foundation. It evaluates the user's saved theme synchronously in `<head>` via an inline IIFE to eliminate any flash of unstyled theme (FOUC).
-- Default theme is Light Mode on initial arrival, transitioning smoothly to Dark Mode upon user interaction.
-- State is coordinated across `localStorage` and `sessionStorage`.
-- When switching themes on the homepage, `PixelSwap.jsx` displays a diagonal retro pixel dissolution transition while DOM theme tokens swap beneath.
-
-### 2. Design System & CSS Tokens
-Declared in `styles/globals.css`:
-- **Dark Mode**: `--theme-bg: #080F1E`, `--theme-surface: #0F1B30`, `--theme-card: #111D32`, `--theme-border: #263750`, `--theme-accent: #3B82F6`, `--theme-text: #F1F5F9`.
-- **Light Mode**: `--theme-bg: #F8FAFC`, `--theme-surface: #EFF6FF`, `--theme-card: #FFFFFF`, `--theme-border: #DCE6F1`, `--theme-accent: #2563EB`, `--theme-text: #0F172A`.
-
-### 3. Font Pipeline
-Loaded via `next/font/google`:
-- **Body**: `DM_Sans` (`--font-body`), variable font.
-- **Headings**: `Syne` (`--font-display`), weights 400–800.
-- **Serif Accents**: `Noto_Serif` (`--font-serif`), normal and italic.
-- **Handwritten Signatures**: `Playwrite_CA_Guides` (`--font-accent`).
-
-### 4. Animation and Smooth Scrolling Pipeline
-- Powered by `lenis` via `hooks/useLenis.ts` and `components/LenisWrapper.tsx`.
-- The Lenis RAF loop is bound to the GSAP Ticker (`gsap.ticker.add`) to ensure zero frame collisions with Framer Motion or GSAP scroll triggers.
-- Native momentum scrolling is preserved on touch screens.
-- `prefers-reduced-motion: reduce` media query is respected across all components.
+- **Framework**: Next.js 16.2.4 using the App Router and Turbopack compiler.
+- **Runtime & Language**: React 18.3.1, TypeScript 5.0.0.
+- **Styling**: Tailwind CSS 3.4.0 with CSS variables declared in `styles/globals.css`.
+- **SSR Style Registry**: `styled-components` 6.4.0 used exclusively to support the Star Wars theme toggle switch without SSR hydration mismatches.
+- **Animation System**:
+  - `lenis` 1.3.23 for smooth physics-based scrolling.
+  - `gsap` 3.15.0 for central animation ticker coordination and entrance shutter transitions.
+  - `framer-motion` 12.38.0 for interactive gestures, dock magnification, and in-view scroll reveals.
+- **Data & Telemetry**: `redis` 5.12.1 for global visit counter increments and reads.
+- **Forms**: `@formspree/react` 3.0.0 for contact form submission and state handling.
+- **CDN**: Cloudinary for dynamic responsive image delivery.
 
 ---
 
-## D. Complete Route Audit
+## 4. Homepage Architecture
 
-*Refer to the companion document `ROUTE_INVENTORY.md` for full path-by-path endpoint tables.*
+The homepage (`app/page.tsx`) renders as a single-page application consisting of 9 synchronized sections:
 
-### Summary of Route Findings:
-1. **Homepage (`/`)**: Main landing page with 9 sections.
-2. **Hidden Standalone Pages (`/about`, `/blog`, `/portfolio-os`)**:
-   - These 3 pages are valid, fully functional Next.js pages compiled in the build and listed in `sitemap.xml`.
-   - None of them are linked from the floating Navbar, Dock, or Footer, which exclusively target on-page section IDs.
-   - `/blog` features 3 statically generated case studies (`cosmic-canvas-architecture`, `double-slash-4-win`, `webmcp-nextjs`).
-   - `/portfolio-os` is a "Coming Soon" teaser page with preview date "Q3 2026".
-3. **API Endpoints**:
-   - `/api/health`, `/api/projects`, `/api/skills`, `/api/v1/projects`, `/api/visitors`, `/api/contact`.
-   - Machine discovery routes under `/api/well-known/`.
-4. **Machine Discovery URL Resolution**:
-   - Previous live production deployment lacked rewrites from `/.well-known/*` to `/api/well-known/*`, causing 404s when AI agents requested URLs declared in `robots.txt` or `<head>` Link headers.
-   - Now resolved in `next.config.ts` via internal Next.js rewrites.
+1. **Hero**: Headline, live availability status badge, quick CTAs ("View Projects", "Contact Me", "Resume"), and an interactive 3D physics-based identity lanyard (`components/ui/LanyardBadge.tsx`).
+2. **TechStackMarquee**: Infinite horizontal ticker displaying language, framework, and tool logos.
+3. **About**: Personal narrative, core statistics (11× hackathon wins, 8 projects built, 5 featured), and multi-tier orbiting technology circles (`components/ui/orbiting-circles-demo.tsx`).
+4. **Services**: Core capabilities breakdown (AI Systems, Full-Stack Architecture, Enterprise Software).
+5. **Hackathons**: Accolades showcase highlighting 11 victories and achievements with interactive hover photo reveals on desktop and a touch-snap carousel on mobile.
+6. **Projects**: Interactive showcase displaying 5 featured production applications (Cosmic Canvas, SUKALYA.ai, Portfolio OS, Avento AI, Custodian) and an active upcoming engineering preview. Features SVG goo-filtered folder tabs on desktop and snap-scroll points on mobile.
+7. **Experience (Professional Journey)**: Alternating timeline cards covering Subho's Computer Institute (Assistant Teacher), Mount Litera Zee School (Technical Advisor), and Hackerspace MSIT (Designer & Web Contributor). Logos are vertically centered directly against organization names.
+8. **TechnicalArsenal**: Categorized skill badge matrix (Languages, Frontend, Backend, AI/ML, Cloud & DevOps, Creative) with devicon logos.
+9. **ContactCards**: Reach-out channels, direct email copy button with clipboard feedback, and an integrated Formspree contact form.
 
----
-
-## E. Component Audit
-
-| Component | Path | Responsibility | Dependencies | State / Interactions | Verification Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `Navbar` | `components/Navbar.tsx` | Sticky floating navigation bar, logo, theme toggle, mobile slide menu | `framer-motion`, `lucide-react`, `StarWarsSwitch` | Auto-hides on downscroll; opens on upscroll. Mobile menu sheet. | Active & Verified |
-| `Hero` | `components/sections/Hero.tsx` | Hero banner, availability badge, quick CTAs, 3D interactive badge | `LanyardBadge`, `DotGrid`, `BlobButton` | Interactive 3D drag physics. | Active & Verified |
-| `TechStackMarquee` | `components/sections/TechStackMarquee.tsx` | Infinite horizontal scrolling logos ticker | CSS keyframes, Cloudinary logos | Pure CSS infinite translateX animation. | Active & Verified |
-| `About` | `components/sections/About.tsx` | Bio overview, orbiting technology ring, stats cards | `orbiting-circles-demo`, `TextHighlighter` | In-view scroll trigger reveal. | Active & Verified |
-| `Services` | `components/sections/Services.tsx` | Core engineering disciplines cards (AI, Full-Stack, Architecture) | `lucide-react`, `framer-motion` | Card hover lift & border glow. | Active & Verified |
-| `Hackathons` | `components/sections/Hackathons.tsx` | Accolades display (11 wins), photo reveal cards, mobile carousel | `framer-motion`, Cloudinary image assets | Desktop hover photo reveal; mobile snap carousel. | Active & Verified |
-| `Projects` | `components/sections/Projects.tsx` | 5 featured live projects + upcoming preview tab | `GooeySvgFilter`, `BlobButton`, `Image` | Desktop SVG goo folder tabs; mobile snap slider. | Active & Verified |
-| `Experience` | `components/sections/Experience.tsx` | Professional Journey timeline (Subho's Institute, MLZS, Hackerspace) | `framer-motion`, `Image` | Alternating left/right cards with animated line. | **Updated & Verified** |
-| `TechnicalArsenal` | `components/sections/TechnicalArsenal.tsx` | Tabbed skill badges with devicon logos | `framer-motion` | Filter by category (Languages, Frontend, Backend, AI). | Active & Verified |
-| `ContactCards` | `components/sections/ContactCards.tsx` | Reach-out information, email copy button, Formspree contact form | `@formspree/react`, `BlobButton` | Form submission, validation, clipboard copy feedback. | Active & Verified |
-| `Footer` | `components/Footer.tsx` | Brand colophon, focus ticker, nav links, social links, visit counter | `framer-motion`, `lucide-react`, `BlobButton` | Morphing focus text, real-time Redis counter. | **Updated & Verified** |
-| `Dock` | `components/ui/Dock.tsx` | macOS-style bottom application dock with magnification physics | `framer-motion`, `lucide-react` | Pointer-distance-based spring icon magnification. | Active & Verified |
-| `CustomCursor` | `components/ui/CustomCursor.tsx` | Precision mouse pointer with spring lag and hover reaction | `framer-motion` | Desktop only; hidden on touch screens. | Active & Verified |
-| `PageLoader` | `components/PageLoader.tsx` | First-visit entrance shutter animation | `gsap` | Session-cached (triggers once per session). | Active & Verified |
-| `SiteAnalytics` | `components/SiteAnalytics.tsx` | Google Analytics 4 (gtag.js) script injection | `next/script` | Conditional on `NEXT_PUBLIC_GA_MEASUREMENT_ID`. | Active & Verified |
-| `JsonLd` | `components/JsonLd.tsx` | Injects Schema.org `@graph` script | `lib/structured-data.ts` | Server-rendered JSON-LD. | Active & Verified |
+The homepage is enveloped by:
+- **Navbar**: Floating header with automatic downscroll hiding, upscroll revealing, section hash jumping, and the Star Wars audio-visual theme switch.
+- **Dock**: Fixed bottom macOS-inspired dock with mouse-distance-based spring magnification.
+- **Footer**: Brand colophon, Focus & Vision morphing ticker, navigation links, social icons, and the mathematically centered Redis visit counter.
 
 ---
 
-## F. Assets Audit
+## 5. Resume Page Architecture
 
-### 1. Static Assets (`public/`)
-- `public/assets/Logo MLZS.png`: Official Mount Litera Zee School logo. High-resolution (2700×2700), 32-bit ARGB PNG with clean transparency. Moved from project root to dedicated assets folder.
-- `public/assets/subhos-computer-institute.png`: Official Subho's Computer Institute logo extracted directly from official website header and preloader assets. High-resolution (1280×720), 32-bit ARGB PNG with full alpha channel transparency.
-- `public/apple-touch-icon.png`: 180×180 PNG icon for iOS home screens.
-- `public/favicon.ico`: Standard 32×32 favicon.
-- `public/Resume.pdf`: Official PDF resume (69.8 KB). Directly accessible at `/Resume.pdf` and `/resume.pdf`.
-- `public/robots.txt`: Search crawler directives.
-- `public/llms.txt`: Plain-text dossier for LLMs.
-
-### 2. Remote CDN Assets (Cloudinary)
-All major project screenshots, hackathon victory photos, and tech stack logos are delivered through Cloudinary CDN (`https://res.cloudinary.com/duxrcy3jn/...`) with automatic format and dimension optimization configured in `next.config.ts`.
-
-### 3. Missing / Discrepant Asset Notice
-- `public/coming_soon.png`: Referenced in `lib/projects-data.ts` (line 108) as the fallback image for the `coming-soon` record and in `README.md` (line 168). The physical file was not present in `public/`. Note: On the homepage, the "Upcoming" tab renders Cloudinary logos and custom SVG rather than this image, so user-facing UI is not broken, but direct requests to `/coming_soon.png` return 404.
+The Resume resource is delivered via zero-redirect local static serving:
+- **Primary Static Asset**: `public/Resume.pdf` (69.8 KB).
+- **Internal Next.js Rewrites** (`next.config.ts`):
+  - `/resume` ➔ `/Resume.pdf` (serves the PDF directly under the clean URL `/resume` with 200 OK).
+  - `/resume.pdf` ➔ `/Resume.pdf` (case-insensitive fallback with 200 OK).
+- **UI Integration**:
+  - Hero section provides direct download and in-browser viewing buttons.
+  - ContactCards provides both "View Resume" (`target="_blank"`) and "Download" buttons.
+- **Sitemap**: Declared in `app/sitemap.ts` (`https://samrit.dev/Resume.pdf`, priority: 0.8).
 
 ---
 
-## G. Dependencies and Configuration
+## 6. Component Organization
 
-### 1. Installed Dependencies (`package.json`)
-- `next` (`^16.2.4`): Modern App Router framework with Turbopack compilation.
-- `react` / `react-dom` (`^18.3.1`): React core.
-- `framer-motion` (`^12.38.0`): Card animations, reveals, and dock magnification.
-- `gsap` (`^3.15.0`): Smooth scroll ticker integration and PageLoader entrance shutter.
-- `lenis` (`^1.3.23`): Inertia-based smooth scrolling.
-- `@formspree/react` (`^3.0.0`): Contact form processing.
-- `redis` (`^5.12.1`): Redis client for global visitor counting.
-- `styled-components` (`^6.4.0`): SSR-registered styling for Star Wars theme toggle switch.
-- `lucide-react` (`^1.8.0`) / `react-icons` (`^5.6.0`): Icon libraries.
-- `@vercel/speed-insights` (`^2.0.0`): Vercel real-user performance monitoring.
-- `clsx` (`^2.1.1`) / `tailwind-merge` (`^3.5.0`): Class manipulation utilities.
-
-### 2. Environment Variables
-*No credentials or secrets are logged.*
-- `REDIS_URL`: Connection string for Upstash/Redis instance powering the visitor counter.
-- `DEBUG_REDIS`: Enables debug logs for Redis queries in development.
-- `AVAILABILITY_STATUS`: Overrides the Hero availability badge ("Available" or "Busy").
-- `NEXT_PUBLIC_GA_MEASUREMENT_ID`: Google Analytics 4 tracking ID.
-- `NEXT_PUBLIC_AVENTO_KEY`: Public client key for Avento AI chat widget.
-- `NEXT_PUBLIC_AVENTO_BOT_URL`: Script source URL for Avento AI widget.
+Components are organized into functional directories:
+- `components/sections/`: Modular homepage sections. Each section owns its markup, in-view trigger observers, and responsive layout.
+- `components/ui/`: Reusable primitives (`BlobButton`, `CustomCursor`, `Dock`, `DotGrid`, `LanyardBadge`, `orbiting-circles`).
+- `components/fancy/`: Specialized SVG filters (`gooey-svg-filter.tsx`) and typographic effects (`text-highlighter.tsx`).
+- Root `components/`: Global shell elements (`Navbar`, `Footer`, `PageLoader`, `LenisWrapper`, `JsonLd`, `SiteAnalytics`, `PixelSwap`, `star-wars-toggle-switch`).
 
 ---
 
-## H. Third-Party Integrations
+## 7. Backend and API Architecture
+
+All backend endpoints are built using Next.js App Router Route Handlers (`route.ts`) under `app/api/`. Middleware (`middleware.ts`) applies caching headers (`Cache-Control: public, s-maxage=3600, stale-while-revalidate=86400`) and handles agent Markdown content negotiation.
+
+| Endpoint | Method | Response Type | Purpose |
+| :--- | :--- | :--- | :--- |
+| `/api/health` | `GET` | `application/json` | Returns uptime, system health status `"ok"`, and timestamp. |
+| `/api/projects` | `GET` | `application/json` | Returns full canonical projects array. |
+| `/api/skills` | `GET` | `application/json` | Returns hierarchical skill categories and proficiency data. |
+| `/api/v1/projects` | `GET` | `application/json` | Versioned REST API supporting `?category=` query parameter filtering for AI agents. |
+| `/api/visitors` | `GET`, `POST` | `application/json` | Telemetry endpoint. Increments and retrieves the global visitor count from Redis. |
+| `/api/contact` | `GET` | `application/json` / `text/markdown` | Returns contact channels, availability, and social links. Supports Markdown negotiation via `Accept: text/markdown`. |
+| `/api/well-known/api-catalog` | `GET` | `application/linkset+json` | RFC 9727 linkset catalog describing machine-readable relationships. |
+| `/api/well-known/agent-skills-index` | `GET` | `application/json` | Registry of registered WebMCP agent skills (`get-projects`, `get-skills`, `get-contact-info`). |
+| `/api/well-known/mcp/server-card` | `GET` | `application/json` | Model Context Protocol (MCP) server manifest card. |
+| `/api/well-known/openapi` | `GET` | `application/json` | OpenAPI 3.0.3 specification documenting public API schemas. |
+
+---
+
+## 8. Third-Party Integrations
 
 1. **Redis Global Visitor Counter**:
-   - Implementation: `lib/redis.ts` and `app/api/visitors/route.ts`.
-   - Deduplication: `lib/visitor.ts` checks `sessionStorage` (`portfolio_visited_session`) and `localStorage` (`portfolio_last_visit_time`) to prevent duplicate increments during a single browsing session.
-   - Fallback: If Redis is unavailable or unconfigured, the endpoint gracefully catches errors and the footer displays a resilient `"Live portfolio"` green status pill.
+   - Connection initialized in `lib/redis.ts`.
+   - Client session deduplication managed by `lib/visitor.ts` (`sessionStorage` and `localStorage` checks).
+   - If Redis connection fails, error is caught gracefully and the footer renders a fallback `"Live portfolio"` green status pill.
 2. **Formspree Contact Form**:
-   - Implementation: `components/sections/ContactCards.tsx` via `useForm("mqparaae")`.
-   - Handles submission state, validation error rendering, and displays a success confirmation message upon delivery.
-3. **Avento AI Support Widget**:
-   - Implementation: Injected in `app/layout.tsx` via `next/script` (`https://www.avento-ai.xyz/sdk.js`) using `strategy="afterInteractive"`.
-4. **Google Analytics (GA4)**:
-   - Implementation: `components/SiteAnalytics.tsx` loads `gtag.js` when `NEXT_PUBLIC_GA_MEASUREMENT_ID` is present.
+   - Initialized via `useForm("mqparaae")` from `@formspree/react` in `ContactCards.tsx`.
+   - Handles submission lifecycle, validation error states, and success confirmations.
+3. **Avento AI Customer Support Widget**:
+   - Injected in `app/layout.tsx` using `next/script` (`https://www.avento-ai.xyz/sdk.js`) with `data-key={process.env.NEXT_PUBLIC_AVENTO_KEY}` and `strategy="afterInteractive"`.
+4. **Google Analytics 4 (GA4)**:
+   - Configured in `components/SiteAnalytics.tsx` to load `gtag.js` when `NEXT_PUBLIC_GA_MEASUREMENT_ID` is present.
 5. **Vercel Speed Insights**:
-   - Implementation: Injected in `app/layout.tsx` (`@vercel/speed-insights/next`).
+   - Integrated in `app/layout.tsx` via `@vercel/speed-insights/next`.
 
 ---
 
-## I. SEO and Metadata
+## 9. Environment Variable Names and Purposes
 
-- **Metadata Architecture**: Comprehensive metadata configured in `app/layout.tsx` with dynamic title template `%s | Samrit Mukherjee`.
-- **OpenGraph & Twitter Cards**: Dynamic Edge-rendered OpenGraph image generated via `app/opengraph-image.tsx` (1200×630) using `@vercel/og` ImageResponse.
-- **Canonical URLs**: Configured on `/`, `/about`, `/blog`, `/blog/[slug]`, and `/portfolio-os`.
-- **Structured Data (JSON-LD)**: Schema.org graph declared in `lib/structured-data.ts` and rendered by `components/JsonLd.tsx`, containing linked `Person`, `WebSite`, `ProfilePage`, and `ItemList` of `CreativeWork`.
-- **Crawlers & AI Bot Directives**: `public/robots.txt` explicitly authorizes Googlebot, Bingbot, GPTBot, ClaudeBot, and PerplexityBot, while disallowing private routes. AI content signals (`Content-Signal: ai-train=yes, search=yes, ai-input=yes`) and agent discovery headers are declared.
+*No secret values or credentials are recorded.*
 
----
-
-## J. Performance and Reliability
-
-- **Theme Flash Prevention (FOUC)**: Synchronous IIFE in `<head>` ensures correct theme class application before first paint.
-- **Image Optimization**: Local images use Next.js `Image` with automatic responsive sizing. Remote Cloudinary assets use explicit aspect ratios and `object-contain`.
-- **Scroll Frame Budget**: Binding Lenis to `gsap.ticker` prevents competing `requestAnimationFrame` loops.
-- **Error Handling**: Redis visitor failures fail open (returns fallback count or Live status pill without throwing unhandled exceptions). Formspree errors display validation alerts inline.
+- `REDIS_URL`: Connection URI for the Upstash / Redis instance powering the visitor counter.
+- `DEBUG_REDIS`: Enables verbose Redis connection logs during development.
+- `AVAILABILITY_STATUS`: Overrides the Hero availability badge state (`"Available"` or `"Busy"`).
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID`: Google Analytics 4 measurement ID (`G-XXXXXXXXXX`).
+- `NEXT_PUBLIC_AVENTO_KEY`: Public client authentication key for the Avento AI widget.
+- `NEXT_PUBLIC_AVENTO_BOT_URL`: Script source URL for the Avento AI chatbot.
 
 ---
 
-## K. Code Quality and Technical Debt Assessment
+## 10. Asset Organization
 
-1. **`eslint` Configuration & Next 16 CLI**:
-   - `package.json` contains `"lint": "next lint"`.
-   - In Next.js 16+, `next lint` behavior has changed and `eslint` is not listed in `devDependencies`. Running `npm run lint` results in `Invalid project directory provided: ...\lint`.
-   - *Recommendation*: Configure ESLint 9 flat config or update the lint script.
-2. **Font Fallback Warning**:
-   - Turbopack logs a non-fatal warning during build: `Failed to find font override values for font Playwrite CA Guides`. This is expected for decorative cursive Google fonts without standard size-adjust metrics.
-3. **Unlinked Secondary Pages**:
-   - As documented in `ROUTE_INVENTORY.md`, `/about`, `/blog`, and `/portfolio-os` are active and indexed in `sitemap.xml`, but have no visible entry point on the homepage UI.
+All static assets are located in `public/`:
+- `public/assets/Logo MLZS.png`: Official Mount Litera Zee School logo. High-resolution (2700×2700), 32-bit ARGB transparent PNG.
+- `public/assets/subhos-computer-institute.png`: Official Subho's Computer Institute logo. High-resolution (1280×720), 32-bit ARGB transparent PNG.
+- `public/apple-touch-icon.png`: 180×180 PNG icon for iOS home screens.
+- `public/favicon.ico`: 32×32 browser favicon.
+- `public/Resume.pdf`: Official PDF resume (69.8 KB).
 
----
-
-## L. Build and Validation Status
-
-| Check | Command Executed | Result | Details |
-| :--- | :--- | :--- | :--- |
-| **TypeScript Check** | `npx tsc --noEmit` | **PASS (Code 0)** | Zero type errors across the entire codebase. |
-| **Production Build** | `npm run build` | **PASS (Code 0)** | Turbopack compiled successfully in 22.4s. 22 static and dynamic routes generated cleanly. |
-| **ESLint Check** | `npm run lint` | **CLI Issue** | `next lint` command failed because ESLint is not installed in `devDependencies` and Next 16 CLI syntax changed. Documented as technical debt. |
+Project screenshots, hackathon victory photos, and tech stack logos are delivered through Cloudinary CDN (`https://res.cloudinary.com/duxrcy3jn/...`) with dynamic optimization.
 
 ---
 
-## M. Recent Changes Summary
+## 11. SEO Implementation
 
-1. **Footer Global Visit Counter Alignment**:
-   - Restructured the bottom footer row from a `justify-between` flex container to a responsive CSS Grid: `grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center gap-4`.
-   - The visitor counter pill is placed in the center grid track, guaranteeing true mathematical horizontal centering relative to the entire container width on desktop, regardless of unequal left and right content widths.
-   - Stacks cleanly into a balanced centered column on mobile screens with no overlapping.
-   - All styles, font sizes, pulse animations, and dynamic Redis count bindings were preserved.
-2. **Subho's Computer Institute Professional Journey Entry**:
-   - Added as a new entry in `components/sections/Experience.tsx`.
-   - Position: Assistant Teacher.
-   - Organization: Subho's Computer Institute.
-   - Duration: "Present" (configurable).
-   - Location: Barrackpore, West Bengal, India.
-   - Official Website: `https://subhoscomputerinstitute.com/` (with external link icon).
-   - Type Badge: "Teaching / Academic Role".
-   - Official Logo: Extracted directly from website assets (`public/assets/subhos-computer-institute.png`) with clean alpha channel transparency. Delivered in a high-contrast dark container (`bg-[#0A1628] border border-slate-700/70`) ensuring crisp visibility in both light and dark modes.
-   - Vertically centered directly against the organization name text using flexbox `flex items-center gap-2.5`.
-   - Content structure refined: introductory paragraph removed, directly rendering the 5 specific teaching responsibilities to match Mount Litera Zee School and Hackerspace cards.
-3. **Mount Litera Zee School Logo Organization & Alignment**:
-   - Moved `Logo MLZS.png` from the project root into `public/assets/Logo MLZS.png`.
-   - Verified image properties: 2700×2700 resolution, 32-bit ARGB PNG with transparency.
-   - Connected the logo to the Mount Litera Zee School card in `components/sections/Experience.tsx`, vertically centered beside the organization name text using `flex items-center gap-2.5`.
-   - Root duplicate removed cleanly.
-4. **Hackerspace Preservation**:
-   - Preserved Hackerspace's text-based presentation and existing card structure without adding any logo.
-5. **Personal Information Source (`myself.txt`)**:
-   - Added Subho's Computer Institute under `## 🔹 PROFESSIONAL JOURNEY` with all specified responsibilities, student levels (Classes VIII–XII), and website link.
-   - Preserved all existing projects, achievements, and graduation year (2028).
-6. **Agent Discovery Route Rewrites**:
-   - Added internal rewrites in `next.config.ts` mapping `/.well-known/*` to `/api/well-known/*`, resolving the production 404 issue for RFC 9727 and OpenAPI machine discovery.
-7. **Complete Route Discovery & Inventory**:
-   - Created `ROUTE_INVENTORY.md` detailing all 23 URLs, endpoints, and statuses.
+- **Canonical URL**: `https://samrit.dev/`.
+- **Title Configuration**: `Samrit Mukherjee | AI Systems & Full-Stack Engineering`.
+- **Description**: Accurate description of AI systems engineering, hackathons, and full-stack software development.
+- **Language & Viewport**: `lang="en"`, responsive viewport with initial scale 1 and maximum scale 5.
+- **OpenGraph & Twitter Cards**: Dynamic Edge-rendered 1200×630 social card (`app/opengraph-image.tsx`) generated via `@vercel/og` ImageResponse.
+- **Deindexing of Removed Pages**: Because `/about`, `/blog`, `/blog/*`, and `/portfolio-os` were deleted from source code and excluded from `sitemap.ts`, search engine crawlers encountering them will receive standard **404 Not Found** responses, naturally pruning them from search indices without false redirects to the homepage.
 
 ---
 
-## N. Outstanding Issues & Recommendations
+## 12. Metadata and Structured Data
 
-### High Priority
-- **`.well-known/` Rewrites Deployment**:
-  The internal rewrites added to `next.config.ts` will resolve the production 404 on `/.well-known/api-catalog` upon the next deployment.
+Structured data is rendered as a Schema.org `@graph` script by `components/JsonLd.tsx` using entities defined in `lib/structured-data.ts`:
+- **`Person`**: Name, alternate name, canonical URL, profile image, social profiles (GitHub, LinkedIn), job titles, `worksFor` entries (Subho's Computer Institute, Mount Litera Zee School), `affiliation` (Hackerspace MSIT), education (`Meghnad Saha Institute of Technology`), hackathon awards (11 wins), technical competencies, and location (Kolkata, India).
+- **`WebSite`**: Name, URL, description, publisher reference.
+- **`ProfilePage`**: Name, URL, description, primary image, main entity link.
+- **`ItemList` (`CreativeWork`)**: 5 featured production applications (Cosmic Canvas, SUKALYA.ai, Portfolio OS pointing to `https://samrit-portfolio-os.vercel.app/`, Avento AI, Custodian).
 
-### Medium Priority
-- **Missing `public/coming_soon.png` Asset**:
-  The upcoming project record in `lib/projects-data.ts` references `/coming_soon.png`, which is missing on disk. A placeholder graphic or asset update should be placed in `public/coming_soon.png`.
-- **Navigation Visibility for Secondary Pages**:
-  `/blog` (with 3 case studies) and `/about` are active and indexed by search engines, but completely hidden from the main navigation. Consider adding a small "Writing" or "Blog" link to the footer navigation.
-- **ESLint Setup in `devDependencies`**:
-  Install `eslint` and `eslint-config-next` or update `package.json` scripts so `npm run lint` runs successfully.
+---
 
-### Low Priority / Decision Items for User
-- **Subho's Computer Institute Start Date**:
-  The duration in `Experience.tsx` is currently set to `"Present"`. You may configure the exact start month or year (e.g. `"2026 – Present"` or `"Nov 2026 – Present"`) whenever you wish.
-- **Portfolio OS Teaser Status**:
-  `/portfolio-os` currently indicates an expected preview of "Q3 2026". You may update this timeline when the interactive desktop workstation feature is scheduled.
+## 13. Sitemap and Robots Configuration
 
+### Dynamic Sitemap (`app/sitemap.ts`)
+Generates `/sitemap.xml` containing exclusively the active, indexable URLs:
+1. `https://samrit.dev` (weekly, priority: 1.0)
+2. `https://samrit.dev/Resume.pdf` (monthly, priority: 0.8)
+
+### Dynamic Robots Configuration (`app/robots.ts`)
+Generates `/robots.txt` dynamically via the Next.js App Router metadata route convention:
+- **Googlebot & Bingbot**: Allow `/`, disallow `/api/`, `/admin`, `/dashboard`, `/private`.
+- **AI Bots** (`GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`): Allow `/`, disallow private routes.
+- **Default (`*`)**: Allow `/` and `/_next/static/`, disallow `/api/` and private routes.
+- **Sitemap Directive**: Declares `https://samrit.dev/sitemap.xml`.
+
+---
+
+## 14. Dependency Audit
+
+All installed packages in `package.json` are actively utilized:
+- `next` (`^16.2.4`): Core framework and routing.
+- `react` / `react-dom` (`^18.3.1`): React rendering engine.
+- `framer-motion` (`^12.38.0`): Card animations, reveals, dock magnification.
+- `gsap` (`^3.15.0`): Smooth scroll ticker loop and PageLoader.
+- `lenis` (`^1.3.23`): Inertia smooth scrolling.
+- `@formspree/react` (`^3.0.0`): Contact form processing.
+- `redis` (`^5.12.1`): Redis visitor telemetry.
+- `styled-components` (`^6.4.0`): Star Wars switch component styling.
+- `lucide-react` / `react-icons`: UI icons.
+- `@vercel/speed-insights`: Performance monitoring.
+- `clsx` / `tailwind-merge`: Utility class merging.
+- `@types/*`, `tailwindcss`, `postcss`, `autoprefixer`, `typescript`: Build tooling.
+
+---
+
+## 15. Dead-Code and Unused-Asset Cleanup Summary
+
+- **Removed Dead Code**:
+  - `lib/blog-posts.ts` (exclusively used by deleted blog routes).
+  - Unused `description` property and rendering logic from `components/sections/Experience.tsx`.
+  - Obsolete `llms.txt` Link header in `app/layout.tsx`.
+- **Removed Unused Assets**:
+  - `public/llms.txt` (redundant text file).
+  - `public/robots.txt` (migrated to dynamic Next.js `app/robots.ts`).
+  - Broken `/coming_soon.png` reference in `lib/projects-data.ts` replaced with an active Cloudinary preview URL.
+- **Removed Documentation**:
+  - `myself.txt` (old personal text dump).
+  - `ROUTE_INVENTORY.md` (consolidated into this report).
+
+---
+
+## 16. Removed Standalone Pages
+
+1. `/about` (`app/about/page.tsx`) — Removed. Standalone biographical subpage.
+2. `/blog` (`app/blog/page.tsx`) — Removed. Technical writing index page.
+3. `/blog/cosmic-canvas-architecture` (`app/blog/[slug]/page.tsx`) — Removed. Dynamic blog article route.
+4. `/blog/double-slash-4-win` (`app/blog/[slug]/page.tsx`) — Removed. Dynamic blog article route.
+5. `/blog/webmcp-nextjs` (`app/blog/[slug]/page.tsx`) — Removed. Dynamic blog article route.
+6. `/portfolio-os` (`app/portfolio-os/page.tsx`, `app/portfolio-os/layout.tsx`) — Removed. Standalone teaser page.
+7. `/llms.txt` (`app/llms.txt/route.ts`) — Removed. Redundant crawler endpoint.
+
+---
+
+## 17. Removed Files and Folders Grouped by Category
+
+### Removed Route Directories & Page Files
+- `app/about/page.tsx`
+- `app/about/`
+- `app/blog/[slug]/page.tsx`
+- `app/blog/[slug]/`
+- `app/blog/page.tsx`
+- `app/blog/`
+- `app/portfolio-os/layout.tsx`
+- `app/portfolio-os/page.tsx`
+- `app/portfolio-os/`
+- `app/llms.txt/route.ts`
+- `app/llms.txt/`
+
+### Removed Data & Helper Files
+- `lib/blog-posts.ts`
+
+### Removed Static & Documentation Files
+- `myself.txt`
+- `ROUTE_INVENTORY.md`
+- `public/llms.txt`
+- `public/robots.txt`
+
+---
+
+## 18. Preserved Functionality
+
+- **Homepage (`/`)**: 100% operational with all 9 active sections.
+- **Resume Resource (`/Resume.pdf`, `/resume`, `/resume.pdf`)**: Fully functional with zero-redirect delivery.
+- **Smooth Scrolling Pipeline**: Lenis synchronized with GSAP ticker loop.
+- **Dual-Theme System**: Seamless light/dark toggling with PixelSwap transition and Star Wars switch.
+- **Visitor Telemetry**: Redis counter and fallback badge preserved.
+- **Contact Workflow**: Formspree submission and clipboard copy feedback preserved.
+- **Avento AI Support Bot**: Script initialization preserved.
+- **Analytics**: Google Analytics 4 and Vercel Speed Insights preserved.
+- **All 10 API Handlers**: Active under `/api/` with internal rewrites for agent discovery.
+
+---
+
+## 19. Build, Lint, and TypeScript Validation Results
+
+| Test / Command | Result | Verification Notes |
+| :--- | :--- | :--- |
+| **TypeScript (`npx tsc --noEmit`)** | **PASS (Code 0)** | 0 compilation errors across the entire codebase. |
+| **Turbopack Build (`npm run build`)** | **PASS (Code 0)** | Compiled in 17.3s. Generated 16 optimized routes (1 homepage + 15 system/API endpoints). Zero standalone pages remaining. |
+| **ESLint (`npm run lint`)** | **CLI Limitation** | `package.json` contains `"lint": "next lint"`. Next.js 16 App Router CLI does not bundle a standalone `lint` command, and `eslint` is not listed in `devDependencies`. Documented as technical debt. |
+
+---
+
+## 20. Remaining Issues and Recommendations
+
+1. **Production Deployment**:
+   The local codebase is clean and verified. Once deployed to Vercel, the removed pages will naturally return 404, deindexing them from search engines over time.
+2. **ESLint Package Configuration**:
+   To enable `npm run lint`, install `eslint` and `eslint-config-next` in `devDependencies` with an ESLint flat config file.
+3. **Subho's Computer Institute Start Date**:
+   Duration is currently set to `"Present"`. You may configure the exact start date (e.g. `"2026 – Present"`) in `components/sections/Experience.tsx` line 25 whenever desired.

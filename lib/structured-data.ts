@@ -21,6 +21,11 @@ export const personJsonLd = {
   worksFor: [
     {
       "@type": "Organization",
+      name: "Subho's Computer Institute",
+      description: "Assistant Teacher conducting computer programming classes (Java and Python) for school students from Classes VIII to XII.",
+    },
+    {
+      "@type": "Organization",
       name: "Mount Litera Zee School",
       description: "Technical Advisor / Internship on digital infrastructure, school technology workflows, and administrative systems.",
     },
@@ -141,7 +146,7 @@ export const projectsItemListJsonLd = {
       item: {
         "@type": "CreativeWork",
         name: "Portfolio OS",
-        url: "https://samrit.dev/portfolio-os",
+        url: "https://samrit-portfolio-os.vercel.app/",
         description: "Operating-system-inspired portfolio interface with draggable desktop windows, terminal workflows, and interactive applications.",
         creator: {
           "@id": "https://samrit.dev/#person",

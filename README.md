@@ -1,310 +1,151 @@
-# Samrit Mukherjee — Portfolio
+# Samrit Mukherjee — Personal Portfolio
 
-A modern, high-performance personal portfolio and engineering showcase built for **Samrit Mukherjee** — AI Systems Engineer, Full-Stack Developer, and 11× Hackathon Winner.
+Production personal portfolio and engineering showcase for **Samrit Mukherjee** — AI Systems Engineer, Full-Stack Developer, and 11× Hackathon Winner.
 
-The website delivers an interactive, editorial web experience featuring smooth physics-based scrolling, light and dark themes, interactive project showcases, real-time accolades with photo reveals, AI agent discovery protocols, and a locally delivered resume.
-
-🌐 **Live Website**: [samrit.dev](https://samrit.dev/)
+🌐 **Production Website**: [https://samrit.dev](https://samrit.dev)
 
 ---
 
-## 🛠️ Technology Stack
+## 1. Overview
+
+The website delivers a high-performance personal portfolio landing page with interactive showcases, a dynamic dual-theme system (Dark `#080F1E` vs Light `#F8FAFC`), physics-based smooth scrolling, real-time accolades with photo reveals, a live global visitor counter, and direct zero-redirect delivery of the official resume.
+
+---
+
+## 2. Technology Stack
 
 | Layer | Technologies |
 | :--- | :--- |
 | **Framework** | [Next.js 16](https://nextjs.org/) (App Router, Turbopack, React Server Components) |
-| **Runtime & Language** | [React 18](https://react.dev/), [TypeScript 5](https://www.typescriptlang.org/) |
-| **Styling** | [Tailwind CSS v3](https://tailwindcss.com/), CSS Custom Properties (Design Tokens), Glassmorphism |
+| **Language & Runtime** | [TypeScript 5](https://www.typescriptlang.org/), [React 18](https://react.dev/) |
+| **Styling** | [Tailwind CSS v3](https://tailwindcss.com/), CSS Custom Properties (Tokens) |
 | **Component Registry** | [styled-components v6](https://styled-components.com/) (SSR registry for Star Wars theme toggle) |
-| **Animations & Physics** | [Lenis](https://lenis.darkroom.engineering/) (Smooth Scroll), [GSAP 3](https://greensock.com/gsap/) (ScrollTrigger & Ticker), [Framer Motion 12](https://www.framer.com/motion/) |
+| **Animations & Scroll** | [Lenis](https://lenis.darkroom.engineering/) (Smooth Scroll), [GSAP 3](https://greensock.com/gsap/) (Ticker loop), [Framer Motion 12](https://www.framer.com/motion/) |
 | **Icons** | [Lucide React](https://lucide.dev/), [React Icons](https://react-icons.github.io/react-icons/) |
-| **Data & State** | [Redis](https://redis.io/) (`redis` client) for real-time global visitor counter |
-| **Form Handling** | [@formspree/react](https://formspree.io/) |
-| **Performance Analytics** | [@vercel/speed-insights](https://vercel.com/analytics) |
-| **Media & CDN** | [Cloudinary CDN](https://cloudinary.com/) (dynamic image resizing and optimization) |
+| **Visitor Counter** | [Redis](https://redis.io/) (`redis` client) via Upstash |
+| **Contact Form** | [@formspree/react](https://formspree.io/) |
+| **Performance** | [@vercel/speed-insights](https://vercel.com/analytics) |
+| **Media Delivery** | [Cloudinary CDN](https://cloudinary.com/) (dynamic format & dimensions) |
 | **Deployment Target** | [Vercel](https://vercel.com/) |
 
 ---
 
-## ✨ Key Architectural Features
+## 3. Project Structure
 
-- **Coordinated Scroll Pipeline**: Smooth vertical scrolling powered by Lenis, unified with GSAP's central RAF ticker loop to prevent competing animation frames. Native touch momentum is preserved on mobile devices, and reduced-motion user preferences (`prefers-reduced-motion: reduce`) are honored automatically.
-- **Dynamic Dual Theme System**: Features a deep midnight navy dark mode (`#080F1E`) and crisp modern light mode (`#F8FAFC`) with vibrant blue and cyan accents (`#2563EB` / `#3B82F6` / `#06B6D4`). Initial theme state is evaluated synchronously in `<head>` via an inline IIFE to eliminate flash of unstyled theme (FOUC).
-- **Interactive Projects Showcase**:
-  - *Desktop*: SVG gooey-filtered folder tabs that blend the active tab pill into the project card.
-  - *Mobile*: Touch-optimized horizontal card carousel with CSS scroll snap points.
-- **Accolades & Hackathon Showcase**:
-  - *Desktop*: 3-column card grid with live hover-activated photo reveals and podium statistics.
-  - *Mobile*: Horizontal snap-scroll carousel with explicit photo toggle buttons.
-- **Preloaded First-Visit Loader**: A split-panel shutter curtain exit animation powered by GSAP, rendered only once per browser session via `sessionStorage`.
-- **Custom Precision Cursor**: Smooth-following custom pointer with spring-based scale reactions on hoverable elements (desktop only).
-- **Direct Resume Delivery**: Zero-redirect local delivery of `/Resume.pdf` supporting both direct download and in-browser tab viewing.
-- **Comprehensive Technical SEO & Structured Data**: Interlinked Schema.org `@graph` (`Person`, `WebSite`, `ProfilePage`, `ItemList` of `CreativeWork`), semantic `<h1>`–`<h3>` hierarchy, crawler-friendly `robots.txt`, XML sitemap, and dynamic Edge-rendered OpenGraph previews (`app/opengraph-image.tsx`).
-- **AI Agent Discovery & WebMCP**: Full compliance with RFC 8288 link headers, RFC 9727 API catalog, OpenAPI 3.0 specification, agent skill index (`/.well-known/agent-skills/index.json`), and browser tool registration via `hooks/useWebMCP.ts`.
-
----
-
-## 🎨 Design System Tokens
-
-All styling tokens are declared as CSS custom properties in `styles/globals.css`:
-
-```css
-/* Dark Mode (Default) */
-html[data-theme="dark"], html.dark {
-  --theme-bg: #080F1E;
-  --theme-surface: #0F1B30;
-  --theme-surface-2: #14223C;
-  --theme-surface-elevated: #172846;
-  --theme-card: #111D32;
-  --theme-text: #F1F5F9;
-  --theme-text-secondary: #B6C3D5;
-  --theme-text-muted: #8E9FB8;
-  --theme-border: #263750;
-  --theme-accent: #3B82F6;
-  --theme-accent-secondary: #60A5FA;
-  --theme-accent-cyan: #22D3EE;
-}
-
-/* Light Mode */
-html[data-theme="light"] {
-  --theme-bg: #F8FAFC;
-  --theme-surface: #EFF6FF;
-  --theme-surface-2: #E2EDF9;
-  --theme-surface-elevated: #FFFFFF;
-  --theme-card: #FFFFFF;
-  --theme-text: #0F172A;
-  --theme-text-secondary: #475569;
-  --theme-text-muted: #64748B;
-  --theme-border: #DCE6F1;
-  --theme-accent: #2563EB;
-  --theme-accent-secondary: #3B82F6;
-  --theme-accent-cyan: #0891B2;
-}
-```
-
-### Typography
-- **Body**: [DM Sans](https://fonts.google.com/specimen/DM+Sans) (`--font-body`), variable font loaded via Next.js Google Fonts.
-- **Display Headings**: [Syne](https://fonts.google.com/specimen/Syne) (`--font-display`), weights 400–800 for titles and branding.
-
----
-
-## 📂 Project Structure
-
-```
+```text
 ├── app/
-│   ├── layout.tsx                  # Root layout, metadata, fonts, analytics, theme init
-│   ├── page.tsx                    # Landing page composed of active sections
-│   ├── sitemap.ts                  # Dynamic XML sitemap generator
-│   ├── opengraph-image.tsx         # Edge-rendered dynamic OpenGraph social card
+│   ├── api/
+│   │   ├── contact/route.ts        # GET contact details (JSON + Markdown negotiation)
+│   │   ├── health/route.ts         # GET service uptime & health check
+│   │   ├── projects/route.ts       # GET canonical projects array
+│   │   ├── skills/route.ts         # GET categorized skills hierarchy
+│   │   ├── v1/projects/route.ts    # Versioned REST API with query filtering
+│   │   ├── visitors/route.ts       # GET & POST Redis visitor counter
+│   │   └── well-known/             # RFC 9727, WebMCP, and OpenAPI discovery endpoints
+│   ├── layout.tsx                  # Root layout (fonts, metadata, analytics, theme init)
 │   ├── manifest.ts                 # Web App Manifest (/manifest.webmanifest)
-│   ├── about/                      # /about page route
-│   ├── blog/                       # /blog list and /blog/[slug] dynamic case studies
-│   ├── portfolio-os/               # /portfolio-os interactive workstation route
-│   ├── llms.txt/                   # /llms.txt route handler for AI crawlers
-│   └── api/
-│       ├── contact/                # GET contact details (JSON + Markdown)
-│       ├── health/                 # GET service health check
-│       ├── projects/               # GET projects data
-│       ├── skills/                 # GET skills hierarchy
-│       ├── visitors/               # GET & POST visitor tracking endpoint
-│       ├── v1/projects/            # Versioned projects REST API
-│       └── well-known/
-│           ├── api-catalog/        # RFC 9727 Linkset+JSON catalog
-│           ├── agent-skills-index/ # Agent skills discovery registry
-│           ├── mcp/server-card/    # MCP server manifest
-│           └── openapi/            # OpenAPI 3.0 specification
-│
+│   ├── opengraph-image.tsx         # Edge-rendered dynamic social card (1200×630)
+│   ├── page.tsx                    # Landing page composed of 9 active sections
+│   ├── robots.ts                   # Dynamic robots.txt metadata route
+│   └── sitemap.ts                  # Dynamic XML sitemap generator (/sitemap.xml)
 ├── components/
-│   ├── sections/
-│   │   ├── Hero.tsx                # Hero section with Lanyard badge & semantic h1
-│   │   ├── TechStackMarquee.tsx    # Infinite logo ticker
-│   │   ├── About.tsx               # About section with orbiting project logos
-│   │   ├── Services.tsx            # What I Do / Core Capabilities
-│   │   ├── Hackathons.tsx          # Hackathons & accolades with photo reveal
-│   │   ├── Projects.tsx            # Featured projects with desktop folder & mobile snap
-│   │   ├── Experience.tsx          # Professional journey timeline
-│   │   ├── TechnicalArsenal.tsx    # Categorized skill badges with devicon logos
-│   │   └── ContactCards.tsx        # Formspree contact form & direct reach-out cards
-│   ├── ui/
-│   │   ├── BlobButton.tsx          # SVG goo-filter interactive button
-│   │   ├── CustomCursor.tsx        # Spring-interpolated custom cursor
-│   │   ├── Dock.tsx                # macOS-style bottom navigation dock
-│   │   ├── DotGrid.tsx             # Canvas dot grid background with radial glow
-│   │   ├── LanyardBadge.tsx        # 3D interactive physics-based identity badge
-│   │   ├── orbiting-circles.tsx    # CSS orbit animation primitive
-│   │   └── orbiting-circles-demo.tsx# Brand orbit visualization
-│   ├── fancy/
-│   │   ├── filter/
-│   │   │   └── gooey-svg-filter.tsx# Reusable SVG feGaussianBlur filter
-│   │   └── text/
-│   │       └── text-highlighter.tsx# Hand-drawn marker highlight effect
-│   ├── Footer.tsx                  # Colophon, nav links, and visitor counter
-│   ├── JsonLd.tsx                  # Schema.org structured data renderer
-│   ├── LenisWrapper.tsx            # Client boundary wrapper for smooth scrolling
-│   ├── Navbar.tsx                  # Floating responsive navigation bar
-│   ├── PageLoader.tsx              # First-visit split shutter entrance loader
-│   ├── SiteAnalytics.tsx           # Google Analytics (gtag) client loader
-│   └── star-wars-toggle-switch.tsx # Theme toggle switch component
-│
-├── hooks/
-│   ├── useLenis.ts                 # Smooth scroll hook synchronized with GSAP ticker
-│   └── useWebMCP.ts                # WebMCP browser tool registration hook
-│
-├── lib/
-│   ├── projects-data.ts            # Canonical project records and metadata
-│   ├── skills-data.ts              # Categorized technical competencies
-│   ├── blog-posts.ts               # Blog posts and case study metadata
-│   ├── structured-data.ts          # Schema.org linked data graph
-│   ├── redis.ts                    # Redis client initialization and visitor logic
-│   ├── registry.tsx                # styled-components SSR stylesheet manager
-│   ├── scrollToElement.ts          # Smooth scrolling helper for anchor targets
-│   ├── visitor.ts                  # Client session visitor deduplication logic
-│   └── utils.ts                    # Shared clsx and twMerge helper (`cn`)
-│
+│   ├── fancy/                      # Advanced SVG filters and typography effects
+│   ├── sections/                   # 9 primary homepage sections (Hero, About, Projects, etc.)
+│   ├── ui/                         # Reusable UI primitives (BlobButton, CustomCursor, Dock, etc.)
+│   ├── Footer.tsx                  # Footer with centered visitor counter and colophon
+│   ├── JsonLd.tsx                  # Schema.org structured data graph generator
+│   ├── LenisWrapper.tsx            # Smooth scrolling client boundary
+│   ├── Navbar.tsx                  # Floating navigation bar with theme switch
+│   ├── PageLoader.tsx              # First-visit entrance shutter animation
+│   └── SiteAnalytics.tsx           # Google Analytics 4 (gtag.js) script loader
+├── hooks/                          # Custom hooks (useLenis, useWebMCP)
+├── lib/                            # Canonical data models, Redis client, utilities
 ├── public/
-│   ├── Resume.pdf                  # Official resume PDF document
-│   ├── favicon.ico                 # 32x32 root browser favicon (1.8 KB)
-│   ├── apple-touch-icon.png        # 180x180 Apple touch icon (7.3 KB)
-│   ├── coming_soon.png             # Fallback graphic for upcoming projects
-│   ├── robots.txt                  # Search crawler directives
-│   └── llms.txt                    # Plain text summary for LLM scrapers
-│
-├── middleware.ts                   # API caching and Markdown negotiation middleware
-├── next.config.ts                  # Next.js configuration and Cloudinary remote patterns
-├── tailwind.config.ts              # Tailwind CSS theme extension
-├── tsconfig.json                   # Strict TypeScript compiler options
-└── package.json                    # Project scripts and dependencies
+│   ├── assets/                     # Institutional logos (Mount Litera Zee School, Subho's Institute)
+│   ├── Resume.pdf                  # Official PDF resume document
+│   ├── apple-touch-icon.png        # iOS application icon
+│   └── favicon.ico                 # 32×32 browser favicon
+├── styles/
+│   └── globals.css                 # Design tokens and custom property declarations
+├── next.config.ts                  # Next.js configuration, rewrites, and headers
+├── package.json                    # Project dependencies and npm scripts
+└── tsconfig.json                   # Strict TypeScript compiler options
 ```
 
 ---
 
-## ⚙️ Environment Variables
-
-Create a `.env.local` file in the project root to configure runtime integrations. All variables are optional for local development (fallbacks are implemented for missing credentials):
-
-| Variable | Description | Example / Format |
-| :--- | :--- | :--- |
-| `REDIS_URL` | Redis connection URL for real-time visitor tracking | `redis://default:<password>@<host>:<port>` |
-| `DEBUG_REDIS` | Set to `"true"` to enable verbose Redis error logging in development | `true` |
-| `AVAILABILITY_STATUS` | Work availability badge state in Hero (`Available` or `Busy`) | `Available` |
-| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics 4 measurement ID | `G-XXXXXXXXXX` |
-| `NEXT_PUBLIC_AVENTO_BOT_URL` | Optional customer support bot script URL | `https://avento-bot.vercel.app/sdk.js` |
-| `NEXT_PUBLIC_AVENTO_BOT_KEY` | Optional customer support bot public key | `pk_...` |
-
-> [!NOTE]
-> Never commit `.env` or `.env.local` files containing live credentials. Template references should be maintained in `.env.example`.
-
----
-
-## 🚀 Local Development
+## 4. Local Development
 
 ### Prerequisites
-- **Node.js**: `v18.18.0` or later (tested with Node 18, 20, and 22).
-- **Package Manager**: `npm` (v9+) or `yarn` / `pnpm`.
+- Node.js 18.17+ or 20+
+- npm or pnpm / yarn
 
 ### Installation
-
 ```bash
-# 1. Clone the repository
-git clone https://github.com/samritmukherjee/Portfolio_Landing.git
-cd Portfolio_Landing
-
-# 2. Install dependencies
+git clone https://github.com/samritmukherjee/samrit-portfolio.git
+cd samrit-portfolio
 npm install
-
-# 3. Create local environment configuration
-cp .env.example .env.local  # or create .env.local manually
 ```
 
 ### Running Locally
-
 ```bash
-# Start the Next.js development server with Turbopack
 npm run dev
 ```
-
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 🔍 Validation, Testing & Build Commands
+## 5. Environment Variables
 
-| Command | Purpose | Expected Output |
-| :--- | :--- | :--- |
-| `npx tsc --noEmit` | Validates TypeScript types across all files strictly | Exit code `0` (Zero type errors) |
-| `npm run build` | Compiles an optimized production build using Turbopack | Static generation of 22 routes with zero compilation warnings |
-| `npm run start` | Serves the production build locally | Production server listening on `http://localhost:3000` |
-| `npm run lint` | Runs the Next.js linter (`next lint`) | Validates code standards |
+Create a `.env.local` file in the root directory. All variables are optional for local development with graceful fallbacks:
 
-> [!TIP]
-> **Windows Path Note**: If running `npm run lint` in environments where the repository path contains spaces, invoke ESLint directly or use `npx next lint .` to avoid directory argument parsing ambiguities.
+| Variable | Description |
+| :--- | :--- |
+| `REDIS_URL` | Redis / Upstash connection URL for real-time global visitor tracking |
+| `DEBUG_REDIS` | Set to `"true"` to enable verbose Redis error logging in development |
+| `AVAILABILITY_STATUS` | Work availability badge state in Hero (`Available` or `Busy`) |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics 4 measurement ID (`G-XXXXXXXXXX`) |
+| `NEXT_PUBLIC_AVENTO_KEY` | Public client key for Avento AI customer support widget |
+| `NEXT_PUBLIC_AVENTO_BOT_URL` | Script source URL for Avento AI widget |
 
 ---
 
-## 🌐 Public REST APIs & Machine Protocols
+## 6. Production Build
 
-The application exposes structured, cache-controlled endpoints for programmatic consumption and AI agent discovery:
-
-### Public Data Endpoints
+To test and compile an optimized production build using Next.js Turbopack:
 
 ```bash
-# Get all projects (JSON)
-curl https://samrit.dev/api/projects
-
-# Get projects with category filter
-curl https://samrit.dev/api/projects?category=ai
-
-# Content Negotiation: Request Markdown response
-curl -H "Accept: text/markdown" https://samrit.dev/api/projects
-
-# Get technical skills
-curl https://samrit.dev/api/skills
-
-# Service health check
-curl https://samrit.dev/api/health
-
-# Real-time visitor counter (increments on POST)
-curl -X POST https://samrit.dev/api/visitors
+npm run build
 ```
 
-### AI Discovery Protocols
+To run the compiled production server locally:
 
-| Endpoint | Standard / Protocol | Purpose |
-| :--- | :--- | :--- |
-| `/.well-known/api-catalog` | [RFC 9727](https://www.rfc-editor.org/rfc/rfc9727.html) | Machine-readable API discovery catalog |
-| `/.well-known/agent-skills/index.json` | Agent Skills Discovery v0.2.0 | Capability registration for autonomous agents |
-| `/.well-known/mcp/server-card.json` | Model Context Protocol (MCP) | MCP server card definition |
-| `/.well-known/openapi.json` | OpenAPI 3.0 | Complete OpenAPI schema specification |
-| `/llms.txt` | Content Signals | Plain-text content and architectural guide for LLM crawlers |
+```bash
+npm run start
+```
 
 ---
 
-## 📄 Resume Maintenance
+## 7. Deployment
 
-The resume is delivered directly from the static root:
-- **Location**: `public/Resume.pdf`
-- **Public URL**: `https://samrit.dev/Resume.pdf`
+The project is configured for zero-configuration continuous deployment on [Vercel](https://vercel.com/):
 
-To update the resume, replace `public/Resume.pdf` with the updated PDF. The filename is version-tagged in query parameters (e.g., `/Resume.pdf?v=YYYYMMDD`) within `Hero.tsx` to bust intermediate CDN cache layers automatically.
-
----
-
-## 🛡️ External Services & Operational Dependencies
-
-- **Formspree**: Contact form messages are posted to endpoint `https://formspree.io/f/mqparaae` via `@formspree/react`. If the service is unreachable, users can use the one-click copy button for direct email delivery (`samritmukherjee05@gmail.com`).
-- **Redis (Upstash / Cloud Redis)**: Powers the visitor counter at `/api/visitors`. If Redis is offline or unconfigured, the API gracefully falls back to `0` without breaking page rendering or throwing uncaught client errors.
-- **Cloudinary CDN**: External imagery (project banners, logos, profile photos) is delivered through Cloudinary's optimized global media delivery network.
+1. Import the repository into your Vercel team/account.
+2. Ensure the Framework Preset is set to **Next.js**.
+3. Add any production environment variables (`REDIS_URL`, `NEXT_PUBLIC_GA_MEASUREMENT_ID`, `NEXT_PUBLIC_AVENTO_KEY`) under Project Settings.
+4. Deploy. Every push to `main` automatically triggers an Edge & Serverless production deployment.
 
 ---
 
-## 👤 Author & Contact
+## 8. Backend Integrations
 
-**Samrit Mukherjee**
-- **Portfolio**: [https://samrit.dev/](https://samrit.dev/)
-- **GitHub**: [@samritmukherjee](https://github.com/samritmukherjee)
-- **LinkedIn**: [linkedin.com/in/samrit-mukherjee/](https://www.linkedin.com/in/samrit-mukherjee/)
-- **Email**: [samritmukherjee05@gmail.com](mailto:samritmukherjee05@gmail.com)
-- **Base Location**: Kolkata, West Bengal, India
-
-
----
+1. **Global Visitor Counter (`/api/visitors`)**:
+   - Backed by Redis. Client-side deduplication via session and timestamp prevents artificial inflation.
+   - If Redis is disconnected, it fails open and gracefully displays a `"Live portfolio"` status badge.
+2. **Contact Form (`components/sections/ContactCards.tsx`)**:
+   - Powered by `@formspree/react` with client-side validation, error handling, and delivery confirmation.
+3. **Agent Discovery & WebMCP (`/api/well-known/*`)**:
+   - RFC 9727 Linkset catalog, WebMCP skill registry, and OpenAPI 3.0 specification for AI agent discovery.
+   - Standard root paths (`/.well-known/api-catalog`, `/.well-known/openapi.json`, etc.) are internally rewritten in `next.config.ts`.
+4. **Zero-Redirect Resume Delivery**:
+   - Both `/resume` and `/resume.pdf` are internally rewritten in `next.config.ts` to `/Resume.pdf`, supporting in-browser viewing and direct download.

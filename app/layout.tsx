@@ -131,7 +131,6 @@ export const metadata: Metadata = {
       '</.well-known/mcp/server-card.json>; rel="mcp-server"; type="application/json"',
       '</api/health>; rel="status"; type="application/json"',
       '</sitemap.xml>; rel="sitemap"; type="application/xml"',
-      '</llms.txt>; rel="llms"; type="text/plain"',
     ].join(", "),
   },
 };

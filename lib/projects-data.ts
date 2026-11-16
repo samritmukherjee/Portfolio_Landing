@@ -105,7 +105,8 @@ export const projectsData: ProjectData[] = [
       "Three additional projects in agentic workflows, automation, and computer vision will be revealed as they are ready to be featured.",
     technologies: ["AI Systems", "Full-Stack", "Computer Vision", "Automation"],
     link: "#contact",
-    image: "/coming_soon.png",
+    image:
+      "https://res.cloudinary.com/duxrcy3jn/image/upload/v1791024871/Sovereign-Icon-Black_y2adx8.png",
     category: "ai",
     dateCreated: "2026",
     author: "Samrit Mukherjee",

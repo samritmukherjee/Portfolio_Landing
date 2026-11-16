@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
+        source: "/resume",
+        destination: "/Resume.pdf",
+      },
+      {
         source: "/resume.pdf",
         destination: "/Resume.pdf",
       },
